@@ -1,0 +1,123 @@
+//this is the middleware between react component and reducer using redux-thunk
+//each function will dispatch to reducer by doing some work
+
+import * as actionType from './actionsType';
+import axios from 'axios';
+
+export const login =(token,username)=>{
+    let inTime=new Date();
+    let time=inTime.getDate()+'-'+inTime.getMonth()+'-'+inTime.getFullYear()+" "+inTime.getHours()+':'+inTime.getMinutes()+':'+inTime.getSeconds()
+    return{
+        type:actionType.LOGIN,
+        isUserLogedIn:true,
+        username:username,
+        token:token,
+        client:null,
+        language:null,
+        appserver:null,
+        instnumber:null,
+        intime:time
+    };
+}
+
+export const loginerror =()=>{
+  return{
+      type:actionType.LOGINERROR
+  };
+}
+
+export const logout=()=>{
+  localStorage.removeItem('token');
+  localStorage.removeItem('username');
+  return{
+      type:actionType.LOGOUT,
+  };
+}
+
+export const defaultData=(data)=>{
+  let keys=Object.keys(data);
+  let selectedClientdata=data[keys[0]][0]
+  let systemConf={systemConf:data,selectedIP:selectedClientdata.ipAddress,selectedClient:selectedClientdata.client,selectedSys:selectedClientdata.sysId}
+
+  return{
+    type:actionType.SETDEFAULTDATA,systemConfig:systemConf
+  };
+}
+
+
+export const onLogin=(username,password,system,client,ip)=>{
+    return dispatch=>{axios.post('http://localhost:8080/token', {
+        userName: username,
+        password:password,
+        system:system,
+        client:client,
+        host:ip 
+      },{'Access-Control-Allow-Origin':'*'})
+      .then(response =>{
+        localStorage.setItem('token',response.data.token)
+        localStorage.setItem('username',response.data.userName)
+        dispatch(login(response.data.token,response.data.userName));
+      })
+      .catch(error=>{
+        dispatch(loginerror());
+      });
+    }
+}
+
+export const authCheckState = () => {
+  return dispatch => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+          dispatch(logout());
+      } else {
+          const username = localStorage.getItem('username');
+          dispatch(login(token, username));
+          }   
+      }
+};
+
+export const onLogout=()=>{
+  return dispatch=>{
+    dispatch(logout())
+    dispatch({type:actionType.CLEAR_RESULT})
+    dispatch({type:actionType.CLEAR_SIDEBAR})
+  }
+}
+
+export const fetchDefaultData=()=>{
+  return dispatch=>{axios.get('http://localhost:8080/token')
+      .then(response =>{
+        dispatch(defaultData(response.data));
+      })
+      .catch(error=>{
+        dispatch(loginerror());
+      });
+    }
+}
+
+
+export const onchangeSystem=(value,data)=>{
+  let clientData=data.systemConf[value][0]
+  return dispatch=>{
+    dispatch({type:actionType.CHANGESYSTEM,system:value,client:clientData.client,ip:clientData.ipAddress})
+  }
+}
+
+export const onchangeClient=(client,ip)=>{
+  return dispatch=>{
+    dispatch({type:actionType.CHANGECLIENT,client:client,ip:ip})
+  }
+}
+
+export const onchangeUserName=(value)=>{
+  return dispatch=>{
+    dispatch({type:actionType.CHANGEUSERNAME,value:value})
+  }
+}
+
+
+export const onchangePassword=(value)=>{
+  return dispatch=>{
+    dispatch({type:actionType.CHANGEPASSWORD,value:value})
+  }
+}
