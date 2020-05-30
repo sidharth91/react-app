@@ -25,10 +25,21 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { PieChart, Pie, Sector, Cell, Legend } from 'recharts';
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LabelList
 } from 'recharts';
 import AssessmentOutlinedIcon from '@material-ui/icons/AssessmentOutlined';
-
+import IconButton from '@material-ui/core/IconButton';
+import TocIcon from '@material-ui/icons/Toc';
+import GRCDraggableDialog from './GRCDraggableDialog'
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Paper from '@material-ui/core/Paper';
+import Draggable from 'react-draggable';
+import GRCDashbordTable from './GRCDashbordTable';
+import CloseIcon from '@material-ui/icons/Close';
 
 
 const height = 100
@@ -41,7 +52,7 @@ const COLORSSECONDSTACK = ["#a05195", "#a05195", "#a05195", "#a05195", "#a05195"
 const COLORSTHIRDSTACK = ["#f95d6a", "#f95d6a", "#f95d6a", "#f95d6a", "#f95d6a", "#f95d6a", "#f95d6a", "#f95d6a", "#f95d6a", "#f95d6a", "#4fc3f7", "#ffab91", "#66bb6a", "#9e9d24", "#ffe082", "#26a69a", "#00acc1", "#e57373", "#ff8a80", "#8d6e63", "#ff80ab", "#f48fb1", "#9575cd", "#7986cb", "#64b5f6", "#ffb74d", "#ea80fc", "#4dd0e1", "#d4e157", "#9ccc65", "#fff176", "#ffd740", "#90a4ae", "#eeff41", "#ccff90", "#c0ca33", "#0097a7", "#29b6f6"];
 const RADIAN = Math.PI / 180;
 
-const legendMap=[{id:'ZCOUNT1',value:'Executed Risk',type: "square"},{id:'ZCOUNT2',value:'Executed Risk',type: "square"},{id:'ZCOUNT3',value:'Executed Risk',type: "square"}]
+const legendMap = [{ id: 'ZCOUNT1', value: 'Executed Risk', type: "square" }, { id: 'ZCOUNT2', value: 'Executed Risk', type: "square" }, { id: 'ZCOUNT3', value: 'Executed Risk', type: "square" }]
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -78,7 +89,13 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-
+function PaperComponent(props) {
+  return (
+    <Draggable handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
+      <Paper {...props} />
+    </Draggable>
+  );
+}
 
 /* #0288D1 */
 
@@ -148,19 +165,25 @@ const GRCStackGraphCard = (props) => {
       layout={"horizontal"}
       data={data}
       barCategoryGap="10%"
-      maxBarSize={25}
+      maxBarSize={40}
       margin={{
         top: 5, right: 0, left: 0, bottom: 5,
       }}
     >
-       <Tooltip formatter={(value, name, props)=>tooltipText(value,name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px'}}/>
-       <Legend  iconSize={10} wrapperStyle={{
+      {/* <CartesianGrid strokeDasharray="2 2" /> */}
+      <LabelList dataKey="name" position="top" />
+      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
+      <Legend iconSize={10} wrapperStyle={{
         fontFamily: 'Helvetica', fontSize: '10px'
-      }} formatter={(value, entry, index)=>legendText(value)} />
+      }} formatter={(value, entry, index) => legendText(value)} />
       <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
       <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
-      <Bar dataKey="ZCOUNT1" stackId="a" fill='#009ed7' onClick={(data) => this.getData(data)} />
-      <Bar dataKey="ZCOUNT2" stackId="a" fill='#a05195' onClick={(data) => this.getData(data)} />
+      <Bar dataKey="ZCOUNT1" stackId="a" fill='#009ed7' onClick={(data) => this.getData(data)} >
+        <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white' }} />
+      </Bar>
+      <Bar dataKey="ZCOUNT2" stackId="a" fill='#a05195' onClick={(data) => this.getData(data)}>
+        <LabelList dataKey="ZCOUNT2" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white' }} />
+      </Bar>
 
       {/* <Bar dataKey="ZCOUNT1" stackId="a" fill={'#00bcd4'} onClick={(data) => this.getData(data)} >
               {
@@ -186,15 +209,25 @@ const GRCStackGraphCard = (props) => {
         top: 5, right: 0, left: 0, bottom: 5,
       }}
     >
-        <Tooltip formatter={(value, name, props)=>tooltipText(value,name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px'}}/>
-        <Legend  iconSize={10} wrapperStyle={{
+      {/* <CartesianGrid strokeDasharray="2 2" /> */}
+      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
+      <Legend iconSize={10} wrapperStyle={{
         fontFamily: 'Helvetica', fontSize: '10px'
-      }} formatter={(value, entry, index)=>legendText(value)} />
+      }} formatter={(value, entry, index) => legendText(value)} />
       <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
       <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
-      <Bar dataKey="ZCOUNT1" stackId="a" fill='#009ed7' onClick={(data) => this.getData(data)} />
-      <Bar dataKey="ZCOUNT2" stackId="a" fill='#a05195' onClick={(data) => this.getData(data)} />
-      <Bar dataKey="ZCOUNT3" stackId="a" fill='#f95d6a' onClick={(data) => this.getData(data)} />
+      <Bar dataKey="ZCOUNT1" stackId="a" fill='#009ed7' onClick={(data) => this.getData(data)} >
+
+        <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white' }} />
+      </Bar>
+      <Bar dataKey="ZCOUNT2" stackId="a" fill='#a05195' onClick={(data) => this.getData(data)} >
+
+        <LabelList dataKey="ZCOUNT2" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white' }} />
+      </Bar>
+      <Bar dataKey="ZCOUNT3" stackId="a" fill='#f95d6a' onClick={(data) => this.getData(data)} >
+
+        <LabelList dataKey="ZCOUNT3" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white' }} />
+      </Bar>
       {/* <Bar dataKey="ZCOUNT1" stackId="a" fill={'#00bcd4'} onClick={(data) => this.getData(data)} >
             {
                 data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORSFIRSTSTACK[index % COLORSFIRSTSTACK.length]} />)
@@ -313,16 +346,23 @@ const GRCStackGraphCard = (props) => {
           top: 5, right: 0, left: 0, bottom: 5,
         }}
       >
-         <Tooltip formatter={(value, name, props)=>tooltipText(value,name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px'}}/>
-        <Legend  iconSize={10} wrapperStyle={{
-        fontFamily: 'Helvetica', fontSize: '10px'
-      }} formatter={(value, entry, index)=>legendText(value)} />
+        {/* <CartesianGrid strokeDasharray="2 2" /> */}
+        <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
+        <Legend iconSize={10} wrapperStyle={{
+          fontFamily: 'Helvetica', fontSize: '10px'
+        }} formatter={(value, entry, index) => legendText(value)} />
 
         <XAxis type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
         <YAxis dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={60} interval={0} tick={CustomizedYAxisTick} />
-        <Bar dataKey="ZCOUNT1" stackId="a" fill='#009ed7' onClick={(data) => this.getData(data)} />
-        <Bar dataKey="ZCOUNT2" stackId="a" fill='#a05195' onClick={(data) => this.getData(data)} />
-        <Bar dataKey="ZCOUNT3" stackId="a" fill='#f95d6a' onClick={(data) => this.getData(data)} />
+        <Bar dataKey="ZCOUNT1" stackId="a" fill='#009ed7' onClick={(data) => this.getData(data)} >
+          <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white' }} />
+        </Bar>
+        <Bar dataKey="ZCOUNT2" stackId="a" fill='#a05195' onClick={(data) => this.getData(data)} >
+          <LabelList dataKey="ZCOUNT2" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white' }} />
+        </Bar>
+        <Bar dataKey="ZCOUNT3" stackId="a" fill='#f95d6a' onClick={(data) => this.getData(data)} >
+          <LabelList dataKey="ZCOUNT3" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white' }} />
+        </Bar>
         {/* <Bar dataKey="ZCOUNT1" stackId="a" fill={'#48C9B0'} onClick={(data)=>this.getData(data)}>
                       {  data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORSFIRSTSTACK[index % COLORSFIRSTSTACK.length]} />)
                       }
@@ -351,14 +391,20 @@ const GRCStackGraphCard = (props) => {
           top: 5, right: 0, left: 0, bottom: 5,
         }}
       >
-          <Tooltip formatter={(value, name, props)=>tooltipText(value,name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px'}}/>
-        <Legend  iconSize={10} wrapperStyle={{
-        fontFamily: 'Helvetica', fontSize: '10px'
-      }} formatter={(value, entry, index)=>legendText(value)} />
+        {/* <CartesianGrid strokeDasharray="2 2" /> */}
+
+        <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
+        <Legend iconSize={10} wrapperStyle={{
+          fontFamily: 'Helvetica', fontSize: '10px'
+        }} formatter={(value, entry, index) => legendText(value)} />
         <XAxis type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
         <YAxis dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={60} interval={0} tick={CustomizedYAxisTick} />
-        <Bar dataKey="ZCOUNT1" stackId="a" fill='#009ed7' onClick={(data) => this.getData(data)} />
-        <Bar dataKey="ZCOUNT2" stackId="a" fill='#a05195' onClick={(data) => this.getData(data)} />
+        <Bar dataKey="ZCOUNT1" stackId="a" fill='#009ed7' onClick={(data) => this.getData(data)} >
+          <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white' }} />
+        </Bar>
+        <Bar dataKey="ZCOUNT2" stackId="a" fill='#a05195' onClick={(data) => this.getData(data)} >
+          <LabelList dataKey="ZCOUNT2" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white' }} />
+        </Bar>
 
         {/* <Bar dataKey="ZCOUNT1" stackId="a" fill={'#48C9B0'} onClick={(data)=>this.getData(data)}>
                           {  data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORSFIRSTSTACK[index % COLORSFIRSTSTACK.length]} />)
@@ -372,81 +418,181 @@ const GRCStackGraphCard = (props) => {
       </BarChart></ResponsiveContainer>)
   }
 
-const legendText=(value)=>{
-  if(value=='ZCOUNT1'){
-    return "Executed Risks"
-  }
-  if(value=='ZCOUNT2'){
-    return "Non-Executed Risks"
-  }
-  if(value=='ZCOUNT3'){
-    return "Never Executed Risks"
-  }
-}
 
-const tooltipText=(value,name)=>{
-  if(name=='ZCOUNT1'){
-    return [value,"Executed Risks",]
+
+  const legendText = (value) => {
+    if (value == 'ZCOUNT1') {
+      return "Executed Risks"
+    }
+    if (value == 'ZCOUNT2') {
+      return "Non-Executed Risks"
+    }
+    if (value == 'ZCOUNT3') {
+      return "Never Executed Risks"
+    }
   }
-  if(name=='ZCOUNT2'){
-    return [value,"Non-Executed Risks"]
+
+  const tooltipText = (value, name) => {
+    if (name == 'ZCOUNT1') {
+      return [value, "Executed Risks",]
+    }
+    if (name == 'ZCOUNT2') {
+      return [value, "Non-Executed Risks"]
+    }
+    if (name == 'ZCOUNT3') {
+      return [value, "Never Executed Risks"]
+    }
   }
-  if(name=='ZCOUNT3'){
-    return [value,"Never Executed Risks"]
-  }
-}
 
 
   const changeGraph = (event) => {
     setChartState(event.target.value)
   }
 
+
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const getTableHeader = (data, key) => {
+    let filtereddata = data.filter(p => p.ZTYPE === key);
+
+    let columnarray=(key == '01')?["GROUPBY1", "GROUP_DESC1", "ZCOUNT1", "ZCOUNT2", "ZCOUNT3"]:["GROUPBY1", "GROUP_DESC1", "ZCOUNT1", "ZCOUNT2"]
+    let header = Object.keys(filtereddata[0]).filter(t =>columnarray.includes(t)).map(p => {
+      if (p == 'GROUPBY1') {
+        return 'GROUPBY1'
+      }
+      if (p == 'GROUP_DESC1') {
+        return 'GROUP_DESC1'
+      }
+      if (p == 'ZCOUNT1') {
+        return 'COUNT1'
+      }
+      if (p == 'ZCOUNT2') {
+        return 'COUNT2'
+      }
+      if (p == 'ZCOUNT3') {
+        return 'COUNT3'
+      }
+    })
+
+
+    let dataset = filtereddata.map(dt => {
+      let tem = [];
+      tem.push(dt.GROUPBY1)
+      tem.push(dt.GROUP_DESC1)
+      tem.push(dt.ZCOUNT1)
+      tem.push(dt.ZCOUNT2)
+      if (key == '01') {
+        tem.push(dt.ZCOUNT3)
+      }
+      return tem;
+    })
+
+    return [header, dataset]
+
+
+  }
+
   const classes = useStyles();
   const [chartState, setChartState] = useState(1);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [open, setOpen] = React.useState(false);
   let getchartDataResult1 = proesResultData(props.data, props.chart);
+  let tableData = getTableHeader(props.data, props.chart)
   let firctChart = getChart(getchartDataResult1, chartState, '#00bcd4', props.stack)
 
   return (
-    <Card className={classes.root} elevation='5' style={{ height: props.height }}>
-      <CardContent style={{ padding: 2, marginRight: 5, height: '85%' }}>
-        {firctChart}
-      </CardContent>
+    <div>
+      <Card className={classes.root} elevation='5' style={{ height: props.height }}>
+        <CardContent style={{ padding: 2, marginRight: 5, height: '85%' }}>
+          {firctChart}
+        </CardContent>
 
-      <CardActions style={{ margin: 0, padding: 2 }}>
-      <Grid container spacing={2}>
-          <Grid item md={3}>
-          <FormControl variant="outlined" className={classes.formControl} size="small">
-          <InputLabel id="demo-simple-select-outlined-label">{props.label}</InputLabel>
-          <Select
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={chartState}
-            onChange={(event) => changeGraph(event)}
-            label={props.label}
-            style={{ height: 20 }}
-          >
-            <MenuItem value={1} key='horizontal' style={{ padding: 5 }}><AssessmentOutlinedIcon fontSize="small" style={{ transform: 'rotate(90deg)' }} /></MenuItem>
-            <MenuItem value={2} key='vertical' style={{ padding: 5 }}><AssessmentOutlinedIcon fontSize="small" /></MenuItem>
-          </Select>
-        </FormControl>
-        </Grid>
-        <Grid item md={6}>
-        <Typography variant="subtitle2" style={{fontFamily:'Helvetica'}}>
-        {props.name}
-      </Typography>
-         
-        </Grid>
-        <Grid item md={3}>
-        
-        </Grid>
-        
+        <CardActions style={{ margin: 0, padding: 2 }}>
+          <Grid container spacing={2}>
+            <Grid item md={3}>
+              <FormControl variant="outlined" className={classes.formControl} size="small">
+                <InputLabel id="demo-simple-select-outlined-label">{props.label}</InputLabel>
+                <Select
+                  labelId="demo-simple-select-outlined-label"
+                  id="demo-simple-select-outlined"
+                  value={chartState}
+                  onChange={(event) => changeGraph(event)}
+                  label={props.label}
+                  style={{ height: 20 }}
+                >
+                  <MenuItem value={1} key='horizontal' style={{ padding: 5 }}><AssessmentOutlinedIcon fontSize="small" style={{ transform: 'rotate(90deg)' }} /></MenuItem>
+                  <MenuItem value={2} key='vertical' style={{ padding: 5 }}><AssessmentOutlinedIcon fontSize="small" /></MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item md={6}>
+              <Typography variant="subtitle2" style={{ fontFamily: 'Helvetica' }}>
+                {props.name}
+              </Typography>
+
+            </Grid>
+            <Grid item md={3}>
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+                style={{ padding: 0 }}
+                onClick={handleClickOpen}
+              >
+                <TocIcon />
+              </IconButton>
+            </Grid>
+
+          </Grid>
+
+
+        </CardActions>
+
+      </Card>
+
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        PaperComponent={PaperComponent}
+        aria-labelledby="draggable-dialog-title"
+      >
+        <Grid container spacing={1}>
+          <Grid item md={11}>
+            <DialogTitle style={{ cursor: 'move', maxHeight: 30, fontFamily: 'Helvetica', fontSize: 14 }} id="draggable-dialog-title">
+
+              {` ${props.name} Table`}
+            </DialogTitle>
+          </Grid>
+          <Grid item md={1}>
+          <IconButton
+          aria-label="account of current user"
+          aria-controls="menu-appbar"
+          aria-haspopup="true"
+          color="inherit"
+          style={{ padding: 0 }}
+          onClick={handleClose}
+        >
+          <CloseIcon/>
+        </IconButton>
+          </Grid>
         </Grid>
 
-        
-      </CardActions>
+      
+        <DialogContent>
+          <GRCDashbordTable name={props.name} header={tableData[0]} data={tableData[1]} />
+        </DialogContent>
 
-    </Card>
+      </Dialog>
+    </div>
   );
 
 }

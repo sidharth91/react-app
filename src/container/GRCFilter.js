@@ -27,7 +27,12 @@ import IconButton from '@material-ui/core/IconButton';
 class GRCFilter extends Component {
 
     componentDidMount() {
-
+        this.props.submitFilter(this.props.token, this.props.riskType.selectedValue,
+            this.props.sapSystem.selectedValue, this.props.client.selectedValue,
+            this.props.riskLevel.selectedValue, this.props.businessModule.selectedValue,
+            this.props.level.selectedValue, this.props.breakDown.selectedValue,
+            this.props.riskid.selectedValue, this.props.reportType.selectedValue,
+            this.props.mitigation.selectedValue)
     }
 
     changeSystem = (value) => {

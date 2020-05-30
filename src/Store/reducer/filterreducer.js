@@ -2,17 +2,17 @@ import * as actionType from '../actions/actionsType'
 import { updateObject } from '../utility'
 
 const initialState = {
-    sapSystem: { "name": "SAP System", "id": 1, "value": [{ "ZID": null, "ZDESC": "SELECT", "ZTYPE": 1 }] },
-    client: { "name": "Client", "id": 2, "value": [{ "ZID": null, "ZDESC": "SELECT", "ZTYPE": 2 }] },
-    riskType: { "name": "Risk Type", "id": 3, "value": [{ "ZID": null, "ZDESC": "SELECT", "ZTYPE": 1 }], selectedValue: [] },
-    riskLevel: { "name": "Risk Level", "id": 4, "value": [{ "ZID": null, "ZDESC": "SELECT", "ZTYPE": 4 }], selectedValue: [] },
-    businessModule: { "name": "Business Module", "id": 5, "value": [{ "ZID": null, "ZDESC": "SELECT", "ZTYPE": 5 }], selectedValue: [] },
+    sapSystem: { "name": "SAP System", "id": 1, "value": [] },
+    client: { "name": "Client", "id": 2, "value": [] },
+    riskType: { "name": "Risk Type", "id": 3, "value": [], selectedValue: [] },
+    riskLevel: { "name": "Risk Level", "id": 4, "value": [], selectedValue: [] },
+    businessModule: { "name": "Business Module", "id": 5, "value": [], selectedValue: [] },
     level: { 'User': 1, 'Group': 2, 'selectedValue': 1 },
     breakDown: { values: { 'Risk Level': 2, 'Risk Type': 1, 'Business Modules': 3 }, selectedValue: [1] },
-    mitigation: { "name": "Risk", "id": 6, "value": [{ "ZID": null, "ZDESC": "SELECT", "ZTYPE": 6 }] },
-    drillDown: { "name": "Drill Down", "id": 9, "value": [{ "ZID": null, "ZDESC": "SELECT", "ZTYPE": 6 }] },
-    reportType: { "name": "Report Type", "id": 7, "value": [{ "ZID": null, "ZDESC": "SELECT", "ZTYPE": 7 }] },
-    riskid: { "name": "Risk Id", "id": 8, "value": [{ "ZID": null, "ZDESC": "SELECT", "ZTYPE": 8 }], selectedValue: [] },
+    mitigation: { "name": "Risk", "id": 6, "value": [] },
+    drillDown: { "name": "Drill Down", "id": 9, "value": [] },
+    reportType: { "name": "Report Type", "id": 7, "value": [] },
+    riskid: { "name": "Risk Id", "id": 8, "value": [], selectedValue: [] },
     userinput: "",
     result: null,
     dataformat: 0,
@@ -20,7 +20,8 @@ const initialState = {
     tableReportShow: false,
     levelSelected: 1,
     reportTypeSelected:1,
-    grcreport: {}
+    grcreport: {},
+    loader:false
 }
 
 const filterreducer = (state = initialState, action) => {
@@ -50,7 +51,7 @@ const filterreducer = (state = initialState, action) => {
         case actionType.CHANGE_BREAKDOWN:
             return { ...state, breakDown: { ...state.breakDown, selectedValue: action.data } }
         case actionType.UPDATE_RESULT:
-            return { ...state, result: action.data, tableReportShow: false, levelSelected: state.level.selectedValue, reportTypeSelected: state.reportType.selectedValue }
+            return { ...state, result: action.data, tableReportShow: false, levelSelected: state.level.selectedValue, reportTypeSelected: state.reportType.selectedValue,loader:false }
         case actionType.UPDATE_DATAFORMAT:
             return { ...state, dataformat: action.data }
         case actionType.CLEAR_RESULT:
@@ -63,6 +64,8 @@ const filterreducer = (state = initialState, action) => {
             return { ...state, tableReportShow: false }
         case actionType.CHANGE_USERID_INPUT:
             return { ...state, userinput: action.value }
+        case actionType.CHANGE_LOADER_STATUS:
+            return { ...state, loader: action.data }    
     }
 
 

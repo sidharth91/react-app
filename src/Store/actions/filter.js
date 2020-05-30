@@ -5,6 +5,7 @@ import axios from 'axios';
 
 export const initFilter = (token) => {
     return dispatch => {
+        dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
         axios.get('http://localhost:8080/api/filter', { headers: { 'Authorisation': token } })
             .then(response => {
                 console.log(JSON.stringify(response.data))
@@ -102,6 +103,7 @@ export const changeBreakDown = (data, value, action) => {
 
 export const initiateFilter = (data) => {
     let temp = {};
+    temp.loader=true;
     data.map(p => {
         p.selectedValue = null;
         switch (p.id) {
@@ -153,6 +155,7 @@ export const initiateFilter = (data) => {
 export const submitFilter = (token, riskType, sapSystem, client, riskLevel, businessModule, level, breakDown, riskId, reportType, mitigation) => {
 
     return dispatch => {
+        dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
         axios.post('http://localhost:8080/api/JAVA_0002N', {
             riskType: riskType,
             sapSystem: sapSystem,

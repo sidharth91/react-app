@@ -25,10 +25,21 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { PieChart, Pie, Sector, Cell, Legend } from 'recharts';
 import {
-    BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
+    BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,LabelList
 } from 'recharts';
 import AssessmentOutlinedIcon from '@material-ui/icons/AssessmentOutlined';
 import DonutSmallIcon from '@material-ui/icons/DonutSmall';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Paper from '@material-ui/core/Paper';
+import Draggable from 'react-draggable';
+import GRCDashbordTable from './GRCDashbordTable';
+import IconButton from '@material-ui/core/IconButton';
+import TocIcon from '@material-ui/icons/Toc';
+import CloseIcon from '@material-ui/icons/Close';
 
 
 const height = 100
@@ -71,6 +82,14 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+
+function PaperComponent(props) {
+  return (
+    <Draggable handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
+      <Paper {...props} />
+    </Draggable>
+  );
+}
 
 
 
@@ -138,6 +157,7 @@ const GRCGraphCard = (props) => {
                 top: 10, right: 0, left: 0, bottom: 17,
             }}
         >
+          <CartesianGrid strokeDasharray="2 2" />
             <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd"  tick={CustomizedAxisTick} />
             <YAxis dataKey="ZCOUNT1" interval={0} stroke="#bdbdbd" width={50} tick={CustomizedYAxisTick} />
             <Bar dataKey="ZCOUNT1" fill={'#00bcd4'} onClick={(data) => this.getData(data)} >
@@ -293,6 +313,7 @@ const GRCGraphCard = (props) => {
                     top: 5, right: 0, left: 0, bottom: 5,
                   }}
                  > 
+                 <CartesianGrid strokeDasharray="2 2" />
                   <XAxis dataKey="ZCOUNT1" type='number' stroke="#bdbdbd" interval={0}  tick={CustomizedAxisTick}/>
                   <YAxis dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={60} interval={0} tick={CustomizedYAxisTick}/>
                   <Bar dataKey="ZCOUNT1" fill={'#48C9B0'} onClick={(data)=>this.getData(data)}>
@@ -314,11 +335,16 @@ const GRCGraphCard = (props) => {
               top: 5, right: 0, left: 0, bottom: 5,
             }}
           >
+            {/* <CartesianGrid strokeDasharray="2 2" /> */}
        
             <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
             <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
-            <Bar dataKey="ZCOUNT1" stackId="a" fill='#009ed7' onClick={(data) => this.getData(data)} />
-            <Bar dataKey="ZCOUNT2" stackId="a" fill='#a05195' onClick={(data) => this.getData(data)} />
+            <Bar dataKey="ZCOUNT1" stackId="a" fill='#009ed7' onClick={(data) => this.getData(data)} >
+            <LabelList dataKey="ZCOUNT1" position="center"  style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white' }} />
+      </Bar>
+            <Bar dataKey="ZCOUNT2" stackId="a" fill='#a05195' onClick={(data) => this.getData(data)} >
+            <LabelList dataKey="ZCOUNT2" position="center"  style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white' }} />
+      </Bar>
       
             {/* <Bar dataKey="ZCOUNT1" stackId="a" fill={'#00bcd4'} onClick={(data) => this.getData(data)} >
                     {
@@ -344,14 +370,21 @@ const GRCGraphCard = (props) => {
               top: 5, right: 0, left: 0, bottom: 5,
             }}
           >
+            {/* <CartesianGrid strokeDasharray="2 2" /> */}
          <Legend verticalAlign='top' iconSize={8} wrapperStyle={{
         fontFamily: 'Helvetica', fontSize: '8px'
       }} formatter={(value, entry, index)=>legendText(value)} />
             <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
             <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
-            <Bar dataKey="ZCOUNT1" stackId="a" fill='#009ed7' onClick={(data) => this.getData(data)} />
-            <Bar dataKey="ZCOUNT2" stackId="a" fill='#a05195' onClick={(data) => this.getData(data)} />
-            <Bar dataKey="ZCOUNT3" stackId="a" fill='#f95d6a' onClick={(data) => this.getData(data)} />
+            <Bar dataKey="ZCOUNT1" stackId="a" fill='#009ed7' onClick={(data) => this.getData(data)} >
+            <LabelList dataKey="ZCOUNT1" position="center"  style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      </Bar>
+            <Bar dataKey="ZCOUNT2" stackId="a" fill='#a05195' onClick={(data) => this.getData(data)} >
+            <LabelList dataKey="ZCOUNT2" position="center"  style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      </Bar>
+            <Bar dataKey="ZCOUNT3" stackId="a" fill='#f95d6a' onClick={(data) => this.getData(data)} >
+            <LabelList dataKey="ZCOUNT3" position="center"  style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      </Bar>
             {/* <Bar dataKey="ZCOUNT1" stackId="a" fill={'#00bcd4'} onClick={(data) => this.getData(data)} >
                   {
                       data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORSFIRSTSTACK[index % COLORSFIRSTSTACK.length]} />)
@@ -382,15 +415,21 @@ const GRCGraphCard = (props) => {
                 top: 5, right: 0, left: 0, bottom: 5,
               }}
             >
-      
+      {/* <CartesianGrid strokeDasharray="2 2" /> */}
       <Legend  iconSize={8} wrapperStyle={{
         fontFamily: 'Helvetica', fontSize: '8px'
       }} formatter={(value, entry, index)=>legendText(value)} />
               <XAxis type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
               <YAxis dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={60} interval={0} tick={CustomizedYAxisTick} />
-              <Bar dataKey="ZCOUNT1" stackId="a" fill='#009ed7' onClick={(data) => this.getData(data)} />
-              <Bar dataKey="ZCOUNT2" stackId="a" fill='#a05195' onClick={(data) => this.getData(data)} />
-              <Bar dataKey="ZCOUNT3" stackId="a" fill='#f95d6a' onClick={(data) => this.getData(data)} />
+              <Bar dataKey="ZCOUNT1" stackId="a" fill='#009ed7' onClick={(data) => this.getData(data)} >
+              <LabelList dataKey="ZCOUNT1" position="center"  style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      </Bar>
+              <Bar dataKey="ZCOUNT2" stackId="a" fill='#a05195' onClick={(data) => this.getData(data)} >
+              <LabelList dataKey="ZCOUNT2" position="center"  style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      </Bar>
+              <Bar dataKey="ZCOUNT3" stackId="a" fill='#f95d6a' onClick={(data) => this.getData(data)} >
+              <LabelList dataKey="ZCOUNT3" position="center"  style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      </Bar>
               {/* <Bar dataKey="ZCOUNT1" stackId="a" fill={'#48C9B0'} onClick={(data)=>this.getData(data)}>
                             {  data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORSFIRSTSTACK[index % COLORSFIRSTSTACK.length]} />)
                             }
@@ -419,7 +458,7 @@ const GRCGraphCard = (props) => {
                 top: 5, right: 0, left: 0, bottom: 5,
               }}
             >
-          
+          {/* <CartesianGrid strokeDasharray="2 2" /> */}
               <XAxis type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
               <YAxis dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={60} interval={0} tick={CustomizedYAxisTick} />
               <Bar dataKey="ZCOUNT1" stackId="a" fill='#009ed7' onClick={(data) => this.getData(data)} />
@@ -452,14 +491,67 @@ const GRCGraphCard = (props) => {
           setChartState(event.target.value)
         }
 
+        const getTableHeader = (data, key) => {
+          let filtereddata = data.filter(p => p.ZTYPE === key);
+      
+          let columnarray=(key == '01')?["GROUPBY1", "GROUP_DESC1", "ZCOUNT1", "ZCOUNT2", "ZCOUNT3"]:["GROUPBY1", "GROUP_DESC1", "ZCOUNT1"]
+          let header = Object.keys(filtereddata[0]).filter(t =>columnarray.includes(t)).map(p => {
+            if (p == 'GROUPBY1') {
+              return 'GROUPBY1'
+            }
+            if (p == 'GROUP_DESC1') {
+              return 'GROUP_DESC1'
+            }
+            if (p == 'ZCOUNT1') {
+              return 'COUNT1'
+            }
+            if (p == 'ZCOUNT2') {
+              return 'COUNT2'
+            }
+            if (p == 'ZCOUNT3') {
+              return 'COUNT3'
+            }
+          })
+      
+      
+          let dataset = filtereddata.map(dt => {
+            let tem = [];
+            tem.push(dt.GROUPBY1)
+            tem.push(dt.GROUP_DESC1)
+            tem.push(dt.ZCOUNT1)
+           
+            if (key == '01') {
+              tem.push(dt.ZCOUNT2)
+              tem.push(dt.ZCOUNT3)
+            }
+            return tem;
+          })
+      
+          return [header, dataset]
+      
+      
+        }
+
+
+        const handleClickOpen = () => {
+          setOpen(true);
+        };
+      
+        const handleClose = () => {
+          setOpen(false);
+        };
+
     const classes = useStyles();
     const [chartState, setChartState] = useState(props.chartType);
     const [activeIndex, setActiveIndex] = useState(0);
     const [stack, setStack] = useState(props.stack?props.stack:false);
+    const [open, setOpen] = React.useState(false);
     let getchartDataResult1 = proesResultData(props.data, props.chart);
+    let tableData = getTableHeader(props.data, props.chart)
     let firctChart = getChart(getchartDataResult1,chartState, '#00bcd4')
 
     return (
+      <div>
         <Card className={classes.root} elevation='5' style={{height:200}}>
             <CardContent style={{ padding: 2, marginRight: 12,height:'85%' }}>
 
@@ -509,7 +601,18 @@ const GRCGraphCard = (props) => {
          
         </Grid>
         <Grid item md={2}>
-        
+     
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+                style={{ padding: 0 }}
+                onClick={handleClickOpen}
+              >
+                <TocIcon />
+              </IconButton>
+
         </Grid>
         
         </Grid>
@@ -518,6 +621,41 @@ const GRCGraphCard = (props) => {
       </CardActions>
 
         </Card>
+
+<Dialog
+open={open}
+onClose={handleClose}
+PaperComponent={PaperComponent}
+aria-labelledby="draggable-dialog-title"
+>
+<Grid container spacing={1}>
+  <Grid item md={11}>
+    <DialogTitle style={{ cursor: 'move', maxHeight: 30, fontFamily: 'Helvetica', fontSize: 14 }} id="draggable-dialog-title">
+
+      {` ${props.name} Table`}
+    </DialogTitle>
+  </Grid>
+  <Grid item md={1}>
+  <IconButton
+  aria-label="account of current user"
+  aria-controls="menu-appbar"
+  aria-haspopup="true"
+  color="inherit"
+  style={{ padding: 0 }}
+  onClick={handleClose}
+>
+  <CloseIcon />
+</IconButton>
+  </Grid>
+</Grid>
+
+
+<DialogContent>
+  <GRCDashbordTable name={props.name} header={tableData[0]} data={tableData[1]} />
+</DialogContent>
+
+</Dialog>
+</div>
     );
 
 }
