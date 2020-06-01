@@ -15,22 +15,17 @@ import GRCFirstSecData from './GRCFirstSecData'
 import GRCSecondSecData from './GRCSecondSecData'
 import Loader from '../component/Loader'
 import GRCDragableDialogue from './GRCDragableDialogue'
+import GRCReportTable from '../component/GRCReportTable'
 
-
-class GRCDashBord extends Component {
-    state={
-        dialogue:false,
-        groupby:''
-    }
+class GRCReport extends Component {
 
     componentDidMount() {
         this.props.loadFilter(this.props.token)
     }
 
  
-    openDialogue=(chart,groupby)=>{
-         console.log("reached parents"+groupby)
-         this.setState({dialogue:true,groupby:groupby})
+    openDialogue=(type,ztype)=>{
+         
     }
 
     render() {
@@ -38,13 +33,10 @@ class GRCDashBord extends Component {
 
         return (
             <Grid container  spacing={0}>
-                 <Grid item md={12}>
-                    {this.props.sapSystem.value.length>0?<GRCFilter type='Dashbord' />:null}
-                    <GRCThirdSecData dialogueOpen={this.openDialogue}/>
-                    <GRCSecondSecData result={this.props.result}/>
-                    <GRCFirstSecData dialogueOpen={this.openDialogue}/>
+                 <Grid item md={12} style={{margin:5}}>
+                    {this.props.sapSystem.value.length>0?<GRCFilter type='Report'/>:null}
+                    {Object.keys(this.props.grcreport).length>0?<GRCReportTable header={this.props.grcreport.header} data={this.props.grcreport.data}/>:null}
                     {this.props.loader?<Loader/>:null}
-                    {this.state.dialogue?<GRCDragableDialogue dialogueState={this.state.dialogue} />:null}
                     </Grid >
              </Grid>
 
@@ -60,7 +52,8 @@ const mapStateToProps = state => {    //this methos use to retrive state from re
         result: state.filter.result,
         sapSystem: state.filter.sapSystem,
         client: state.filter.client,
-        loader:state.filter.loader
+        loader:state.filter.loader,
+        grcreport:state.filter.grcreport
     };
 }
 
@@ -70,4 +63,4 @@ const mapDispatchToProps = dispatch => { // this methos used for dispatch action
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GRCDashBord);//connect which return a HOC taking two parameters which help connect to redux store and component
+export default connect(mapStateToProps, mapDispatchToProps)(GRCReport);//connect which return a HOC taking two parameters which help connect to redux store and component

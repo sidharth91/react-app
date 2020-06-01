@@ -79,6 +79,8 @@ const useStyles = makeStyles((theme) => ({
     resize: {
         fontSize: 15,
         padding: '12px 14px'
+    },icon:{
+      right:0
     }
 }));
 
@@ -157,12 +159,12 @@ const GRCGraphCard = (props) => {
                 top: 10, right: 0, left: 0, bottom: 17,
             }}
         >
-          <CartesianGrid strokeDasharray="2 2" />
+          {/* <CartesianGrid strokeDasharray="2 2" /> */}
             <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd"  tick={CustomizedAxisTick} />
             <YAxis dataKey="ZCOUNT1" interval={0} stroke="#bdbdbd" width={50} tick={CustomizedYAxisTick} />
             <Bar dataKey="ZCOUNT1" fill={'#00bcd4'} onClick={(data) => this.getData(data)} >
                 {
-                    data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+                    data.map((entry, index) => <Cell key={`cell-${index}`} fill={colorState[index % colorState.length]} />)
                 }
             </Bar>
         </BarChart></ResponsiveContainer>)
@@ -249,7 +251,7 @@ const GRCGraphCard = (props) => {
               onClick={(data)=>this.getData(data)}
             >
             {
-                data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} stroke={'white'} />)
+                data.map((entry, index) => <Cell key={`cell-${index}`} fill={colorState[index % colorState.length]} stroke={'white'} />)
               }
             </Pie>
           </PieChart></ResponsiveContainer> )    
@@ -295,7 +297,7 @@ const GRCGraphCard = (props) => {
             />
             <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={'#00bcd4'} fill="none" />
             <circle cx={ex} cy={ey} r={2} fill={'#00bcd4'} stroke={'#00bcd4'} />
-            <text x={ex + (cos >= 0 ? 1 : -1) * 5} y={ey} fontSize={12} textAnchor={textAnchor} fill="#00bcd4">{`${payload.GROUP_DESC1}`}</text>            
+            <text x={ex + (cos >= 0 ? 1 : -1) * 5} y={ey} angle={-45} fontSize={12} textAnchor={textAnchor} fill="#00bcd4">{`${payload.GROUP_DESC1}`}</text>            
           </g>
         );
       };
@@ -313,11 +315,11 @@ const GRCGraphCard = (props) => {
                     top: 5, right: 0, left: 0, bottom: 5,
                   }}
                  > 
-                 <CartesianGrid strokeDasharray="2 2" />
+                 {/* <CartesianGrid strokeDasharray="2 2" /> */}
                   <XAxis dataKey="ZCOUNT1" type='number' stroke="#bdbdbd" interval={0}  tick={CustomizedAxisTick}/>
                   <YAxis dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={60} interval={0} tick={CustomizedYAxisTick}/>
                   <Bar dataKey="ZCOUNT1" fill={'#48C9B0'} onClick={(data)=>this.getData(data)}>
-                  {  data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+                  {  data.map((entry, index) => <Cell key={`cell-${index}`} fill={colorState[index % colorState.length]} />)
                   }
                   </Bar>
                 </BarChart></ResponsiveContainer>)
@@ -339,10 +341,10 @@ const GRCGraphCard = (props) => {
        
             <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
             <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
-            <Bar dataKey="ZCOUNT1" stackId="a" fill='#009ed7' onClick={(data) => this.getData(data)} >
+            <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => this.getData(data)} >
             <LabelList dataKey="ZCOUNT1" position="center"  style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white' }} />
       </Bar>
-            <Bar dataKey="ZCOUNT2" stackId="a" fill='#a05195' onClick={(data) => this.getData(data)} >
+            <Bar dataKey="ZCOUNT2" stackId="a" fill={colorState[1]} onClick={(data) => this.getData(data)} >
             <LabelList dataKey="ZCOUNT2" position="center"  style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white' }} />
       </Bar>
       
@@ -371,18 +373,18 @@ const GRCGraphCard = (props) => {
             }}
           >
             {/* <CartesianGrid strokeDasharray="2 2" /> */}
-         <Legend verticalAlign='top' iconSize={8} wrapperStyle={{
-        fontFamily: 'Helvetica', fontSize: '8px'
-      }} formatter={(value, entry, index)=>legendText(value)} />
+         <Legend verticalAlign='top' iconSize={10} wrapperStyle={{
+          fontFamily: 'Helvetica', fontSize: '10px'
+        }} formatter={(value, entry, index)=>legendText(value)} />
             <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
             <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
-            <Bar dataKey="ZCOUNT1" stackId="a" fill='#009ed7' onClick={(data) => this.getData(data)} >
+            <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => this.getData(data)} >
             <LabelList dataKey="ZCOUNT1" position="center"  style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
-            <Bar dataKey="ZCOUNT2" stackId="a" fill='#a05195' onClick={(data) => this.getData(data)} >
+            <Bar dataKey="ZCOUNT2" stackId="a" fill={colorState[1]} onClick={(data) => this.getData(data)} >
             <LabelList dataKey="ZCOUNT2" position="center"  style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
-            <Bar dataKey="ZCOUNT3" stackId="a" fill='#f95d6a' onClick={(data) => this.getData(data)} >
+            <Bar dataKey="ZCOUNT3" stackId="a" fill={colorState[2]} onClick={(data) => this.getData(data)} >
             <LabelList dataKey="ZCOUNT3" position="center"  style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
             {/* <Bar dataKey="ZCOUNT1" stackId="a" fill={'#00bcd4'} onClick={(data) => this.getData(data)} >
@@ -416,18 +418,18 @@ const GRCGraphCard = (props) => {
               }}
             >
       {/* <CartesianGrid strokeDasharray="2 2" /> */}
-      <Legend  iconSize={8} wrapperStyle={{
-        fontFamily: 'Helvetica', fontSize: '8px'
-      }} formatter={(value, entry, index)=>legendText(value)} />
+      <Legend  iconSize={10} wrapperStyle={{
+          fontFamily: 'Helvetica', fontSize: '10px'
+        }} formatter={(value, entry, index)=>legendText(value)} />
               <XAxis type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
               <YAxis dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={60} interval={0} tick={CustomizedYAxisTick} />
-              <Bar dataKey="ZCOUNT1" stackId="a" fill='#009ed7' onClick={(data) => this.getData(data)} >
+              <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => this.getData(data)} >
               <LabelList dataKey="ZCOUNT1" position="center"  style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
-              <Bar dataKey="ZCOUNT2" stackId="a" fill='#a05195' onClick={(data) => this.getData(data)} >
+              <Bar dataKey="ZCOUNT2" stackId="a" fill={colorState[1]} onClick={(data) => this.getData(data)} >
               <LabelList dataKey="ZCOUNT2" position="center"  style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
-              <Bar dataKey="ZCOUNT3" stackId="a" fill='#f95d6a' onClick={(data) => this.getData(data)} >
+              <Bar dataKey="ZCOUNT3" stackId="a" fill={colorState[2]} onClick={(data) => this.getData(data)} >
               <LabelList dataKey="ZCOUNT3" position="center"  style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
               {/* <Bar dataKey="ZCOUNT1" stackId="a" fill={'#48C9B0'} onClick={(data)=>this.getData(data)}>
@@ -461,8 +463,8 @@ const GRCGraphCard = (props) => {
           {/* <CartesianGrid strokeDasharray="2 2" /> */}
               <XAxis type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
               <YAxis dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={60} interval={0} tick={CustomizedYAxisTick} />
-              <Bar dataKey="ZCOUNT1" stackId="a" fill='#009ed7' onClick={(data) => this.getData(data)} />
-              <Bar dataKey="ZCOUNT2" stackId="a" fill='#a05195' onClick={(data) => this.getData(data)} />
+              <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => this.getData(data)} />
+              <Bar dataKey="ZCOUNT2" stackId="a" fill={colorState[1]} onClick={(data) => this.getData(data)} />
       
               {/* <Bar dataKey="ZCOUNT1" stackId="a" fill={'#48C9B0'} onClick={(data)=>this.getData(data)}>
                                 {  data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORSFIRSTSTACK[index % COLORSFIRSTSTACK.length]} />)
@@ -546,21 +548,26 @@ const GRCGraphCard = (props) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [stack, setStack] = useState(props.stack?props.stack:false);
     const [open, setOpen] = React.useState(false);
+    const [colorState, setColorState] = useState([...COLORS]);
     let getchartDataResult1 = proesResultData(props.data, props.chart);
     let tableData = getTableHeader(props.data, props.chart)
     let firctChart = getChart(getchartDataResult1,chartState, '#00bcd4')
+    useEffect(() => {
+      let arr=[...props.color,...COLORS]
+      setColorState(arr);
+    },[]);
 
     return (
       <div>
-        <Card className={classes.root} elevation='5' style={{height:200}}>
+        <Card className={classes.root} elevation='5' style={{height:210}}>
             <CardContent style={{ padding: 2, marginRight: 12,height:'85%' }}>
 
                 {firctChart}
             </CardContent>
 
             <CardActions style={{ margin: 0, padding: 2 }}>
-      <Grid container spacing={2}>
-          <Grid item md={3}>
+      <Grid container spacing={0}>
+          <Grid item md={4}>
           <FormControl variant="outlined" className={classes.formControl} size="small">
           <InputLabel id="demo-simple-select-outlined-label">{props.label}</InputLabel>
       
@@ -572,6 +579,11 @@ const GRCGraphCard = (props) => {
             value={chartState}
             onChange={(event) => changeGraph(event)}
             label={props.label}
+            inputProps={{
+              classes: {
+                  icon: classes.icon,
+              },
+          }}
             style={{ height: 20 }}
           >
             <MenuItem value={4} key='horizontal' style={{ padding: 5 }}><AssessmentOutlinedIcon fontSize="small" style={{ transform: 'rotate(90deg)' }} /></MenuItem>
@@ -585,6 +597,11 @@ const GRCGraphCard = (props) => {
             value={chartState}
             onChange={(event) => changeGraph(event)}
             label={props.label}
+            inputProps={{
+              classes: {
+                  icon: classes.icon,
+              },
+          }}
             style={{ height: 20 }}
           >
             <MenuItem value={6} key='horizontal' style={{ padding: 5 }}><AssessmentOutlinedIcon fontSize="small" style={{ transform: 'rotate(90deg)' }} /></MenuItem>
@@ -594,8 +611,8 @@ const GRCGraphCard = (props) => {
          
         </FormControl>
         </Grid>
-        <Grid item md={7}>
-        <Typography variant="subtitle2" style={{fontFamily:'72, Helvetica',fontSize:11}}>
+        <Grid item md={6}>
+        <Typography variant="subtitle2" style={{fontFamily:'Helvetica',fontSize:props.chart=='01'||props.chart=='04'?14:10}}>
         {props.name}
       </Typography>
          

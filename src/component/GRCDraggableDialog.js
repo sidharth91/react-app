@@ -17,16 +17,20 @@ function PaperComponent(props) {
 }
 
 const GRCDraggableDialog=(props)=>{
+console.log(props.dialogueState)
 
-  console.log("hellooo",props.dataTable)
-  const [open, setOpen] = React.useState(props.dataTable);
+  const [open, setOpen] = React.useState(props.dialogueState);
+
+  React.useEffect(() => {
+    setOpen(props.dialogueState);
+}, [props])
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
-    props.onclose();
+    setOpen(false);
   };
 
   return (

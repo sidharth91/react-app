@@ -7,7 +7,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import logo_icon from '../resources/auditbotlogo.PNG'
 
 import { makeStyles } from '@material-ui/core/styles';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink, withRouter,Link } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 
 
@@ -42,6 +42,7 @@ import GridOnIcon from '@material-ui/icons/GridOn';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HelpIcon from '@material-ui/icons/Help';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
 
 
 
@@ -268,7 +269,7 @@ const ApplicationAppBar = (props) => {
                                 <ListItemIcon className={classes.ItemIcon} >
                                     <GridOnIcon className={classes.IconColorchild}/>
                                 </ListItemIcon>
-                                <ListItemText disableTypography  primary={<Typography type="body2"  className={classes.listitmentextchild}>GRC Report</Typography>}/>
+                                <ListItemText disableTypography  primary={<Typography type="body2"  className={classes.listitmentextchild}> <Link to={'/report/grcReport'} >GRC Report</Link></Typography>}/>
                             </ListItem>
                             <ListItem button className={classes.nested}>
                                 <ListItemIcon className={classes.ItemIcon} >

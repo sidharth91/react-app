@@ -55,17 +55,17 @@ class GRCThirdSecData extends Component {
 
         return (
             <Grid container style={{marginTop:5}} spacing={1}>
-                <Grid item md={3} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCGraphCard chart='01' stack={true} data={this.props.result.E_RESULT_03.data} name={ `Risk Matrix by ${this.graphNameOnReportType()}`}  chartType={5}  /> :null}
+                <Grid item md={4} style={{paddingTop:0}}>
+                   {isDataReadtToShow? <GRCGraphCard chart='01' stack={true} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={ `Risk Matrix by ${this.graphNameOnReportType()}`}  chartType={5}  /> :null}
                 </Grid>
-                <Grid item md={3} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCGraphCard chart='02' stack={false}  data={this.props.result.E_RESULT_03.data} name={ `Risk  ${this.props.levelSelected==1?'Users by':'Roles by'} ${this.graphNameOnReportType()}`} chartType={4}  /> :null}
+                <Grid item md={2} style={{paddingTop:0}}>
+                   {isDataReadtToShow? <GRCGraphCard chart='02' stack={false} color={this.props.colors}  data={this.props.result.E_RESULT_03.data} name={ `Risk  ${this.props.levelSelected==1?'Users by':'Roles by'} ${this.graphNameOnReportType()}`} chartType={3}  /> :null}
                 </Grid>
-                <Grid item md={3} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCGraphCard chart='03' stack={false} data={this.props.result.E_RESULT_03.data} name={ `Total Risk by ${this.graphNameOnReportType()}`}  chartType={4}  /> :null}
+                <Grid item md={2} style={{paddingTop:0}}>
+                   {isDataReadtToShow? <GRCGraphCard chart='03' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={ `Total Risk by ${this.graphNameOnReportType()}`}  chartType={3}  /> :null}
                 </Grid>
-                <Grid item md={3} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCGraphCard chart='04' stack={false} data={this.props.result.E_RESULT_03.data} name={ `Top Risk ${this.props.levelSelected==1?'Users':'Roles'}`} chartType={4}  /> :null}
+                <Grid item md={4} style={{paddingTop:0}}>
+                   {isDataReadtToShow? <GRCGraphCard chart='04' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={ `Top Risk ${this.props.levelSelected==1?'Users':'Roles'}`} chartType={4}  /> :null}
                 </Grid>
                     
             </Grid>
@@ -94,7 +94,8 @@ const mapStateToProps = state => {    //this methos use to retrive state from re
         breakDown: state.filter.breakDown,
         result: state.filter.result,
         reportTypeSelected:state.filter.reportTypeSelected,
-        levelSelected:state.filter.levelSelected
+        levelSelected:state.filter.levelSelected,
+        colors:state.filter.colors
 
     };
 

@@ -62,7 +62,30 @@ const useStyles = makeStyles((theme) => ({
     Labeltext:{
         fontFamily:'Helvetica',
         fontSize:9
-    }
+    },
+    roundedSecond: {
+        color: '#FFFFFF',
+        backgroundColor: '#00A158',
+        width: theme.spacing(3),
+        height: theme.spacing(3),
+        marginTop:'20%'
+    },
+    roundedThird: {
+        color: '#FFFFFF',
+        backgroundColor: '#c91e8d',
+        width: theme.spacing(3),
+        height: theme.spacing(3),
+        marginTop:'20%'
+    },
+    roundedFourth: {
+        color: '#FFFFFF',
+        backgroundColor: '#0057BE',
+        width: theme.spacing(3),
+        height: theme.spacing(3),
+        marginTop:'20%'
+    },
+
+
 }));
 
 
@@ -150,7 +173,7 @@ const GRCSecondSecData = (props) => {
                                 <Grid item md={1}>
                                 <Grid container spacing={0}>
                                  <Grid item sm={3} alignContent='center' alignItems='center'>
-                                 <Avatar variant="rounded" className={classes.rounded}>
+                                 <Avatar variant="rounded" className={classes.roundedSecond}>
                                         <ExploreIcon />
                                     </Avatar>
                                      </Grid>
@@ -168,7 +191,7 @@ const GRCSecondSecData = (props) => {
                                 <Grid item md={1}>
                                 <Grid container spacing={0}>
                                  <Grid item sm={3} alignContent='center' alignItems='center'>
-                                 <Avatar variant="rounded" className={classes.rounded}>
+                                 <Avatar variant="rounded" className={classes.roundedSecond}>
                                         <ExploreOffIcon  />
                                     </Avatar>
                                      </Grid>
@@ -186,7 +209,7 @@ const GRCSecondSecData = (props) => {
                                 <Grid item md={1}>
                                 <Grid container spacing={0}>
                                  <Grid item sm={3} alignContent='center' alignItems='center'>
-                                 <Avatar variant="rounded" className={classes.rounded}>
+                                 <Avatar variant="rounded" className={classes.roundedThird}>
                                         <PeopleIcon  />
                                     </Avatar>
                                      </Grid>
@@ -203,7 +226,7 @@ const GRCSecondSecData = (props) => {
                                 <Grid item md={1}>
                                 <Grid container spacing={0}>
                                  <Grid item sm={3} alignContent='center' alignItems='center'>
-                                 <Avatar variant="rounded" className={classes.rounded}>
+                                 <Avatar variant="rounded" className={classes.roundedThird}>
                                         <AccountBoxIcon  />
                                     </Avatar>
                                      </Grid>
@@ -220,7 +243,7 @@ const GRCSecondSecData = (props) => {
                                 <Grid item md={1}>
                                 <Grid container spacing={0}>
                                  <Grid item sm={3} alignContent='center' alignItems='center'>
-                                 <Avatar variant="rounded" className={classes.rounded}>
+                                 <Avatar variant="rounded" className={classes.roundedThird}>
                                         <PersonIcon  />
                                     </Avatar>
                                      </Grid>
@@ -238,7 +261,7 @@ const GRCSecondSecData = (props) => {
                                 <Grid item md={1}>
                                 <Grid container spacing={0}>
                                  <Grid item sm={3} alignContent='center' alignItems='center'>
-                                 <Avatar variant="rounded" className={classes.rounded}>
+                                 <Avatar variant="rounded" className={classes.roundedThird}>
                                         <PersonAddDisabledIcon  />
                                     </Avatar>
                                      </Grid>
@@ -256,7 +279,7 @@ const GRCSecondSecData = (props) => {
                                 <Grid item md={1}>
                                 <Grid container spacing={0}>
                                  <Grid item sm={3} alignContent='center' alignItems='center'>
-                                 <Avatar variant="rounded" className={classes.rounded}>
+                                 <Avatar variant="rounded" className={classes.roundedFourth}>
                                         <ReportProblemIcon  />
                                     </Avatar>
                                      </Grid>
@@ -274,7 +297,7 @@ const GRCSecondSecData = (props) => {
                                 <Grid item md={1}>
                                 <Grid container spacing={0}>
                                  <Grid item sm={3} alignContent='center' alignItems='center'>
-                                 <Avatar variant="rounded" className={classes.rounded}>
+                                 <Avatar variant="rounded" className={classes.roundedFourth}>
                                         <ReportIcon  />
                                     </Avatar>
                                      </Grid>
@@ -292,7 +315,7 @@ const GRCSecondSecData = (props) => {
                                 <Grid item md={1}>
                                 <Grid container spacing={0}>
                                  <Grid item sm={3} alignContent='center' alignItems='center'>
-                                 <Avatar variant="rounded" className={classes.rounded}>
+                                 <Avatar variant="rounded" className={classes.roundedFourth}>
                                         <ReportOffIcon  />
                                     </Avatar>
                                      </Grid>

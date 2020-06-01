@@ -55,12 +55,13 @@ export const changeFilter = (data, value) => {
                 break
             case 9:
                 dispatch({ type: actionType.CHANGE_DRILL_DOWN, value: value })
-                break    
+                break
             default:
                 console.log("case doesn't match")
         }
     }
 }
+
 
 export const changeUserInput = (input) => {
     return dispatch => {
@@ -103,7 +104,7 @@ export const changeBreakDown = (data, value, action) => {
 
 export const initiateFilter = (data) => {
     let temp = {};
-    temp.loader=true;
+    temp.loader = false;
     data.map(p => {
         p.selectedValue = null;
         switch (p.id) {
@@ -140,6 +141,9 @@ export const initiateFilter = (data) => {
                 break;
             case 9:
                 temp.drillDown = p;
+                break;
+            case 51:
+                temp.colors = p.value.map(color=>color.ZDESC);
                 break;
             default:
                 console.log("case doesn't match")
@@ -247,34 +251,28 @@ export const gobackToParentTable = () => {
 
 
 
-export const riskReport = (token, system, client, level, rowid, value, risk, user, role, breakDown) => {
-    console.log(token + ":" + system + ":" + client + ":" + level + ":" + rowid + ":" + value + ":" + risk + ":" + user + ":" + role + ":")
-
-    let data = { system: null, client: null, level: null, risk: null, user: null, role: null, risktype: null, risklevel: null, appclass: null }
-    data.system = system
-    data.client = client
-    data.level = level
-    if (rowid == '01' || rowid == '02' || rowid == '03') {
-        data.risktype = value
-    }
-    if (rowid == '04' || rowid == '05' || rowid == '06') {
-        data.risklevel = value
-    }
-    if (rowid == '06' || rowid == '07' || rowid == '08') {
-        data.appclass = value
-    }
 
 
-    let config = {
-        headers: { 'Authorisation': token },
-        params: data
-    }
+export const riskReport = (token, sapSystem, client, level, riskType, riskLevel, businessModule, mitigation,drillDown,riskId, userinput) => {
 
     return dispatch => {
-        axios.get('http://localhost:8080/api/JAVA_0003', config)
+      
+        axios.post('http://localhost:8080/api/JAVA_MUL_0003', {
+            sapSystem: sapSystem,
+            client: client,
+            level: level,
+            riskType: riskType,
+            riskLevel: riskLevel,
+            businessModule: businessModule,
+            mitigation: mitigation,
+            drillDown:drillDown,
+            riskId: riskId,
+            userinput:userinput
+  
+        }, { headers: { 'Authorisation': token } })
             .then(response => {
-                console.log(response.data)
-                dispatch({ type: actionType.UPDATE_RISKREPORT, id: rowid, tableReport: response.data })
+               
+                dispatch({ type: actionType.UPDATE_RISKREPORT, tableReport: response.data })
             })
             .catch(error => {
                 console.log(error)
@@ -283,37 +281,25 @@ export const riskReport = (token, system, client, level, rowid, value, risk, use
 }
 
 
-export const riskGrcReport = (token, system, client, level, riskType, riskLevel, appclass, risk, userinput) => {
-    /* 
-       let data={system:null,client:null,level:null,risk:null,user:null,role:null,risktype:null,risklevel:null,appclass:null}
-       data.system=system
-       data.client=client
-       data.level=level
-      data.risktype=riskType
-       data.risklevel=riskLevel
-       data.appclass=appclass
-       data.risk=risk
-       
-   
-    
-    let config={
-        headers:{'Authorisation':token},
-        params:data
-    }
-     */
+export const riskGrcReport = (token, sapSystem, client, level, riskType, riskLevel, businessModule, mitigation,drillDown,riskId, userinput) => {
+
     return dispatch => {
+        dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
         axios.post('http://localhost:8080/api/JAVA_MUL_0003', {
-            riskType: riskType,
-            sapSystem: system,
+            sapSystem: sapSystem,
             client: client,
-            riskLevel: riskLevel,
-            businessModule: appclass,
             level: level,
-            risk: risk,
-            userIput: userinput
+            riskType: riskType,
+            riskLevel: riskLevel,
+            businessModule: businessModule,
+            mitigation: mitigation,
+            drillDown:drillDown,
+            riskId: riskId,
+            userinput:userinput
+  
         }, { headers: { 'Authorisation': token } })
             .then(response => {
-                console.log(response.data)
+                dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: false })
                 dispatch({ type: actionType.UPDATE_GRCREPORT, tableReport: response.data })
             })
             .catch(error => {

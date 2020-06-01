@@ -21,7 +21,9 @@ const initialState = {
     levelSelected: 1,
     reportTypeSelected:1,
     grcreport: {},
-    loader:false
+    loader:false,
+    colors:[],
+
 }
 
 const filterreducer = (state = initialState, action) => {
@@ -65,7 +67,8 @@ const filterreducer = (state = initialState, action) => {
         case actionType.CHANGE_USERID_INPUT:
             return { ...state, userinput: action.value }
         case actionType.CHANGE_LOADER_STATUS:
-            return { ...state, loader: action.data }    
+            return { ...state, loader: action.data } 
+       
     }
 
 

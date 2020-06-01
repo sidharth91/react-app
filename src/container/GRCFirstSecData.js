@@ -45,13 +45,13 @@ class GRCFirstSecData extends Component {
         return (
             <Grid container style={{marginTop:5}} spacing={1}>
                 <Grid item md={4}  style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCStackGraphCard chart='01' stack='3' height={220} data={this.props.result.E_RESULT_01.data} name="Executed Risks Chart" chartType={4}  /> :null}
+                   {isDataReadtToShow? <GRCStackGraphCard chart='01' color={this.props.colors} stack='3' height={220} data={this.props.result.E_RESULT_01.data} name="Executed Risks Chart" chartType={1} dialogueOpen={this.props.dialogueOpen} chartId="SEC11"/> :null}
                 </Grid>
                 <Grid item md={4}  style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCStackGraphCard chart='02' stack='2'  height={220} data={this.props.result.E_RESULT_01.data} name={ `Risk Executed ${this.props.levelSelected==1?'User':'Role'}` } chartType={4}  /> :null}
+                   {isDataReadtToShow? <GRCStackGraphCard chart='02' stack='2' color={this.props.colors} height={220} data={this.props.result.E_RESULT_01.data} name={ `Risk Executed ${this.props.levelSelected==1?'User':'Role'}` } chartType={2}  dialogueOpen={this.props.dialogueOpen} chartId="SEC12"/> :null}
                 </Grid>
                 <Grid item md={4}  style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCStackGraphCard chart='03'  stack='2'  height={220} data={this.props.result.E_RESULT_01.data} name="Total Executed Risks" chartType={4}  /> :null}
+                   {isDataReadtToShow? <GRCStackGraphCard chart='03'  stack='2' color={this.props.colors} height={220} data={this.props.result.E_RESULT_01.data} name="Total Executed Risks" chartType={1}  dialogueOpen={this.props.dialogueOpen} chartId="SEC13"/> :null}
                 </Grid>
             
                     
@@ -80,7 +80,8 @@ const mapStateToProps = state => {    //this methos use to retrive state from re
         riskid: state.filter.riskid,
         breakDown: state.filter.breakDown,
         result: state.filter.result,
-        levelSelected:state.filter.levelSelected 
+        levelSelected:state.filter.levelSelected ,
+        colors:state.filter.colors
     };
 
 }

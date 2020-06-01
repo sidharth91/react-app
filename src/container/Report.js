@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch,withRouter,Redirect } from 'react-router-dom';
 //import './Login.css'
 //import * as actionType from '../../Store/actions/actionsType'
 import * as action from '../Store/actions/index'
@@ -10,12 +9,14 @@ import LoginCard from '../component/LoginCard'
 import Grid from '@material-ui/core/Grid';
 import HeaderContainer from './HeaderContainer'
 import SideBar from './SideBar'
-import Dashbord from './Dashbord'
-import Report from './Report'
+import GRCReport from './GRCReport'
+import { Route, Switch,withRouter,Redirect } from 'react-router-dom';
+import GRCReportTable from '../component/GRCReportTable'
 
 
 
-class Home extends Component {
+
+class Report extends Component {
 
     componentDidMount() {
 
@@ -24,24 +25,16 @@ class Home extends Component {
 
 
     render() {
-
-       let routes=( 
+        let routes=( 
             <Switch>
-           <Route path='/dashbord' component={Dashbord}/>
-           <Route path='/report' component={Report}/>
-           <Redirect to ='/dashbord'/>
+           <Route path='/report/grcReport' component={GRCReport}/>
+           <Redirect to ='/report/grcReport'/>
            </Switch> 
            );
+
         return (
-            <Grid container style={{ }} spacing={0}>
-                 {/* <Grid container md={2}>
-                    <SideBar />
-                </Grid> */}
-                <Grid container md={12} style={{ paddingLeft: 1 }}>
-                <HeaderContainer />
-                {routes}
-                </Grid>
-               
+            <Grid container style={{ marginTop:25,paddingRight:10,paddingLeft:10 }} spacing={0}>
+              {routes}
             </Grid>
 
         )
@@ -63,4 +56,4 @@ const mapDispatchToProps = dispatch => { // this methos used for dispatch action
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);//connect which return a HOC taking two parameters which help connect to redux store and component
+export default connect(mapStateToProps, mapDispatchToProps)(Report);//connect which return a HOC taking two parameters which help connect to redux store and component

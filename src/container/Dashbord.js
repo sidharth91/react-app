@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import HeaderContainer from './HeaderContainer'
 import SideBar from './SideBar'
 import GRCDashbord from './GRCDashBord'
+import { Route, Switch,withRouter,Redirect } from 'react-router-dom';
 
 
 
@@ -22,11 +23,16 @@ class DashBord extends Component {
 
 
     render() {
-
+        let routes=( 
+            <Switch>
+           <Route path='/dashbord/grcDashbord' component={GRCDashbord}/>
+           <Redirect to ='/dashbord/grcDashbord'/>
+           </Switch> 
+           );
 
         return (
             <Grid container style={{ marginTop:25,marginRight:10,marginLeft:10 }} spacing={0}>
-             <GRCDashbord/>
+              {routes}
             </Grid>
 
         )

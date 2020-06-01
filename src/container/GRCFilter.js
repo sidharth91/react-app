@@ -27,12 +27,25 @@ import IconButton from '@material-ui/core/IconButton';
 class GRCFilter extends Component {
 
     componentDidMount() {
-        this.props.submitFilter(this.props.token, this.props.riskType.selectedValue,
-            this.props.sapSystem.selectedValue, this.props.client.selectedValue,
-            this.props.riskLevel.selectedValue, this.props.businessModule.selectedValue,
-            this.props.level.selectedValue, this.props.breakDown.selectedValue,
-            this.props.riskid.selectedValue, this.props.reportType.selectedValue,
-            this.props.mitigation.selectedValue)
+        if (this.props.type == 'Dashbord') {
+            this.props.submitFilter(this.props.token, this.props.riskType.selectedValue,
+                this.props.sapSystem.selectedValue, this.props.client.selectedValue,
+                this.props.riskLevel.selectedValue, this.props.businessModule.selectedValue,
+                this.props.level.selectedValue, this.props.breakDown.selectedValue,
+                this.props.riskid.selectedValue, this.props.reportType.selectedValue,
+                this.props.mitigation.selectedValue)
+        } else {
+            this.props.submitGRCFilter(this.props.token,
+                this.props.sapSystem.selectedValue,
+                this.props.client.selectedValue,
+                this.props.level.selectedValue,
+                this.props.riskType.selectedValue,
+                this.props.riskLevel.selectedValue,
+                this.props.businessModule.selectedValue,
+                this.props.mitigation.selectedValue,
+                this.props.drillDown.selectedValue,
+                this.props.riskid.selectedValue, null)
+        }
     }
 
     changeSystem = (value) => {
@@ -74,12 +87,25 @@ class GRCFilter extends Component {
 
     onfilterSumbit = () => {
 
-        this.props.submitFilter(this.props.token, this.props.riskType.selectedValue,
-            this.props.sapSystem.selectedValue, this.props.client.selectedValue,
-            this.props.riskLevel.selectedValue, this.props.businessModule.selectedValue,
-            this.props.level.selectedValue, this.props.breakDown.selectedValue,
-            this.props.riskid.selectedValue, this.props.reportType.selectedValue,
-            this.props.mitigation.selectedValue)
+        if (this.props.type == 'Dashbord') {
+            this.props.submitFilter(this.props.token, this.props.riskType.selectedValue,
+                this.props.sapSystem.selectedValue, this.props.client.selectedValue,
+                this.props.riskLevel.selectedValue, this.props.businessModule.selectedValue,
+                this.props.level.selectedValue, this.props.breakDown.selectedValue,
+                this.props.riskid.selectedValue, this.props.reportType.selectedValue,
+                this.props.mitigation.selectedValue)
+        } else {
+            this.props.submitGRCFilter(this.props.token,
+                this.props.sapSystem.selectedValue,
+                this.props.client.selectedValue,
+                this.props.level.selectedValue,
+                this.props.riskType.selectedValue,
+                this.props.riskLevel.selectedValue,
+                this.props.businessModule.selectedValue,
+                this.props.mitigation.selectedValue,
+                this.props.drillDown.selectedValue,
+                this.props.riskid.selectedValue, this.props.userinput)
+        }
 
     }
     render() {
@@ -131,51 +157,71 @@ class GRCFilter extends Component {
             }) : []
 
         return (
-            <Grid container style={{}} spacing={0}>
-                <Grid item md={12}>
-                    <Card elevation='5'>
-                        <CardContent style={{ padding: 2, marginRight: 12 }}>
-                            <Grid container spacing={1}>
-                                <Grid item md={1}>
-                                    <FilterSingleSelectDropDown values={level} preSelected={this.props.level.selectedValue} changeEventCallBack={this.changeLevel} label="Level" width='100' />
-                                </Grid>
-                                <Grid item md={1}>
-                                    <FilterSingleSelectDropDown values={sapSystem} preSelected={this.props.sapSystem.selectedValue} changeEventCallBack={this.changeSystem} label="System" width='100' />
-                                </Grid>
-                                <Grid item md={1}>
-                                    <FilterSingleSelectDropDown values={sapClient} preSelected={this.props.client.selectedValue} changeEventCallBack={this.changeClient} label="Client" width='100' />
-                                </Grid>
-                                <Grid item md={1}>
-                                    <FilterMultiSelectDropDown values={riskType} preSelected={this.props.riskType.selectedValue} changeEventCallBack={this.changeRiskType} label="Risk Type" width='100' />
-                                </Grid>
-                                <Grid item md={1}>
-                                    <FilterMultiSelectDropDown values={riskLevel} preSelected={this.props.riskLevel.selectedValue} changeEventCallBack={this.changeRiskLevel} label="Risk Level" width='100' />
-                                </Grid>
-                                <Grid item md={1}>
-                                    <FilterMultiSelectDropDown values={businessModule} preSelected={this.props.businessModule.selectedValue} changeEventCallBack={this.changeBusinessModule} label="Bus Module" width='100' />
-                                </Grid>
-                                <Grid item md={2}>
-                                    <FilterMultiSelectDropDown values={riskid} preSelected={this.props.riskid.selectedValue} changeEventCallBack={this.changeRiskId} label="Risk Id" width='100' />
-                                </Grid>
-                                <Grid item md={1}>
-                                    <FilterSingleSelectDropDown values={mitigation} preSelected={this.props.mitigation.selectedValue} changeEventCallBack={this.changeMitigation} label="Mitigation" width='100' />
-                                </Grid>
-                                <Grid item md={1}>
-                                    <FilterSingleSelectDropDown values={reportType} preSelected={this.props.reportType.selectedValue} changeEventCallBack={this.changeReportType} label="Report Type" width='100' />
-                                </Grid>
-                                <Grid item md={1}>
-                                    <FilterSingleSelectDropDown values={drillDown} preSelected={this.props.drillDown.selectedValue} changeEventCallBack={this.changeDrillDown} label="Drill Down" width='100' />
-                                </Grid>
-                                <Grid item md={1}>
-                                    <IconButton color="primary" aria-label="upload picture" component="span" onClick={() => this.onfilterSumbit()}>
-                                        <SearchIcon />
-                                    </IconButton>
-
-
-                                </Grid>
+            // <Grid container style={{}} spacing={0}>
+            //     <Grid item md={12}>
+            <Card elevation='5'>
+                <CardContent id="idFilterCard" style={{ padding: "0.25rem" }}>
+                    <Grid container spacing={1}>
+                        <Grid item md={1}>
+                            <FilterSingleSelectDropDown values={level} preSelected={this.props.level.selectedValue} changeEventCallBack={this.changeLevel} label="Level" width='100' />
+                        </Grid>
+                        <Grid item md={1}>
+                            <FilterSingleSelectDropDown values={sapSystem} preSelected={this.props.sapSystem.selectedValue} changeEventCallBack={this.changeSystem} label="System" width='100' />
+                        </Grid>
+                        <Grid item md={1}>
+                            <FilterSingleSelectDropDown values={sapClient} preSelected={this.props.client.selectedValue} changeEventCallBack={this.changeClient} label="Client" width='100' />
+                        </Grid>
+                        <Grid item md={1}>
+                            <FilterMultiSelectDropDown values={riskType} preSelected={this.props.riskType.selectedValue} changeEventCallBack={this.changeRiskType} label="Risk Type" width='100' />
+                        </Grid>
+                        <Grid item md={1}>
+                            <FilterMultiSelectDropDown values={riskLevel} preSelected={this.props.riskLevel.selectedValue} changeEventCallBack={this.changeRiskLevel} label="Risk Level" width='100' />
+                        </Grid>
+                        <Grid item md={1}>
+                            <FilterMultiSelectDropDown values={businessModule} preSelected={this.props.businessModule.selectedValue} changeEventCallBack={this.changeBusinessModule} label="Bus Module" width='100' />
+                        </Grid>
+                        <Grid item md={this.props.type == 'Dashbord' ? 2 : 1}>
+                            <FilterMultiSelectDropDown values={riskid} preSelected={this.props.riskid.selectedValue} changeEventCallBack={this.changeRiskId} label="Risk Id" width='100' />
+                        </Grid>
+                        <Grid item md={1}>
+                            <FilterSingleSelectDropDown values={mitigation} preSelected={this.props.mitigation.selectedValue} changeEventCallBack={this.changeMitigation} label="Mitigation" width='100' />
+                        </Grid>
+                        <Grid item md={1}>
+                            <FilterSingleSelectDropDown values={reportType} preSelected={this.props.reportType.selectedValue} changeEventCallBack={this.changeReportType} label="Report Type" width='100' />
+                        </Grid>
+                        <Grid item md={1}>
+                            <FilterSingleSelectDropDown values={drillDown} preSelected={this.props.drillDown.selectedValue} changeEventCallBack={this.changeDrillDown} label="Drill Down" width='100' />
+                        </Grid>
+                        {this.props.type == 'Report' ?
+                            <Grid item md={1} style={{paddingTop:12,paddingLeft:10}}>
+                                <TextField id="outlined-search" inputProps={{
+                                    style: {
+                                        height:35,
+                                        padding: '0 14px',
+                                        fontSize:12
+                                    },
+                                }} 
+                                InputLabelProps={{
+                                    style: {
+                                     fontSize:12,
+                                     fontFamily:'Helvetica',
+                                    
+                                    },
+                                  }}
+                                size="small" label="Input" type="search" variant="outlined" onChange={(event)=>{this.props.changeUserInput(event.target.value)}} />
                             </Grid>
+                            : null
+                        }
+                        <Grid item md={this.props.type == 'Dashbord' ? 1 : 1}>
+                            <IconButton color="primary" aria-label="upload picture" component="span" onClick={() => this.onfilterSumbit()}>
+                                <SearchIcon />
+                            </IconButton>
 
-                            {/* <Grid container spacing={1}>
+
+                        </Grid>
+                    </Grid>
+
+                    {/* <Grid container spacing={1}>
                                 <Grid item md={4}>
                                     <FilterMultiSelectDropDown values={riskid} preSelected={this.props.riskid.selectedValue} changeEventCallBack={this.changeRiskId} label="Risk Id" width='100' />
                                 </Grid>
@@ -195,12 +241,12 @@ class GRCFilter extends Component {
                                 </Grid>
 
                             </Grid> */}
-                        </CardContent>
+                </CardContent>
 
-                    </Card>
-                </Grid>
+            </Card>
+            //     </Grid>
 
-            </Grid>
+            // </Grid>
 
         )
 
@@ -225,7 +271,7 @@ const mapStateToProps = state => {    //this methos use to retrive state from re
         drillDown: state.filter.drillDown,
         breakDown: state.filter.breakDown,
         result: state.filter.result,
-
+        userinput:state.filter.userinput
     };
 
 }
@@ -234,9 +280,10 @@ const mapDispatchToProps = dispatch => { // this methos used for dispatch action
     return {
         loadFilter: (token) => dispatch(action.initFilter(token)),
         onChangeFilter: (data, value) => dispatch(action.changeFilter(data, value)),
+        changeUserInput:(value)=>dispatch(action.changeUserInput(value)),
         changeLevel: (level) => dispatch(action.changeLevel(level)),
         submitFilter: (token, riskType, sapSystem, client, riskLevel, businessModule, level, breakDown, riskId, reportType, mitigation) => dispatch(action.submitFilter(token, riskType, sapSystem, client, riskLevel, businessModule, level, breakDown, riskId, reportType, mitigation)),
-        submitGRCFilter: (token, system, client, level, riskType, riskLevel, appclass, risk) => dispatch(action.riskGrcReport(token, system, client, level, riskType, riskLevel, appclass, risk))
+        submitGRCFilter: (token, sapSystem, client, level, riskType, riskLevel, businessModule, mitigation, drillDown, riskId, userinput) => dispatch(action.riskGrcReport(token, sapSystem, client, level, riskType, riskLevel, businessModule, mitigation, drillDown, riskId, userinput))
     };
 }
 
