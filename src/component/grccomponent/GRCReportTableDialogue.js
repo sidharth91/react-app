@@ -275,7 +275,7 @@ const GRCReportTable=(props)=> {
 
   return (
     <div className={classes.root}>
-      <Paper className={classes.paper} elevation={5}>
+
       {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
         <TableContainer className={classes.container}>
           <Table stickyHeader
@@ -359,7 +359,7 @@ const GRCReportTable=(props)=> {
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
-      </Paper>
+
       {/* <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"

@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 //import * as actionType from '../../Store/actions/actionsType'
 import * as action from '../Store/actions/index'
 import logo_icon from '../resources/auditbotlogo.PNG'
-import FilterSingleSelectDropDown from '../component/FilterSingleSelectDropDown'
-import FilterMultiSelectDropDown from '../component/FilterMultiSelectDropDown'
+import FilterSingleSelectDropDown from '../component/grccomponent/FilterSingleSelectDropDown'
+import FilterMultiSelectDropDown from '../component/grccomponent/FilterMultiSelectDropDown'
 import LoginCard from '../component/LoginCard'
 import Grid from '@material-ui/core/Grid';
 import HeaderContainer from './HeaderContainer'
@@ -111,7 +111,7 @@ class GRCFilter extends Component {
     render() {
 
         let level = Object.keys(this.props.level).length != 0 ?
-            Object.keys(this.props.level).filter(param => param != 'selectedValue').map((param) => {
+            Object.keys(this.props.level).filter(param => !['selectedValue','filtered'].includes(param) ).map((param) => {
                 return { 'key': param, 'value': this.props.level[param] };
             }) : []
 

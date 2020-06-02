@@ -11,7 +11,9 @@ import Grid from '@material-ui/core/Grid';
 import HeaderContainer from './HeaderContainer'
 import SideBar from './SideBar'
 import Dashbord from './Dashbord'
+import GRCDashbord from './GRCDashBord'
 import Report from './Report'
+import GRCReport from './GRCReport'
 
 
 
@@ -27,9 +29,9 @@ class Home extends Component {
 
        let routes=( 
             <Switch>
-           <Route path='/dashbord' component={Dashbord}/>
-           <Route path='/report' component={Report}/>
-           <Redirect to ='/dashbord'/>
+           <Route path='/grcdashbord' exact  component={GRCDashbord}/>
+           <Route path='/' exact component={GRCDashbord}/>
+           <Route path='/grcreport' exact  component={GRCReport}/>
            </Switch> 
            );
         return (

@@ -18,19 +18,18 @@ render(){
 
   console.log(this.props.isAuthenticated)
   let routes = (
-    <Switch>
-    <Route path='/' exact render={(props) =>  <Login/>}/>
-    <Redirect to ='/'/>
-    </Switch>
+      <Switch>
+     <Route path='/' component={Home}/>
+     </Switch> 
     )
 
-  if ( this.props.isAuthenticated ) {
-   routes=( 
-    <Switch>
-   <Route path='/' component={Home}/>
-   <Redirect to ='/'/>
-   </Switch> 
-   );
+  if (! this.props.isAuthenticated ) {
+    routes = (
+      <Switch>
+      <Route path='/' exact render={(props) =>  <Login/>}/>
+      <Redirect to ='/'/>
+      </Switch>
+      )
   }
 
 

@@ -11,13 +11,12 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import { Link } from '@material-ui/core';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
-import SingleSelectDropDown from './SingleSelectDropDown'
+import SingleSelectDropDown from '../SingleSelectDropDown'
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router-dom';
-import logo_icon from '../resources/auditbotlogo.PNG'
 import Grid from '@material-ui/core/Grid';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -500,6 +499,7 @@ const GRCStackGraphCard = (props) => {
   }
 
   let getData=(data)=>{
+    console.log(data)
     props.dialogueOpen(props.chartId,data.GROUPBY1)
   }
 

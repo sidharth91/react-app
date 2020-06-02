@@ -3,15 +3,13 @@ import { connect } from 'react-redux';
 //import './Login.css'
 //import * as actionType from '../../Store/actions/actionsType'
 import * as action from '../Store/actions/index'
-import logo_icon from '../resources/auditbotlogo.PNG'
-import SingleSelectDropDown from '../component/SingleSelectDropDown'
-import LoginCard from '../component/LoginCard'
+
 import Grid from '@material-ui/core/Grid';
 import HeaderContainer from './HeaderContainer'
 import SideBar from './SideBar'
 import GRCReport from './GRCReport'
 import { Route, Switch,withRouter,Redirect } from 'react-router-dom';
-import GRCReportTable from '../component/GRCReportTable'
+import GRCReportTable from '../component/grccomponent/GRCReportTable'
 
 
 

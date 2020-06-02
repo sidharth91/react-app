@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     //width: `calc(100% - 190px)`,
     width:'100%',
     minHeight: 20,
-    backgroundColor:'#222021'
+    backgroundColor:'#4f4f54'
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     width: 135,
-    height: 40.54
+    height: 42.54
   },drawer: {
     width: drawerWidth,
     flexShrink: 0,
@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
 },
 drawerPaper: {
     width: drawerWidth,
-    backgroundColor:'#222021'
+    backgroundColor:'#4f4f54'
 },
 // necessary for content to be below app bar
 toolbar: theme.mixins.toolbar,
@@ -81,10 +81,10 @@ content: {
     padding: theme.spacing(1),
 },
 IconColor:{
-    color:'#009ed7',
+    color:'#009ED7',
 },
 IconColorchild:{
-    color:'#009ed7',
+    color:'#009ED7',
     width:20
 },
 ItemIcon:{
@@ -92,18 +92,33 @@ ItemIcon:{
 },
 listitmentext:{
     color: '#ffffff',
-    fontSize:15 
+    fontSize:14,
+    fontFamily:'Helvetica'
 },
 listitmentextchild:{
     color: '#ffffff',
-    fontSize:13 
+    fontSize:12,
+    fontFamily:'Helvetica' 
 },
 logo: {
     //margin:10,
     //marginLeft:25,
     width: '100%',
-    height: 35.54,
-    backgroundColor:'#FFFFFF'
+    height: 40.54,
+    //backgroundColor:'#FFFFFF'
+  },
+  selecteditme:{
+    backgroundColor:'#009ed7',
+    color:'white',
+    borderTopRightRadius:'25px',
+    borderBottomRightRadius:'25px',
+    paddingTop:4,
+    paddingBottom:4
+  },
+  nested:{
+    color:'white',
+    paddingTop:4,
+    paddingBottom:4
   }
 }));
 
@@ -115,6 +130,7 @@ const ApplicationAppBar = (props) => {
 
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
+  const [pathname,setPathname]=React.useState('');
   const [anchorEl, setAnchorEl] = React.useState(null);
   //const open = Boolean(anchorEl);
 
@@ -122,6 +138,11 @@ const ApplicationAppBar = (props) => {
   const [open, setOpen] = React.useState(true);
 
   const [drawerswitch, setDrawerswitch] = React.useState(false);
+
+
+  React.useEffect(() => {
+    setPathname(props.pathname);
+}, [props])
 
   const handleReport = () => {
       setOpen(!open);
@@ -175,12 +196,9 @@ const ApplicationAppBar = (props) => {
                 alt="Bosch Logo"
               /> */}
           </Grid>
-          <Grid item sm={2} >
 
-          </Grid>
-
-          <Grid item sm={7} >
-
+          <Grid item sm={9} >
+            <Typography type="body2" >{pathname=='/grcreport'?'GRC Report':'GRC Dashbord'}</Typography>
           </Grid>
 
           <Grid item sm={2}  >
@@ -192,7 +210,7 @@ const ApplicationAppBar = (props) => {
               aria-haspopup="true"
               color="inherit"
               style={{padding:0}}
-            ><Typography  variant="button" style={{color:'#009ED7'}}>
+            ><Typography  variant="button" style={{color:'#000'}}>
              {props.username}
           </Typography>     
           </IconButton><AccountCircle  style={{padding:2,fontSize: 30,color:'#009ED7',marginLeft:5}}/></div>:null}
@@ -244,18 +262,20 @@ const ApplicationAppBar = (props) => {
                     </ListItem>
                     <Collapse in={dashbord} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
+                        <Link style={{color:'white'}} to={'/grcdashbord'} onClick={toggleDrawer(false)}>
+                            <ListItem button className={pathname=='/grcdashbord'?classes.selecteditme:classes.nested} >
                                 <ListItemIcon className={classes.ItemIcon} >
                                     <LineStyleIcon className={classes.IconColorchild}/>
                                 </ListItemIcon>
                                 <ListItemText disableTypography  primary={<Typography type="body2"  className={classes.listitmentextchild}>GRC Dashbord</Typography>}/>
                             </ListItem>
-                            <ListItem button className={classes.nested}>
+                            </Link>
+                            {/* <ListItem button className={classes.nested}>
                                 <ListItemIcon className={classes.ItemIcon} >
                                     <LineStyleIcon className={classes.IconColorchild}/>
                                 </ListItemIcon>
                                 <ListItemText disableTypography  primary={<Typography type="body2"  className={classes.listitmentextchild}>GRC Dashbord</Typography>}/>
-                            </ListItem>
+                            </ListItem> */}
                         </List>
                     </Collapse>
                     <ListItem button key='Report' button onClick={handleReport}>
@@ -265,18 +285,20 @@ const ApplicationAppBar = (props) => {
                     </ListItem>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
+                        <Link style={{color:'white'}} to={'/grcreport'} onClick={toggleDrawer(false)}>
+                            <ListItem button className={pathname=='/grcreport'?classes.selecteditme:classes.nested} >
                                 <ListItemIcon className={classes.ItemIcon} >
-                                    <GridOnIcon className={classes.IconColorchild}/>
+                                    <LineStyleIcon className={classes.IconColorchild}/>
                                 </ListItemIcon>
-                                <ListItemText disableTypography  primary={<Typography type="body2"  className={classes.listitmentextchild}> <Link to={'/report/grcReport'} >GRC Report</Link></Typography>}/>
+                                <ListItemText disableTypography  primary={<Typography type="body2"  className={classes.listitmentextchild}>GRC Report</Typography>}/>
                             </ListItem>
-                            <ListItem button className={classes.nested}>
+                            </Link>
+                            {/* <ListItem button className={classes.nested}>
                                 <ListItemIcon className={classes.ItemIcon} >
                                     <GridOnIcon className={classes.IconColorchild}/>
                                 </ListItemIcon>
                                 <ListItemText disableTypography  primary={<Typography type="body2"  className={classes.listitmentextchild}>GRC Report</Typography>}/>
-                            </ListItem>
+                            </ListItem> */}
                         </List>
                     </Collapse>
                     <ListItem button key='Help'>
@@ -289,7 +311,7 @@ const ApplicationAppBar = (props) => {
                 <Divider />
                 <List>
                   
-                        <ListItem button key='Logout'>
+                        <ListItem button key='Logout' onClick={()=>props.onLogout()}>
                             <ListItemIcon className={classes.ItemIcon} ><ExitToAppIcon className={classes.IconColor} />     </ListItemIcon>
                             <ListItemText disableTypography  primary={<Typography type="body2"  className={classes.listitmentextchild}>Logout</Typography>}/>
                         </ListItem>

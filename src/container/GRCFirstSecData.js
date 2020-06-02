@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 //import * as actionType from '../../Store/actions/actionsType'
 import * as action from '../Store/actions/index'
 import logo_icon from '../resources/auditbotlogo.PNG'
-import FilterSingleSelectDropDown from '../component/FilterSingleSelectDropDown'
-import FilterMultiSelectDropDown from '../component/FilterMultiSelectDropDown'
+import FilterSingleSelectDropDown from '../component/grccomponent/FilterSingleSelectDropDown'
+import FilterMultiSelectDropDown from '../component/grccomponent/FilterMultiSelectDropDown'
 import LoginCard from '../component/LoginCard'
 import Grid from '@material-ui/core/Grid';
 import HeaderContainer from './HeaderContainer'
@@ -17,7 +17,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import GRCStackGraphCard from '../component/GRCStackGraphCard'
+import GRCStackGraphCard from '../component/grccomponent/GRCStackGraphCard'
 
 
 
@@ -48,7 +48,7 @@ class GRCFirstSecData extends Component {
                    {isDataReadtToShow? <GRCStackGraphCard chart='01' color={this.props.colors} stack='3' height={220} data={this.props.result.E_RESULT_01.data} name="Executed Risks Chart" chartType={1} dialogueOpen={this.props.dialogueOpen} chartId="SEC11"/> :null}
                 </Grid>
                 <Grid item md={4}  style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCStackGraphCard chart='02' stack='2' color={this.props.colors} height={220} data={this.props.result.E_RESULT_01.data} name={ `Risk Executed ${this.props.levelSelected==1?'User':'Role'}` } chartType={2}  dialogueOpen={this.props.dialogueOpen} chartId="SEC12"/> :null}
+                   {isDataReadtToShow? <GRCStackGraphCard chart='02' stack='2' color={this.props.colors} height={220} data={this.props.result.E_RESULT_01.data} name={ `Risk Executed ${this.props.levelSelected==1?'User':'Role'}` }  dialogueOpen={this.props.dialogueOpen} chartId="SEC12"/> :null}
                 </Grid>
                 <Grid item md={4}  style={{paddingTop:0}}>
                    {isDataReadtToShow? <GRCStackGraphCard chart='03'  stack='2' color={this.props.colors} height={220} data={this.props.result.E_RESULT_01.data} name="Total Executed Risks" chartType={1}  dialogueOpen={this.props.dialogueOpen} chartId="SEC13"/> :null}

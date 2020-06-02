@@ -80,7 +80,6 @@ export const onLogout=()=>{
   return dispatch=>{
     dispatch(logout())
     dispatch({type:actionType.CLEAR_RESULT})
-    dispatch({type:actionType.CLEAR_SIDEBAR})
   }
 }
 

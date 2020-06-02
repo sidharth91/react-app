@@ -111,25 +111,31 @@ export const initiateFilter = (data) => {
             case 1:
                 temp.sapSystem = p;
                 temp.sapSystem.selectedValue = p.value[p.value.length - 3].ZID
+                temp.sapSystem.filtered = p.value[p.value.length - 3].ZID
                 break
             case 2:
                 temp.client = p;
                 temp.client.selectedValue = p.value[p.value.length - 3].ZID
+                temp.client.filtered = p.value[p.value.length - 3].ZID
                 break
             case 3:
                 p.selectedValue = [];
+                p.filtered = [];
                 temp.riskType = p;
                 break
             case 4:
                 p.selectedValue = [];
+                p.filtered = [];
                 temp.riskLevel = p;
                 break
             case 5:
                 p.selectedValue = [];
+                p.filtered = [];
                 temp.businessModule = p;
                 break
             case 6:
                 p.selectedValue = [];
+                p.filtered = [];
                 temp.riskid = p;
                 break;
             case 7:
@@ -137,6 +143,7 @@ export const initiateFilter = (data) => {
                 break;
             case 8:
                 p.selectedValue = 1
+                p.filtered = 1;
                 temp.reportType = p;
                 break;
             case 9:
@@ -256,7 +263,7 @@ export const gobackToParentTable = () => {
 export const riskReport = (token, sapSystem, client, level, riskType, riskLevel, businessModule, mitigation,drillDown,riskId, userinput) => {
 
     return dispatch => {
-      
+        dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
         axios.post('http://localhost:8080/api/JAVA_MUL_0003', {
             sapSystem: sapSystem,
             client: client,
@@ -267,16 +274,24 @@ export const riskReport = (token, sapSystem, client, level, riskType, riskLevel,
             mitigation: mitigation,
             drillDown:drillDown,
             riskId: riskId,
-            userinput:userinput
+            userInput:userinput
   
         }, { headers: { 'Authorisation': token } })
             .then(response => {
-               
+                dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: false })
                 dispatch({ type: actionType.UPDATE_RISKREPORT, tableReport: response.data })
             })
             .catch(error => {
                 console.log(error)
             });
+    }
+}
+
+
+export const clearriskReport = () => {
+
+    return dispatch => {
+        dispatch({ type: actionType.UPDATE_RISKREPORT, tableReport: {} })
     }
 }
 
@@ -295,12 +310,12 @@ export const riskGrcReport = (token, sapSystem, client, level, riskType, riskLev
             mitigation: mitigation,
             drillDown:drillDown,
             riskId: riskId,
-            userinput:userinput
+            userInput:userinput
   
         }, { headers: { 'Authorisation': token } })
             .then(response => {
-                dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: false })
                 dispatch({ type: actionType.UPDATE_GRCREPORT, tableReport: response.data })
+                dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: false })
             })
             .catch(error => {
                 console.log(error)

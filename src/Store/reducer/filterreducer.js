@@ -53,7 +53,20 @@ const filterreducer = (state = initialState, action) => {
         case actionType.CHANGE_BREAKDOWN:
             return { ...state, breakDown: { ...state.breakDown, selectedValue: action.data } }
         case actionType.UPDATE_RESULT:
-            return { ...state, result: action.data, tableReportShow: false, levelSelected: state.level.selectedValue, reportTypeSelected: state.reportType.selectedValue,loader:false }
+            return { ...state, result: action.data, tableReportShow: false,
+                  loader:false,levelSelected: state.level.selectedValue,
+                  reportTypeSelected: state.reportType.selectedValue,
+                  sapSystem:{...state.sapSystem,filtered:state.sapSystem.selectedValue},
+                  client:{...state.client,filtered:state.client.selectedValue},
+                  riskType:{...state.riskType,filtered:state.riskType.selectedValue},
+                  riskLevel:{...state.riskLevel,filtered:state.riskLevel.selectedValue},
+                  businessModule:{...state.businessModule,filtered:state.businessModule.selectedValue},
+                  mitigation:{...state.mitigation,filtered:state.mitigation.selectedValue},
+                  drillDown:{...state.drillDown,filtered:state.drillDown.selectedValue},
+                  level:{...state.level,filtered:state.level.selectedValue},
+                  reportType:{...state.reportType,filtered:state.reportType.selectedValue},
+                  riskid:{...state.riskid,filtered:state.riskid.selectedValue}
+                }
         case actionType.UPDATE_DATAFORMAT:
             return { ...state, dataformat: action.data }
         case actionType.CLEAR_RESULT:

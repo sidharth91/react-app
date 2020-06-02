@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 //import * as actionType from '../../Store/actions/actionsType'
 import * as action from '../Store/actions/index'
 import logo_icon from '../resources/auditbotlogo.PNG'
-import FilterSingleSelectDropDown from '../component/FilterSingleSelectDropDown'
-import FilterMultiSelectDropDown from '../component/FilterMultiSelectDropDown'
+import FilterSingleSelectDropDown from '../component/grccomponent/FilterSingleSelectDropDown'
+import FilterMultiSelectDropDown from '../component/grccomponent/FilterMultiSelectDropDown'
 import LoginCard from '../component/LoginCard'
 import Grid from '@material-ui/core/Grid';
 import HeaderContainer from './HeaderContainer'
@@ -17,8 +17,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import GRCGraphCard from '../component/GRCGraphCard'
-import GRCStackGraphCard from '../component/GRCStackGraphCard'
+import GRCGraphCard from '../component/grccomponent/GRCGraphCard'
+import GRCStackGraphCard from '../component/grccomponent/GRCStackGraphCard'
 
 
 
@@ -56,16 +56,16 @@ class GRCThirdSecData extends Component {
         return (
             <Grid container style={{marginTop:5}} spacing={1}>
                 <Grid item md={4} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCGraphCard chart='01' stack={true} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={ `Risk Matrix by ${this.graphNameOnReportType()}`}  chartType={5}  /> :null}
+                   {isDataReadtToShow? <GRCGraphCard chart='01' stack={true} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={ `Risk Matrix by ${this.graphNameOnReportType()}`}  chartType={5} dialogueOpen={this.props.dialogueOpen} chartId="SEC31" /> :null}
                 </Grid>
                 <Grid item md={2} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCGraphCard chart='02' stack={false} color={this.props.colors}  data={this.props.result.E_RESULT_03.data} name={ `Risk  ${this.props.levelSelected==1?'Users by':'Roles by'} ${this.graphNameOnReportType()}`} chartType={3}  /> :null}
+                   {isDataReadtToShow? <GRCGraphCard chart='02' stack={false} color={this.props.colors}  data={this.props.result.E_RESULT_03.data} name={ `Risk  ${this.props.levelSelected==1?'Users by':'Roles by'} ${this.graphNameOnReportType()}`} chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC32" /> :null}
                 </Grid>
                 <Grid item md={2} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCGraphCard chart='03' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={ `Total Risk by ${this.graphNameOnReportType()}`}  chartType={3}  /> :null}
+                   {isDataReadtToShow? <GRCGraphCard chart='03' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={ `Total Risk by ${this.graphNameOnReportType()}`}  chartType={3}  dialogueOpen={this.props.dialogueOpen} chartId="SEC32"/> :null}
                 </Grid>
                 <Grid item md={4} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCGraphCard chart='04' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={ `Top Risk ${this.props.levelSelected==1?'Users':'Roles'}`} chartType={4}  /> :null}
+                   {isDataReadtToShow? <GRCGraphCard chart='04' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={ `Top Risk ${this.props.levelSelected==1?'Users':'Roles'}`} chartType={4}  dialogueOpen={this.props.dialogueOpen} chartId="SEC34"/> :null}
                 </Grid>
                     
             </Grid>
