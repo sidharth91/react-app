@@ -27,25 +27,25 @@ import IconButton from '@material-ui/core/IconButton';
 class GRCFilter extends Component {
 
     componentDidMount() {
-        if (this.props.type == 'Dashbord') {
-            this.props.submitFilter(this.props.token, this.props.riskType.selectedValue,
-                this.props.sapSystem.selectedValue, this.props.client.selectedValue,
-                this.props.riskLevel.selectedValue, this.props.businessModule.selectedValue,
-                this.props.level.selectedValue, this.props.breakDown.selectedValue,
-                this.props.riskid.selectedValue, this.props.reportType.selectedValue,
-                this.props.mitigation.selectedValue)
-        } else {
-            this.props.submitGRCFilter(this.props.token,
-                this.props.sapSystem.selectedValue,
-                this.props.client.selectedValue,
-                this.props.level.selectedValue,
-                this.props.riskType.selectedValue,
-                this.props.riskLevel.selectedValue,
-                this.props.businessModule.selectedValue,
-                this.props.mitigation.selectedValue,
-                this.props.drillDown.selectedValue,
-                this.props.riskid.selectedValue, null)
-        }
+        // if (this.props.type == 'Dashbord') {
+        //     this.props.submitFilter(this.props.token, this.props.riskType.selectedValue,
+        //         this.props.sapSystem.selectedValue, this.props.client.selectedValue,
+        //         this.props.riskLevel.selectedValue, this.props.businessModule.selectedValue,
+        //         this.props.level.selectedValue, this.props.breakDown.selectedValue,
+        //         this.props.riskid.selectedValue, this.props.reportType.selectedValue,
+        //         this.props.mitigation.selectedValue)
+        // } else {
+        //     this.props.submitGRCFilter(this.props.token,
+        //         this.props.sapSystem.selectedValue,
+        //         this.props.client.selectedValue,
+        //         this.props.level.selectedValue,
+        //         this.props.riskType.selectedValue,
+        //         this.props.riskLevel.selectedValue,
+        //         this.props.businessModule.selectedValue,
+        //         this.props.mitigation.selectedValue,
+        //         this.props.drillDown.selectedValue,
+        //         this.props.riskid.selectedValue, null)
+        // }
     }
 
     changeSystem = (value) => {
@@ -111,7 +111,7 @@ class GRCFilter extends Component {
     render() {
 
         let level = Object.keys(this.props.level).length != 0 ?
-            Object.keys(this.props.level).filter(param => !['selectedValue','filtered'].includes(param) ).map((param) => {
+            Object.keys(this.props.level).filter(param => !['selectedValue', 'filtered'].includes(param)).map((param) => {
                 return { 'key': param, 'value': this.props.level[param] };
             }) : []
 
@@ -193,30 +193,32 @@ class GRCFilter extends Component {
                             <FilterSingleSelectDropDown values={drillDown} preSelected={this.props.drillDown.selectedValue} changeEventCallBack={this.changeDrillDown} label="Drill Down" width='100' />
                         </Grid>
                         {this.props.type == 'Report' ?
-                            <Grid item md={1} style={{paddingTop:12,paddingLeft:10}}>
+                            <Grid item md={1} style={{ paddingTop: 12, paddingLeft: 10 }}>
                                 <TextField id="outlined-search" inputProps={{
                                     style: {
-                                        height:35,
+                                        height: 35,
                                         padding: '0 14px',
-                                        fontSize:12
+                                        fontSize: 12
                                     },
-                                }} 
-                                InputLabelProps={{
-                                    style: {
-                                     fontSize:12,
-                                     fontFamily:'Helvetica',
-                                    
-                                    },
-                                  }}
-                                size="small" label="Input" type="search" variant="outlined" onChange={(event)=>{this.props.changeUserInput(event.target.value)}} />
+                                }}
+                                    InputLabelProps={{
+                                        style: {
+                                            fontSize: 12,
+                                            fontFamily: 'Helvetica',
+
+                                        },
+                                    }}
+                                    size="small" label="Input" type="search" variant="outlined" onChange={(event) => { this.props.changeUserInput(event.target.value) }} />
                             </Grid>
                             : null
                         }
                         <Grid item md={this.props.type == 'Dashbord' ? 1 : 1}>
-                            <IconButton color="primary" aria-label="upload picture" component="span" onClick={() => this.onfilterSumbit()}>
+                            {/* <IconButton color="primary" aria-label="upload picture" component="span" onClick={() => this.onfilterSumbit()}>
                                 <SearchIcon />
-                            </IconButton>
-
+                            </IconButton> */}
+                            <Button variant="contained" size="small" color="primary" style={{marginTop:10,padding:4,backgroundColor:'#009ED7'}} onClick={() => this.onfilterSumbit()}>
+                                Execute
+                            </Button>
 
                         </Grid>
                     </Grid>
@@ -271,7 +273,7 @@ const mapStateToProps = state => {    //this methos use to retrive state from re
         drillDown: state.filter.drillDown,
         breakDown: state.filter.breakDown,
         result: state.filter.result,
-        userinput:state.filter.userinput
+        userinput: state.filter.userinput
     };
 
 }
@@ -280,7 +282,7 @@ const mapDispatchToProps = dispatch => { // this methos used for dispatch action
     return {
         loadFilter: (token) => dispatch(action.initFilter(token)),
         onChangeFilter: (data, value) => dispatch(action.changeFilter(data, value)),
-        changeUserInput:(value)=>dispatch(action.changeUserInput(value)),
+        changeUserInput: (value) => dispatch(action.changeUserInput(value)),
         changeLevel: (level) => dispatch(action.changeLevel(level)),
         submitFilter: (token, riskType, sapSystem, client, riskLevel, businessModule, level, breakDown, riskId, reportType, mitigation) => dispatch(action.submitFilter(token, riskType, sapSystem, client, riskLevel, businessModule, level, breakDown, riskId, reportType, mitigation)),
         submitGRCFilter: (token, sapSystem, client, level, riskType, riskLevel, businessModule, mitigation, drillDown, riskId, userinput) => dispatch(action.riskGrcReport(token, sapSystem, client, level, riskType, riskLevel, businessModule, mitigation, drillDown, riskId, userinput))

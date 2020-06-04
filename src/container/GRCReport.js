@@ -17,6 +17,7 @@ import GRCSecondSecData from './GRCSecondSecData'
 import Loader from '../component/Loader'
 import GRCDragableDialogue from './GRCDragableDialogue'
 import GRCReportTable from '../component/grccomponent/GRCReportTable'
+import MUGRCReportTable from '../component/grccomponent/MUGRCReportTable'
 
 class GRCReport extends Component {
 
@@ -38,7 +39,8 @@ class GRCReport extends Component {
             <Grid container style={{ marginTop:25,paddingRight:10,paddingLeft:10 }} spacing={0}>
                  <Grid item md={12} style={{margin:5}}>
                     {this.props.sapSystem.value.length>0?<GRCFilter type='Report'/>:null}
-                    {Object.keys(this.props.grcreport).length>0?<GRCReportTable colors={this.props.colors} header={this.props.grcreport.header} data={this.props.grcreport.data}/>:null}
+                    {/* {Object.keys(this.props.grcreport).length>0?<GRCReportTable colors={this.props.colors} header={this.props.grcreport.header} data={this.props.grcreport.data}/>:null} */}
+                      {Object.keys(this.props.grcreport).length>0?<MUGRCReportTable colors={this.props.colors} header={this.props.grcreport.header} data={this.props.grcreport.data}/>:null}
                     {this.props.loader?<Loader/>:null}
                     </Grid >
              </Grid>

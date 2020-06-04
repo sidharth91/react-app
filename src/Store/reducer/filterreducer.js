@@ -7,7 +7,7 @@ const initialState = {
     riskType: { "name": "Risk Type", "id": 3, "value": [], selectedValue: [] },
     riskLevel: { "name": "Risk Level", "id": 4, "value": [], selectedValue: [] },
     businessModule: { "name": "Business Module", "id": 5, "value": [], selectedValue: [] },
-    level: { 'User': 1, 'Group': 2, 'selectedValue': 1 },
+    level: { 'User': 1, 'Role': 2, 'selectedValue': 1 },
     breakDown: { values: { 'Risk Level': 2, 'Risk Type': 1, 'Business Modules': 3 }, selectedValue: [1] },
     mitigation: { "name": "Risk", "id": 6, "value": [] },
     drillDown: { "name": "Drill Down", "id": 9, "value": [] },

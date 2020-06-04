@@ -32,7 +32,12 @@ const useStyles = makeStyles((theme) => ({
     '&:after': {
         borderColor:'red',
     }
+
 },
+dropdownchanges:{
+  paddingRight:'25px !important'
+}
+
 }));
 
 const ITEM_HEIGHT = 12;
@@ -63,7 +68,7 @@ const MenuProps = {
 
 
     const MenuItems=props.values.map((v)=>{
-      return <MenuItem key={v.key} value={v.value}> {v.key}</MenuItem>
+      return <MenuItem key={v.key} value={v.value} style={{fontSize:12,fontFamily:'Helvetica'}}> {v.key}</MenuItem>
  }
    )
 
@@ -79,6 +84,9 @@ const MenuProps = {
           classes: {
               icon: classes.icon,
           },
+      }}
+      classes={{
+       outlined:classes.dropdownchanges
       }}
         label={props.label}
         MenuProps={MenuProps}

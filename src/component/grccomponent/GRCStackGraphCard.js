@@ -39,6 +39,7 @@ import Paper from '@material-ui/core/Paper';
 import Draggable from 'react-draggable';
 import GRCDashbordTable from './GRCDashbordTable';
 import CloseIcon from '@material-ui/icons/Close';
+import BarChartIcon from '@material-ui/icons/BarChart';
 
 
 const height = 100
@@ -148,7 +149,13 @@ const GRCStackGraphCard = (props) => {
           return getRCVBarChartTwoStack(data, color);
         if (stack == '3')
           return getRCVBarChartThreeStack(data, color);
-
+      case 3:
+        if (stack == '1')
+          return getRCVBarChartTwo(data, color);
+        if (stack == '2')
+          return getRCVBarChartTwo(data, color);
+        if (stack == '3')
+          return getRCVBarChartThree(data, color);
 
       default:
         return getRCHBarChartTwoStack(data, color)
@@ -198,6 +205,36 @@ const GRCStackGraphCard = (props) => {
   }
 
 
+  const getRCVBarChartTwo = (data, color) => {
+    return (<ResponsiveContainer width='100%' height='100%'><BarChart
+      layout={"horizontal"}
+      data={data}
+      barCategoryGap="10%"
+      maxBarSize={40}
+      margin={{
+        top: 5, right: 0, left: 0, bottom: 5,
+      }}
+    >
+      {/* <CartesianGrid strokeDasharray="2 2" /> */}
+      <LabelList dataKey="name" position="top" />
+      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
+      <Legend iconSize={10} wrapperStyle={{
+        fontFamily: 'Helvetica', fontSize: '10px'
+      }} formatter={(value, entry, index) => legendText(value)} />
+      <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
+      <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
+      <Bar dataKey="ZCOUNT1" fill={colorState[0]} onClick={(data) => getData(data)} >
+        <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      </Bar>
+      <Bar dataKey="ZCOUNT2" fill={colorState[1]} onClick={(data) => getData(data)}>
+        <LabelList dataKey="ZCOUNT2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      </Bar>
+
+
+    </BarChart></ResponsiveContainer>)
+  }
+
+
   const getRCVBarChartThreeStack = (data, color) => {
     return (<ResponsiveContainer width='100%' height='100%'><BarChart
       layout={"horizontal"}
@@ -215,7 +252,7 @@ const GRCStackGraphCard = (props) => {
       }} formatter={(value, entry, index) => legendText(value)} />
       <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
       <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
-      <Bar dataKey="ZCOUNT1" stackId="a" fill= {colorState[0]} onClick={(data) => getData(data)} >
+      <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
 
         <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
@@ -246,6 +283,39 @@ const GRCStackGraphCard = (props) => {
   }
 
 
+  const getRCVBarChartThree = (data, color) => {
+    return (<ResponsiveContainer width='100%' height='100%'><BarChart
+      layout={"horizontal"}
+      data={data}
+      barCategoryGap="10%"
+      maxBarSize={25}
+      margin={{
+        top: 5, right: 0, left: 0, bottom: 5,
+      }}
+    >
+      {/* <CartesianGrid strokeDasharray="2 2" /> */}
+      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
+      <Legend iconSize={10} wrapperStyle={{
+        fontFamily: 'Helvetica', fontSize: '10px'
+      }} formatter={(value, entry, index) => legendText(value)} />
+      <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
+      <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
+      <Bar dataKey="ZCOUNT1" fill={colorState[0]} onClick={(data) => getData(data)} >
+
+        <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      </Bar>
+      <Bar dataKey="ZCOUNT2" fill={colorState[1]} onClick={(data) => getData(data)} >
+
+        <LabelList dataKey="ZCOUNT2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      </Bar>
+      <Bar dataKey="ZCOUNT3" fill={colorState[2]} onClick={(data) => getData(data)} >
+
+        <LabelList dataKey="ZCOUNT3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      </Bar>
+    </BarChart></ResponsiveContainer>)
+  }
+
+
   const CustomizedAxisTick = ({
     x, y, stroke, payload,
   }) => {
@@ -266,69 +336,6 @@ const GRCStackGraphCard = (props) => {
     );
   }
 
-
-
-
-
-  const renderCustomizedLabel = ({
-    cx, cy, midAngle, innerRadius, outerRadius, percent, index, value,
-  }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-    return (
-      <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-        {value}
-      </text>
-    );
-  };
-
-
-
-  const renderActiveShape = (props) => {
-    const RADIAN = Math.PI / 180;
-    const {
-      cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle,
-      fill, payload, percent, value, name
-    } = props;
-    const sin = Math.sin(-RADIAN * midAngle);
-    const cos = Math.cos(-RADIAN * midAngle);
-    const sx = cx + (outerRadius + 10) * cos;
-    const sy = cy + (outerRadius + 10) * sin;
-    const mx = cx + (outerRadius + 15) * cos;
-    const my = cy + (outerRadius + 15) * sin;
-    const ex = mx + (cos >= 0 ? 1 : -1) * 11;
-    const ey = my;
-    const textAnchor = cos >= 0 ? 'start' : 'end';
-
-    return (
-      <g>
-        <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>{payload.value}</text>
-        <Sector
-          cx={cx}
-          cy={cy}
-          innerRadius={innerRadius}
-          outerRadius={outerRadius}
-          startAngle={startAngle}
-          endAngle={endAngle}
-          fill={fill}
-        />
-        <Sector
-          cx={cx}
-          cy={cy}
-          startAngle={startAngle}
-          endAngle={endAngle}
-          innerRadius={outerRadius + 6}
-          outerRadius={outerRadius + 10}
-          fill={'#00bcd4'}
-        />
-        <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={'#00bcd4'} fill="none" />
-        <circle cx={ex} cy={ey} r={2} fill={'#00bcd4'} stroke={'#00bcd4'} />
-        <text x={ex + (cos >= 0 ? 1 : -1) * 5} y={ey} fontSize={12} textAnchor={textAnchor} fill="#00bcd4">{`${name}`}</text>
-      </g>
-    );
-  };
 
 
 
@@ -461,8 +468,8 @@ const GRCStackGraphCard = (props) => {
   const getTableHeader = (data, key) => {
     let filtereddata = data.filter(p => p.ZTYPE === key);
 
-    let columnarray=(key == '01')?["GROUPBY1", "GROUP_DESC1", "ZCOUNT1", "ZCOUNT2", "ZCOUNT3"]:["GROUPBY1", "GROUP_DESC1", "ZCOUNT1", "ZCOUNT2"]
-    let header = Object.keys(filtereddata[0]).filter(t =>columnarray.includes(t)).map(p => {
+    let columnarray = (key == '01') ? ["GROUPBY1", "GROUP_DESC1", "ZCOUNT1", "ZCOUNT2", "ZCOUNT3"] : ["GROUPBY1", "GROUP_DESC1", "ZCOUNT1", "ZCOUNT2"]
+    let header = Object.keys(filtereddata[0]).filter(t => columnarray.includes(t)).map(p => {
       if (p == 'GROUPBY1') {
         return 'GROUPBY1'
       }
@@ -498,9 +505,9 @@ const GRCStackGraphCard = (props) => {
 
   }
 
-  let getData=(data)=>{
+  let getData = (data) => {
     console.log(data)
-    props.dialogueOpen(props.chartId,data.GROUPBY1)
+    props.dialogueOpen(props.chartId, data.GROUPBY1)
   }
 
   const classes = useStyles();
@@ -511,10 +518,10 @@ const GRCStackGraphCard = (props) => {
   let getchartDataResult1 = proesResultData(props.data, props.chart);
   let tableData = getTableHeader(props.data, props.chart)
   let firctChart = getChart(getchartDataResult1, chartState, '#00bcd4', props.stack)
-useEffect(() => {
-  let arr=[...props.color,...COLORS]
-  setColorState(arr);
-},[]);
+  useEffect(() => {
+    let arr = [...props.color, ...COLORS]
+    setColorState(arr);
+  }, []);
 
   return (
     <div>
@@ -538,6 +545,7 @@ useEffect(() => {
                 >
                   <MenuItem value={1} key='horizontal' style={{ padding: 5 }}><AssessmentOutlinedIcon fontSize="small" style={{ transform: 'rotate(90deg)' }} /></MenuItem>
                   <MenuItem value={2} key='vertical' style={{ padding: 5 }}><AssessmentOutlinedIcon fontSize="small" /></MenuItem>
+                  <MenuItem value={3} key='vertical-mul' style={{ padding: 5 }}><BarChartIcon fontSize="small" /></MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -582,20 +590,20 @@ useEffect(() => {
             </DialogTitle>
           </Grid>
           <Grid item md={1}>
-          <IconButton
-          aria-label="account of current user"
-          aria-controls="menu-appbar"
-          aria-haspopup="true"
-          color="inherit"
-          style={{ padding: 0 }}
-          onClick={handleClose}
-        >
-          <CloseIcon/>
-        </IconButton>
+            <IconButton
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              color="inherit"
+              style={{ padding: 0 }}
+              onClick={handleClose}
+            >
+              <CloseIcon />
+            </IconButton>
           </Grid>
         </Grid>
 
-      
+
         <DialogContent>
           <GRCDashbordTable name={props.name} header={tableData[0]} data={tableData[1]} />
         </DialogContent>

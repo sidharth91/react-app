@@ -80,7 +80,7 @@ const classes = useStyles(props);
           </Grid>
         </Grid>
         <DialogContent>
-        {data.length>0?<GRCReportTableDialogue  data={data}/>:null}
+        {data.length>0?<GRCReportTableDialogue  header={props.header} data={data}/>:null}
         </DialogContent>
       </Dialog>
 

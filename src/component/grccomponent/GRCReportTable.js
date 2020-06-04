@@ -189,7 +189,7 @@ const useStyles = makeStyles((theme) => ({
     padding:"2px",
     textAlign:"left",
     backgroundColor:props=>props.colors[11],
-    border:"1px solid rgba(224, 224, 224, 1)",
+    border:"2px solid rgba(224, 224, 224, 1)",
     borderCollapse:'collapse'
   },
   tablepaginationtoolbar:{

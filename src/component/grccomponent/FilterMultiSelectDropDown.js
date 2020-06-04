@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
   },
   icon:{
     right:0
+  },
+  dropdownchanges:{
+    paddingRight:25
   }
 }));
 function getStyles(name, personName, theme) {
@@ -76,14 +79,8 @@ const MenuProps = {
       ))
 
    const findSelected=(selected)=>{
-       let str='';
-      let result = props.values.map((v)=>{
-        if(selected.length>0 && selected.includes(v.value)){
-            return v.key
-        }
-       })
-       str=result.join(',')
-       return str
+
+       return selected.length+'Selected'
    }
 
       return   <FormControl  variant="outlined" className={classes.formControl} size="small" fullWidth='true'>
@@ -98,6 +95,9 @@ const MenuProps = {
           classes: {
               icon: classes.icon,
           },
+      }}
+      classes={{
+        outlined:classes.dropdownchanges
       }}
         label={props.label}
         MenuProps={MenuProps}
