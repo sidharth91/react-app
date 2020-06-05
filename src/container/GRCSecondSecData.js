@@ -111,7 +111,7 @@ const GRCSecondSecData = (props) => {
             <Grid item md={12}>
                 <Card elevation='5'>
                     {isDataReadtToShow ?
-                        <CardContent style={{ padding: 2, marginRight:5,marginLeft:5, height:"7vh" }}>
+                        <CardContent style={{ padding: 2, marginRight:5,marginLeft:5, height:"8vh" }}>
                             <Grid container spacing={1}>
                                 <Grid item md={1}>
 

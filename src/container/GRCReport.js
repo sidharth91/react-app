@@ -36,7 +36,7 @@ class GRCReport extends Component {
 
 
         return (
-            <Grid container style={{ marginTop:25,paddingRight:10,paddingLeft:10 }} spacing={0}>
+            <Grid container style={{ marginTop:5,paddingRight:10,paddingLeft:10 }} spacing={0}>
                  <Grid item md={12} style={{margin:5}}>
                     {this.props.sapSystem.value.length>0?<GRCFilter type='Report'/>:null}
                     {/* {Object.keys(this.props.grcreport).length>0?<GRCReportTable colors={this.props.colors} header={this.props.grcreport.header} data={this.props.grcreport.data}/>:null} */}

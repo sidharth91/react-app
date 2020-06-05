@@ -54,7 +54,8 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     minHeight: 20,
     backgroundColor: '#4f4f54',
-    height:"6vh"
+    height:"6vh",
+    minHeight:'40px'
   },
   menuButton: {
     marginRight: theme.spacing(2),

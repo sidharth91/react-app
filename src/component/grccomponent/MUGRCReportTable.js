@@ -76,7 +76,7 @@ const MUGRCReportTable = (props) => {
             },
             MUIDataTable: {
                 responsiveScrollMaxHeight: {
-                    maxHeight: '410px !important'
+                    maxHeight: '70vh !important'
                 },
                 paper: {
                     marginTop: 5

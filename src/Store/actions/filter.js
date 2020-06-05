@@ -199,56 +199,7 @@ export const changeDataFormat = (value) => {
         }
     }
 }
-/*
-  export const riskReport=(token,system,client,level,column1,column2,risk,user,role,breakDown)=>{
-   console.log(token+":"+system+":"+client+":"+level+":"+column1+":"+column2+":"+risk+":"+user+":"+role+":"+JSON.stringify(breakDown))
 
-   let data={system:null,client:null,level:null,risk:null,user:null,role:null,risktype:null,risklevel:null,appclass:null}
-   data.system=system
-   data.client=client
-   data.level=level
-    if(breakDown.selectedValue.length>0){
-       if(breakDown.selectedValue[0]===1){
-        data.risktype=column1
-       }
-       if(breakDown.selectedValue[0]===2){
-        data.risklevel=column1
-       }
-       if(breakDown.selectedValue[0]===3){
-        data.appclass=column1
-       }
-   }
-
-   if(breakDown.selectedValue.length>1){
-    if(breakDown.selectedValue[1]===1){
-        data.risktype=column2
-    }
-    if(breakDown.selectedValue[1]===2){
-        data.risklevel=column2
-    }
-    if(breakDown.selectedValue[1]===3){
-        data.appclass=column2
-    }
-} 
-
-let config={
-    headers:{'Authorisation':token},
-    params:data
-}
-
-return dispatch=>{axios.get('http://ec2-18-206-205-31.compute-1.amazonaws.com:8080/api/JAVA_0003',config)
-.then(response =>{
-    console.log(response.data)
-    dispatch({type:actionType.UPDATE_RISKREPORT,tableReport:response.data})
-  })
-  .catch(error=>{
-    console.log(error)
-  });
-}
-
-  }
-
-  */
 
 export const gobackToParentTable = () => {
     return dispatch => {
