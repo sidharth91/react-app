@@ -53,7 +53,8 @@ const useStyles = makeStyles((theme) => ({
     //width: `calc(100% - 190px)`,
     width: '100%',
     minHeight: 20,
-    backgroundColor: '#4f4f54'
+    backgroundColor: '#4f4f54',
+    height:"6vh"
   },
   menuButton: {
     marginRight: theme.spacing(2),

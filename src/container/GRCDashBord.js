@@ -45,7 +45,7 @@ class GRCDashBord extends Component {
 
 
         return (
-            <Grid container  style={{ marginTop:25,marginRight:10,marginLeft:10 }} spacing={0}>
+            <Grid container  style={{ marginTop:10,marginRight:10,marginLeft:10 }} spacing={0}>
                  <Grid item md={12}>
                     {this.props.sapSystem.value.length>0?<GRCFilter type='Dashbord' />:null}
                     <GRCThirdSecData dialogueOpen={this.openDialogue}/>
