@@ -61,7 +61,7 @@ const classes = useStyles(props);
         PaperComponent={PaperComponent}
         aria-labelledby="draggable-dialog-title"
       >
-          <Grid container spacing={1}>
+          <Grid container spacing={1} style={{width:'100%'}}>
           <Grid item md={11}>
             <DialogTitle style={{ cursor: 'move', maxHeight: 10, fontFamily: 'Helvetica', fontSize: 14 }} id="draggable-dialog-title">
             </DialogTitle>
