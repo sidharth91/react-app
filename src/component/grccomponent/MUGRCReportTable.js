@@ -103,9 +103,18 @@ const MUGRCReportTable = (props) => {
                 fontSize:12,
                 fontFamily:'Helvetica'
             }},
+            MuiGridList:{
+                root:{
+                    margin:'0px !important',
+                    paddingBottom:20
+                }
+            },
             MuiGridListTile:{
                 root:{
                     padding:'4px !important'
+                },
+                tile:{
+                    margin: '0 !important'
                 }
             },
             MUIDataTableViewCol:{label:{fontSize:12}},
@@ -120,6 +129,15 @@ const MUGRCReportTable = (props) => {
             MuiTablePagination:{toolbar:{
                 minHeight: 25
             }},
+            MUIDataTableFilter:{
+                header:{
+                    marginBottom:0
+                },
+                root:{
+                    padding: '4px 24px 0px 24px',
+                    backgroundColor: '#EFF4F9',
+                }
+            },
             MUIDataTableFilterList: {
                 chip: {
                   display: 'none'
