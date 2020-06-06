@@ -80,7 +80,12 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 15,
     padding: '12px 14px'
   }, icon: {
-    right: 0
+    right: 0,
+    height:20
+  },
+  rootSelect:{
+    paddingLeft: '3px',
+    paddingRight: '18px !important'
   }
 }));
 
@@ -611,15 +616,14 @@ const GRCGraphCard = (props) => {
 
   return (
     <div>
-      <Card className={classes.root} elevation='5' style={{ height: "38vh" }}>
-        <CardContent style={{ padding: 2, marginRight: 12, height: '85%' }}>
-
+      <Card className={classes.root} elevation='5' style={{ height: "36vh" }}>
+        <CardContent style={{ padding: 2, marginRight: 6,marginLeft:6, height: '85%' }}>
           {firctChart}
         </CardContent>
 
-        <CardActions style={{ margin: 0, padding: 2 }}>
-          <Grid container spacing={0}>
-            <Grid item md={4}>
+        <CardActions style={{ margin: 'auto', padding: 2, height:'15%' }}>
+          <Grid container spacing={0} style={{ height:'100%' }}>
+            <Grid item md={3} style={{margin:'auto'}}>
               <FormControl variant="outlined" className={classes.formControl} size="small">
                 <InputLabel id="demo-simple-select-outlined-label">{props.label}</InputLabel>
 
@@ -637,10 +641,11 @@ const GRCGraphCard = (props) => {
                       },
                     }}
                     style={{ height: 20 }}
+                    classes={{outlined:classes.rootSelect}}
                   >
-                    <MenuItem value={4} key='horizontal' style={{ padding: 5 }}><AssessmentOutlinedIcon fontSize="small" style={{ transform: 'rotate(90deg)' }} /></MenuItem>
-                    <MenuItem value={1} key='vertical' style={{ padding: 5 }}><AssessmentOutlinedIcon fontSize="small" /></MenuItem>
-                    <MenuItem value={3} key='vertical' style={{ padding: 5 }}><DonutSmallIcon fontSize="small" /></MenuItem>
+                    <MenuItem value={4} key='horizontal' style={{ padding: 5, height: 'inherit' }}><AssessmentOutlinedIcon fontSize="small" style={{ transform: 'rotate(90deg)' }} /></MenuItem>
+                    <MenuItem value={1} key='vertical' style={{ padding: 5, height: 'inherit' }}><AssessmentOutlinedIcon fontSize="small" /></MenuItem>
+                    <MenuItem value={3} key='vertical' style={{ padding: 5, height: 'inherit' }}><DonutSmallIcon fontSize="small" /></MenuItem>
                   </Select>
                   :
                   <Select
@@ -655,6 +660,7 @@ const GRCGraphCard = (props) => {
                       },
                     }}
                     style={{ height: 20 }}
+                    classes={{outlined:classes.rootSelect}}
                   >
                     <MenuItem value={6} key='horizontal' style={{ padding: 5 }}><AssessmentOutlinedIcon fontSize="small" style={{ transform: 'rotate(90deg)' }} /></MenuItem>
                     <MenuItem value={5} key='vertical' style={{ padding: 5 }}><AssessmentOutlinedIcon fontSize="small" /></MenuItem>
@@ -664,13 +670,13 @@ const GRCGraphCard = (props) => {
 
               </FormControl>
             </Grid>
-            <Grid item md={6}>
-              <Typography variant="subtitle2" style={{ fontFamily: 'Helvetica', fontSize: props.chart == '01' || props.chart == '04' ? 14 : 10 }}>
+            <Grid item md={7} style={{margin:'auto'}}>
+              <Typography variant="subtitle2" style={{ fontFamily: 'Helvetica', fontSize: props.chart == '01' || props.chart == '04' ? 12 : 10 }}>
                 {props.name}
               </Typography>
 
             </Grid>
-            <Grid item md={2}>
+            <Grid item md={2} style={{margin:'auto', height: 'inherit'}}>
 
               <IconButton
                 aria-label="account of current user"
