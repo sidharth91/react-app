@@ -115,12 +115,12 @@ const GRCSecondSecData = (props) => {
             <Grid item md={12}>
                 <Card elevation='5'>
                     {isDataReadtToShow ?
-                        <CardContent style={{ padding: 2, marginRight:5,marginLeft:5, height:"7vh" }}>
-                            <Grid container spacing={1} style={{ height:"inherit" }}>
+                        <CardContent style={{ padding: 2, height:"8vh" }}>
+                            <Grid container spacing={1} style={{ height:"inherit",width: '100%', margin: 0 }}>
                                 <Grid item md={1} className={classes.autoMarginTopBottom}>
 
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.rounded}>
                                         <ControlCameraIcon />
                                     </Avatar>
@@ -140,7 +140,7 @@ const GRCSecondSecData = (props) => {
                                 
                                 <Grid item md={1} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center'style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.rounded}>
                                         <FilterCenterFocusIcon />
                                     </Avatar>
@@ -158,7 +158,7 @@ const GRCSecondSecData = (props) => {
                                 </Grid>
                                 <Grid item md={1} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.rounded}>
                                         <FilterTiltShiftIcon />
                                     </Avatar>
@@ -176,7 +176,7 @@ const GRCSecondSecData = (props) => {
                                 </Grid>
                                 <Grid item md={1} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.roundedSecond}>
                                         <ExploreIcon />
                                     </Avatar>
@@ -194,7 +194,7 @@ const GRCSecondSecData = (props) => {
                                 </Grid>
                                 <Grid item md={1} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.roundedSecond}>
                                         <ExploreOffIcon  />
                                     </Avatar>
@@ -212,7 +212,7 @@ const GRCSecondSecData = (props) => {
                                 </Grid>
                                 <Grid item md={1} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.roundedThird}>
                                         <PeopleIcon  />
                                     </Avatar>
@@ -229,7 +229,7 @@ const GRCSecondSecData = (props) => {
                                 </Grid>
                                 <Grid item md={1} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.roundedThird}>
                                         <AccountBoxIcon  />
                                     </Avatar>
@@ -246,7 +246,7 @@ const GRCSecondSecData = (props) => {
                                 </Grid>
                                 <Grid item md={1} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.roundedThird}>
                                         <PersonIcon  />
                                     </Avatar>
@@ -264,7 +264,7 @@ const GRCSecondSecData = (props) => {
                                 </Grid>
                                 <Grid item md={1} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center'style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.roundedThird}>
                                         <PersonAddDisabledIcon  />
                                     </Avatar>
@@ -282,7 +282,7 @@ const GRCSecondSecData = (props) => {
                                 </Grid>
                                 <Grid item md={1} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.roundedFourth}>
                                         <ReportProblemIcon  />
                                     </Avatar>
@@ -300,7 +300,7 @@ const GRCSecondSecData = (props) => {
                                 </Grid>
                                 <Grid item md={1} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.roundedFourth}>
                                         <ReportIcon  />
                                     </Avatar>
@@ -318,7 +318,7 @@ const GRCSecondSecData = (props) => {
                                 </Grid>
                                 <Grid item md={1} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.roundedFourth}>
                                         <ReportOffIcon  />
                                     </Avatar>
