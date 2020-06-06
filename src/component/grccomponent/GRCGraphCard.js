@@ -611,7 +611,7 @@ const GRCGraphCard = (props) => {
 
   return (
     <div>
-      <Card className={classes.root} elevation='5' style={{ height: "35vh" }}>
+      <Card className={classes.root} elevation='5' style={{ height: "38vh" }}>
         <CardContent style={{ padding: 2, marginRight: 12, height: '85%' }}>
 
           {firctChart}

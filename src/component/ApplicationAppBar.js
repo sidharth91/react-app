@@ -171,30 +171,12 @@ const ApplicationAppBar = (props) => {
   return (
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.root} title={<img src={logo_icon} />}>
-        <Toolbar style={{ padding: 0 }}>
+        <Toolbar style={{ minHeight:'inherit', padding: 0, marginTop:'auto', marginBottom:'auto' }}>
           <Grid container spacing={0} style={{ padding: 0 }}>
             <Grid item md={1} >
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                //onClick={handleDrawerOpen}
-                style={{ padding: 0 }}
-                edge="start"
-                onClick={toggleDrawer(true)}
-              //className={clsx(classes.menuButton, open && classes.hide)}
-              >
-                <MenuIcon />
-              </IconButton>
-              {/* <img
-                className={classes.logo}
-                src={
-                  logo_icon
-                }
-                alt="Bosch Logo"
-              /> */}
+              <IconButton color="inherit" aria-label="open drawer" style={{ padding: 0 }} edge="start" onClick={toggleDrawer(true)} > <MenuIcon /> </IconButton>
             </Grid>
-
-            <Grid item sm={9} >
+            <Grid item sm={9} style={{ margin:'auto' }} >
               <Typography type="body2" >{pathname == '/grcreport' ? 'Auditbot GRC Report' : 'Auditbot GRC Dashbord'}</Typography>
             </Grid>
 

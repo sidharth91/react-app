@@ -160,40 +160,40 @@ class GRCFilter extends Component {
             // <Grid container style={{}} spacing={0}>
             //     <Grid item md={12}>
             <Card elevation='5' >
-                <CardContent id="idFilterCard" style={{ minHeight:'60px',padding:0 }}>
-                    <Grid container spacing={1}>
-                        <Grid item md={1}>
+                <CardContent id="idFilterCard" style={{ height: '7vh', minHeight:'70px',padding:0, marginTop:'auto', marginBottom:'auto' }}>
+                    <Grid container spacing={1} style={{ marginTop:'auto', marginBottom:'auto', height:'inherit', minHeight:'inherit'}} >
+                        <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterSingleSelectDropDown values={level} preSelected={this.props.level.selectedValue} changeEventCallBack={this.changeLevel} label="Level" width='100' />
                         </Grid>
-                        <Grid item md={1}>
+                        <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterSingleSelectDropDown values={sapSystem} preSelected={this.props.sapSystem.selectedValue} changeEventCallBack={this.changeSystem} label="System" width='100' />
                         </Grid>
-                        <Grid item md={1}>
+                        <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterSingleSelectDropDown values={sapClient} preSelected={this.props.client.selectedValue} changeEventCallBack={this.changeClient} label="Client" width='100' />
                         </Grid>
-                        <Grid item md={1}>
+                        <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterMultiSelectDropDown values={riskType} preSelected={this.props.riskType.selectedValue} changeEventCallBack={this.changeRiskType} label="Risk Type" width='100' />
                         </Grid>
-                        <Grid item md={1}>
+                        <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterMultiSelectDropDown values={riskLevel} preSelected={this.props.riskLevel.selectedValue} changeEventCallBack={this.changeRiskLevel} label="Risk Level" width='100' />
                         </Grid>
-                        <Grid item md={1}>
+                        <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterMultiSelectDropDown values={businessModule} preSelected={this.props.businessModule.selectedValue} changeEventCallBack={this.changeBusinessModule} label="Bus Module" width='100' />
                         </Grid>
-                        <Grid item md={this.props.type == 'Dashbord' ? 2 : 1}>
+                        <Grid item md={this.props.type == 'Dashbord' ? 2 : 1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterMultiSelectDropDown values={riskid} preSelected={this.props.riskid.selectedValue} changeEventCallBack={this.changeRiskId} label="Risk Id" width='100' />
                         </Grid>
-                        <Grid item md={1}>
+                        <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterSingleSelectDropDown values={mitigation} preSelected={this.props.mitigation.selectedValue} changeEventCallBack={this.changeMitigation} label="Mitigation" width='100' />
                         </Grid>
-                        <Grid item md={1}>
+                        <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterSingleSelectDropDown values={reportType} preSelected={this.props.reportType.selectedValue} changeEventCallBack={this.changeReportType} label="Report Type" width='100' />
                         </Grid>
-                        <Grid item md={1}>
+                        <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterSingleSelectDropDown values={drillDown} preSelected={this.props.drillDown.selectedValue} changeEventCallBack={this.changeDrillDown} label="Drill Down" width='100' />
                         </Grid>
                         {this.props.type == 'Report' ?
-                            <Grid item md={1} style={{ paddingTop: 12, paddingLeft: 10 }}>
+                            <Grid item md={1} style={{ paddingTop: 12, paddingLeft: 10, marginTop:'auto', marginBottom:'auto'}}>
                                 <TextField id="outlined-search" inputProps={{
                                     style: {
                                         height: 35,
@@ -212,11 +212,11 @@ class GRCFilter extends Component {
                             </Grid>
                             : null
                         }
-                        <Grid item md={this.props.type == 'Dashbord' ? 1 : 1}>
+                        <Grid item md={this.props.type == 'Dashbord' ? 1 : 1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             {/* <IconButton color="primary" aria-label="upload picture" component="span" onClick={() => this.onfilterSumbit()}>
                                 <SearchIcon />
                             </IconButton> */}
-                            <Button variant="contained" size="small" color="primary" style={{marginTop:10,padding:4,backgroundColor:'#009ED7'}} onClick={() => this.onfilterSumbit()}>
+                            <Button variant="contained" size="small" color="primary" style={{fontFamily:'Helvetica',padding:4,backgroundColor:'#009ED7', textTransform:'none', minWidth:'80px'}} onClick={() => this.onfilterSumbit()}>
                                 Execute
                             </Button>
 
