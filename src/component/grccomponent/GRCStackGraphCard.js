@@ -84,6 +84,14 @@ const useStyles = makeStyles((theme) => ({
   resize: {
     fontSize: 15,
     padding: '12px 14px'
+  },
+  icon: {
+    right: 0,
+    height:20
+  },
+  rootSelect:{
+    paddingLeft: '3px',
+    paddingRight: '18px !important'
   }
 }));
 
@@ -541,7 +549,13 @@ const GRCStackGraphCard = (props) => {
                   value={chartState}
                   onChange={(event) => changeGraph(event)}
                   label={props.label}
+                  inputProps={{
+                    classes: {
+                      icon: classes.icon,
+                    },
+                  }}
                   style={{ height: 20 }}
+                  classes={{outlined:classes.rootSelect}}
                 >
                   <MenuItem value={1} key='horizontal' style={{ padding: 5 }}><AssessmentOutlinedIcon fontSize="small" style={{ transform: 'rotate(90deg)' }} /></MenuItem>
                   <MenuItem value={2} key='vertical' style={{ padding: 5 }}><AssessmentOutlinedIcon fontSize="small" /></MenuItem>
