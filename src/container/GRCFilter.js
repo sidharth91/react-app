@@ -160,7 +160,7 @@ class GRCFilter extends Component {
             // <Grid container style={{}} spacing={0}>
             //     <Grid item md={12}>
             <Card elevation='5' >
-                <CardContent id="idFilterCard" style={{ height:"10vh",minHeight:'60px',padding:0 }}>
+                <CardContent id="idFilterCard" style={{ minHeight:'60px',padding:0 }}>
                     <Grid container spacing={1}>
                         <Grid item md={1}>
                             <FilterSingleSelectDropDown values={level} preSelected={this.props.level.selectedValue} changeEventCallBack={this.changeLevel} label="Level" width='100' />

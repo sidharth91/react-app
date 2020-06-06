@@ -52,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     //width: `calc(100% - 190px)`,
     width: '100%',
-    minHeight: 20,
     backgroundColor: '#4f4f54',
     height:"6vh",
     minHeight:'40px'
@@ -172,7 +171,7 @@ const ApplicationAppBar = (props) => {
   return (
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.root} title={<img src={logo_icon} />}>
-        <Toolbar style={{ minHeight: 40, padding: 0 }}>
+        <Toolbar style={{ padding: 0 }}>
           <Grid container spacing={0} style={{ padding: 0 }}>
             <Grid item md={1} >
               <IconButton
