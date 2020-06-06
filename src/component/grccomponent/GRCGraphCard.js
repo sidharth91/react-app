@@ -40,6 +40,7 @@ import IconButton from '@material-ui/core/IconButton';
 import TocIcon from '@material-ui/icons/Toc';
 import CloseIcon from '@material-ui/icons/Close';
 import BarChartIcon from '@material-ui/icons/BarChart';
+import GRCReportTable from './GRCReportTable'
 
 
 const height = 100
@@ -551,10 +552,10 @@ const GRCGraphCard = (props) => {
     let columnarray = (key == '01') ? ["GROUPBY1", "GROUP_DESC1", "ZCOUNT1", "ZCOUNT2", "ZCOUNT3"] : ["GROUPBY1", "GROUP_DESC1", "ZCOUNT1"]
     let header = Object.keys(filtereddata[0]).filter(t => columnarray.includes(t)).map(p => {
       if (p == 'GROUPBY1') {
-        return 'GROUPBY1'
+        return 'COLUMN1'
       }
       if (p == 'GROUP_DESC1') {
-        return 'GROUP_DESC1'
+        return 'COLUMN2'
       }
       if (p == 'ZCOUNT1') {
         return 'COUNT1'
@@ -581,7 +582,20 @@ const GRCGraphCard = (props) => {
       return tem;
     })
 
-    return [header, dataset]
+    let dataset2 = filtereddata.map(dt => {
+      let tem = {};
+      tem.COLUMN1=dt.GROUPBY1
+      tem.COLUMN2=dt.GROUP_DESC1
+      tem.COUNT1=dt.ZCOUNT1
+   
+      if (key == '01') {
+        tem.COUNT2=dt.ZCOUNT2
+        tem.COUNT3=dt.ZCOUNT3
+      }
+      return tem;
+    })
+
+    return [header, dataset,dataset2]
 
 
   }
@@ -703,8 +717,9 @@ const GRCGraphCard = (props) => {
         onClose={handleClose}
         PaperComponent={PaperComponent}
         aria-labelledby="draggable-dialog-title"
+        style={{width:'inherit'}}
       >
-        <Grid container spacing={1}>
+        <Grid container spacing={1} style={{width:'100%'}}>
           <Grid item md={11}>
             <DialogTitle style={{ cursor: 'move', maxHeight: 30, fontFamily: 'Helvetica', fontSize: 14 }} id="draggable-dialog-title">
 
@@ -727,7 +742,8 @@ const GRCGraphCard = (props) => {
 
 
         <DialogContent>
-          <GRCDashbordTable name={props.name} header={tableData[0]} data={tableData[1]} />
+          {/* <GRCDashbordTable name={props.name} header={tableData[0]} data={tableData[1]} /> */}
+          <GRCReportTable name={props.name} header={tableData[0]} data={tableData[2]} />
         </DialogContent>
 
       </Dialog>

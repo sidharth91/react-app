@@ -201,7 +201,7 @@ function createColumn(header, keys) {
   return headers;
 }  
 
-const GRCReportTable=(props)=> {
+const GRCReportTableDialogue=(props)=> {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -373,4 +373,4 @@ const GRCReportTable=(props)=> {
     </div>
   );
 }
-export default GRCReportTable
+export default GRCReportTableDialogue
