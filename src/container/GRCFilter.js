@@ -193,7 +193,7 @@ class GRCFilter extends Component {
                             <FilterSingleSelectDropDown values={drillDown} preSelected={this.props.drillDown.selectedValue} changeEventCallBack={this.changeDrillDown} label="Drill Down" width='100' />
                         </Grid>
                         {this.props.type == 'Report' ?
-                            <Grid item md={1} style={{ paddingTop: 12, paddingLeft: 10, marginTop:'auto', marginBottom:'auto'}}>
+                            <Grid item md={1} style={{ margin:'auto 0px', padding:'0px 16px'}}>
                                 <TextField id="outlined-search" inputProps={{
                                     style: {
                                         height: 35,

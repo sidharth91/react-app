@@ -54,7 +54,8 @@ const MUGRCReportTable = (props) => {
                     whiteSpace: "nowrap",
                     padding: "2px",
                     textAlign: "left",
-                    backgroundColor: color,
+                    // backgroundColor: color,
+                    backgroundColor: `#F9F9F9 !important`,
                     border: "2px solid rgba(224, 224, 224, 1)",
                     borderCollapse: 'collapse'
                 }
@@ -70,13 +71,17 @@ const MUGRCReportTable = (props) => {
                     whiteSpace: "nowrap",
                     border: "1px solid rgba(224, 224, 224, 1)",
                     padding: "2px",
-                    backgroundColor: `${color} !important`,
+                    // backgroundColor: `${color} !important`,
+                    backgroundColor: `#EFF4F9 !important`,
                     lineHeight: "inherit"
                 }
             },
             MUIDataTable: {
                 responsiveScrollMaxHeight: {
-                    maxHeight: '70vh !important'
+                    maxHeight: '74vh !important',
+                    paddingRight: '5px',
+                    paddingLeft: '5px'
+
                 },
                 paper: {
                     marginTop: 5
