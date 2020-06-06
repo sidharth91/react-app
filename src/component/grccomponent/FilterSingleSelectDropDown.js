@@ -93,7 +93,7 @@ const MenuProps = {
         style={{fontSize:12,fontFamily:'Helvetica'}}    
         //input={<OutlinedInput classes={{ input: classes.input }} />}
       >
-
+      <MenuItem value="" style={{fontSize:12,fontFamily:'Helvetica'}}></MenuItem>
       {MenuItems}
       </Select>
     </FormControl>
