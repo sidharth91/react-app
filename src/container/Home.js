@@ -36,14 +36,10 @@ class Home extends Component {
            );
         return (
             <Grid container style={{ }} spacing={0}>
-                 {/* <Grid container md={2}>
-                    <SideBar />
-                </Grid> */}
                 <Grid container md={12} style={{ paddingLeft: 1 }}>
                 <HeaderContainer />
                 {routes}
-                </Grid>
-               
+                </Grid> 
             </Grid>
 
         )

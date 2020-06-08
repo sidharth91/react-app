@@ -330,7 +330,7 @@ const GRCStackGraphCard = (props) => {
   }) => {
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={0} textAnchor="end" fontSize={10} fill="black" fontFamily='Helvetica' transform="rotate(-15)">{payload.value}</text>
+        <text x={0} y={0} dy={0} textAnchor="end" fontSize={11} fill="black" fontFamily='Helvetica' transform="rotate(-15)">{payload.value}</text>
       </g>
     );
   }
@@ -340,7 +340,7 @@ const GRCStackGraphCard = (props) => {
   }) => {
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={5} textAnchor="end" fontSize={10} fill="black" fontFamily='Helvetica' transform="rotate(-45)">{payload.value}</text>
+        <text x={0} y={0} dy={5} textAnchor="end" fontSize={11} fill="black" fontFamily='Helvetica' transform="rotate(-45)">{payload.value}</text>
       </g>
     );
   }

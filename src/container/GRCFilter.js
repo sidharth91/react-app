@@ -160,7 +160,7 @@ class GRCFilter extends Component {
             // <Grid container style={{}} spacing={0}>
             //     <Grid item md={12}>
             <Card elevation='5' >
-                <CardContent id="idFilterCard" style={{ height: '7vh', minHeight:'70px',padding:0, marginTop:'auto', marginBottom:'auto' }}>
+                <CardContent id="idFilterCard" style={{  minHeight:'7vh',padding:0, marginTop:'auto', marginBottom:'auto' }}>
                     <Grid container spacing={1} style={{ marginTop:'auto', marginBottom:'auto', height:'inherit', minHeight:'inherit'}} >
                         <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterSingleSelectDropDown values={level} preSelected={this.props.level.selectedValue} changeEventCallBack={this.changeLevel} label="Level" width='100' />
@@ -208,7 +208,7 @@ class GRCFilter extends Component {
 
                                         },
                                     }}
-                                    size="small" label="Input" type="search" variant="outlined" onChange={(event) => { this.props.changeUserInput(event.target.value) }} />
+                                    size="small" label={this.props.level.selectedValue=='1'?"User":"Role"} type="search" variant="outlined" onChange={(event) => { this.props.changeUserInput(event.target.value) }} />
                             </Grid>
                             : null
                         }

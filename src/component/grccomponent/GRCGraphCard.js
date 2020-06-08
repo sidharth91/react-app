@@ -182,7 +182,7 @@ const GRCGraphCard = (props) => {
   }) => {
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={0} textAnchor="end" fontSize={9} fill="black" fontFamily='Helvetica' transform="rotate(-30)">{payload.value}</text>
+        <text x={0} y={0} dy={0} textAnchor="end" fontSize={10} fill="black" fontFamily='Helvetica' transform="rotate(-30)">{payload.value}</text>
       </g>
     );
   }
@@ -192,7 +192,7 @@ const GRCGraphCard = (props) => {
   }) => {
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={5} textAnchor="end" fontSize={9} fill="black" fontFamily='Helvetica' transform="rotate(-30)">{payload.value}</text>
+        <text x={0} y={0} dy={5} textAnchor="end" fontSize={10} fill="black" fontFamily='Helvetica' transform="rotate(-30)">{payload.value}</text>
       </g>
     );
   }
@@ -252,8 +252,8 @@ const GRCGraphCard = (props) => {
             activeIndex={activeIndex}
             activeShape={renderActiveShape}
             data={data}
-            innerRadius={25}
-            outerRadius={45}
+            innerRadius={35}
+            outerRadius={55}
             dataKey="ZCOUNT1"
             onMouseEnter={onPieEnter}
             onClick={(data) => getData(data)}
