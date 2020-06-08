@@ -6,7 +6,7 @@ import axios from 'axios';
 export const initFilter = (token) => {
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
-        axios.get('http://localhost:8080/api/filter', { headers: { 'Authorisation': token } })
+        axios.get('/api/filter', { headers: { 'Authorisation': token } })
             .then(response => {
                 console.log(JSON.stringify(response.data))
                 dispatch(initiateFilter(response.data));
@@ -167,7 +167,7 @@ export const submitFilter = (token, riskType, sapSystem, client, riskLevel, busi
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
-        axios.post('http://localhost:8080/api/JAVA_0002N', {
+        axios.post('/api/JAVA_0002N', {
             riskType: riskType,
             sapSystem: sapSystem,
             client: client,
@@ -215,7 +215,7 @@ export const riskReport = (token, sapSystem, client, level, riskType, riskLevel,
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
-        axios.post('http://localhost:8080/api/JAVA_MUL_0003', {
+        axios.post('/api/JAVA_MUL_0003', {
             sapSystem: sapSystem,
             client: client,
             level: level,
@@ -251,7 +251,7 @@ export const riskGrcReport = (token, sapSystem, client, level, riskType, riskLev
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
-        axios.post('http://localhost:8080/api/JAVA_MUL_0003', {
+        axios.post('/api/JAVA_MUL_0003', {
             sapSystem: sapSystem,
             client: client,
             level: level,
