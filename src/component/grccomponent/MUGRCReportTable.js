@@ -47,15 +47,15 @@ const MUGRCReportTable = (props) => {
             MUIDataTableBodyCell: {
                 root: {
                     fontFamily: 'Helvetica',
-                    fontSize: 12,
+                    fontSize: 13,
                     wordWrap: "normal",
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     whiteSpace: "nowrap",
                     padding: "2px",
                     textAlign: "left",
-                    // backgroundColor: color,
-                    backgroundColor: `#F9F9F9 !important`,
+                    backgroundColor: color,
+                    //backgroundColor: `#F9F9F9 !important`,
                     border: "2px solid rgba(224, 224, 224, 1)",
                     borderCollapse: 'collapse'
                 }
@@ -63,7 +63,7 @@ const MUGRCReportTable = (props) => {
             MUIDataTableHeadCell: {
                 root: {
                     fontFamily: 'Helvetica',
-                    fontSize: 12,
+                    fontSize: 14,
                     fontWeight: "bold",
                     wordWrap: "normal",
                     overflow: "hidden",
@@ -71,8 +71,8 @@ const MUGRCReportTable = (props) => {
                     whiteSpace: "nowrap",
                     border: "1px solid rgba(224, 224, 224, 1)",
                     padding: "2px",
-                    // backgroundColor: `${color} !important`,
-                    backgroundColor: `#EFF4F9 !important`,
+                    backgroundColor: `${color} !important`,
+                    //backgroundColor: `#EFF4F9 !important`,
                     lineHeight: "inherit"
                 }
             },
@@ -149,11 +149,11 @@ const MUGRCReportTable = (props) => {
 
     const [data, setData] = React.useState(props.data)
     const [header, setHeader] = React.useState(props.header)
-    const [color,setColor]=React.useState(props.colors[11])
+    const [color,setColor]=React.useState(props.colors[16])
     React.useEffect(() => {
         setData(props.data);
         setHeader(props.header)
-        setColor(props.colors[11])
+        setColor(props.colors[15])
     }, [props])
 
     const rows = data.map(p => createData(p.SYSID, p.MANDT, p.BNAME, p.ZRISK_TYPE, p.ZRISK_LEVEL,

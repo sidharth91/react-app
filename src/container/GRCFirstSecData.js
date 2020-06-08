@@ -45,13 +45,13 @@ class GRCFirstSecData extends Component {
         return (
             <Grid container style={{marginTop:5}} spacing={1}>
                 <Grid item md={4}  style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCStackGraphCard chart='01' stack='3' color={this.props.colors}  height={"36vh"} data={this.props.result.E_RESULT_01.data} name="Executed Risks Chart" chartType={1} dialogueOpen={this.props.dialogueOpen} chartId="SEC11"/> :null}
+                   {isDataReadtToShow? <GRCStackGraphCard chart='01' stack='3' color={this.props.colors}  height={"36vh"} data={this.props.result.E_RESULT_01.data} name="Executed Risks Chart" chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC11"/> :null}
                 </Grid>
                 <Grid item md={4}  style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCStackGraphCard chart='02' stack='2' color={this.props.colors} height={"36vh"} data={this.props.result.E_RESULT_01.data} name={ `Risk Executed ${this.props.levelSelected==1?'User':'Role'}` } chartType={1} dialogueOpen={this.props.dialogueOpen} chartId="SEC12"/> :null}
+                   {isDataReadtToShow? <GRCStackGraphCard chart='02' stack='2' color={this.props.colors} height={"36vh"} data={this.props.result.E_RESULT_01.data} name={ `Risk Executed ${this.props.levelSelected==1?'User':'Role'}` } chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC12"/> :null}
                 </Grid>
                 <Grid item md={4}  style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCStackGraphCard chart='03'  stack='2' color={this.props.colors} height={"36vh"} data={this.props.result.E_RESULT_01.data} name="Total Executed Risks" chartType={1}  dialogueOpen={this.props.dialogueOpen} chartId="SEC13"/> :null}
+                   {isDataReadtToShow? <GRCStackGraphCard chart='03'  stack='2' color={this.props.colors} height={"36vh"} data={this.props.result.E_RESULT_01.data} name="Total Executed Risks" chartType={3}  dialogueOpen={this.props.dialogueOpen} chartId="SEC13"/> :null}
                 </Grid>
             
                     

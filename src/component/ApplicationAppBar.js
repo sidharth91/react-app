@@ -131,19 +131,27 @@ const ApplicationAppBar = (props) => {
 
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
-  const [pathname, setPathname] = React.useState('');
+  const [pathname, setPathname] = React.useState('/');
   const [anchorEl, setAnchorEl] = React.useState(null);
   //const open = Boolean(anchorEl);
 
   const [grc, setGrc] = React.useState(true);
-  const [dashbord, setDashbord] = React.useState(true);
-  const [report, setReport] = React.useState(true);
+  const [dashbord, setDashbord] = React.useState(false);
+  const [report, setReport] = React.useState(false);
 
   const [drawerswitch, setDrawerswitch] = React.useState(false);
 
 
   React.useEffect(() => {
     setPathname(props.pathname);
+    if(props.pathname=='/grcreport'){
+      setReport(true)
+      setDashbord(false);
+    }
+    else{
+      setDashbord(true);
+      setReport(false)
+    }
   }, [props])
 
   const handleReport = () => {
@@ -242,7 +250,7 @@ const ApplicationAppBar = (props) => {
 
             <Collapse in={grc} timeout="auto" unmountOnExit>
               <List component="div" disablePadding >
-                <ListItem button className={classes.nested} onClick={handleDashbord}>
+                <ListItem button className={classes.nested} style={{marginLeft:7}} onClick={handleDashbord}>
                   <ListItemIcon className={classes.ItemIcon} >
                     <LineStyleIcon className={classes.IconColorchild} />
                   </ListItemIcon>
@@ -253,7 +261,7 @@ const ApplicationAppBar = (props) => {
                 <Collapse in={dashbord} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     <Link style={{ color: 'white' }} to={'/grcdashbord'} onClick={toggleDrawer(false)}>
-                      <ListItem button className={pathname == '/grcdashbord' || pathname == '/' ? classes.selecteditme : classes.nested} >
+                      <ListItem button className={pathname == '/grcdashbord' || pathname == '/' ? classes.selecteditme : classes.nested}  style={{marginLeft:10}}>
                         <ListItemIcon className={classes.ItemIcon} >
                           <LineStyleIcon className={classes.IconColorchild} />
                         </ListItemIcon>
@@ -264,7 +272,7 @@ const ApplicationAppBar = (props) => {
                 </Collapse>
 
 
-                <ListItem button className={classes.nested} onClick={handleReport} >
+                <ListItem button className={classes.nested}   style={{marginLeft:7}} onClick={handleReport} >
                   <ListItemIcon className={classes.ItemIcon} >
                     <LineStyleIcon className={classes.IconColorchild} />
                   </ListItemIcon>
@@ -275,7 +283,7 @@ const ApplicationAppBar = (props) => {
                 <Collapse in={report} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                   <Link style={{color:'white'}} to={'/grcreport'} onClick={toggleDrawer(false)}>
-                            <ListItem button className={pathname=='/grcreport'?classes.selecteditme:classes.nested} >
+                            <ListItem button className={pathname=='/grcreport'?classes.selecteditme:classes.nested}  style={{marginLeft:10}}>
                                 <ListItemIcon className={classes.ItemIcon} >
                                     <LineStyleIcon className={classes.IconColorchild}/>
                                 </ListItemIcon>
