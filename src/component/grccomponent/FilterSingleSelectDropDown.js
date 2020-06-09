@@ -36,8 +36,10 @@ const useStyles = makeStyles((theme) => ({
 },
 dropdownchanges:{
   paddingRight:'25px !important'
+},
+horizontalscrol:{
+  overflowX:'auto'
 }
-
 }));
 
 const ITEM_HEIGHT = 12;
@@ -86,7 +88,10 @@ const MenuProps = {
           },
       }}
       classes={{
-       outlined:classes.dropdownchanges
+       outlined:classes.dropdownchanges,
+       root:classes.horizontalscrol,
+       select:classes.horizontalscrol,
+       paper: classes.horizontalscrol,
       }}
         label={props.label}
         MenuProps={MenuProps}

@@ -14,6 +14,8 @@ import TocIcon from '@material-ui/icons/Toc';
 import CloseIcon from '@material-ui/icons/Close';
 import { lighten, makeStyles } from '@material-ui/core/styles';
 
+import Typography from '@material-ui/core/Typography';
+
 function PaperComponent(props) {
   return (
     <Draggable handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
@@ -34,11 +36,13 @@ const GRCDraggableDialog=(props)=>{
 const classes = useStyles(props);
   const [open, setOpen] = React.useState(false);
   const [data, setData] = React.useState([]);
+  const [colors,setColors]=React.useState(props.colors);
 
 
   React.useEffect(() => {
     setOpen(props.dialogueState);
     setData(props.data==undefined?[]:props.data)
+    setColors(props.colors)
 }, [props])
 
   const handleClickOpen = () => {
@@ -61,9 +65,10 @@ const classes = useStyles(props);
         PaperComponent={PaperComponent}
         aria-labelledby="draggable-dialog-title"
       >
-          <Grid container spacing={1} style={{width:'100%'}}>
-          <Grid item md={11}>
-            <DialogTitle style={{ cursor: 'move', maxHeight: 10, fontFamily: 'Helvetica', fontSize: 14 }} id="draggable-dialog-title">
+          <Grid container spacing={1} style={{width:'100%',paddingBottom:10}}>
+          <Grid item md={11} >
+            <DialogTitle style={{ cursor: 'move', maxHeight: 10, fontFamily: 'Helvetica', fontSize: 12, textAlign:'center' }} id="draggable-dialog-title">
+             AuditBOT Risk Details
             </DialogTitle>
           </Grid>
           <Grid item md={1} style={{ textAlign:'right'}}>
@@ -80,7 +85,11 @@ const classes = useStyles(props);
           </Grid>
         </Grid>
         <DialogContent>
-        {data.length>0?<GRCReportTableDialogue  header={props.header} data={data}/>:null}
+        {data.length>0?
+        <GRCReportTableDialogue  header={props.header} data={data} colors={colors}/>
+        :<Typography  variant="subtitle2" color="inherit" style={{width:500}}>
+   No Records found
+</Typography>}
         </DialogContent>
       </Dialog>
 

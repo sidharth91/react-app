@@ -79,7 +79,7 @@ function EnhancedTableHead(props) {
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'default'}
             sortDirection={orderBy === headCell.id ? order : false}
-            style={{fontFamily:'Helvetica',fontSize:12, fontWeight:"bold", wordWrap:"normal", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap", border:"1px solid rgba(224, 224, 224, 1)",padding:"2px", lineHeight:"inherit"}}
+            className={classes.reporttableheader}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
@@ -172,15 +172,29 @@ const useStyles = makeStyles((theme) => ({
   },
   reporttablecell:{
     fontFamily:'Helvetica',
-    fontSize:12, 
+    fontSize:11, 
     wordWrap:"normal", 
     overflow:"hidden", 
     textOverflow:"ellipsis", 
     whiteSpace:"nowrap",
     padding:"2px",
     textAlign:"left",
-    border:"1px solid rgba(224, 224, 224, 1)",
+    backgroundColor: props=>props.colors[15],
+    border: "2px solid rgba(224, 224, 224, 1)",
     borderCollapse:'collapse'
+  },
+  reporttableheader:{
+    fontFamily:'Helvetica',
+    fontSize:11, 
+    fontWeight:"bold",
+    wordWrap:"normal", 
+    overflow:"hidden", 
+    textOverflow:"ellipsis",
+     whiteSpace:"nowrap", 
+     border: "2px solid rgba(224, 224, 224, 1)",
+     padding:"2px", 
+     lineHeight:"inherit",
+    backgroundColor: props=>props.colors[15]
   },
   tablepaginationtoolbar:{
     minHeight:30,
@@ -225,7 +239,7 @@ function createRows(header, data) {
 }  
 
 const GRCReportTable=(props)=> {
-  const classes = useStyles();
+  const classes = useStyles(props);
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);

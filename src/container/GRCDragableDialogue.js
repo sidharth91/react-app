@@ -78,7 +78,7 @@ class GRCDragableDialogue extends Component {
 
         return (
             <div>
-          {Object.keys(this.props.tableReport).length>0?<GRCDraggableDialog dialogueState={this.props.dialogueState} header={this.props.tableReport.header} data={this.props.tableReport.data} closeDialogue={this.props.closeDialogue}/>:null}
+          {Object.keys(this.props.tableReport).length>0?<GRCDraggableDialog dialogueState={this.props.dialogueState} colors={this.props.colors} header={this.props.tableReport.header} data={this.props.tableReport.data} closeDialogue={this.props.closeDialogue}/>:null}
           </div>
         )
 
@@ -106,7 +106,8 @@ const mapStateToProps = state => {    //this methos use to retrive state from re
         userinput:state.filter.userinput,
         tableReport: state.filter.tableReport,
         levelSelected:state.filter.levelSelected ,
-        reportTypeSelected: state.filter.reportTypeSelected
+        reportTypeSelected: state.filter.reportTypeSelected,
+        colors:state.filter.colors
         
     };
 }

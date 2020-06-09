@@ -112,9 +112,10 @@ const GRCSecondSecData = (props) => {
     return (
 
         <Grid container style={{ marginTop:5 }} spacing={0}>
-            <Grid item md={12}>
-                <Card elevation='5'>
-                    {isDataReadtToShow ?
+            <Grid item md={12} >
+            {isDataReadtToShow ?
+                <Card elevation='5' style={{border:'2px solid #009ED7'}}>
+                   
                         <CardContent style={{ padding: 2, height:"8vh" }}>
                             <Grid container spacing={1} style={{ height:"inherit",width: '100%', margin: 0 }}>
                                 <Grid item md={1} className={classes.autoMarginTopBottom}>
@@ -358,8 +359,9 @@ const GRCSecondSecData = (props) => {
 
                             </Grid> */}
                         </CardContent>
-                        : null}
+                       
                 </Card>
+                 : null}
             </Grid>
 
         </Grid>

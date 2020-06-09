@@ -41,6 +41,8 @@ class GRCDashBord extends Component {
         this.setState({dialogue:false,groupby:'',chart:''})
    }
 
+
+
     render() {
 
 
@@ -68,7 +70,8 @@ const mapStateToProps = state => {    //this methos use to retrive state from re
         result: state.filter.result,
         sapSystem: state.filter.sapSystem,
         client: state.filter.client,
-        loader:state.filter.loader
+        loader:state.filter.loader,
+        colors:state.filter.colors
     };
 }
 

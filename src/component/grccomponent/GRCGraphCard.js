@@ -318,7 +318,7 @@ const GRCGraphCard = (props) => {
         layout={"vertical"}
         data={data}
         barCategoryGap="10%"
-        maxBarSize={25}
+        maxBarSize={35}
         margin={{
           top: 5, right: 0, left: 0, bottom: 5,
         }}
@@ -340,7 +340,7 @@ const GRCGraphCard = (props) => {
       layout={"horizontal"}
       data={data}
       barCategoryGap="10%"
-      maxBarSize={25}
+      maxBarSize={35}
       margin={{
         top: 5, right: 0, left: 0, bottom: 5,
       }}
@@ -375,7 +375,7 @@ const GRCGraphCard = (props) => {
       layout={"horizontal"}
       data={data}
       barCategoryGap="10%"
-      maxBarSize={25}
+      maxBarSize={35}
       margin={{
         top: 5, right: 0, left: 0, bottom: 5,
       }}
@@ -418,7 +418,7 @@ const GRCGraphCard = (props) => {
       layout={"horizontal"}
       data={data}
       barCategoryGap="10%"
-      maxBarSize={25}
+      maxBarSize={35}
       margin={{
         top: 5, right: 0, left: 0, bottom: 5,
       }}
@@ -462,7 +462,7 @@ const GRCGraphCard = (props) => {
         layout={"vertical"}
         data={data}
         barCategoryGap="10%"
-        maxBarSize={25}
+        maxBarSize={35}
         margin={{
           top: 5, right: 0, left: 0, bottom: 5,
         }}
@@ -508,7 +508,7 @@ const GRCGraphCard = (props) => {
         layout={"vertical"}
         data={data}
         barCategoryGap="10%"
-        maxBarSize={25}
+        maxBarSize={35}
         margin={{
           top: 5, right: 0, left: 0, bottom: 5,
         }}
@@ -721,7 +721,7 @@ const GRCGraphCard = (props) => {
       >
         <Grid container spacing={1} style={{width:'100%'}}>
           <Grid item md={11}>
-            <DialogTitle style={{ cursor: 'move', maxHeight: 30, fontFamily: 'Helvetica', fontSize: 14 }} id="draggable-dialog-title">
+            <DialogTitle style={{ cursor: 'move', maxHeight: 30, fontFamily: 'Helvetica', fontSize: 10 }} id="draggable-dialog-title">
 
               {` ${props.name} Table`}
             </DialogTitle>
@@ -741,9 +741,9 @@ const GRCGraphCard = (props) => {
         </Grid>
 
 
-        <DialogContent>
+        <DialogContent style={{paddingTop:10}}>
           {/* <GRCDashbordTable name={props.name} header={tableData[0]} data={tableData[1]} /> */}
-          <GRCReportTable name={props.name} header={tableData[0]} data={tableData[2]} />
+          <GRCReportTable name={props.name} header={tableData[0]} data={tableData[2]} colors={colorState}/>
         </DialogContent>
 
       </Dialog>

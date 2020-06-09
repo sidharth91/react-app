@@ -185,7 +185,7 @@ const ApplicationAppBar = (props) => {
               <IconButton color="inherit" aria-label="open drawer" style={{ padding: 0 }} edge="start" onClick={toggleDrawer(true)} > <MenuIcon /> </IconButton>
             </Grid>
             <Grid item sm={9} style={{ margin:'auto' }} >
-              <Typography type="body2" >{pathname == '/grcreport' ? 'Auditbot GRC Report' : 'Auditbot GRC Dashbord'}</Typography>
+              <Typography type="body2" >{pathname == '/grcreport' ? 'AuditBOT GRC Report' : 'AuditBOT GRC Dashbord'}</Typography>
             </Grid>
 
             <Grid item sm={2}  >

@@ -74,7 +74,7 @@ function EnhancedTableHead(props) {
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'default'}
             sortDirection={orderBy === headCell.id ? order : false}
-            style={{fontFamily:'Helvetica',fontSize:12, fontWeight:"bold", wordWrap:"normal", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap", border:"1px solid rgba(224, 224, 224, 1)",padding:"2px", lineHeight:"inherit"}}
+            className={classes.reporttableheader}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
@@ -174,8 +174,24 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace:"nowrap",
     padding:"2px",
     textAlign:"left",
-    border:"1px solid rgba(224, 224, 224, 1)",
+    backgroundColor: props=>props.colors[15],
+    border: "2px solid rgba(224, 224, 224, 1)",
     borderCollapse:'collapse'
+  },
+  reporttableheader:{
+    fontFamily:'Helvetica',
+    fontSize:12, 
+    fontWeight:"bold",
+    wordWrap:"normal", 
+    overflow:"hidden", 
+    textOverflow:"ellipsis",
+     whiteSpace:"nowrap", 
+     border: "2px solid rgba(224, 224, 224, 1)",
+     padding:"2px", 
+     lineHeight:"inherit",
+    backgroundColor: props=>props.colors[15]
+
+    
   },
   tablepaginationtoolbar:{
     minHeight:30,
@@ -202,7 +218,7 @@ function createColumn(header, keys) {
 }  
 
 const GRCReportTableDialogue=(props)=> {
-  const classes = useStyles();
+  const classes = useStyles(props);
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
@@ -210,8 +226,11 @@ const GRCReportTableDialogue=(props)=> {
   const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(200);
   const [data,setData]=React.useState(props.data)
+
+
   React.useEffect(() => {
     setData(props.data);
+
 }, [props])
 
   const rows = Object.keys(data[0]).includes('AGR_NAME')?

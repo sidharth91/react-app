@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
   },
   dropdownchanges:{
     paddingRight:25
+  },
+  horizontalscrol:{
+    overflowX:'auto'
   }
 }));
 function getStyles(name, personName, theme) {
@@ -45,9 +48,7 @@ const ITEM_PADDING_TOP = 0;
 const MenuProps = {
   PaperProps: {
     style: {
-      maxHeight: ITEM_HEIGHT * 8.5 + ITEM_PADDING_TOP,
-      width: 130,
-
+      maxHeight: ITEM_HEIGHT * 8.5 + ITEM_PADDING_TOP
     },
   },
 };
@@ -97,7 +98,10 @@ const MenuProps = {
           },
       }}
       classes={{
-        outlined:classes.dropdownchanges
+        outlined:classes.dropdownchanges,
+        root:classes.horizontalscrol,
+        select:classes.horizontalscrol,
+        paper: classes.horizontalscrol,
       }}
         label={props.label}
         MenuProps={MenuProps}
