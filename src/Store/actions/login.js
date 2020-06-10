@@ -46,7 +46,7 @@ export const defaultData=(data)=>{
 
 
 export const onLogin=(username,password,system,client,ip)=>{
-    return dispatch=>{axios.post('/token', {
+    return dispatch=>{axios.post('http://localhost:8080/token', {
         userName: username,
         password:password,
         system:system,
@@ -84,7 +84,7 @@ export const onLogout=()=>{
 }
 
 export const fetchDefaultData=()=>{
-  return dispatch=>{axios.get('/token')
+  return dispatch=>{axios.get('http://localhost:8080/token')
       .then(response =>{
         dispatch(defaultData(response.data));
       })
