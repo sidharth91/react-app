@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     paddingRight:25
   },
   horizontalscrol:{
-    overflowX:'auto'
+    overflowX:'hidden'
   }
 }));
 function getStyles(name, personName, theme) {

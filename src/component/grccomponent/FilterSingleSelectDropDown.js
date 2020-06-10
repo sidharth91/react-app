@@ -38,7 +38,7 @@ dropdownchanges:{
   paddingRight:'25px !important'
 },
 horizontalscrol:{
-  overflowX:'auto'
+  overflowX:'hidden'
 }
 }));
 
@@ -48,8 +48,6 @@ const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 8.5 + ITEM_PADDING_TOP,
-      width: 130,
-
     },
   },
 };

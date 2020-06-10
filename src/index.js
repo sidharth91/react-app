@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import {createStore,combineReducers,applyMiddleware,compose} from 'redux';
 import {Provider} from 'react-redux';
 import loginreducer from './Store/reducer/loginreducer';
-import filterreducer from './Store/reducer/filterreducer';
+import filterreducer from './Store/reducer/grcfilterreducer';
 import sidebar from './Store/reducer/sidebarreducer';
 import thunk from 'redux-thunk';
 

@@ -43,8 +43,10 @@ class GRCDashBord extends Component {
 
 
 
-    render() {
 
+
+    render() {
+      
 
         return (
             <Grid container  style={{ marginTop:10,marginRight:10,marginLeft:10 }} spacing={0}>
@@ -71,7 +73,7 @@ const mapStateToProps = state => {    //this methos use to retrive state from re
         sapSystem: state.filter.sapSystem,
         client: state.filter.client,
         loader:state.filter.loader,
-        colors:state.filter.colors
+        
     };
 }
 

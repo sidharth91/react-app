@@ -133,7 +133,7 @@ const GRCGraphCard = (props) => {
           }) */
       return filtereddata
     } else {
-      return null;
+      return [];
     }
   }
   const getChart = (data, value, color) => {
@@ -547,7 +547,16 @@ const GRCGraphCard = (props) => {
   }
 
   const getTableHeader = (data, key) => {
+
+
+    if(data==undefined || data==null ||data.length<1){
+      return []
+    }
+
     let filtereddata = data.filter(p => p.ZTYPE === key);
+    if(filtereddata.length<1){
+      return []
+    }
 
     let columnarray = (key == '01') ? ["GROUPBY1", "GROUP_DESC1", "ZCOUNT1", "ZCOUNT2", "ZCOUNT3"] : ["GROUPBY1", "GROUP_DESC1", "ZCOUNT1"]
     let header = Object.keys(filtereddata[0]).filter(t => columnarray.includes(t)).map(p => {
@@ -622,7 +631,9 @@ const GRCGraphCard = (props) => {
   const [colorState, setColorState] = useState([...COLORS]);
   let getchartDataResult1 = proesResultData(props.data, props.chart);
   let tableData = getTableHeader(props.data, props.chart)
-  let firctChart = getChart(getchartDataResult1, chartState, '#00bcd4')
+  let firctChart = getchartDataResult1.length>0?getChart(getchartDataResult1, chartState, '#00bcd4'):<Typography  variant="subtitle2" color="inherit" style={{width:500}}>
+  No Records found
+</Typography>
   useEffect(() => {
     let arr = [...props.color, ...COLORS]
     setColorState(arr);
