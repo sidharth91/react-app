@@ -1,4 +1,5 @@
 import * as actionType from './actionsType';
+import * as action from './index'
 import axios from 'axios';
 
 
@@ -8,10 +9,15 @@ export const initFilter = (token) => {
         dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
         axios.get('http://localhost:8080/api/filter', { headers: { 'Authorisation': token } })
             .then(response => {
-                console.log(JSON.stringify(response.data))
                 dispatch(initiateFilter(response.data));
             })
             .catch(error => {
+                console.log(error.response.status)
+                if(error.response.status=='401'){
+                action.logout()
+                window.location.reload()
+           
+                }
                 console.log(error);
             });
     }
