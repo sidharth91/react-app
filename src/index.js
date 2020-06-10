@@ -7,6 +7,7 @@ import {createStore,combineReducers,applyMiddleware,compose} from 'redux';
 import {Provider} from 'react-redux';
 import loginreducer from './Store/reducer/loginreducer';
 import filterreducer from './Store/reducer/grcfilterreducer';
+import licensereducer from './Store/reducer/licensereducer';
 import sidebar from './Store/reducer/sidebarreducer';
 import thunk from 'redux-thunk';
 
@@ -14,7 +15,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const reducer=combineReducers({  
   login:loginreducer,
   filter:filterreducer,
-  sidebar:sidebar
+  sidebar:sidebar,
+  licensefilter:licensereducer
 })
 const store=createStore(reducer,composeEnhancers(applyMiddleware(thunk))) 
 

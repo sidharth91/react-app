@@ -10,7 +10,7 @@ import LoginCard from '../component/LoginCard'
 import Grid from '@material-ui/core/Grid';
 import HeaderContainer from './HeaderContainer'
 import SideBar from './SideBar'
-import Dashbord from './Dashbord'
+import LicenseDashbord from './LicenseDashbord'
 import GRCDashbord from './GRCDashBord'
 import Report from './Report'
 import GRCReport from './GRCReport'
@@ -30,7 +30,7 @@ class Home extends Component {
        let routes=( 
             <Switch>
            <Route path='/grcdashbord' exact  component={GRCDashbord}/>
-           <Route path='/' exact component={GRCDashbord}/>
+           <Route path='/' exact component={LicenseDashbord}/>
            <Route path='/grcreport' exact  component={GRCReport}/>
            </Switch> 
            );
