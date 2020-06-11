@@ -2,5 +2,5 @@ export {onLogin,onLogout,logout,authCheckState,fetchDefaultData,onchangeSystem,o
 export {initFilter,changeFilter,changeLevel,changeBreakDown,submitFilter,changeDataFormat,riskReport,gobackToParentTable,riskGrcReport,changeUserInput,clearriskReport} from './grcfilter'
 export {updatePathname} from './sidebar'
 
-export {initLicenseFilter,changeLicenceFilter} from './licenseaction'
+export {initLicenseFilter,changeLicenceFilter,changelogon,changecount,changeendDate,changestartDate,changeuserId,submitLicenceFilter} from './licenseaction'
 

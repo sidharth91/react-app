@@ -1,39 +1,55 @@
-import React from 'react';
+import React,{useState , useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { KeyboardDatePicker,MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from '@date-io/date-fns';
+const theme = createMuiTheme({
+  overrides: {
+    // Style sheet name ⚛️
+    MuiOutlinedInput:{inputAdornedEnd:{
+      fontSize:12
+    }},
+    MuiIconButton:{root:{
+      padding:0
+    }},
+    MuiPickersToolbarText:{toolbarBtnSelected:{
+      fontSize:'1rem'
+    }},
+    MuiPickersDatePickerRoot:{toolbar:{
+      maxHeight:'10px'
+    }}
+  },
+});
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
-  },
-}));
-function disableWeekends(date) {
-    return date.getDay() === 0 || date.getDay() === 6;
-  }
   
- const Datepicker=() =>{
-  const classes = useStyles();
+ const Datepicker=(props) =>{
 
+  const [selectedDate, setSelectedDate] = useState(props.value);
+  const [maxDate, setMaxDate] = useState(new Date());
+  let dt = new Date()
+  useEffect(() => {
+    setSelectedDate(props.value);
+  }, [props]);
+  dt.setDate( dt.getDate());
+  const [minDate, setMinDate] = useState(dt);
   return (
-    <form className={classes.container} noValidate>
-      <TextField
-        id="date"
-        label="Start Date"
-        type="date"
-        defaultValue="2020-06-11"
-        className={classes.textField}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        shouldDisableDate={disableWeekends(new Date())}
-      />
-    </form>
+    <ThemeProvider theme={theme}>
+ <MuiPickersUtilsProvider utils={DateFnsUtils}>
+    <KeyboardDatePicker
+      placeholder="2018/10/10"
+      value={selectedDate}
+      format="yyyy/MM/dd"
+      variant="inline"
+      inputVariant="outlined"
+      // maxDate={maxDate}
+      // minDate={minDate}
+      size='small'
+      onChange={date => props.onchange(date)}
+
+    />
+    </MuiPickersUtilsProvider>
+ </ThemeProvider>
   );
 }
 

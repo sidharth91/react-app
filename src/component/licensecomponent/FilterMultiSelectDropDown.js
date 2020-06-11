@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: '100%',
+    margin:4
   },
   selectEmpty: {
     marginTop: theme.spacing(2),

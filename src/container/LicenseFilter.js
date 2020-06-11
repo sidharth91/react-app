@@ -7,6 +7,7 @@ import logo_icon from '../resources/auditbotlogo.PNG'
 import FilterSingleSelectDropDown from '../component/licensecomponent/FilterSingleSelectDropDown'
 import FilterMultiSelectDropDown from '../component/licensecomponent/FilterMultiSelectDropDown'
 import Datepicker from '../component/licensecomponent/Datepicker'
+import LicenceTextFiled from '../component/licensecomponent/LicenceTextFiled'
 import LoginCard from '../component/LoginCard'
 import Grid from '@material-ui/core/Grid';
 import HeaderContainer from './HeaderContainer'
@@ -40,7 +41,7 @@ class LicenseFilter extends Component {
     }
 
     changeLevel = (value) => {
-        this.props.onChangeFilter(this.props.level,value)
+        this.props.onChangeFilter(this.props.level, value)
     }
 
     changeUserType = (value) => {
@@ -62,7 +63,7 @@ class LicenseFilter extends Component {
         this.props.onChangeFilter(this.props.userStatus, value)
     }
 
-    changeActiveUser= (value) => {
+    changeActiveUser = (value) => {
         this.props.onChangeFilter(this.props.activeUser, value)
     }
     changeTcodes = (value) => {
@@ -75,26 +76,15 @@ class LicenseFilter extends Component {
 
 
     onfilterSumbit = () => {
-
-        if (this.props.type == 'Dashbord') {
-            this.props.submitFilter(this.props.token, this.props.riskType.selectedValue,
-                this.props.sapSystem.selectedValue, this.props.client.selectedValue,
-                this.props.riskLevel.selectedValue, this.props.businessModule.selectedValue,
-                this.props.level.selectedValue, this.props.breakDown.selectedValue,
-                this.props.riskid.selectedValue, this.props.reportType.selectedValue,
-                this.props.mitigation.selectedValue)
-        } else {
-            this.props.submitGRCFilter(this.props.token,
-                this.props.sapSystem.selectedValue,
-                this.props.client.selectedValue,
-                this.props.level.selectedValue,
-                this.props.riskType.selectedValue,
-                this.props.riskLevel.selectedValue,
-                this.props.businessModule.selectedValue,
-                this.props.mitigation.selectedValue,
-                this.props.drillDown.selectedValue,
-                this.props.riskid.selectedValue, this.props.userinput)
-        }
+            this.props.submitLicenceFilter(this.props.token, this.props.sapSystem.selectedValue,
+                this.props.client.selectedValue, this.props.level.selectedValue,
+                this.props.userType.selectedValue, this.props.userGroup.selectedValue,
+                this.props.account.selectedValue, this.props.licenseType.selectedValue,
+                this.props.userStatus.selectedValue, this.props.activeUser.selectedValue,
+                this.props.tcodes.selectedValue,this.props.criteria.selectedValue,
+                this.props.userId,this.props.count,
+                this.props.logondays,this.props.startDate,this.props.endDate)
+  
 
     }
     render() {
@@ -113,40 +103,40 @@ class LicenseFilter extends Component {
             this.props.level.value.map((param) => {
                 return { 'key': param.ZDESC, 'value': param.ZID };
             }) : []
-        let userType=Object.keys(this.props.userType).length != 0 ?
-        this.props.userType.value.map((param) => {
-            return { 'key': param.ZDESC, 'value': param.ZID };
-        }) : []
+        let userType = Object.keys(this.props.userType).length != 0 ?
+            this.props.userType.value.map((param) => {
+                return { 'key': param.ZDESC, 'value': param.ZID };
+            }) : []
 
-        let userGroup=Object.keys(this.props.userGroup).length != 0 ?
-        this.props.userGroup.value.map((param) => {
-            return { 'key': param.ZDESC, 'value': param.ZID };
-        }) : []
+        let userGroup = Object.keys(this.props.userGroup).length != 0 ?
+            this.props.userGroup.value.map((param) => {
+                return { 'key': param.ZDESC, 'value': param.ZID };
+            }) : []
 
-        let account=Object.keys(this.props.account).length != 0 ?
-        this.props.account.value.map((param) => {
-            return { 'key': param.ZDESC, 'value': param.ZID };
-        }) : []
-        let licenseType=Object.keys(this.props.licenseType).length != 0 ?
-        this.props.licenseType.value.map((param) => {
-            return { 'key': param.ZDESC, 'value': param.ZID };
-        }) : []
-        let userStatus=Object.keys(this.props.userStatus).length != 0 ?
-        this.props.userStatus.value.map((param) => {
-            return { 'key': param.ZDESC, 'value': param.ZID };
-        }) : []
-        let activeUser=Object.keys(this.props.activeUser).length != 0 ?
-        this.props.activeUser.value.map((param) => {
-            return { 'key': param.ZDESC, 'value': param.ZID };
-        }) : []
-        let tcodes=Object.keys(this.props.tcodes).length != 0 ?
-        this.props.tcodes.value.map((param) => {
-            return { 'key': param.ZDESC, 'value': param.ZID };
-        }) : []
-        let criteria=Object.keys(this.props.criteria).length != 0 ?
-        this.props.criteria.value.map((param) => {
-            return { 'key': param.ZDESC, 'value': param.ZID };
-        }) : []
+        let account = Object.keys(this.props.account).length != 0 ?
+            this.props.account.value.map((param) => {
+                return { 'key': param.ZDESC, 'value': param.ZID };
+            }) : []
+        let licenseType = Object.keys(this.props.licenseType).length != 0 ?
+            this.props.licenseType.value.map((param) => {
+                return { 'key': param.ZDESC, 'value': param.ZID };
+            }) : []
+        let userStatus = Object.keys(this.props.userStatus).length != 0 ?
+            this.props.userStatus.value.map((param) => {
+                return { 'key': param.ZDESC, 'value': param.ZID };
+            }) : []
+        let activeUser = Object.keys(this.props.activeUser).length != 0 ?
+            this.props.activeUser.value.map((param) => {
+                return { 'key': param.ZDESC, 'value': param.ZID };
+            }) : []
+        let tcodes = Object.keys(this.props.tcodes).length != 0 ?
+            this.props.tcodes.value.map((param) => {
+                return { 'key': param.ZDESC, 'value': param.ZID };
+            }) : []
+        let criteria = Object.keys(this.props.criteria).length != 0 ?
+            this.props.criteria.value.map((param) => {
+                return { 'key': param.ZDESC, 'value': param.ZID };
+            }) : []
 
 
         return (
@@ -154,28 +144,40 @@ class LicenseFilter extends Component {
             //     <Grid item md={12}>
             <Card elevation='5' >
                 <CardContent id="idFilterCard" style={{ minHeight: '7vh', padding: 0, marginTop: 'auto', marginBottom: 'auto' }}>
-                    <Grid container spacing={1} style={{ marginTop: 'auto', marginBottom: 'auto', height: 'inherit', minHeight: 'inherit' }} >
-
+                    <Grid container spacing={2} style={{height: 'inherit', minHeight: 'inherit',paddingRight:'8px' }} >
+                        <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+                            <FilterSingleSelectDropDown values={level} preSelected={this.props.level.selectedValue} changeEventCallBack={this.changeLevel} label="Level" width='100' />
+                        </Grid>
+                        <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+                            <Datepicker onchange={this.props.changestartDate} value={this.props.startDate}/>
+                        </Grid>
+                        <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+                            <Datepicker onchange={this.props.changeendDate}  value={this.props.endDate}/>
+                        </Grid>
                         <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
                             <FilterSingleSelectDropDown values={sapSystem} preSelected={this.props.sapSystem.selectedValue} changeEventCallBack={this.changeSystem} label="System" width='100' />
                         </Grid>
                         <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
                             <FilterSingleSelectDropDown values={sapClient} preSelected={this.props.client.selectedValue} changeEventCallBack={this.changeClient} label="Client" width='100' />
                         </Grid>
-                        <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
-                            <FilterSingleSelectDropDown values={level} preSelected={this.props.level.selectedValue} changeEventCallBack={this.changeLevel} label="Level" width='100' />
+                        <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+                            <FilterSingleSelectDropDown values={licenseType} preSelected={this.props.licenseType.selectedValue} changeEventCallBack={this.changeLicenseType} label="License Type" width='100' />
                         </Grid>
-                        <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
-                            <FilterSingleSelectDropDown values={userType} preSelected={this.props.userType.selectedValue} changeEventCallBack={this.changeUserType} label="User Type" width='100' />
-                        </Grid>
-                        <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+
+                        <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
                             <FilterSingleSelectDropDown values={userGroup} preSelected={this.props.userGroup.selectedValue} changeEventCallBack={this.changeUserGroup} label="User Grooup" width='100' />
+                        </Grid>
+                        <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+                            <FilterSingleSelectDropDown values={userType} preSelected={this.props.userType.selectedValue} changeEventCallBack={this.changeUserType} label="User Type" width='100' />
                         </Grid>
                         <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
                             <FilterSingleSelectDropDown values={account} preSelected={this.props.account.selectedValue} changeEventCallBack={this.changeAccount} label="Account" width='100' />
                         </Grid>
-                        <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
-                            <FilterSingleSelectDropDown values={licenseType} preSelected={this.props.licenseType.selectedValue} changeEventCallBack={this.changeLicenseType} label="License Type" width='100' />
+                    </Grid>
+                    <Grid container spacing={1} style={{height: 'inherit', minHeight: 'inherit' }} >
+                  
+                        <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+                            <FilterSingleSelectDropDown values={userType} preSelected={this.props.userType.selectedValue} changeEventCallBack={this.changeUserType} label="User Type" width='100' />
                         </Grid>
                         <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
                             <FilterSingleSelectDropDown values={userStatus} preSelected={this.props.userStatus.selectedValue} changeEventCallBack={this.changeUserStatus} label="User Status" width='100' />
@@ -189,10 +191,24 @@ class LicenseFilter extends Component {
                         <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
                             <FilterSingleSelectDropDown values={criteria} preSelected={this.props.criteria.selectedValue} changeEventCallBack={this.changeCriteria} label="Criteria" width='100' />
                         </Grid>
-                        <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
-                           <Datepicker/>
-                        </Grid>
+                        <Grid item md={1} style={{ margin:'auto 0px'}}>
+                        <LicenceTextFiled  label="Logon Days"  onchange={this.props.changelogon} value={this.props.logondays}/>
+                            </Grid>
+                           
+                            <Grid item md={1} style={{ margin:'auto 0px'}}>
+                            <LicenceTextFiled label="% or Count"  onchange={this.props.changecount} value={this.props.count}/>
+                            </Grid>
 
+                            <Grid item md={2} style={{ margin:'auto 0px'}}>
+                            <LicenceTextFiled label="User Id"  onchange={this.props.changeuserId} value={this.props.userId}/>
+                            </Grid>
+
+
+                            <Grid item md={2} style={{ margin:'auto 0px'}}>
+                            <Button variant="contained" size="small" color="primary" style={{fontFamily:'Helvetica',padding:4,backgroundColor:'#009ED7', textTransform:'none', minWidth:'80px'}} onClick={() => this.onfilterSumbit()}>
+                                Execute
+                            </Button>
+                            </Grid>
 
                     </Grid>
 
@@ -216,15 +232,20 @@ const mapStateToProps = state => {    //this methos use to retrive state from re
         sapSystem: state.licensefilter.sapSystem,
         client: state.licensefilter.client,
         level: state.licensefilter.level,
-        userType:state.licensefilter.userType,
-        userGroup:state.licensefilter.userGroup,
-        account:state.licensefilter.account,
-        licenseType:state.licensefilter.licenseType,
-        userStatus:state.licensefilter.userStatus,
-        activeUser:state.licensefilter.activeUser,
-        tcodes:state.licensefilter.tcodes,
-        criteria:state.licensefilter.criteria
- 
+        userType: state.licensefilter.userType,
+        userGroup: state.licensefilter.userGroup,
+        account: state.licensefilter.account,
+        licenseType: state.licensefilter.licenseType,
+        userStatus: state.licensefilter.userStatus,
+        activeUser: state.licensefilter.activeUser,
+        tcodes: state.licensefilter.tcodes,
+        criteria: state.licensefilter.criteria,
+        userId:state.licensefilter.userId,
+        count: state.licensefilter.count,
+        logondays: state.licensefilter.logondays,
+        startDate: state.licensefilter.startDate,
+        endDate: state.licensefilter.endDate
+
     };
 
 }
@@ -233,9 +254,14 @@ const mapDispatchToProps = dispatch => { // this methos used for dispatch action
     return {
 
         onChangeFilter: (data, value) => dispatch(action.changeLicenceFilter(data, value)),
-        changeUserInput: (value) => dispatch(action.changeUserInput(value)),
-        changeLevel: (level) => dispatch(action.changeLevel(level)),
-        submitFilter: (token, riskType, sapSystem, client, riskLevel, businessModule, level, breakDown, riskId, reportType, mitigation) => dispatch(action.submitFilter(token, riskType, sapSystem, client, riskLevel, businessModule, level, breakDown, riskId, reportType, mitigation))
+        changelogon:(input)=>dispatch(action.changelogon(input)),
+        changecount:(input)=>dispatch(action.changecount(input)),
+        changeendDate:(input)=>dispatch(action.changeendDate(input)),
+        changestartDate:(input)=>dispatch(action.changestartDate(input)),
+        changeuserId:(input)=>dispatch(action.changeuserId(input)),
+        submitLicenceFilter:(token, sapSystem, client, level, userType, userGroup, 
+            account, licenseType, userStatus, activeUser, tcodes,criteria,userId,count,logondays,startDate,endDate)=>dispatch(action.submitLicenceFilter(token, sapSystem, client, level, userType, userGroup, 
+                account, licenseType, userStatus, activeUser, tcodes,criteria,userId,count,logondays,startDate,endDate))
 
     };
 }

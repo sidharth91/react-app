@@ -26,6 +26,9 @@ export const initLicenseFilter = (token) => {
 export const initiateLicenseFilter = (data) => {
     let temp = {};
     temp.loader = false;
+    let dt=new Date()
+    dt.setDate( dt.getDate()-200);
+    temp.endDate=dt
     data.map(p => {
         p.selectedValue = null;
         switch (p.id) {
@@ -38,39 +41,39 @@ export const initiateLicenseFilter = (data) => {
                 temp.client.selectedValue = p.value[p.value.length - 3].ZID
                 break
             case 11:
-                p.selectedValue = [];
+               
                 temp.level = p;
                 break
             case 12:
-                p.selectedValue = [];
+               
                 temp.userType = p;
                 break
             case 13:
-                p.selectedValue = [];
+               
                 temp.userGroup = p;
                 break
             case 14:
-                p.selectedValue = [];
+               
                 temp.account = p;
                 break
             case 15:
-                p.selectedValue = [];
+               
                 temp.licenseType = p;
                 break
             case 16:
-                p.selectedValue = [];
+               
                 temp.userStatus = p;
                 break
             case 17:
-                p.selectedValue = [];
+               
                 temp.activeUser = p;
                 break
             case 18:
-                p.selectedValue = [];
+               
                 temp.tcodes = p;
                 break
             case 19:
-                p.selectedValue = [];
+               
                 temp.criteria = p;
                 break
             case 51:
@@ -134,4 +137,94 @@ export const changeLicenceFilter = (data, value) => {
                 console.log("case doesn't match")
         }
     }
+}
+
+
+export const changestartDate = (input) => {
+    return dispatch => {
+        dispatch({
+            type: actionType.CHANGE_LICENCECSTARTDATE_FILTER,
+            value: input
+        })
+
+    }
+}
+
+export const changeendDate = (input) => {
+    return dispatch => {
+        dispatch({
+            type: actionType.CHANGE_LICENCECENDDATE_FILTER,
+            value: input
+        })
+
+    }
+}
+
+
+export const changecount = (input) => {
+    return dispatch => {
+        dispatch({
+            type: actionType.CHANGE_LICENCECCOUNT_FILTER,
+            value: input
+        })
+
+    }
+}
+
+
+export const changelogon = (input) => {
+    return dispatch => {
+        dispatch({
+            type: actionType.CHANGE_LICENCECLOGONDAYS_FILTER,
+            value: input
+        })
+
+    }
+}
+
+
+export const changeuserId = (input) => {
+    return dispatch => {
+        dispatch({
+            type: actionType.CHANGE_LICENCECUSERID_FILTER,
+            value: input
+        })
+
+    }
+}
+
+
+
+export const submitLicenceFilter = (token, sapSystem, client, level, userType, userGroup, 
+    account, licenseType, userStatus, activeUser, tcodes,criteria,userId,count,logondays,startDate,endDate) => {
+
+    return dispatch => {
+        dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
+        axios.post('http://localhost:8080/api/JAVA_0005', {
+            sapSystem: sapSystem,
+            client: client,
+            level: level,
+            userType: userType,
+            userGroup: userGroup,
+            account: account,
+            licenseType: licenseType,
+            userStatus: userStatus,
+            activeUser: activeUser,
+            tcodes: tcodes,
+            criteria: criteria,
+            userId: userId,
+            count: count,
+            logondays: logondays,
+            startDate: startDate,
+            endDate: endDate
+        }, { headers: { 'Authorisation': token } })
+            .then(response => {
+                console.log(JSON.stringify(response.data))
+                dispatch({ type: actionType.UPDATE_LICENCE_RESULT, data: response.data })
+            })
+            .catch(error => {
+                console.log(error)
+            });
+    }
+
 }

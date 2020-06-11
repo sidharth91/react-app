@@ -5,15 +5,20 @@ import { updateObject } from '../utility'
 const initialState = {
     sapSystem: { "name": "SAP System", "id": 1, "value": [] },
     client: { "name": "Client", "id": 2, "value": [] },
-    level: { "name": "Level", "id": 11, "value": [], selectedValue: [] },
-    userType: { "name": "User Type", "id": 12, "value": [], selectedValue: [] },
-    userGroup: { "name": "User Group", "id": 13, "value": [], selectedValue: [] },
-    account: { "name": "Account", "id": 14, "value": [], selectedValue: [] },
-    licenseType: { "name": "License Type", "id": 15, "value": [], selectedValue: [] },
-    userStatus: { "name": "User Status", "id": 16, "value": [], selectedValue: [] },
-    activeUser: { "name": "Active User", "id": 17, "value": [], selectedValue: [] },
-    tcodes: { "name": "Tcodes", "id": 18, "value": [], selectedValue: [] },
-    criteria: { "name": "Criteria", "id": 19, "value": [], selectedValue: [] },
+    level: { "name": "Level", "id": 11, "value": [] },
+    userType: { "name": "User Type", "id": 12, "value": [] },
+    userGroup: { "name": "User Group", "id": 13, "value": []},
+    account: { "name": "Account", "id": 14, "value": []},
+    licenseType: { "name": "License Type", "id": 15, "value": [] },
+    userStatus: { "name": "User Status", "id": 16, "value": [] },
+    activeUser: { "name": "Active User", "id": 17, "value": [] },
+    tcodes: { "name": "Tcodes", "id": 18, "value": []},
+    criteria: { "name": "Criteria", "id": 19, "value": [] },
+    userId: "",
+    count: 10,
+    logondays: 90,
+    startDate: new Date(),
+    endDate: new Date(),
     licenseresult: null,
     licensereport: {},
     colors: [],
@@ -46,6 +51,20 @@ const licensereducer = (state = initialState, action) => {
             return { ...state, tcodes: { ...state.tcodes, selectedValue: action.value } }
         case actionType.CHANGE_LICENCECRITERIA_FILTER:
             return { ...state, criteria: { ...state.criteria, selectedValue: action.value } }
+        case actionType.CHANGE_LICENCECUSERID_FILTER:
+            return { ...state, userId: action.value }
+        case actionType.CHANGE_LICENCECCOUNT_FILTER:
+            return { ...state, count: action.value }
+        case actionType.CHANGE_LICENCECLOGONDAYS_FILTER:
+            return { ...state, logondays: action.value }
+        case actionType.CHANGE_LICENCECSTARTDATE_FILTER:
+            return { ...state, startDate: action.value }
+        case actionType.CHANGE_LICENCECENDDATE_FILTER:
+            return { ...state, endDate: action.value }
+        case actionType.UPDATE_LICENCE_RESULT:
+            return {
+                ...state, licenseresult: action.data 
+            }
 
     }
 
