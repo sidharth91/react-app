@@ -12,7 +12,6 @@ import HeaderContainer from './HeaderContainer'
 import SideBar from './SideBar'
 import LicenseDashbord from './LicenseDashbord'
 import GRCDashbord from './GRCDashBord'
-import Report from './Report'
 import GRCReport from './GRCReport'
 
 

@@ -143,7 +143,7 @@ class LicenseFilter extends Component {
             // <Grid container style={{}} spacing={0}>
             //     <Grid item md={12}>
             <Card elevation='5' >
-                <CardContent id="idFilterCard" style={{ minHeight: '7vh', padding: 0, marginTop: 'auto', marginBottom: 'auto' }}>
+                <CardContent id="idFilterCard" style={{ minHeight: '6vh', padding: 0, marginTop: 'auto', marginBottom: 'auto' }}>
                     <Grid container spacing={2} style={{height: 'inherit', minHeight: 'inherit',paddingRight:'8px' }} >
                         <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
                             <FilterSingleSelectDropDown values={level} preSelected={this.props.level.selectedValue} changeEventCallBack={this.changeLevel} label="Level" width='100' />
@@ -173,38 +173,37 @@ class LicenseFilter extends Component {
                         <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
                             <FilterSingleSelectDropDown values={account} preSelected={this.props.account.selectedValue} changeEventCallBack={this.changeAccount} label="Account" width='100' />
                         </Grid>
-                    </Grid>
-                    <Grid container spacing={1} style={{height: 'inherit', minHeight: 'inherit' }} >
+                   
                   
-                        <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+                        <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto',paddingTop:1 }}>
                             <FilterSingleSelectDropDown values={userType} preSelected={this.props.userType.selectedValue} changeEventCallBack={this.changeUserType} label="User Type" width='100' />
                         </Grid>
-                        <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+                        <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto',paddingTop:1}}>
                             <FilterSingleSelectDropDown values={userStatus} preSelected={this.props.userStatus.selectedValue} changeEventCallBack={this.changeUserStatus} label="User Status" width='100' />
                         </Grid>
-                        <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+                        <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto',paddingTop:1 }}>
                             <FilterSingleSelectDropDown values={activeUser} preSelected={this.props.activeUser.selectedValue} changeEventCallBack={this.changeActiveUser} label="Active User" width='100' />
                         </Grid>
-                        <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+                        <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' ,paddingTop:1 }}>
                             <FilterSingleSelectDropDown values={tcodes} preSelected={this.props.tcodes.selectedValue} changeEventCallBack={this.changeTcodes} label="Tcodes" width='100' />
                         </Grid>
-                        <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+                        <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto',paddingTop:1 }}>
                             <FilterSingleSelectDropDown values={criteria} preSelected={this.props.criteria.selectedValue} changeEventCallBack={this.changeCriteria} label="Criteria" width='100' />
                         </Grid>
-                        <Grid item md={1} style={{ margin:'auto 0px'}}>
+                        <Grid item md={1} style={{ margin:'auto 0px',paddingTop:1 }}>
                         <LicenceTextFiled  label="Logon Days"  onchange={this.props.changelogon} value={this.props.logondays}/>
                             </Grid>
                            
-                            <Grid item md={1} style={{ margin:'auto 0px'}}>
+                            <Grid item md={1} style={{ margin:'auto 0px',paddingTop:1 }}>
                             <LicenceTextFiled label="% or Count"  onchange={this.props.changecount} value={this.props.count}/>
                             </Grid>
 
-                            <Grid item md={2} style={{ margin:'auto 0px'}}>
+                            <Grid item md={2} style={{ margin:'auto 0px',paddingTop:1}}>
                             <LicenceTextFiled label="User Id"  onchange={this.props.changeuserId} value={this.props.userId}/>
                             </Grid>
 
 
-                            <Grid item md={2} style={{ margin:'auto 0px'}}>
+                            <Grid item md={2} style={{ margin:'auto 0px',paddingTop:0}}>
                             <Button variant="contained" size="small" color="primary" style={{fontFamily:'Helvetica',padding:4,backgroundColor:'#009ED7', textTransform:'none', minWidth:'80px'}} onClick={() => this.onfilterSumbit()}>
                                 Execute
                             </Button>

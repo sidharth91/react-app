@@ -12,8 +12,8 @@ export const initLicenseFilter = (token) => {
                 dispatch(initiateLicenseFilter(response.data));
             })
             .catch(error => {
-                console.log(error.response.status)
-                if (error.response.status == '401') {
+                
+                if (error.response!=undefined && error.response.status == '401') {
                     action.logout()
                     window.location.reload()
 
@@ -37,11 +37,11 @@ export const initiateLicenseFilter = (data) => {
                 temp.sapSystem.selectedValue = p.value[p.value.length - 3].ZID
                 break
             case 2:
+                p.selectedValue = p.value[p.value.length - 3].ZID
                 temp.client = p;
-                temp.client.selectedValue = p.value[p.value.length - 3].ZID
                 break
             case 11:
-               
+                p.selectedValue = p.value[0].ZID
                 temp.level = p;
                 break
             case 12:
@@ -53,7 +53,7 @@ export const initiateLicenseFilter = (data) => {
                 temp.userGroup = p;
                 break
             case 14:
-               
+                p.selectedValue = p.value[3].ZID
                 temp.account = p;
                 break
             case 15:
@@ -61,19 +61,19 @@ export const initiateLicenseFilter = (data) => {
                 temp.licenseType = p;
                 break
             case 16:
-               
+                p.selectedValue = p.value[0].ZID
                 temp.userStatus = p;
                 break
             case 17:
-               
+                p.selectedValue = p.value[0].ZID
                 temp.activeUser = p;
                 break
             case 18:
-               
+                p.selectedValue = p.value[0].ZID
                 temp.tcodes = p;
                 break
             case 19:
-               
+                p.selectedValue = p.value[0].ZID
                 temp.criteria = p;
                 break
             case 51:
