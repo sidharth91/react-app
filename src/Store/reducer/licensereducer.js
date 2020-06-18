@@ -7,22 +7,28 @@ const initialState = {
     client: { "name": "Client", "id": 2, "value": [] },
     level: { "name": "Level", "id": 11, "value": [] },
     userType: { "name": "User Type", "id": 12, "value": [] },
-    userGroup: { "name": "User Group", "id": 13, "value": []},
-    account: { "name": "Account", "id": 14, "value": []},
+    userGroup: { "name": "User Group", "id": 13, "value": [] },
+    account: { "name": "Account", "id": 14, "value": [] },
     licenseType: { "name": "License Type", "id": 15, "value": [] },
     userStatus: { "name": "User Status", "id": 16, "value": [] },
     activeUser: { "name": "Active User", "id": 17, "value": [] },
-    tcodes: { "name": "Tcodes", "id": 18, "value": []},
+    tcodes: { "name": "Tcodes", "id": 18, "value": [] },
     criteria: { "name": "Criteria", "id": 19, "value": [] },
     userId: "",
     count: 10,
     logondays: 90,
     startDate: new Date(),
     endDate: new Date(),
+    filtereduserId: "",
+    filteredcount: 10,
+    filteredlogondays: 90,
+    filteredstartDate: new Date(),
+    filteredendDate: new Date(),
     licenseresult: null,
     licensereport: {},
+    licensetablereport: {},
     colors: [],
-
+    loader: false
 }
 
 const licensereducer = (state = initialState, action) => {
@@ -63,8 +69,30 @@ const licensereducer = (state = initialState, action) => {
             return { ...state, endDate: action.value }
         case actionType.UPDATE_LICENCE_RESULT:
             return {
-                ...state, licenseresult: action.data 
+                ...state, licenseresult: action.data,
+                sapSystem: { ...state.sapSystem, filtered: state.sapSystem.selectedValue },
+                client: { ...state.client, filtered: state.client.selectedValue },
+                level: { ...state.level, filtered: state.level.selectedValue },
+                userType: { ...state.userType, filtered: state.userType.selectedValue },
+                userGroup: { ...state.userGroup, filtered: state.userGroup.selectedValue },
+                account: { ...state.account, filtered: state.account.selectedValue },
+                licenseType: { ...state.licenseType, filtered: state.licenseType.selectedValue },
+                userStatus: { ...state.userStatus, filtered: state.userStatus.selectedValue },
+                activeUser: { ...state.activeUser, filtered: state.activeUser.selectedValue },
+                tcodes: { ...state.tcodes, filtered: state.tcodes.selectedValue },
+                criteria: { ...state.criteria, filtered: state.criteria.selectedValue },
+                filtereduserId: state.userId,
+                filteredcount: state.count0,
+                filteredlogondays: state.logondays,
+                filteredstartDate: state.startDate,
+                filteredendDate: state.endDate
             }
+        case actionType.CHANGE_LICENCELOADER_STATUS:
+            return { ...state, loader: action.data }
+        case actionType.UPDATE_LICENCEREPORT_RESULT:
+            return { ...state, licensereport: action.data }
+        case actionType.UPDATE_LICENCEREPORTTABLE_RESULT:
+            return { ...state, licensetablereport: action.data }
 
     }
 

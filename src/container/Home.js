@@ -13,6 +13,7 @@ import SideBar from './SideBar'
 import LicenseDashbord from './LicenseDashbord'
 import GRCDashbord from './GRCDashBord'
 import GRCReport from './GRCReport'
+import LicenseReport from './LicenseReport'
 
 
 
@@ -31,6 +32,8 @@ class Home extends Component {
            <Route path='/grcdashbord' exact  component={GRCDashbord}/>
            <Route path='/' exact component={LicenseDashbord}/>
            <Route path='/grcreport' exact  component={GRCReport}/>
+           <Route path='/licensedashbord' exact  component={LicenseDashbord}/>
+           <Route path='/licensereport' exact  component={LicenseReport}/>
            </Switch> 
            );
         return (

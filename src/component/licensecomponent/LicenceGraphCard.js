@@ -495,7 +495,7 @@ const LicenceGraphCard = (props) => {
     setChartState(event.target.value)
   }
 
-  const getTableHeader = (data, key) => {
+  const getTableHeader = (data, key,stack) => {
 
 
     if(data==undefined || data==null ||data.length<1){
@@ -507,16 +507,28 @@ const LicenceGraphCard = (props) => {
       return []
     }
 
-    let columnarray = (key == '01') ? ["GROUPBY1", "GROUP_DESC1", "ZCOUNT1", "ZCOUNT2", "ZCOUNT3"] : ["GROUPBY1", "GROUP_DESC1", "ZCOUNT1"]
+    let columnarray = (key == '01' && stack) ? ["LIC_TYPE", "UTYPLONGTEXT", "COL1", "COL2"] : ["GROUPBY1", "GROUP_DESC1", "ZCOUNT1"]
     let header = Object.keys(filtereddata[0]).filter(t => columnarray.includes(t)).map(p => {
       if (p == 'GROUPBY1') {
+        return 'COLUMN1'
+      }
+      if (p == 'LIC_TYPE') {
         return 'COLUMN1'
       }
       if (p == 'GROUP_DESC1') {
         return 'COLUMN2'
       }
+      if (p == 'UTYPLONGTEXT') {
+        return 'COLUMN2'
+      }
+      if (p == 'COL1') {
+        return 'COUNT1'
+      }
       if (p == 'ZCOUNT1') {
         return 'COUNT1'
+      }
+      if (p == 'COL2') {
+        return 'COUNT2'
       }
       if (p == 'ZCOUNT2') {
         return 'COUNT2'
@@ -529,27 +541,33 @@ const LicenceGraphCard = (props) => {
 
     let dataset = filtereddata.map(dt => {
       let tem = [];
+      if(!stack){
       tem.push(dt.GROUPBY1)
       tem.push(dt.GROUP_DESC1)
-      tem.push(dt.ZCOUNT1)
-
-      if (key == '01') {
-        tem.push(dt.ZCOUNT2)
-        tem.push(dt.ZCOUNT3)
+      tem.push(dt.ZCOUNT1)             
+      }else{
+      tem.push(dt.LIC_TYPE)
+      tem.push(dt.UTYPLONGTEXT)
+      tem.push(dt.COL1)
+      tem.push(dt.COL2)
       }
+
       return tem;
     })
 
     let dataset2 = filtereddata.map(dt => {
       let tem = {};
-      tem.COLUMN1=dt.GROUPBY1
-      tem.COLUMN2=dt.GROUP_DESC1
-      tem.COUNT1=dt.ZCOUNT1
-   
-      if (key == '01') {
-        tem.COUNT2=dt.ZCOUNT2
-        tem.COUNT3=dt.ZCOUNT3
-      }
+
+      if(!stack){
+        tem.COLUMN1=dt.GROUPBY1
+        tem.COLUMN2=dt.GROUP_DESC1
+        tem.COUNT1=dt.ZCOUNT1            
+        }else{
+          tem.COLUMN1=dt.LIC_TYPE
+          tem.COLUMN2=dt.UTYPLONGTEXT
+          tem.COUNT1=dt.COL1
+          tem.COUNT2=dt.COL2
+        }
       return tem;
     })
 
@@ -568,7 +586,7 @@ const LicenceGraphCard = (props) => {
   };
 
   let getData = (data) => {
-    props.dialogueOpen(props.chartId, data.GROUPBY1)
+    props.dialogueOpen(props.chartId, stack?data.LIC_TYPE:data.GROUPBY1)
   }
 
 
@@ -579,7 +597,7 @@ const LicenceGraphCard = (props) => {
   const [open, setOpen] = React.useState(false);
   const [colorState, setColorState] = useState([...COLORS]);
   let getchartDataResult1 = proesResultData(props.data, props.chart);
-  let tableData = getTableHeader(props.data, props.chart)
+  let tableData = getTableHeader(props.data, props.chart,props.stack)
   let firctChart = getchartDataResult1.length>0?getChart(getchartDataResult1, chartState, '#00bcd4'):<Typography  variant="subtitle2" color="inherit">
   No Records found
 </Typography>
@@ -597,7 +615,7 @@ const LicenceGraphCard = (props) => {
         { getchartDataResult1.length>0?
         <CardActions style={{ margin: 'auto', padding: 2, height:'15%' }}>
           <Grid container spacing={0} style={{ height:'100%' }}>
-            <Grid item md={3} style={{margin:'auto'}}>
+            <Grid item md={2} style={{margin:'auto'}}>
               <FormControl variant="outlined" className={classes.formControl} size="small">
                 <InputLabel id="demo-simple-select-outlined-label">{props.label}</InputLabel>
 
@@ -644,8 +662,8 @@ const LicenceGraphCard = (props) => {
 
               </FormControl>
             </Grid>
-            <Grid item md={7} style={{margin:'auto'}}>
-              <Typography variant="subtitle2" style={{ fontFamily: 'Helvetica', fontSize: props.chart == '01' || props.chart == '04' ? 14 : 12 }}>
+            <Grid item md={8} style={{margin:'auto'}}>
+              <Typography variant="subtitle2" style={{ fontFamily: 'Helvetica', fontSize: props.chart == '01' && stack? 14 : 12 }}>
                 {props.name}
               </Typography>
 

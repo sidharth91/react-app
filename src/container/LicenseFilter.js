@@ -76,6 +76,7 @@ class LicenseFilter extends Component {
 
 
     onfilterSumbit = () => {
+        if (this.props.type == 'Dashbord') {
             this.props.submitLicenceFilter(this.props.token, this.props.sapSystem.selectedValue,
                 this.props.client.selectedValue, this.props.level.selectedValue,
                 this.props.userType.selectedValue, this.props.userGroup.selectedValue,
@@ -84,6 +85,16 @@ class LicenseFilter extends Component {
                 this.props.tcodes.selectedValue,this.props.criteria.selectedValue,
                 this.props.userId,this.props.count,
                 this.props.logondays,this.props.startDate,this.props.endDate)
+            }else{
+                this.props.licenceReport(this.props.token, this.props.sapSystem.selectedValue,
+                    this.props.client.selectedValue, this.props.level.selectedValue,
+                    this.props.userType.selectedValue, this.props.userGroup.selectedValue,
+                    this.props.account.selectedValue, this.props.licenseType.selectedValue,
+                    this.props.userStatus.selectedValue, this.props.activeUser.selectedValue,
+                    this.props.tcodes.selectedValue,this.props.criteria.selectedValue,
+                    this.props.userId,this.props.count,
+                    this.props.logondays,this.props.startDate,this.props.endDate)
+            }
   
 
     }
@@ -155,31 +166,29 @@ class LicenseFilter extends Component {
                             <Datepicker onchange={this.props.changeendDate}  value={this.props.endDate}/>
                         </Grid>
                         <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
-                            <FilterSingleSelectDropDown values={sapSystem} preSelected={this.props.sapSystem.selectedValue} changeEventCallBack={this.changeSystem} label="System" width='100' />
+                            <FilterMultiSelectDropDown values={sapSystem} preSelected={this.props.sapSystem.selectedValue} changeEventCallBack={this.changeSystem} label="System" width='100' />
                         </Grid>
                         <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
-                            <FilterSingleSelectDropDown values={sapClient} preSelected={this.props.client.selectedValue} changeEventCallBack={this.changeClient} label="Client" width='100' />
+                            <FilterMultiSelectDropDown values={sapClient} preSelected={this.props.client.selectedValue} changeEventCallBack={this.changeClient} label="Client" width='100' />
                         </Grid>
                         <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
-                            <FilterSingleSelectDropDown values={licenseType} preSelected={this.props.licenseType.selectedValue} changeEventCallBack={this.changeLicenseType} label="License Type" width='100' />
+                            <FilterMultiSelectDropDown values={licenseType} preSelected={this.props.licenseType.selectedValue} changeEventCallBack={this.changeLicenseType} label="License Type" width='100' />
                         </Grid>
 
                         <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
-                            <FilterSingleSelectDropDown values={userGroup} preSelected={this.props.userGroup.selectedValue} changeEventCallBack={this.changeUserGroup} label="User Grooup" width='100' />
+                            <FilterMultiSelectDropDown values={userGroup} preSelected={this.props.userGroup.selectedValue} changeEventCallBack={this.changeUserGroup} label="User Grooup" width='100' />
                         </Grid>
                         <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
-                            <FilterSingleSelectDropDown values={userType} preSelected={this.props.userType.selectedValue} changeEventCallBack={this.changeUserType} label="User Type" width='100' />
+                            <FilterMultiSelectDropDown values={userType} preSelected={this.props.userType.selectedValue} changeEventCallBack={this.changeUserType} label="User Type" width='100' />
                         </Grid>
                         <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
-                            <FilterSingleSelectDropDown values={account} preSelected={this.props.account.selectedValue} changeEventCallBack={this.changeAccount} label="Account" width='100' />
+                            <FilterMultiSelectDropDown values={account} preSelected={this.props.account.selectedValue} changeEventCallBack={this.changeAccount} label="Account" width='100' />
                         </Grid>
                    
                   
-                        <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto',paddingTop:1 }}>
-                            <FilterSingleSelectDropDown values={userType} preSelected={this.props.userType.selectedValue} changeEventCallBack={this.changeUserType} label="User Type" width='100' />
-                        </Grid>
+                      
                         <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto',paddingTop:1}}>
-                            <FilterSingleSelectDropDown values={userStatus} preSelected={this.props.userStatus.selectedValue} changeEventCallBack={this.changeUserStatus} label="User Status" width='100' />
+                            <FilterMultiSelectDropDown values={userStatus} preSelected={this.props.userStatus.selectedValue} changeEventCallBack={this.changeUserStatus} label="User Status" width='100' />
                         </Grid>
                         <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto',paddingTop:1 }}>
                             <FilterSingleSelectDropDown values={activeUser} preSelected={this.props.activeUser.selectedValue} changeEventCallBack={this.changeActiveUser} label="Active User" width='100' />
@@ -260,8 +269,10 @@ const mapDispatchToProps = dispatch => { // this methos used for dispatch action
         changeuserId:(input)=>dispatch(action.changeuserId(input)),
         submitLicenceFilter:(token, sapSystem, client, level, userType, userGroup, 
             account, licenseType, userStatus, activeUser, tcodes,criteria,userId,count,logondays,startDate,endDate)=>dispatch(action.submitLicenceFilter(token, sapSystem, client, level, userType, userGroup, 
+                account, licenseType, userStatus, activeUser, tcodes,criteria,userId,count,logondays,startDate,endDate)),
+        licenceReport: (token, sapSystem, client, level, userType, userGroup, 
+            account, licenseType, userStatus, activeUser, tcodes,criteria,userId,count,logondays,startDate,endDate)=>dispatch(action.licenceReport(token, sapSystem, client, level, userType, userGroup, 
                 account, licenseType, userStatus, activeUser, tcodes,criteria,userId,count,logondays,startDate,endDate))
-
     };
 }
 

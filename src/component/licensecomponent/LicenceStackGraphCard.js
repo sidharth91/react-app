@@ -565,8 +565,8 @@ const LicenceStackGraphCard = (props) => {
         </CardContent>
 
         <CardActions style={{ margin: 0, padding: 2 }}>
-          <Grid container spacing={2}>
-            <Grid item md={3}>
+          <Grid container spacing={2} style={{margin:'auto'}}>
+            <Grid item md={2}>
               <FormControl variant="outlined" className={classes.formControl} size="small">
                 <InputLabel id="demo-simple-select-outlined-label">{props.label}</InputLabel>
                 <Select
@@ -589,13 +589,13 @@ const LicenceStackGraphCard = (props) => {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item md={6}>
+            <Grid item md={8}>
               <Typography variant="subtitle2" style={{ fontFamily: 'Helvetica' }}>
                 {props.name}
               </Typography>
 
             </Grid>
-            <Grid item md={3}>
+            <Grid item md={2}>
               <IconButton
                 aria-label="account of current user"
                 aria-controls="menu-appbar"

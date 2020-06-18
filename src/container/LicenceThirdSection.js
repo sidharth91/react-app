@@ -57,19 +57,19 @@ class LicenceThirdSection extends Component {
             <Grid container style={{marginTop:5}} spacing={1}>
            
                 <Grid item  md={4} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <LicenceGraphCard chart='01' stack={true} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name="name"  chartType={5} dialogueOpen={this.props.dialogueOpen} chartId="SEC31" /> :null}
+                   {isDataReadtToShow? <LicenceGraphCard chart='01' stack={true} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name="Total License Count/Cost"  chartType={5} dialogueOpen={this.props.dialogueOpen} chartId="SEC31" /> :null}
                 </Grid>
                 <Grid item md={2} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <LicenceGraphCard chart='01' stack={false} color={this.props.colors}  data={this.props.result.E_RESULT_04.data} name="name" chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC32" /> :null}
+                   {isDataReadtToShow? <LicenceGraphCard chart='01' stack={false} color={this.props.colors}  data={this.props.result.E_RESULT_04.data} name="Top Prof user with doc" chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC32" /> :null}
                 </Grid>
                 <Grid item md={2} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <LicenceGraphCard chart='02' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name="name"  chartType={3}  dialogueOpen={this.props.dialogueOpen} chartId="SEC32"/> :null}
+                   {isDataReadtToShow? <LicenceGraphCard chart='02' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name="Top Users with indirect Usage"  chartType={3}  dialogueOpen={this.props.dialogueOpen} chartId="SEC32"/> :null}
                 </Grid>
                 <Grid item md={2} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <LicenceGraphCard chart='03' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name="name" chartType={1}  dialogueOpen={this.props.dialogueOpen} chartId="SEC34"/> :null}
+                   {isDataReadtToShow? <LicenceGraphCard chart='03' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name="Top Users with Multiple Logon" chartType={1}  dialogueOpen={this.props.dialogueOpen} chartId="SEC34"/> :null}
                 </Grid>
                 <Grid item md={2} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <LicenceGraphCard chart='04' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name="name" chartType={1}  dialogueOpen={this.props.dialogueOpen} chartId="SEC34"/> :null}
+                   {isDataReadtToShow? <LicenceGraphCard chart='04' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name="Top USMM Enginee Usage" chartType={1}  dialogueOpen={this.props.dialogueOpen} chartId="SEC34"/> :null}
                 </Grid>  
               
             </Grid>

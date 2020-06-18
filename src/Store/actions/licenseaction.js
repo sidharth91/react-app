@@ -6,10 +6,12 @@ import axios from 'axios';
 
 export const initLicenseFilter = (token) => {
     return dispatch => {
-        dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
+        dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: true })
         axios.get('http://localhost:8080/api/licensefilter', { headers: { 'Authorisation': token } })
             .then(response => {
+                dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: true })
                 dispatch(initiateLicenseFilter(response.data));
+              
             })
             .catch(error => {
                 
@@ -27,17 +29,17 @@ export const initiateLicenseFilter = (data) => {
     let temp = {};
     temp.loader = false;
     let dt=new Date()
-    dt.setDate( dt.getDate()-200);
-    temp.endDate=dt
+    dt.setFullYear(dt.getFullYear() - 1)
+    temp.startDate=dt
     data.map(p => {
         p.selectedValue = null;
         switch (p.id) {
             case 1:
+                p.selectedValue = [p.value[0].ZID]
                 temp.sapSystem = p;
-                temp.sapSystem.selectedValue = p.value[p.value.length - 3].ZID
                 break
             case 2:
-                p.selectedValue = p.value[p.value.length - 3].ZID
+                p.selectedValue = [p.value[0].ZID]
                 temp.client = p;
                 break
             case 11:
@@ -45,31 +47,31 @@ export const initiateLicenseFilter = (data) => {
                 temp.level = p;
                 break
             case 12:
-               
+                p.selectedValue =[]
                 temp.userType = p;
                 break
             case 13:
-               
+                p.selectedValue =[]
                 temp.userGroup = p;
                 break
             case 14:
-                p.selectedValue = p.value[3].ZID
+                p.selectedValue = []
                 temp.account = p;
                 break
             case 15:
-               
+                p.selectedValue = []
                 temp.licenseType = p;
                 break
             case 16:
-                p.selectedValue = p.value[0].ZID
+                p.selectedValue = [p.value[0].ZID]
                 temp.userStatus = p;
                 break
             case 17:
-                p.selectedValue = p.value[0].ZID
+                p.selectedValue = p.value[3].ZID
                 temp.activeUser = p;
                 break
             case 18:
-                p.selectedValue = p.value[0].ZID
+                p.selectedValue = p.value[2].ZID
                 temp.tcodes = p;
                 break
             case 19:
@@ -199,7 +201,7 @@ export const submitLicenceFilter = (token, sapSystem, client, level, userType, u
     account, licenseType, userStatus, activeUser, tcodes,criteria,userId,count,logondays,startDate,endDate) => {
 
     return dispatch => {
-        dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
+        dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: true })
         axios.post('http://localhost:8080/api/JAVA_0005', {
             sapSystem: sapSystem,
             client: client,
@@ -219,7 +221,7 @@ export const submitLicenceFilter = (token, sapSystem, client, level, userType, u
             endDate: endDate
         }, { headers: { 'Authorisation': token } })
             .then(response => {
-                console.log(JSON.stringify(response.data))
+                dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: false })
                 dispatch({ type: actionType.UPDATE_LICENCE_RESULT, data: response.data })
             })
             .catch(error => {
@@ -227,4 +229,83 @@ export const submitLicenceFilter = (token, sapSystem, client, level, userType, u
             });
     }
 
+}
+
+
+export const licenceReport = (token, sapSystem, client, level, userType, userGroup, 
+    account, licenseType, userStatus, activeUser, tcodes,criteria,userId,count,logondays,startDate,endDate) => {
+
+    return dispatch => {
+        dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: true })
+        axios.post('http://localhost:8080/api/JAVA_0006', {
+            sapSystem: sapSystem,
+            client: client,
+            level: level,
+            userType: userType,
+            userGroup: userGroup,
+            account: account,
+            licenseType: licenseType,
+            userStatus: userStatus,
+            activeUser: activeUser,
+            tcodes: tcodes,
+            criteria: criteria,
+            userId: userId,
+            count: count,
+            logondays: logondays,
+            startDate: startDate,
+            endDate: endDate
+        }, { headers: { 'Authorisation': token } })
+            .then(response => {
+                dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: false })
+                dispatch({ type: actionType.UPDATE_LICENCEREPORT_RESULT, data: response.data })
+            })
+            .catch(error => {
+                dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: false })
+                console.log(error)
+            });
+    }
+
+}
+
+export const licenceTableReport = (token, sapSystem, client, level, userType, userGroup, 
+    account, licenseType, userStatus, activeUser, tcodes,criteria,userId,count,logondays,startDate,endDate) => {
+
+    return dispatch => {
+        dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: true })
+        axios.post('http://localhost:8080/api/JAVA_0006', {
+            sapSystem: sapSystem,
+            client: client,
+            level: level,
+            userType: userType,
+            userGroup: userGroup,
+            account: account,
+            licenseType: licenseType,
+            userStatus: userStatus,
+            activeUser: activeUser,
+            tcodes: tcodes,
+            criteria: criteria,
+            userId: userId,
+            count: count,
+            logondays: logondays,
+            startDate: startDate,
+            endDate: endDate
+        }, { headers: { 'Authorisation': token } })
+            .then(response => {
+                dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: false })
+                dispatch({ type: actionType.UPDATE_LICENCEREPORTTABLE_RESULT, data: response.data })
+            })
+            .catch(error => {
+                dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: false })
+                console.log(error)
+            });
+    }
+
+}
+
+
+export const clearLicanceTableReport = () => {
+
+    return dispatch => {
+        dispatch({ type: actionType.UPDATE_LICENCEREPORTTABLE_RESULT, data: {} })
+    }
 }
