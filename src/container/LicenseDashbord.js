@@ -9,11 +9,11 @@ import LoginCard from '../component/LoginCard'
 import Grid from '@material-ui/core/Grid';
 import HeaderContainer from './HeaderContainer'
 import SideBar from './SideBar'
-import LicenseFilter from './LicenseFilter'
-import LicenceFirstSection from './LicenceFirstSection'
+import LicenseFilter from '../component/licensecomponent/LicenseFilter'
+import LicenceFirstSection from '../component/licensecomponent/LicenceFirstSection'
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
-import LicenseSecondSecData from './LicenseSecondSecData'
-import LicenceThirdSection from './LicenceThirdSection'
+import LicenseSecondSecData from '../component/licensecomponent/LicenseSecondSecData'
+import LicenceThirdSection from '../component/licensecomponent/LicenceThirdSection'
 import Loader from '../component/Loader'
 import LicenceDragableDialogue from './LicenceDragableDialogue'
 

@@ -46,7 +46,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 
 
-const drawerWidth = 190;
+const drawerWidth = 220;
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -301,6 +301,24 @@ const ApplicationAppBar = (props) => {
     setDrawerswitch(drawerswitch)
   };
 
+  const findName=()=>{
+    if(pathname == '/grcreport'){
+      return 'AuditBOT GRC Report';
+    }
+
+    if(pathname == '/grcrisktechviewreport'){
+      return 'AuditBOT GRC Risk Business Tech View Report';
+    }
+
+    if(pathname == '/licensereport'){
+      return 'AuditBOT License Report';
+    }
+    if(pathname == '/licensedashbord'){
+      return 'AuditBOT License Dashbord';
+    }
+    return 'AuditBOT GRC Dashbord';
+
+  }
 
   return (
     <div className={classes.root}>
@@ -311,7 +329,7 @@ const ApplicationAppBar = (props) => {
               <IconButton color="inherit" aria-label="open drawer" style={{ padding: 0 }} edge="start" onClick={toggleDrawer(true)} > <MenuIcon /> </IconButton>
             </Grid>
             <Grid item sm={9} style={{ margin: 'auto' }} >
-              <Typography type="body2" >{pathname == '/grcreport' ? 'AuditBOT GRC Report' : 'AuditBOT GRC Dashbord'}</Typography>
+              <Typography type="body2" >{findName()}</Typography>
             </Grid>
 
             <Grid item sm={2}  >
@@ -408,6 +426,12 @@ const ApplicationAppBar = (props) => {
                       <ListItem button className={pathname == '/grcreport' ? classes.selecteditme : classes.nested} style={{ marginLeft: 30 }}>
                   
                         <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>GRC Report</Typography>} />
+                      </ListItem>
+                    </Link>
+                    <Link style={{ color: 'white' }} to={'/grcrisktechviewreport'} onClick={toggleDrawer(false)}>
+                      <ListItem button className={pathname == '/grcrisktechviewreport' ? classes.selecteditme : classes.nested} style={{ marginLeft: 30 }}>
+                  
+                        <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>GRC Risk Bus/Tech View</Typography>} />
                       </ListItem>
                     </Link>
                   </List>

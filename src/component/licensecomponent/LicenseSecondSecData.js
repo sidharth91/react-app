@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import './Login.css'
 //import * as actionType from '../../Store/actions/actionsType'
-import * as action from '../Store/actions/index'
-import logo_icon from '../resources/auditbotlogo.PNG'
-import FilterSingleSelectDropDown from '../component/grccomponent/FilterSingleSelectDropDown'
-import FilterMultiSelectDropDown from '../component/grccomponent/FilterMultiSelectDropDown'
-import LoginCard from '../component/LoginCard'
+import * as action from '../../Store/actions/index'
+
+import FilterSingleSelectDropDown from '../grccomponent/FilterSingleSelectDropDown'
+import FilterMultiSelectDropDown from '../grccomponent/FilterMultiSelectDropDown'
+import LoginCard from '../LoginCard'
 import Grid from '@material-ui/core/Grid';
-import HeaderContainer from './HeaderContainer'
-import SideBar from './SideBar'
+import HeaderContainer from '../../container/HeaderContainer'
+import SideBar from '../../container/SideBar'
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import AppBar from '@material-ui/core/AppBar';
@@ -17,7 +17,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import GRCStackGraphCard from '../component/grccomponent/GRCStackGraphCard'
+import GRCStackGraphCard from '../grccomponent/GRCStackGraphCard'
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, green } from '@material-ui/core/colors';

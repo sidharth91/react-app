@@ -2,20 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import './Login.css'
 //import * as actionType from '../../Store/actions/actionsType'
-import * as action from '../Store/actions/index'
-import logo_icon from '../resources/auditbotlogo.PNG'
-import FilterSingleSelectDropDown from '../component/licensecomponent/FilterSingleSelectDropDown'
-import FilterMultiSelectDropDown from '../component/licensecomponent/FilterMultiSelectDropDown'
-import Datepicker from '../component/licensecomponent/Datepicker'
-import LicenceTextFiled from '../component/licensecomponent/LicenceTextFiled'
-import LoginCard from '../component/LoginCard'
+import * as action from '../../Store/actions/index'
+
+import FilterSingleSelectDropDown from './FilterSingleSelectDropDown'
+import FilterMultiSelectDropDown from './FilterMultiSelectDropDown'
+import Datepicker from './Datepicker'
+import LicenceTextFiled from './LicenceTextFiled'
+
 import Grid from '@material-ui/core/Grid';
-import HeaderContainer from './HeaderContainer'
-import SideBar from './SideBar'
-import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';

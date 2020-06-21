@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import './Login.css'
 //import * as actionType from '../../Store/actions/actionsType'
-import * as action from '../Store/actions/index'
+import * as action from '../../Store/actions/index'
 import Grid from '@material-ui/core/Grid';
-import LicenceStackGraphCard from '../component/licensecomponent/LicenceStackGraphCard'
+import LicenceStackGraphCard from './LicenceStackGraphCard'
 
 
 

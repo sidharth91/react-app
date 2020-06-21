@@ -7,13 +7,12 @@ import * as action from '../Store/actions/index'
 
 import Grid from '@material-ui/core/Grid';
 
-import GRCFilter from './GRCFilter'
 
 import Loader from '../component/Loader'
 import GRCDragableDialogue from './GRCDragableDialogue'
 import MUGRCReportTable from '../component/licensecomponent/MUGRCReportTable'
 import Typography from '@material-ui/core/Typography';
-import LicenseFilter from './LicenseFilter'
+import LicenseFilter from '../component/licensecomponent/LicenseFilter'
 
 
 
