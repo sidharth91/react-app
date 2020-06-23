@@ -93,12 +93,12 @@ const useStyles = makeStyles((theme) => ({
   },
   listitmentext: {
     color: '#ffffff',
-    fontSize: 14,
+    fontSize: 12,
     fontFamily: 'Helvetica'
   },
   listitmentextchild: {
     color: '#ffffff',
-    fontSize: 12,
+    fontSize: 10,
     fontFamily: 'Helvetica'
   },
   logo: {
@@ -159,6 +159,33 @@ const ApplicationAppBar = (props) => {
    const [managerdashbord, setManagerdashbord] = React.useState(false);
    const [managerreport, setManagerReport] = React.useState(false);
 
+   const [basis, setBasis] = React.useState(false);
+   const [basisdashbord, setBasisdashbord] = React.useState(false);
+   const [basisreport, setBasisReport] = React.useState(false);
+
+   const [security, setSecurity] = React.useState(false);
+   const [securitydashbord, setSecuritydashbord] = React.useState(false);
+   const [securityreport, setSecurityReport] = React.useState(false);
+
+   const [users, setUsers] = React.useState(false);
+   const [usersdashbord, setUsersdashbord] = React.useState(false);
+   const [usersreport, setUsersReport] = React.useState(false);
+
+
+   const [hana, setHana] = React.useState(false);
+   const [hanadashbord, setHanadashbord] = React.useState(false);
+   const [hanareport, setHanaReport] = React.useState(false);
+
+
+   const [misc, setMisc] = React.useState(false);
+   const [miscdashbord, setMiscdashbord] = React.useState(false);
+   const [miscreport, setMiscReport] = React.useState(false);
+
+
+   
+
+
+
   const [drawerswitch, setDrawerswitch] = React.useState(false);
 
 
@@ -190,6 +217,27 @@ const ApplicationAppBar = (props) => {
     setControls(false);
     setControlsReport(false);
     setControlsdashbord(false);
+    setControls(false);
+    setControlsReport(false);
+    setControlsdashbord(false);
+    setAuditor(false);
+    setAuditorReport(false);
+    setAuditordashbord(false);
+    setManager(false);
+    setManagerReport(false);
+    setManagerdashbord(false);
+    setBasis(false);
+    setBasisReport(false);
+    setBasisdashbord(false);
+    setUsers(false);
+    setUsersReport(false);
+    setUsersdashbord(false);
+    setHana(false);
+    setHanaReport(false);
+    setHanadashbord(false);
+    setMisc(false);
+    setMiscReport(false);
+    setMiscdashbord(false);
   }
 
   const openSelectedDropDown=(path)=>{
@@ -207,6 +255,16 @@ const ApplicationAppBar = (props) => {
       makeAllclose()
       setLicense(true)
       setLicenceReport(true)
+    }
+    else if(path == '/controldashbord'){
+      makeAllclose()
+      setControls(true)
+      setControlsdashbord(true)
+    }
+    else if(path == '/controlreport'){
+      makeAllclose()
+      setControls(true)
+      setControlsReport(true)
     }
     else {
       makeAllclose()
@@ -291,6 +349,85 @@ const ApplicationAppBar = (props) => {
   const handleManagerDashbord = () => {
     setManagerdashbord(!managerdashbord);
   };
+
+
+  const handleBasisReport = () => {
+    setBasisReport(!basisreport);
+  };
+
+  const handleBasis = () => {
+    setBasis(!basis);
+    setBasisReport(!basis);
+    setBasisdashbord(!basis);
+  };
+
+  const handleBasisDashbord = () => {
+    setBasisdashbord(!basisdashbord);
+  };
+
+
+  const handleSecurityReport = () => {
+    setSecurityReport(!securityreport);
+  };
+
+  const handleSecurity = () => {
+    setSecurity(!security);
+    setSecurityReport(!security);
+    setSecuritydashbord(!security);
+  };
+
+  const handleSecurityDashbord = () => {
+    setSecuritydashbord(!securitydashbord);
+  };
+
+
+
+  const handleUsersReport = () => {
+    setUsersReport(!usersreport);
+  };
+
+  const handleUsers = () => {
+    setUsers(!users);
+    setUsersReport(!users);
+    setUsersdashbord(!users);
+  };
+
+  const handleUsersDashbord = () => {
+    setUsersdashbord(!usersdashbord);
+  };
+
+
+  
+  const handleHanaReport = () => {
+    setHanaReport(!hanareport);
+  };
+
+  const handleHana = () => {
+    setHana(!hana);
+    setHanaReport(!hana);
+    setHanadashbord(!hana);
+  };
+
+  const handleHanaDashbord = () => {
+    setHanadashbord(!hanadashbord);
+  };
+
+
+  
+  const handleMiscReport = () => {
+    setMiscReport(!miscreport);
+  };
+
+  const handleMisc = () => {
+    setMisc(!misc);
+    setMiscReport(!misc);
+    setMiscdashbord(!misc);
+  };
+
+  const handleMiscDashbord = () => {
+    setMiscdashbord(!miscdashbord);
+  };
+
 
 
 
@@ -398,7 +535,7 @@ const ApplicationAppBar = (props) => {
 
             <Collapse in={grc} timeout="auto" unmountOnExit>
               <List component="div" disablePadding >
-                <ListItem button className={classes.nested} style={{ marginLeft: 15 }} onClick={handleDashbord}>
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleDashbord}>
                   <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Dashbord</Typography>} />
                   {dashbord ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
@@ -406,7 +543,7 @@ const ApplicationAppBar = (props) => {
                 <Collapse in={dashbord} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     <Link style={{ color: 'white' }} to={'/grcdashbord'} onClick={toggleDrawer(false)}>
-                      <ListItem button className={pathname == '/grcdashbord' || pathname == '/' ? classes.selecteditme : classes.nested} style={{ marginLeft: 30 }}>
+                      <ListItem button className={pathname == '/grcdashbord' || pathname == '/' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
                         <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>GRC Dashbord</Typography>} />
                       </ListItem>
                     </Link>
@@ -414,7 +551,7 @@ const ApplicationAppBar = (props) => {
                 </Collapse>
 
 
-                <ListItem button className={classes.nested} style={{ marginLeft: 15 }} onClick={handleReport} >
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleReport} >
                   
                   <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Report</Typography>} />
                   {report ? <ExpandLess /> : <ExpandMore />}
@@ -423,13 +560,13 @@ const ApplicationAppBar = (props) => {
                 <Collapse in={report} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     <Link style={{ color: 'white' }} to={'/grcreport'} onClick={toggleDrawer(false)}>
-                      <ListItem button className={pathname == '/grcreport' ? classes.selecteditme : classes.nested} style={{ marginLeft: 30 }}>
+                      <ListItem button className={pathname == '/grcreport' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
                   
                         <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>GRC Report</Typography>} />
                       </ListItem>
                     </Link>
                     <Link style={{ color: 'white' }} to={'/grcrisktechviewreport'} onClick={toggleDrawer(false)}>
-                      <ListItem button className={pathname == '/grcrisktechviewreport' ? classes.selecteditme : classes.nested} style={{ marginLeft: 30 }}>
+                      <ListItem button className={pathname == '/grcrisktechviewreport' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
                   
                         <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>GRC Risk Bus/Tech View</Typography>} />
                       </ListItem>
@@ -453,7 +590,7 @@ const ApplicationAppBar = (props) => {
 
             <Collapse in={license} timeout="auto" unmountOnExit>
               <List component="div" disablePadding >
-                <ListItem button className={classes.nested} style={{ marginLeft: 15 }} onClick={handleLicenseDashbord}>
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleLicenseDashbord}>
                   {/* <ListItemIcon className={classes.ItemIcon} >
                     <LineStyleIcon className={classes.IconColorchild} />
                   </ListItemIcon> */}
@@ -464,7 +601,7 @@ const ApplicationAppBar = (props) => {
                 <Collapse in={licenceDashbord} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     <Link style={{ color: 'white' }} to={'/licensedashbord'} onClick={toggleDrawer(false)}>
-                      <ListItem button className={pathname == '/licensedashbord' ? classes.selecteditme : classes.nested} style={{ marginLeft: 30 }}>
+                      <ListItem button className={pathname == '/licensedashbord' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
                      
                         <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>License Dashbord</Typography>} />
                       </ListItem>
@@ -473,7 +610,7 @@ const ApplicationAppBar = (props) => {
                 </Collapse>
 
 
-                <ListItem button className={classes.nested} style={{ marginLeft: 15 }} onClick={handleLicenseReport} >
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleLicenseReport} >
               
                   <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Report</Typography>} />
                   {licencereport ? <ExpandLess /> : <ExpandMore />}
@@ -482,7 +619,7 @@ const ApplicationAppBar = (props) => {
                 <Collapse in={licencereport} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     <Link style={{ color: 'white' }} to={'/licensereport'} onClick={toggleDrawer(false)}>
-                      <ListItem button className={pathname == '/licensereport' ? classes.selecteditme : classes.nested} style={{ marginLeft: 30 }}>
+                      <ListItem button className={pathname == '/licensereport' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
                  
                         <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>License Report</Typography>} />
                       </ListItem>
@@ -507,15 +644,15 @@ const ApplicationAppBar = (props) => {
 
             <Collapse in={controls} timeout="auto" unmountOnExit>
               <List component="div" disablePadding >
-                <ListItem button className={classes.nested} style={{ marginLeft: 15 }} onClick={handleControlDashbord}>
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleControlDashbord}>
                   <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Dashbord</Typography>} />
                   {controlsdashbord ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
 
-                <Collapse in={false} timeout="auto" unmountOnExit>
+                <Collapse in={controlsdashbord} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
-                    <Link style={{ color: 'white' }} to={'/licensedashbord'} onClick={toggleDrawer(false)}>
-                      <ListItem button className={pathname == '/licensedashbord' ? classes.selecteditme : classes.nested} style={{ marginLeft: 30 }}>
+                    <Link style={{ color: 'white' }} to={'/controldashbord'} onClick={toggleDrawer(false)}>
+                      <ListItem button className={pathname == '/controldashbord' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
                      
                         <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Controls Dashbord</Typography>} />
                       </ListItem>
@@ -524,16 +661,16 @@ const ApplicationAppBar = (props) => {
                 </Collapse>
 
 
-                <ListItem button className={classes.nested} style={{ marginLeft: 15 }} onClick={handleControlReport} >
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleControlReport} >
               
                   <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Report</Typography>} />
                   {controlsreport ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
 
-                <Collapse in={false} timeout="auto" unmountOnExit>
+                <Collapse in={controlsreport} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
-                    <Link style={{ color: 'white' }} to={'/licensereport'} onClick={toggleDrawer(false)}>
-                      <ListItem button className={pathname == '/licensereport' ? classes.selecteditme : classes.nested} style={{ marginLeft: 30 }}>
+                    <Link style={{ color: 'white' }} to={'/controlreport'} onClick={toggleDrawer(false)}>
+                      <ListItem button className={pathname == '/controlreport' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
                  
                         <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Controls Report</Typography>} />
                       </ListItem>
@@ -556,7 +693,7 @@ const ApplicationAppBar = (props) => {
 
             <Collapse in={auditor} timeout="auto" unmountOnExit>
               <List component="div" disablePadding >
-                <ListItem button className={classes.nested} style={{ marginLeft: 15 }} onClick={handleAuditorDashbord}>
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleAuditorDashbord}>
                   <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Dashbord</Typography>} />
                   {auditordashbord ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
@@ -564,7 +701,7 @@ const ApplicationAppBar = (props) => {
                 <Collapse in={false} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     <Link style={{ color: 'white' }} to={'/licensedashbord'} onClick={toggleDrawer(false)}>
-                      <ListItem button className={pathname == '/licensedashbord' ? classes.selecteditme : classes.nested} style={{ marginLeft: 30 }}>
+                      <ListItem button className={pathname == '/licensedashbord' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
                      
                         <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Controls Dashbord</Typography>} />
                       </ListItem>
@@ -573,7 +710,7 @@ const ApplicationAppBar = (props) => {
                 </Collapse>
 
 
-                <ListItem button className={classes.nested} style={{ marginLeft: 15 }} onClick={handleAuditorReport} >
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleAuditorReport} >
               
                   <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Report</Typography>} />
                   {auditorreport ? <ExpandLess /> : <ExpandMore />}
@@ -582,7 +719,7 @@ const ApplicationAppBar = (props) => {
                 <Collapse in={false} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     <Link style={{ color: 'white' }} to={'/licensereport'} onClick={toggleDrawer(false)}>
-                      <ListItem button className={pathname == '/licensereport' ? classes.selecteditme : classes.nested} style={{ marginLeft: 30 }}>
+                      <ListItem button className={pathname == '/licensereport' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
                  
                         <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Controls Report</Typography>} />
                       </ListItem>
@@ -605,7 +742,7 @@ const ApplicationAppBar = (props) => {
 
             <Collapse in={manager} timeout="auto" unmountOnExit>
               <List component="div" disablePadding >
-                <ListItem button className={classes.nested} style={{ marginLeft: 15 }} onClick={handleManagerDashbord}>
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleManagerDashbord}>
                   <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Dashbord</Typography>} />
                   {managerdashbord ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
@@ -613,7 +750,7 @@ const ApplicationAppBar = (props) => {
                 <Collapse in={false} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     <Link style={{ color: 'white' }} to={'/licensedashbord'} onClick={toggleDrawer(false)}>
-                      <ListItem button className={pathname == '/licensedashbord' ? classes.selecteditme : classes.nested} style={{ marginLeft: 30 }}>
+                      <ListItem button className={pathname == '/licensedashbord' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
                      
                         <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Controls Dashbord</Typography>} />
                       </ListItem>
@@ -622,7 +759,7 @@ const ApplicationAppBar = (props) => {
                 </Collapse>
 
 
-                <ListItem button className={classes.nested} style={{ marginLeft: 15 }} onClick={handleManagerReport} >
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleManagerReport} >
               
                   <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Report</Typography>} />
                   {managerreport ? <ExpandLess /> : <ExpandMore />}
@@ -631,7 +768,7 @@ const ApplicationAppBar = (props) => {
                 <Collapse in={false} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     <Link style={{ color: 'white' }} to={'/licensereport'} onClick={toggleDrawer(false)}>
-                      <ListItem button className={pathname == '/licensereport' ? classes.selecteditme : classes.nested} style={{ marginLeft: 30 }}>
+                      <ListItem button className={pathname == '/licensereport' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
                  
                         <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Controls Report</Typography>} />
                       </ListItem>
@@ -643,6 +780,247 @@ const ApplicationAppBar = (props) => {
           </List>
 :null}
 
+
+{isValid('6')?
+          <List>
+            <ListItem button key='DashBord' button onClick={handleBasis} className={classes.nested}>
+              <ListItemIcon className={classes.ItemIcon} ><DashboardIcon className={classes.IconColor} /></ListItemIcon>
+              <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentext}>Basis</Typography>} />
+              {basis ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+
+            <Collapse in={basis} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding >
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleBasisDashbord}>
+                  <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Dashbord</Typography>} />
+                  {basisdashbord ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
+
+                <Collapse in={false} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <Link style={{ color: 'white' }} to={'/licensedashbord'} onClick={toggleDrawer(false)}>
+                      <ListItem button className={pathname == '/licensedashbord' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
+                     
+                        <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Controls Dashbord</Typography>} />
+                      </ListItem>
+                    </Link>
+                  </List>
+                </Collapse>
+
+
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleBasisReport} >
+              
+                  <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Report</Typography>} />
+                  {basisreport ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
+
+                <Collapse in={false} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <Link style={{ color: 'white' }} to={'/licensereport'} onClick={toggleDrawer(false)}>
+                      <ListItem button className={pathname == '/licensereport' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
+                 
+                        <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Controls Report</Typography>} />
+                      </ListItem>
+                    </Link>
+                  </List>
+                </Collapse>
+              </List>
+            </Collapse>
+          </List>
+:null}
+
+
+
+{isValid('7')?
+          <List>
+            <ListItem button key='DashBord' button onClick={handleSecurity} className={classes.nested}>
+              <ListItemIcon className={classes.ItemIcon} ><DashboardIcon className={classes.IconColor} /></ListItemIcon>
+              <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentext}>Security</Typography>} />
+              {security ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+
+            <Collapse in={security} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding >
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleSecurityDashbord}>
+                  <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Dashbord</Typography>} />
+                  {securitydashbord ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
+
+                <Collapse in={false} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <Link style={{ color: 'white' }} to={'/licensedashbord'} onClick={toggleDrawer(false)}>
+                      <ListItem button className={pathname == '/licensedashbord' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
+                     
+                        <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Controls Dashbord</Typography>} />
+                      </ListItem>
+                    </Link>
+                  </List>
+                </Collapse>
+
+
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleSecurityReport} >
+              
+                  <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Report</Typography>} />
+                  {securityreport ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
+
+                <Collapse in={false} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <Link style={{ color: 'white' }} to={'/licensereport'} onClick={toggleDrawer(false)}>
+                      <ListItem button className={pathname == '/licensereport' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
+                 
+                        <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Controls Report</Typography>} />
+                      </ListItem>
+                    </Link>
+                  </List>
+                </Collapse>
+              </List>
+            </Collapse>
+          </List>
+:null}
+{isValid('8')?
+          <List>
+            <ListItem button key='DashBord' button onClick={handleUsers} className={classes.nested}>
+              <ListItemIcon className={classes.ItemIcon} ><DashboardIcon className={classes.IconColor} /></ListItemIcon>
+              <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentext}>Users</Typography>} />
+              {users ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+
+            <Collapse in={users} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding >
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleUsersDashbord}>
+                  <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Dashbord</Typography>} />
+                  {securitydashbord ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
+
+                <Collapse in={false} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <Link style={{ color: 'white' }} to={'/licensedashbord'} onClick={toggleDrawer(false)}>
+                      <ListItem button className={pathname == '/licensedashbord' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
+                     
+                        <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Controls Dashbord</Typography>} />
+                      </ListItem>
+                    </Link>
+                  </List>
+                </Collapse>
+
+
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleUsersReport} >
+              
+                  <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Report</Typography>} />
+                  {usersreport ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
+
+                <Collapse in={false} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <Link style={{ color: 'white' }} to={'/licensereport'} onClick={toggleDrawer(false)}>
+                      <ListItem button className={pathname == '/licensereport' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
+                 
+                        <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Controls Report</Typography>} />
+                      </ListItem>
+                    </Link>
+                  </List>
+                </Collapse>
+              </List>
+            </Collapse>
+          </List>
+:null}
+
+{isValid('9')?
+          <List>
+            <ListItem button key='DashBord' button onClick={handleHana} className={classes.nested}>
+              <ListItemIcon className={classes.ItemIcon} ><DashboardIcon className={classes.IconColor} /></ListItemIcon>
+              <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentext}>Hana</Typography>} />
+              {hana ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+
+            <Collapse in={users} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding >
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleHanaDashbord}>
+                  <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Dashbord</Typography>} />
+                  {hanadashbord ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
+
+                <Collapse in={false} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <Link style={{ color: 'white' }} to={'/licensedashbord'} onClick={toggleDrawer(false)}>
+                      <ListItem button className={pathname == '/licensedashbord' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
+                     
+                        <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Controls Dashbord</Typography>} />
+                      </ListItem>
+                    </Link>
+                  </List>
+                </Collapse>
+
+
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleHanaReport} >
+              
+                  <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Report</Typography>} />
+                  {hanareport ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
+
+                <Collapse in={false} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <Link style={{ color: 'white' }} to={'/licensereport'} onClick={toggleDrawer(false)}>
+                      <ListItem button className={pathname == '/licensereport' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
+                 
+                        <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Controls Report</Typography>} />
+                      </ListItem>
+                    </Link>
+                  </List>
+                </Collapse>
+              </List>
+            </Collapse>
+          </List>
+:null}
+
+{isValid('10')?
+          <List>
+            <ListItem button key='DashBord' button onClick={handleMisc} className={classes.nested}>
+              <ListItemIcon className={classes.ItemIcon} ><DashboardIcon className={classes.IconColor} /></ListItemIcon>
+              <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentext}>Misc</Typography>} />
+              {misc ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+
+            <Collapse in={users} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding >
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleMiscDashbord}>
+                  <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Dashbord</Typography>} />
+                  {miscdashbord ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
+
+                <Collapse in={false} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <Link style={{ color: 'white' }} to={'/licensedashbord'} onClick={toggleDrawer(false)}>
+                      <ListItem button className={pathname == '/licensedashbord' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
+                     
+                        <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Controls Dashbord</Typography>} />
+                      </ListItem>
+                    </Link>
+                  </List>
+                </Collapse>
+
+
+                <ListItem button className={classes.nested} style={{ paddingLeft: 30 }} onClick={handleMiscReport} >
+              
+                  <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Report</Typography>} />
+                  {miscreport ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
+
+                <Collapse in={false} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <Link style={{ color: 'white' }} to={'/licensereport'} onClick={toggleDrawer(false)}>
+                      <ListItem button className={pathname == '/licensereport' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
+                 
+                        <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Controls Report</Typography>} />
+                      </ListItem>
+                    </Link>
+                  </List>
+                </Collapse>
+              </List>
+            </Collapse>
+          </List>
+:null}
 
 
           <Divider />

@@ -15,6 +15,8 @@ import GRCDashbord from './GRCDashBord'
 import GRCReport from './GRCReport'
 import LicenseReport from './LicenseReport'
 import GRCRiskTeccReport from './GRCRiskTeccReport'
+import ControlDashbord from './ControlDashbord'
+import ControlReport from './ControlReport'
 
 
 
@@ -31,9 +33,11 @@ class Home extends Component {
        let routes=( 
             <Switch>
            <Route path='/grcdashbord' exact  component={GRCDashbord}/>
-           <Route path='/' exact component={GRCDashbord}/>
+           <Route path='/' exact component={ControlDashbord}/>
            <Route path='/grcreport' exact  component={GRCReport}/>
            <Route path='/licensedashbord' exact  component={LicenseDashbord}/>
+           <Route path='/controldashbord' exact  component={ControlDashbord}/>
+           <Route path='/controlreport' exact  component={ControlReport}/>
            <Route path='/grcrisktechviewreport' exact  component={GRCRiskTeccReport}/>
            <Route path='/licensereport' exact  component={LicenseReport}/>
            </Switch> 

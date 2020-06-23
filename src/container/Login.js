@@ -28,11 +28,12 @@ class Login extends Component{
 
    changeInClient=(value)=>{
     let clientSelected=this.props.systemConfig.systemConf[this.props.systemConfig.selectedSys].filter(param=>param.client===value)[0]
-    this.props.onchangeClient(value,clientSelected.ipAddress);
+   console.log(clientSelected)
+    this.props.onchangeClient(value,clientSelected.ipAddress,clientSelected.instanse);
    }
    onLogin=()=>{
        this.props.onLogin(this.props.username,this.props.password,this.props.systemConfig.selectedSys,
-        this.props.systemConfig.selectedClient,this.props.systemConfig.selectedIP)
+        this.props.systemConfig.selectedClient,this.props.systemConfig.selectedIP,this.props.systemConfig.selectedinstanse)
    }
 
     render(){
@@ -82,9 +83,9 @@ const mapStateToProps=state=>{    //this methos use to retrive state from redux 
 
 const mapDispatchToProps=dispatch=>{ // this methos used for dispatch action to reducer
     return{
-     onLogin:(username,password,system,client,ip)=>dispatch(action.onLogin(username,password,system,client,ip)),
+     onLogin:(username,password,system,client,ip,instanse)=>dispatch(action.onLogin(username,password,system,client,ip,instanse)),
      onchangeSystem:(value,data)=>dispatch(action.onchangeSystem(value,data)),
-     onchangeClient:(client,ip)=>dispatch(action.onchangeClient(client,ip)),
+     onchangeClient:(client,ip,instanse)=>dispatch(action.onchangeClient(client,ip,instanse)),
      onchangeUsername:(value)=>dispatch(action.onchangeUserName(value)),
      onchangePassword:(value)=>dispatch(action.onchangePassword(value)),
      onStart:()=>dispatch(action.fetchDefaultData())

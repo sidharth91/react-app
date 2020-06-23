@@ -9,7 +9,7 @@ export const initLicenseFilter = (token) => {
         dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: true })
         axios.get('http://localhost:8080/api/licensefilter', { headers: { 'Authorisation': token } })
             .then(response => {
-                dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: true })
+                dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: false })
                 dispatch(initiateLicenseFilter(response.data));
               
             })

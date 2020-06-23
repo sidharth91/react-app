@@ -4,3 +4,5 @@ export {updatePathname,authorization} from './sidebar'
 
 export {initLicenseFilter,changeLicenceFilter,changelogon,changecount,changeendDate,changestartDate,changeuserId,submitLicenceFilter,licenceReport,licenceTableReport,clearLicanceTableReport} from './licenseaction'
 
+export {initControlFilter,changeControlFilter,submitcontrolFilter,submitcontrolReportFilter} from './controlaction'
+
