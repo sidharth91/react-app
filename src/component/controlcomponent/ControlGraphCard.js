@@ -252,8 +252,8 @@ const GRCGraphCard = (props) => {
             activeIndex={activeIndex}
             activeShape={renderActiveShape}
             data={data}
-            innerRadius={35}
-            outerRadius={55}
+            innerRadius={50}
+            outerRadius={70}
             dataKey="ZCOUNT1"
             onMouseEnter={onPieEnter}
             onClick={(data) => getData(data)}
@@ -641,7 +641,7 @@ const GRCGraphCard = (props) => {
 
   return (
     <div>
-      <Card className={classes.root} elevation='5' style={{ height: "36vh" }}>
+      <Card className={classes.root} elevation='5' style={{ height: "37vh" }}>
         <CardContent style={{ padding: 2, marginRight: 6,marginLeft:6, height: '85%' }}>
           {firctChart}
         </CardContent>

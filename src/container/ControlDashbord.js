@@ -11,12 +11,13 @@ import HeaderContainer from './HeaderContainer'
 import SideBar from './SideBar'
 import ControlFilter from '../component/controlcomponent/ControlFilter'
 import ControlFirstSection from '../component/controlcomponent/ControlFirstSection'
-import ControlSecondSection from '../component/controlcomponent/ControlSecondSection'
+import ControlThirdSection from '../component/controlcomponent/ControlThirdSection'
+import ControlSecondSecData from '../component/controlcomponent/ControlSecondSecData'
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import LicenseSecondSecData from '../component/licensecomponent/LicenseSecondSecData'
 import LicenceThirdSection from '../component/licensecomponent/LicenceThirdSection'
 import Loader from '../component/Loader'
-import LicenceDragableDialogue from './LicenceDragableDialogue'
+import ControlsDraggableDialog from './ControlDragableDialogue'
 
 
 
@@ -39,7 +40,7 @@ class LicenseDashbord extends Component {
         this.setState({dialogue:true,groupby:groupby,chart:chart})
    }
    closeDialogue=()=>{
-       this.props.clearLicanceTableReport()
+       this.props.clearControlTableReport()
        this.setState({dialogue:false,groupby:'',chart:''})
   }
 
@@ -53,10 +54,12 @@ class LicenseDashbord extends Component {
                 <Grid item md={12}>
                 {this.props.sapSystem.value.length>0?<ControlFilter type='Dashbord' />:null}
                 <ControlFirstSection dialogueOpen={this.openDialogue}/>
-                <ControlSecondSection dialogueOpen={this.openDialogue}/>
+                <ControlSecondSecData result={this.props.controlresult}/>
+                <ControlThirdSection dialogueOpen={this.openDialogue}/>
                 {this.props.loader?<Loader/>:null}
+                {this.state.dialogue?<ControlsDraggableDialog dialogueState={this.state.dialogue} groupby={this.state.groupby} chart={this.state.chart} closeDialogue={this.closeDialogue}/>:null}
                     {/* <LicenceFirstSection dialogueOpen={this.openDialogue}/>
-                    <LicenseSecondSecData result={this.props.licenseresult}/>
+                    <ControlSecondSecData result={this.props.licenseresult}/>
                     <LicenceThirdSection result={this.props.licenseresult} dialogueOpen={this.openDialogue}/>
                     {this.props.loader?<Loader/>:null}
                     {this.state.dialogue?<LicenceDragableDialogue dialogueState={this.state.dialogue} groupby={this.state.groupby} chart={this.state.chart} closeDialogue={this.closeDialogue}/>:null} */}
@@ -82,7 +85,7 @@ const mapDispatchToProps = dispatch => { // this methos used for dispatch action
     return {
         loadFilter: (token) => dispatch(action.initControlFilter(token)),
         updatePathname: (value) => dispatch(action.updatePathname(value)),
-        clearLicanceTableReport:()=>dispatch(action.clearLicanceTableReport())
+        clearControlTableReport:()=>dispatch(action.clearControlTableReport())
     };
 }
 

@@ -453,6 +453,12 @@ const ApplicationAppBar = (props) => {
     if(pathname == '/licensedashbord'){
       return 'AuditBOT License Dashbord';
     }
+     if(pathname == '/licensereport'){
+      return 'AuditBOT Controls Report';
+    }
+     if(pathname == '/controldashbord'){
+      return 'AuditBOT Controls Dashbord';
+    }
     return 'AuditBOT GRC Dashbord';
 
   }

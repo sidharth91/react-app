@@ -135,11 +135,41 @@ export const submitcontrolReportFilter = (token, sapSystem, client, control) => 
         }, { headers: { 'Authorisation': token } })
             .then(response => {
                 dispatch({ type: actionType.CHANGE_CONTROLLOADER_STATUS, data: false })
-                dispatch({ type: actionType.UPDATE_CONTROLREPORT_RESULT, data: response.data })
+                dispatch({ type: actionType.UPDATE_CONTROLREPORTTABLE_RESULT, data: response.data })
+            })
+            .catch(error => {
+                dispatch({ type: actionType.CHANGE_CONTROLLOADER_STATUS, data: false })
+                console.log(error)
+            });
+    }
+
+}
+
+
+
+
+export const submitcontrolReportFilterDialogue = (token, sapSystem, client, control) => {
+
+    return dispatch => {
+        dispatch({ type: actionType.CHANGE_CONTROLLOADER_STATUS, data: true })
+        axios.post('http://localhost:8080/api/JAVA_0009', {
+            sapSystem: sapSystem,
+            client: client,
+            control: control
+        }, { headers: { 'Authorisation': token } })
+            .then(response => {
+                dispatch({ type: actionType.CHANGE_CONTROLLOADER_STATUS, data: false })
+                dispatch({ type: actionType.UPDATE_CONTROLREPORTTABLE_RESULT, data: response.data })
             })
             .catch(error => {
                 console.log(error)
             });
     }
 
+}
+
+export const clearControlTableReport=()=>{
+    return dispatch => {
+        dispatch({ type: actionType.UPDATE_CONTROLREPORTTABLE_RESULT, data: {} })
+    }
 }
