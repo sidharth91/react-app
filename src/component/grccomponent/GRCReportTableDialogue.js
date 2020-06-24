@@ -353,7 +353,7 @@ const GRCReportTableDialogue=(props)=> {
                       <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT3}</TableCell>
                       <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT1}</TableCell>
                       <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT2}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT0}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT}</TableCell>
                     </TableRow>
                   );
                 })}

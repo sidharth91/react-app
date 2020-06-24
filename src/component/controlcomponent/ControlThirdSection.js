@@ -55,16 +55,16 @@ class LicenceThirdSection extends Component {
             <Grid container style={{marginTop:5}} spacing={1}>
            
                 <Grid item  md={3} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <ControlGraphCard chart='05' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_01.data} name="Total License Count/Cost"  chartType={1} dialogueOpen={this.props.dialogueOpen} chartId="SEC31" /> :null}
+                   {isDataReadtToShow? <ControlGraphCard chart='05' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_01.data} name="Top Duplicate Customer Orders"  chartType={1} dialogueOpen={this.props.dialogueOpen} chartId="SEC31" /> :null}
                 </Grid>
                 <Grid item md={3} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <ControlGraphCard chart='06' stack={false} color={this.props.colors}  data={this.props.result.E_RESULT_01.data} name="Top Prof user with doc" chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC32" /> :null}
+                   {isDataReadtToShow? <ControlGraphCard chart='06' stack={false} color={this.props.colors}  data={this.props.result.E_RESULT_01.data} name="Top Customers With High Debts" chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC32" /> :null}
                 </Grid>
                 <Grid item md={3} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <ControlGraphCard chart='07' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_01.data} name="Top Users with indirect Usage"  chartType={3}  dialogueOpen={this.props.dialogueOpen} chartId="SEC32"/> :null}
+                   {isDataReadtToShow? <ControlGraphCard chart='07' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_01.data} name="Top Onetime Customers With Orders"  chartType={3}  dialogueOpen={this.props.dialogueOpen} chartId="SEC32"/> :null}
                 </Grid>
                 <Grid item md={3} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <ControlGraphCard chart='08' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_01.data} name="Top Users with Multiple Logon" chartType={1}  dialogueOpen={this.props.dialogueOpen} chartId="SEC34"/> :null}
+                   {isDataReadtToShow? <ControlGraphCard chart='08' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_01.data} name="Top Customers With High Credit Balances" chartType={1}  dialogueOpen={this.props.dialogueOpen} chartId="SEC34"/> :null}
                 </Grid>
               
               

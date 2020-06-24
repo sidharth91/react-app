@@ -17,6 +17,7 @@ import LicenseReport from './LicenseReport'
 import GRCRiskTeccReport from './GRCRiskTeccReport'
 import ControlDashbord from './ControlDashbord'
 import ControlReport from './ControlReport'
+import ControlSummaryReport from './ControlSummaryReport'
 
 
 
@@ -38,6 +39,7 @@ class Home extends Component {
            <Route path='/licensedashbord' exact  component={LicenseDashbord}/>
            <Route path='/controldashbord' exact  component={ControlDashbord}/>
            <Route path='/controlreport' exact  component={ControlReport}/>
+           <Route path='/controlsummaryreport' exact  component={ControlSummaryReport}/>
            <Route path='/grcrisktechviewreport' exact  component={GRCRiskTeccReport}/>
            <Route path='/licensereport' exact  component={LicenseReport}/>
            </Switch> 

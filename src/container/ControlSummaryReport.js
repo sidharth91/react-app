@@ -9,14 +9,13 @@ import Grid from '@material-ui/core/Grid';
 
 
 import Loader from '../component/Loader'
-import GRCDragableDialogue from './GRCDragableDialogue'
-import MUControlReportTable from '../component/controlcomponent/MUControlReportTable'
+import MUSummaryControlReportTable from '../component/controlcomponent/MUSummaryControlReportTable'
 import Typography from '@material-ui/core/Typography';
 import ControlFilter from '../component/controlcomponent/ControlFilter'
 
 
 
-class GRCReport extends Component {
+class ControlSummaryReport extends Component {
 
     componentDidMount() {
         const {pathname} = this.props.location;
@@ -35,10 +34,10 @@ class GRCReport extends Component {
         return (
             <Grid container style={{ marginTop:5,paddingRight:10,paddingLeft:10 }} spacing={0}>
                  <Grid item md={12} style={{margin:5}}>
-                 {this.props.sapSystem.value.length>0?<ControlFilter type='Report' />:null}
+                 {this.props.sapSystem.value.length>0?<ControlFilter type='Summary' />:null}
                     {/* {Object.keys(this.props.grcreport).length>0?<GRCReportTable colors={this.props.colors} header={this.props.grcreport.header} data={this.props.grcreport.data}/>:null} */}
-                      {Object.keys(this.props.controlreport).length>0 && this.props.controlreport.data.length>0?<MUControlReportTable colors={this.props.colors} header={this.props.controlreport.header} data={this.props.controlreport.data}/>:null}
-                      {Object.keys(this.props.controlreport).length>0 && this.props.controlreport.data.length<1?
+                      {Object.keys(this.props.controlsummaryreport).length>0 && this.props.controlsummaryreport.data.length>0?<MUSummaryControlReportTable colors={this.props.colors} header={this.props.controlsummaryreport.header} data={this.props.controlsummaryreport.data}/>:null}
+                      {Object.keys(this.props.controlsummaryreport).length>0 && this.props.controlsummaryreport.data.length<1?
                        <Grid container style={{ marginTop:5,paddingRight:10,paddingLeft:10}} spacing={0}>
                            <Grid item md={12} style={{margin:5,alignItems:'center'}}>
                       <Typography  variant="subtitle2" color="inherit" style={{}}>
@@ -60,7 +59,7 @@ const mapStateToProps = state => {    //this methos use to retrive state from re
      return {
         token: state.login.token, //state.reducername.value
         loader:state.control.loader,
-        controlreport:state.control.controlreport,
+        controlsummaryreport:state.control.controlsummaryreport,
         colors:state.control.colors,
         sapSystem: state.control.sapSystem,
     };
@@ -73,4 +72,4 @@ const mapDispatchToProps = dispatch => { // this methos used for dispatch action
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GRCReport);//connect which return a HOC taking two parameters which help connect to redux store and component
+export default connect(mapStateToProps, mapDispatchToProps)(ControlSummaryReport);//connect which return a HOC taking two parameters which help connect to redux store and component

@@ -696,7 +696,7 @@ const GRCGraphCard = (props) => {
               </FormControl>
             </Grid>
             <Grid item md={7} style={{margin:'auto'}}>
-              <Typography variant="subtitle2" style={{ fontFamily: 'Helvetica', fontSize: props.chart == '01' || props.chart == '04' ? 14 : 12 }}>
+              <Typography variant="subtitle2" style={{ fontFamily: 'Helvetica', fontSize: 14 }}>
                 {props.name}
               </Typography>
 

@@ -6,12 +6,13 @@ const initialState = {
     sapSystem: { "name": "SAP System", "id": 1, "value": [] },
     client: { "name": "Client", "id": 2, "value": [] },
     controls: { "name": "Controls", "id": 21, "value": [] },
-    control: { "name": "Controls", "id": 21, "value": [] },
+    control: { "name": "Controls", "id": 221, "value": [] },
     mitigation: { "name": "Mitigation", "id": 6, "value": [] },
     drillDown: { "name": "Drill Down", "id": 9, "value": [] },
     colors: [],
     controlresult: {},
     controlreport: {},
+    controlsummaryreport: {},
     controltablereport: {},
     loader: false
 }
@@ -45,6 +46,8 @@ const licensereducer = (state = initialState, action) => {
             return { ...state, loader: action.data }
         case actionType.UPDATE_CONTROLREPORT_RESULT:
             return { ...state, controlreport: action.data }
+        case actionType.UPDATE_CONTROLSUMMARYREPORT_RESULT:
+            return { ...state, controlsummaryreport: action.data }
         case actionType.UPDATE_CONTROLREPORTTABLE_RESULT:
             return { ...state, controltablereport: action.data }
 

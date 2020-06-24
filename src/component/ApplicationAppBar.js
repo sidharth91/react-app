@@ -266,6 +266,11 @@ const ApplicationAppBar = (props) => {
       setControls(true)
       setControlsReport(true)
     }
+    else if(path == '/controlsummaryreport'){
+      makeAllclose()
+      setControls(true)
+      setControlsReport(true)
+    }
     else {
       makeAllclose()
       setGrc(true);
@@ -453,11 +458,14 @@ const ApplicationAppBar = (props) => {
     if(pathname == '/licensedashbord'){
       return 'AuditBOT License Dashbord';
     }
-     if(pathname == '/licensereport'){
+     if(pathname == '/controlreport'){
       return 'AuditBOT Controls Report';
     }
      if(pathname == '/controldashbord'){
       return 'AuditBOT Controls Dashbord';
+    }
+    if(pathname=='/controlsummaryreport'){
+      return 'AuditBOT Controls Summary Report';
     }
     return 'AuditBOT GRC Dashbord';
 
@@ -682,6 +690,15 @@ const ApplicationAppBar = (props) => {
                       </ListItem>
                     </Link>
                   </List>
+                  <List component="div" disablePadding>
+                    <Link style={{ color: 'white' }} to={'/controlsummaryreport'} onClick={toggleDrawer(false)}>
+                      <ListItem button className={pathname == '/controlsummaryreport' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 40 }}>
+                 
+                        <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Controls Summary Report</Typography>} />
+                      </ListItem>
+                    </Link>
+                  </List>
+                  
                 </Collapse>
               </List>
             </Collapse>

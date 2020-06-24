@@ -52,7 +52,11 @@ class ControlFilter extends Component {
         if (this.props.type == 'Dashbord') {
             this.props.submitcontrolFilter(this.props.token, this.props.sapSystem.selectedValue,
                 this.props.client.selectedValue, this.props.controls.selectedValue)
-        } else {
+        } else if (this.props.type == 'Summary') {
+            this.props.submitcontrolReportFilterSummary(this.props.token, this.props.sapSystem.selectedValue,
+                this.props.client.selectedValue, this.props.controls.selectedValue)
+        }
+        else {
             this.props.submitcontrolReportFilter(this.props.token, this.props.sapSystem.selectedValue,
                 this.props.client.selectedValue, this.props.control.selectedValue)
         }
@@ -103,18 +107,18 @@ class ControlFilter extends Component {
                             <FilterSingleSelectDropDown values={sapClient} preSelected={this.props.client.selectedValue} changeEventCallBack={this.changeClient} label="Client" width='100' />
                         </Grid>
                         {this.props.type == 'Report' ?
-                         <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
-                         <FilterSingleSelectDropDown values={control} preSelected={this.props.control.selectedValue} changeEventCallBack={this.changeControl} label="Controls" width='100' />
-                     </Grid>
-                        :
+                            <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+                                <FilterSingleSelectDropDown values={control} preSelected={this.props.control.selectedValue} changeEventCallBack={this.changeControl} label="Controls" width='100' />
+                            </Grid>
+                            :
+                            <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+                                <FilterMultiSelectDropDown values={controls} preSelected={this.props.controls.selectedValue} changeEventCallBack={this.changeControls} label="Controls" width='100' />
+                            </Grid>}
                         <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
-                            <FilterMultiSelectDropDown values={controls} preSelected={this.props.controls.selectedValue} changeEventCallBack={this.changeControls} label="Controls" width='100' />
-                        </Grid>}
-                        <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
-                            <FilterSingleSelectDropDown values={mitigation} preSelected={this.props.mitigation.selectedValue} changeEventCallBack={this.changeMitigation} label="Mitigation" width='100' />
+                            {/* <FilterSingleSelectDropDown values={mitigation} preSelected={this.props.mitigation.selectedValue} changeEventCallBack={this.changeMitigation} label="Mitigation" width='100' /> */}
                         </Grid>
                         <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
-                            <FilterSingleSelectDropDown values={drillDown} preSelected={this.props.drillDown.selectedValue} changeEventCallBack={this.changeDrillDown} label="Drill Down" width='100' />
+                            {/*  <FilterSingleSelectDropDown values={drillDown} preSelected={this.props.drillDown.selectedValue} changeEventCallBack={this.changeDrillDown} label="Drill Down" width='100' /> */}
                         </Grid>
 
 
@@ -159,7 +163,9 @@ const mapDispatchToProps = dispatch => { // this methos used for dispatch action
 
         onChangeFilter: (data, value) => dispatch(action.changeControlFilter(data, value)),
         submitcontrolFilter: (token, sapSystem, client, controls) => dispatch(action.submitcontrolFilter(token, sapSystem, client, controls)),
-        submitcontrolReportFilter: (token, sapSystem, client, control) => dispatch(action.submitcontrolReportFilter(token, sapSystem, client, control))
+        submitcontrolReportFilter: (token, sapSystem, client, control) => dispatch(action.submitcontrolReportFilter(token, sapSystem, client, control)),
+        submitcontrolReportFilterSummary: (token, sapSystem, client, controls) => dispatch(action.submitcontrolReportFilterSummary(token, sapSystem, client, controls))
+
     };
 }
 
