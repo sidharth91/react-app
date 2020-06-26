@@ -11,8 +11,13 @@ import * as action from '../Store/actions/index'
 class ControlDragableDialogue extends Component {
 
     componentDidMount() {
+        if(this.props.chart=="SEC31"){
+            this.props.submitcontrolReportFilterSummaryDialogue(this.props.token, this.props.sapSystem.filtered,
+                this.props.client.filtered, [])
+        }else{
         this.props.submitcontrolReportFilterDialogue(this.props.token, this.props.sapSystem.filtered,
             this.props.client.filtered, this.props.groupby)
+        }
     }
         
 
@@ -53,7 +58,9 @@ const mapStateToProps = state => {    //this methos use to retrive state from re
 
 const mapDispatchToProps = dispatch => { // this methos used for dispatch action to reducer
      return {
-        submitcontrolReportFilterDialogue: (token, sapSystem, client, control) => dispatch(action.submitcontrolReportFilter(token, sapSystem, client, control))
+        submitcontrolReportFilterDialogue: (token, sapSystem, client, control) => dispatch(action.submitcontrolReportFilterDialogue(token, sapSystem, client, control)),
+        submitcontrolReportFilterSummaryDialogue: (token, sapSystem, client, control) => dispatch(action.submitcontrolReportFilterSummaryDialogue(token, sapSystem, client, control))
+         
     };
 }
 

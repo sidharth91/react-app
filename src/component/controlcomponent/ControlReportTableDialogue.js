@@ -21,10 +21,11 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
-function createData(data) {
+function createData(data,header) {
   let rowData={}
-  Object.keys(data).forEach(key => { 
-   rowData[key]=data[key];
+  let keys=Object.keys(data);
+  header.forEach((key,index) => { 
+   rowData[keys[index]]=data[keys[index]];
   });
    return rowData;
 }
@@ -232,7 +233,7 @@ const LicenceReportTableDialogue=(props)=> {
 
 }, [props])
 
-  const rows = data.map(p=>createData(p));
+  const rows = data.map(p=>createData(p,props.header));
  headCells=createColumn(props.header,Object.keys(data[0]))
   
 

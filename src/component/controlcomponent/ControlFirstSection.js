@@ -58,7 +58,7 @@ class LicenceThirdSection extends Component {
                    {isDataReadtToShow? <ControlGraphCard chart='01' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_01.data} name="Process Controls Matrix"  chartType={1} dialogueOpen={this.props.dialogueOpen} chartId="SEC31" /> :null}
                 </Grid>
                 <Grid item md={3} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <ControlGraphCard chart='02' stack={false} color={this.props.colors}  data={this.props.result.E_RESULT_01.data} name="Top Duplicate vendorInvoices" chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC32" /> :null}
+                   {isDataReadtToShow? <ControlGraphCard chart='02' stack={false} color={this.props.colors}  data={this.props.result.E_RESULT_01.data} name="Top Duplicate vendor Invoices" chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC32" /> :null}
                 </Grid>
                 <Grid item md={3} style={{paddingTop:0}}>
                    {isDataReadtToShow? <ControlGraphCard chart='03' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_01.data} name="Top OneTime Vendor with Invoices"  chartType={3}  dialogueOpen={this.props.dialogueOpen} chartId="SEC32"/> :null}
