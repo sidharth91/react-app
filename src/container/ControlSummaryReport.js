@@ -12,10 +12,15 @@ import Loader from '../component/Loader'
 import MUSummaryControlReportTable from '../component/controlcomponent/MUSummaryControlReportTable'
 import Typography from '@material-ui/core/Typography';
 import ControlFilter from '../component/controlcomponent/ControlFilter'
-
+import ControlsDraggableDialog from './ControlDragableDialogue'
 
 
 class ControlSummaryReport extends Component {
+    state={
+        dialogue:false,
+        groupby:'',
+        chart:''
+    }
 
     componentDidMount() {
         const {pathname} = this.props.location;
@@ -24,10 +29,14 @@ class ControlSummaryReport extends Component {
     }
 
  
-    openDialogue=(type,ztype)=>{
-         
-    }
-
+    openDialogue=(chart,groupby)=>{
+        console.log("reached parents"+groupby)
+        this.setState({dialogue:true,groupby:groupby,chart:chart})
+   }
+   closeDialogue=()=>{
+       this.props.clearControlTableReport()
+       this.setState({dialogue:false,groupby:'',chart:''})
+   }
     render() {
 
 
@@ -36,7 +45,7 @@ class ControlSummaryReport extends Component {
                  <Grid item md={12} style={{margin:5}}>
                  {this.props.sapSystem.value.length>0?<ControlFilter type='Summary' />:null}
                     {/* {Object.keys(this.props.grcreport).length>0?<GRCReportTable colors={this.props.colors} header={this.props.grcreport.header} data={this.props.grcreport.data}/>:null} */}
-                      {Object.keys(this.props.controlsummaryreport).length>0 && this.props.controlsummaryreport.data.length>0?<MUSummaryControlReportTable colors={this.props.colors} header={this.props.controlsummaryreport.header} data={this.props.controlsummaryreport.data}/>:null}
+                      {Object.keys(this.props.controlsummaryreport).length>0 && this.props.controlsummaryreport.data.length>0?<MUSummaryControlReportTable colors={this.props.colors} header={this.props.controlsummaryreport.header} data={this.props.controlsummaryreport.data} openDialogue={this.openDialogue}/>:null}
                       {Object.keys(this.props.controlsummaryreport).length>0 && this.props.controlsummaryreport.data.length<1?
                        <Grid container style={{ marginTop:5,paddingRight:10,paddingLeft:10}} spacing={0}>
                            <Grid item md={12} style={{margin:5,alignItems:'center'}}>
@@ -46,6 +55,7 @@ class ControlSummaryReport extends Component {
                         </Grid>
                         </Grid>:null}
                     {this.props.loader?<Loader/>:null}
+                    {this.state.dialogue?<ControlsDraggableDialog dialogueState={this.state.dialogue} groupby={this.state.groupby} chart={this.state.chart} closeDialogue={this.closeDialogue}/>:null}
                     </Grid >
              </Grid>
 
@@ -68,7 +78,8 @@ const mapStateToProps = state => {    //this methos use to retrive state from re
 const mapDispatchToProps = dispatch => { // this methos used for dispatch action to reducer
      return {
         loadFilter: (token) => dispatch(action.initControlFilter(token)),
-        updatePathname:(value)=>dispatch(action.updatePathname(value))
+        updatePathname:(value)=>dispatch(action.updatePathname(value)),
+        clearControlTableReport:()=>dispatch(action.clearControlTableReport())
     };
 }
 

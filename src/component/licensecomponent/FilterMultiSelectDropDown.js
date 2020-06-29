@@ -73,6 +73,7 @@ const MenuProps = {
 
     
     const MenuItems=props.values.map((v) => (
+      
         <MenuItem key={v.key} value={v.value} style={{padding:0}} >
           <Checkbox size="small" style={{padding:0,paddingRight:3}} checked={selected.indexOf(v.value) > -1} />
           <ListItemText

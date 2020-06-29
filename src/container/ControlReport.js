@@ -16,7 +16,10 @@ import ControlFilter from '../component/controlcomponent/ControlFilter'
 
 
 
+
 class GRCReport extends Component {
+    
+
 
     componentDidMount() {
         const {pathname} = this.props.location;
@@ -25,9 +28,6 @@ class GRCReport extends Component {
     }
 
  
-    openDialogue=(type,ztype)=>{
-         
-    }
 
     render() {
 
@@ -37,7 +37,7 @@ class GRCReport extends Component {
                  <Grid item md={12} style={{margin:5}}>
                  {this.props.sapSystem.value.length>0?<ControlFilter type='Report' />:null}
                     {/* {Object.keys(this.props.grcreport).length>0?<GRCReportTable colors={this.props.colors} header={this.props.grcreport.header} data={this.props.grcreport.data}/>:null} */}
-                      {Object.keys(this.props.controlreport).length>0 && this.props.controlreport.data.length>0?<MUControlReportTable colors={this.props.colors} header={this.props.controlreport.header} data={this.props.controlreport.data}/>:null}
+                      {Object.keys(this.props.controlreport).length>0 && this.props.controlreport.data.length>0?<MUControlReportTable colors={this.props.colors} header={this.props.controlreport.header} data={this.props.controlreport.data} />:null}
                       {Object.keys(this.props.controlreport).length>0 && this.props.controlreport.data.length<1?
                        <Grid container style={{ marginTop:5,paddingRight:10,paddingLeft:10}} spacing={0}>
                            <Grid item md={12} style={{margin:5,alignItems:'center'}}>
@@ -47,6 +47,7 @@ class GRCReport extends Component {
                         </Grid>
                         </Grid>:null}
                     {this.props.loader?<Loader/>:null}
+                  
                     </Grid >
              </Grid>
 

@@ -40,7 +40,7 @@ import TocIcon from '@material-ui/icons/Toc';
 import CloseIcon from '@material-ui/icons/Close';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LicenceReportTable from './LicenceReportTable'
-
+import LicenseReportStackedTable from './LicenseReportStackedTable'
 
 const height = 100
 const labelOffset = -6
@@ -57,6 +57,9 @@ const useStyles = makeStyles((theme) => ({
     '& > * + *': {
       marginTop: theme.spacing(2),
     }
+  },
+  dialoguewidth:{
+    maxWidth:'inherit'
   },
   media: {
     width: 300,
@@ -695,6 +698,9 @@ const LicenceGraphCard = (props) => {
         onClose={handleClose}
         PaperComponent={PaperComponent}
         aria-labelledby="draggable-dialog-title"
+        classes={{
+          paper:classes.dialoguewidth
+        }}
         style={{width:'inherit'}}
       >
         <Grid container spacing={1} style={{width:'100%'}}>
@@ -721,7 +727,11 @@ const LicenceGraphCard = (props) => {
 
         <DialogContent style={{paddingTop:10}}>
           {/* <GRCDashbordTable name={props.name} header={tableData[0]} data={tableData[1]} /> */}
+          {props.stack?
+          <LicenseReportStackedTable  data={props.chartdata} header={props.chartHeader.map(p=>p.ZDESC)} colors={colorState}/>:
           <LicenceReportTable name={props.name} header={tableData[0]} data={tableData[2]} colors={colorState}/>
+          }
+         
         </DialogContent>
 
       </Dialog>

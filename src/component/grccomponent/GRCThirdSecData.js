@@ -42,7 +42,7 @@ class GRCThirdSecData extends Component {
         return (
             <Grid container style={{marginTop:5}} spacing={1}>
                 <Grid item md={4} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCGraphCard chart='01' stack={true} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={ `Risk Matrix by ${this.graphNameOnReportType()}`}  chartType={5} dialogueOpen={this.props.dialogueOpen} chartId="SEC31" /> :null}
+                   {isDataReadtToShow? <GRCGraphCard chart='01' stack={true} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={ `Risk Matrix by ${this.graphNameOnReportType()}`}  chartType={7} dialogueOpen={this.props.dialogueOpen} chartId="SEC31" /> :null}
                 </Grid>
                 <Grid item md={2} style={{paddingTop:0}}>
                    {isDataReadtToShow? <GRCGraphCard chart='02' stack={false} color={this.props.colors}  data={this.props.result.E_RESULT_03.data} name={ `Risk  ${this.props.levelSelected==1?'Users by':'Roles by'} ${this.graphNameOnReportType()}`} chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC32" /> :null}

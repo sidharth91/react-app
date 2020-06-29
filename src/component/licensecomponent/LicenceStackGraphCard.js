@@ -40,6 +40,7 @@ import Draggable from 'react-draggable';
 import CloseIcon from '@material-ui/icons/Close';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LicenceReportTable from './LicenceReportTable'
+import LicenseReportStackedTable from './LicenseReportStackedTable'
 
 
 const height = 100
@@ -62,6 +63,9 @@ const useStyles = makeStyles((theme) => ({
     '& > * + *': {
       marginTop: theme.spacing(2),
     }
+  },
+  dialoguewidth:{
+    maxWidth:'inherit'
   },
   media: {
     width: 300,
@@ -622,6 +626,9 @@ const LicenceStackGraphCard = (props) => {
         PaperComponent={PaperComponent}
         aria-labelledby="draggable-dialog-title"
         style={{width:'inherit'}}
+        classes={{
+          paper:classes.dialoguewidth
+        }}
       >
         <Grid container spacing={1} style={{width:'100%'}}>
           <Grid item md={11}>
@@ -647,7 +654,9 @@ const LicenceStackGraphCard = (props) => {
 
         <DialogContent style={{paddingTop:10}}>
         {/* <GRCDashbordTable name={props.name} header={tableData[0]} data={tableData[1]} /> */}
-          <LicenceReportTable name={props.name} header={tableData[0]} data={tableData[2]} colors={colorState} />
+          {/* <LicenceReportTable name={props.name} header={tableData[0]} data={tableData[2]} colors={colorState} /> */}
+
+          <LicenseReportStackedTable  data={props.chartdata} header={props.chartHeader.map(p=>p.ZDESC)} colors={colorState}/>
         </DialogContent>
 
       </Dialog>

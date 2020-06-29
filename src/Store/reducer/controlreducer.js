@@ -47,7 +47,10 @@ const licensereducer = (state = initialState, action) => {
         case actionType.UPDATE_CONTROLREPORT_RESULT:
             return { ...state, controlreport: action.data }
         case actionType.UPDATE_CONTROLSUMMARYREPORT_RESULT:
-            return { ...state, controlsummaryreport: action.data }
+            return { ...state, controlsummaryreport: action.data ,
+                sapSystem: { ...state.sapSystem, filtered: state.sapSystem.selectedValue },
+                client: { ...state.client, filtered: state.client.selectedValue }, 
+                controls: { ...state.controls, filtered: state.controls.selectedValue }}
         case actionType.UPDATE_CONTROLREPORTTABLE_RESULT:
             return { ...state, controltablereport: action.data }
 

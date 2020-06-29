@@ -5,10 +5,10 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
 
 function createData(data) {
-   let rowData={}
-   Object.keys(data).forEach(key => { 
-    rowData.key=data[key];
-   });
+    let rowData = {}
+    Object.keys(data).forEach(key => {
+        rowData.key = data[key];
+    });
     return rowData;
 }
 
@@ -28,19 +28,6 @@ function createColumn(header, keys) {
     return headers;
 }
 
-
-const options = {
-    selectableRows: 'none',
-    filterType: 'textField',
-    fixedHeaderOptions: { xAxis: true, yAxis: true },
-    responsive: "scrollMaxHeight",
-    search:false,
-    searchOpen:false,
-    print:false,
-    sortFilterList:false,
-    rowsPerPage:100,
-    rowsPerPageOptions:[100,250,500]
-};
 
 
 
@@ -99,61 +86,90 @@ const MUControlReportTable = (props) => {
                     maxWidth: '20%',
                     maxHeight: '70%'
                 }
-    
+
             },
             MuiInputLabel:
             {
-                formControl:{
-                fontSize:12,
-                fontFamily:'Helvetica'
-            }},
-            MuiGridList:{
-                root:{
-                    margin:'0px !important',
-                    paddingBottom:20
+                formControl: {
+                    fontSize: 12,
+                    fontFamily: 'Helvetica'
                 }
             },
-            MuiGridListTile:{
-                root:{
-                    padding:'4px !important'
+            MuiGridList: {
+                root: {
+                    margin: '0px !important',
+                    paddingBottom: 20
+                }
+            },
+            MuiGridListTile: {
+                root: {
+                    padding: '4px !important'
                 },
-                tile:{
+                tile: {
                     margin: '0 !important'
                 }
             },
-            MUIDataTableViewCol:{label:{fontSize:12}},
-            MuiFormControlLabel:{root:{
-                marginRight:0,
-                marginBottom:0,
-                paddingRight:2
-            }},
-            MuiIconButton:{root:{
-                padding:2
-            }},
-            MuiTablePagination:{toolbar:{
-                minHeight: 25
-            }},
-            MUIDataTableFilter:{
-                header:{
-                    marginBottom:0
+            MUIDataTableViewCol: { label: { fontSize: 12 } },
+            MuiFormControlLabel: {
+                root: {
+                    marginRight: 0,
+                    marginBottom: 0,
+                    paddingRight: 2
+                }
+            },
+            MuiIconButton: {
+                root: {
+                    padding: 2
+                }
+            },
+            MuiTablePagination: {
+                toolbar: {
+                    minHeight: 25
+                }
+            },
+            MUIDataTableFilter: {
+                header: {
+                    marginBottom: 0
                 },
-                root:{
+                root: {
                     padding: '4px 24px 0px 24px',
                     backgroundColor: '#EFF4F9',
                 }
             },
             MUIDataTableFilterList: {
                 chip: {
-                  display: 'none'
+                    display: 'none'
                 }
-              }
-       
+            }
+
         }
-        })
+    })
+
+    const onTableCellClick = (colData, cellMeta) => {
+        console.log(colData + "---" + cellMeta.colIndex + "----" + cellMeta.colIndex + "====" + cellMeta.rowIndex + "----" + cellMeta.dataIndex)
+        let datapoint = props.data[cellMeta.dataIndex]
+        console.log(JSON.stringify(datapoint)+datapoint.ZREC)
+        props.openDialogue("chart",datapoint.ZREC)
+    }
+
+    const options = {
+        selectableRows: 'none',
+        filterType: 'textField',
+        fixedHeaderOptions: { xAxis: true, yAxis: true },
+        responsive: "scrollMaxHeight",
+        search: false,
+        searchOpen: false,
+        print: false,
+        sortFilterList: false,
+        rowsPerPage: 100,
+        rowsPerPageOptions: [100, 250, 500],
+        onCellClick: onTableCellClick
+    };
+
 
     const [data, setData] = React.useState(props.data)
     const [header, setHeader] = React.useState(props.header)
-    const [color,setColor]=React.useState(props.colors[16])
+    const [color, setColor] = React.useState(props.colors[16])
     React.useEffect(() => {
         setData(props.data);
         setHeader(props.header)
@@ -171,6 +187,7 @@ const MUControlReportTable = (props) => {
                 data={data}
                 columns={columns}
                 options={options}
+
             />
         </MuiThemeProvider>
     )

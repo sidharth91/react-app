@@ -32,6 +32,7 @@ export const logout=()=>{
   return{
       type:actionType.LOGOUT,
   };
+
 }
 
 export const defaultData=(data)=>{

@@ -35,7 +35,7 @@ class GRCReport extends Component {
         return (
             <Grid container style={{ marginTop:5,paddingRight:10,paddingLeft:10 }} spacing={0}>
                  <Grid item md={12} style={{margin:5}}>
-                     <LicenseFilter type='Report' />
+                 {this.props.sapSystem.value.length>0?<LicenseFilter type='Report' />:null}
                     {/* {Object.keys(this.props.grcreport).length>0?<GRCReportTable colors={this.props.colors} header={this.props.grcreport.header} data={this.props.grcreport.data}/>:null} */}
                       {Object.keys(this.props.licensereport).length>0 && this.props.licensereport.data.length>0?<MUGRCReportTable colors={this.props.colors} header={this.props.licensereport.header} data={this.props.licensereport.data}/>:null}
                       {Object.keys(this.props.licensereport).length>0 && this.props.licensereport.data.length<1?
@@ -61,7 +61,8 @@ const mapStateToProps = state => {    //this methos use to retrive state from re
         token: state.login.token, //state.reducername.value
         loader:state.licensefilter.loader,
         licensereport:state.licensefilter.licensereport,
-        colors:state.licensefilter.colors
+        colors:state.licensefilter.colors,
+        sapSystem: state.licensefilter.sapSystem
     };
 }
 

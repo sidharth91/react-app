@@ -55,7 +55,7 @@ class LicenceThirdSection extends Component {
             <Grid container style={{marginTop:5}} spacing={1}>
            
                 <Grid item  md={4} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <LicenceGraphCard chart='01' stack={true} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name="Total License Count/Cost"  chartType={5} dialogueOpen={this.props.dialogueOpen} chartId="SEC31" /> :null}
+                   {isDataReadtToShow? <LicenceGraphCard chart='01' stack={true} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name="Total License Count/Cost"  chartType={5} dialogueOpen={this.props.dialogueOpen} chartId="SEC31" chartdata={this.props.licenseresult.E_RESULT_00.data} chartHeader={this.props.licenseresult.header.data}/> :null}
                 </Grid>
                 <Grid item md={2} style={{paddingTop:0}}>
                    {isDataReadtToShow? <LicenceGraphCard chart='01' stack={false} color={this.props.colors}  data={this.props.result.E_RESULT_04.data} name="Top Prof user with doc" chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC32" /> :null}

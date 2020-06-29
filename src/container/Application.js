@@ -56,7 +56,8 @@ const mapStateToProps = state=>{
     isUserLogedIn:state.login.isUserLogedIn,
     error:state.login.error,
     systemConfig:state.login.systemConfig,
-    isAuthenticated: state.login.token !== null
+    isAuthenticated: state.login.token !== null,
+    pathname:state.sidebar.pathname,
  };
 };
 
