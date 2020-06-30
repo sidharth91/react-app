@@ -168,6 +168,7 @@ const MUControlReportTable = (props) => {
     return (
         <MuiThemeProvider theme={getMuiTheme()}>
             <MUIDataTable
+            title={props.name}
                 data={data}
                 columns={columns}
                 options={options}

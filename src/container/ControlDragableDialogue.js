@@ -33,7 +33,7 @@ class ControlDragableDialogue extends Component {
 
         return (
             <div>
-          {this.props.dialogueState && !this.props.loader?<ControlsDraggableDialog dialogueState={this.props.dialogueState} colors={this.props.colors} header={this.props.controltablereport.header} data={this.props.controltablereport.data} closeDialogue={this.props.closeDialogue}/>:null}
+          {this.props.dialogueState && !this.props.loader && Object.keys(this.props.controltablereport).length>0?<ControlsDraggableDialog dialogueState={this.props.dialogueState} colors={this.props.colors} header={this.props.controltablereport.header} data={this.props.controltablereport.data} closeDialogue={this.props.closeDialogue} name={this.props.controltablereport.reportName?this.props.controltablereport.reportName[0]:"Report Details Report"}/>:null}
           </div>
         )
 
