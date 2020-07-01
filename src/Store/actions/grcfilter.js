@@ -13,10 +13,10 @@ export const initFilter = (token) => {
             })
             .catch(error => {
                 console.log(error.response.status)
-                if(error.response.status=='401'){
-                action.logout()
-                window.location.reload()
-           
+                if (error.response.status == '401') {
+                    action.logout()
+                    window.location.reload()
+
                 }
                 console.log(error);
             });
@@ -61,6 +61,9 @@ export const changeFilter = (data, value) => {
                 break
             case 9:
                 dispatch({ type: actionType.CHANGE_DRILL_DOWN, value: value })
+                break
+            case 10:
+                dispatch({ type: actionType.CHANGE_REPORTVIEW_TYPE, value: value })
                 break
             default:
                 console.log("case doesn't match")
@@ -155,8 +158,11 @@ export const initiateFilter = (data) => {
             case 9:
                 temp.drillDown = p;
                 break;
+            case 10:
+                temp.reportView = p;
+                break;
             case 51:
-                temp.colors = p.value.map(color=>color.ZDESC);
+                temp.colors = p.value.map(color => color.ZDESC);
                 break;
             default:
                 console.log("case doesn't match")
@@ -217,7 +223,7 @@ export const gobackToParentTable = () => {
 
 
 
-export const riskReport = (token, sapSystem, client, level, riskType, riskLevel, businessModule, mitigation,drillDown,riskId, userinput) => {
+export const riskReport = (token, sapSystem, client, level, riskType, riskLevel, businessModule, mitigation, drillDown, riskId, userinput) => {
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
@@ -229,10 +235,10 @@ export const riskReport = (token, sapSystem, client, level, riskType, riskLevel,
             riskLevel: riskLevel,
             businessModule: businessModule,
             mitigation: mitigation,
-            drillDown:drillDown,
+            drillDown: drillDown,
             riskId: riskId,
-            userInput:userinput
-  
+            userInput: userinput
+
         }, { headers: { 'Authorisation': token } })
             .then(response => {
                 dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: false })
@@ -253,7 +259,7 @@ export const clearriskReport = () => {
 }
 
 
-export const riskGrcReport = (token, sapSystem, client, level, riskType, riskLevel, businessModule, mitigation,drillDown,riskId, userinput) => {
+export const riskGrcReport = (token, sapSystem, client, level, riskType, riskLevel, businessModule, mitigation, drillDown, riskId, userinput) => {
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
@@ -265,13 +271,127 @@ export const riskGrcReport = (token, sapSystem, client, level, riskType, riskLev
             riskLevel: riskLevel,
             businessModule: businessModule,
             mitigation: mitigation,
-            drillDown:drillDown,
+            drillDown: drillDown,
             riskId: riskId,
-            userInput:userinput
-  
+            userInput: userinput
+
         }, { headers: { 'Authorisation': token } })
             .then(response => {
                 dispatch({ type: actionType.UPDATE_GRCREPORT, tableReport: response.data })
+                dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: false })
+            })
+            .catch(error => {
+                console.log(error)
+            });
+    }
+}
+
+
+
+export const initRiskTechFilter = (token) => {
+    return dispatch => {
+        dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
+        axios.get('/api/filter', { headers: { 'Authorisation': token } })
+            .then(response => {
+                dispatch(initiateRiskTechFilter(response.data));
+            })
+            .catch(error => {
+                console.log(error.response.status)
+                if (error.response.status == '401') {
+                    action.logout()
+                    window.location.reload()
+
+                }
+                console.log(error);
+            });
+    }
+}
+
+
+export const initiateRiskTechFilter = (data) => {
+    let temp = {};
+    temp.loader = false;
+    data.map(p => {
+        p.selectedValue = null;
+        switch (p.id) {
+            case 1:
+                temp.sapSystem = p;
+                temp.sapSystem.selectedValue = p.value[p.value.length - 3].ZID
+                temp.sapSystem.filtered = p.value[p.value.length - 3].ZID
+                break
+            case 2:
+                temp.client = p;
+                temp.client.selectedValue = p.value[p.value.length - 3].ZID
+                temp.client.filtered = p.value[p.value.length - 3].ZID
+                break
+            case 3:
+                p.selectedValue = [p.value[0].ZID];
+                p.filtered = [];
+                temp.riskType = p;
+                break
+            case 4:
+                p.selectedValue = [];
+                p.filtered = [];
+                temp.riskLevel = p;
+                break
+            case 5:
+                p.selectedValue = [];
+                p.filtered = [];
+                temp.businessModule = p;
+                break
+            case 6:
+                p.selectedValue = [];
+                p.filtered = [];
+                temp.riskid = p;
+                break;
+            case 7:
+                temp.mitigation = p;
+                break;
+            case 8:
+                p.selectedValue = 1
+                p.filtered = 1;
+                temp.reportType = p;
+                break;
+            case 9:
+                temp.drillDown = p;
+                break;
+            case 10:
+                p.selectedValue = p.value[0].ZID;
+                temp.reportView = p;
+                break;
+            case 51:
+                temp.colors = p.value.map(color => color.ZDESC);
+                break;
+            default:
+                console.log("case doesn't match")
+        }
+    })
+
+    return {
+        type: actionType.INITFILTER,
+        data: temp
+    };
+}
+
+
+export const riskTechGrcReport = (token, sapSystem, client, level, riskType, riskLevel, businessModule, riskId,reportView, userinput) => {
+
+    return dispatch => {
+        dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
+        axios.post('/api/JAVA_MUL_0004', {
+            sapSystem: sapSystem,
+            client: client,
+            level: level,
+            riskType: riskType,
+            riskLevel: riskLevel,
+            businessModule: businessModule,
+            riskId: riskId,
+            userInput: userinput,
+            reportView:reportView
+
+        }, { headers: { 'Authorisation': token } })
+            .then(response => {
+                dispatch({ type: actionType.UPDATE_GRCRISKTECH_REPORT, tableRiskTechReport: response.data })
                 dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: false })
             })
             .catch(error => {

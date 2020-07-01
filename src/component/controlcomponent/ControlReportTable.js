@@ -21,13 +21,18 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
-function createDataUser(SYSID, MANDT, BNAME, ZRISK_TYPE, ZRISK_LEVEL,APPLCLASS,APPLDESC,RISKEXE,ZAUDIT_ID,ZAUDIT_NAME,ZVELMIT_ID,ZNAME,ZCOUNT3,ZCOUNT1,ZCOUNT2,ZCOUNT) {
-  return { SYSID, MANDT, BNAME, ZRISK_TYPE, ZRISK_LEVEL,APPLCLASS,APPLDESC,RISKEXE,ZAUDIT_ID,ZAUDIT_NAME,ZVELMIT_ID,ZNAME,ZCOUNT3,ZCOUNT1,ZCOUNT2,ZCOUNT };
+function createDatawithfivecolumn(COLUMN1, COLUMN2, COUNT1, COUNT2, COUNT3) {
+  return { COLUMN1, COLUMN2, COUNT1, COUNT2, COUNT3 };
 }
 
-function createDataRole(SYSID, MANDT, AGR_NAME, ZRISK_TYPE, ZRISK_LEVEL,APPLCLASS,APPLDESC,RISKEXE,ZAUDIT_ID,ZAUDIT_NAME,ZVELMIT_ID,ZNAME,ZCOUNT3,ZCOUNT1,ZCOUNT2,ZCOUNT) {
-  return { SYSID, MANDT, AGR_NAME, ZRISK_TYPE, ZRISK_LEVEL,APPLCLASS,APPLDESC,RISKEXE,ZAUDIT_ID,ZAUDIT_NAME,ZVELMIT_ID,ZNAME,ZCOUNT3,ZCOUNT1,ZCOUNT2,ZCOUNT };
+function createDatawithfourcolumn(COLUMN1, COLUMN2, COUNT1, COUNT2) {
+  return { COLUMN1, COLUMN2, COUNT1, COUNT2 };
 }
+
+function createDatawiththreecolumn(COLUMN1, COLUMN2, COUNT1,) {
+  return { COLUMN1, COLUMN2, COUNT1};
+}
+
 
 
 
@@ -167,7 +172,7 @@ const useStyles = makeStyles((theme) => ({
   },
   reporttablecell:{
     fontFamily:'Helvetica',
-    fontSize:12, 
+    fontSize:11, 
     wordWrap:"normal", 
     overflow:"hidden", 
     textOverflow:"ellipsis", 
@@ -180,7 +185,7 @@ const useStyles = makeStyles((theme) => ({
   },
   reporttableheader:{
     fontFamily:'Helvetica',
-    fontSize:12, 
+    fontSize:11, 
     fontWeight:"bold",
     wordWrap:"normal", 
     overflow:"hidden", 
@@ -190,8 +195,6 @@ const useStyles = makeStyles((theme) => ({
      padding:"2px", 
      lineHeight:"inherit",
     backgroundColor: props=>props.colors[15]
-
-    
   },
   tablepaginationtoolbar:{
     minHeight:30,
@@ -217,29 +220,40 @@ function createColumn(header, keys) {
   return headers;
 }  
 
-const GRCReportTableDialogue=(props)=> {
+
+function createRows(header, data) {
+
+  if(header.length==5){
+    return data.map(p=>createDatawithfivecolumn(p.COLUMN1,p.COLUMN2,p.COUNT1,p.COUNT2,p.COUNT2))
+  }
+
+
+  if(header.length==4){
+    return data.map(p=>createDatawithfourcolumn(p.COLUMN1,p.COLUMN2,p.COUNT1,p.COUNT2,p.COUNT2))
+  }
+
+
+    return data.map(p=>createDatawiththreecolumn(p.COLUMN1,p.COLUMN2,p.COUNT1,p.COUNT2,p.COUNT2))
+
+
+}  
+
+const GRCReportTable=(props)=> {
   const classes = useStyles(props);
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(true);
-  const [rowsPerPage, setRowsPerPage] = React.useState(200);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [data,setData]=React.useState(props.data)
-
-
   React.useEffect(() => {
     setData(props.data);
-
+    setRowsPerPage(data.length)
 }, [props])
 
-  const rows = Object.keys(data[0]).includes('AGR_NAME')?
-  data.map(p=>createDataRole(p.SYSID,p.MANDT,p.AGR_NAME,p.ZRISK_TYPE,p.ZRISK_LEVEL,
-    p.APPLCLASS,p.APPLDESC,p.RISKEXE,p.ZAUDIT_ID,p.ZAUDIT_NAME,p.ZVELMIT_ID,p.ZNAME,
-    p.ZCOUNT3,p.ZCOUNT2,p.ZCOUNT1,p.ZCOUNT))
-  :data.map(p=>createDataUser(p.SYSID,p.MANDT,p.BNAME,p.ZRISK_TYPE,p.ZRISK_LEVEL,
-    p.APPLCLASS,p.APPLDESC,p.RISKEXE,p.ZAUDIT_ID,p.ZAUDIT_NAME,p.ZVELMIT_ID,p.ZNAME,
-    p.ZCOUNT3,p.ZCOUNT2,p.ZCOUNT1,p.ZCOUNT));
+  const rows =createRows(props.header,data);
+
  headCells=createColumn(props.header,Object.keys(data[0]))
   
 
@@ -332,28 +346,14 @@ const GRCReportTableDialogue=(props)=> {
                       key={row.name}
                       selected={isItemSelected}                      
                     >
-
-                      <TableCell component="th" id={labelId} scope="row" padding="none" className={classes.reporttablecell}>
-                        {row.SYSID}
-                      </TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.MANDT}</TableCell>
-                      {Object.keys(data[0]).includes('AGR_NAME')?
-                      <TableCell align="right" className={classes.reporttablecell}>{row.AGR_NAME}</TableCell>:
-                      <TableCell align="right" className={classes.reporttablecell}>{row.BNAME}</TableCell>
-                  }
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZRISK_TYPE}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZRISK_LEVEL}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.APPLCLASS}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.APPLDESC}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.RISKEXE}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZAUDIT_ID}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell} >{row.ZAUDIT_NAME}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZVELMIT_ID}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZNAME}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT3}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT1}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT2}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT}</TableCell>
+                       <TableCell align="right" className={classes.reporttablecell}>{row.COLUMN1}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.COLUMN2}</TableCell>
+                   
+                      <TableCell align="right" className={classes.reporttablecell}>{row.COUNT1}</TableCell>
+                      {props.header.length>3?
+                      <TableCell align="right" className={classes.reporttablecell}>{row.COUNT2}</TableCell>:null}
+                       {props.header.length>4?
+                      <TableCell align="right" className={classes.reporttablecell}>{row.COUNT3}</TableCell>:null}
                     </TableRow>
                   );
                 })}
@@ -366,7 +366,7 @@ const GRCReportTableDialogue=(props)=> {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[200, 500, 1000,2000]}
+          rowsPerPageOptions={[rowsPerPage,rowsPerPage+4,rowsPerPage+10]}
           component="div"
           count={rows.length}
           classes={{
@@ -392,4 +392,4 @@ const GRCReportTableDialogue=(props)=> {
     </div>
   );
 }
-export default GRCReportTableDialogue
+export default GRCReportTable

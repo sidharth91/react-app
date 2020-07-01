@@ -21,14 +21,14 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
-function createDataUser(SYSID, MANDT, BNAME, ZRISK_TYPE, ZRISK_LEVEL,APPLCLASS,APPLDESC,RISKEXE,ZAUDIT_ID,ZAUDIT_NAME,ZVELMIT_ID,ZNAME,ZCOUNT3,ZCOUNT1,ZCOUNT2,ZCOUNT) {
-  return { SYSID, MANDT, BNAME, ZRISK_TYPE, ZRISK_LEVEL,APPLCLASS,APPLDESC,RISKEXE,ZAUDIT_ID,ZAUDIT_NAME,ZVELMIT_ID,ZNAME,ZCOUNT3,ZCOUNT1,ZCOUNT2,ZCOUNT };
+function createData(data,header) {
+  let rowData={}
+  let keys=Object.keys(data);
+  header.forEach((key,index) => { 
+   rowData[keys[index]]=data[keys[index]];
+  });
+   return rowData;
 }
-
-function createDataRole(SYSID, MANDT, AGR_NAME, ZRISK_TYPE, ZRISK_LEVEL,APPLCLASS,APPLDESC,RISKEXE,ZAUDIT_ID,ZAUDIT_NAME,ZVELMIT_ID,ZNAME,ZCOUNT3,ZCOUNT1,ZCOUNT2,ZCOUNT) {
-  return { SYSID, MANDT, AGR_NAME, ZRISK_TYPE, ZRISK_LEVEL,APPLCLASS,APPLDESC,RISKEXE,ZAUDIT_ID,ZAUDIT_NAME,ZVELMIT_ID,ZNAME,ZCOUNT3,ZCOUNT1,ZCOUNT2,ZCOUNT };
-}
-
 
 
 function descendingComparator(a, b, orderBy) {
@@ -217,7 +217,7 @@ function createColumn(header, keys) {
   return headers;
 }  
 
-const GRCReportTableDialogue=(props)=> {
+const LicenceReportTableDialogue=(props)=> {
   const classes = useStyles(props);
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -233,13 +233,7 @@ const GRCReportTableDialogue=(props)=> {
 
 }, [props])
 
-  const rows = Object.keys(data[0]).includes('AGR_NAME')?
-  data.map(p=>createDataRole(p.SYSID,p.MANDT,p.AGR_NAME,p.ZRISK_TYPE,p.ZRISK_LEVEL,
-    p.APPLCLASS,p.APPLDESC,p.RISKEXE,p.ZAUDIT_ID,p.ZAUDIT_NAME,p.ZVELMIT_ID,p.ZNAME,
-    p.ZCOUNT3,p.ZCOUNT2,p.ZCOUNT1,p.ZCOUNT))
-  :data.map(p=>createDataUser(p.SYSID,p.MANDT,p.BNAME,p.ZRISK_TYPE,p.ZRISK_LEVEL,
-    p.APPLCLASS,p.APPLDESC,p.RISKEXE,p.ZAUDIT_ID,p.ZAUDIT_NAME,p.ZVELMIT_ID,p.ZNAME,
-    p.ZCOUNT3,p.ZCOUNT2,p.ZCOUNT1,p.ZCOUNT));
+  const rows = data.map(p=>createData(p,props.header));
  headCells=createColumn(props.header,Object.keys(data[0]))
   
 
@@ -332,28 +326,15 @@ const GRCReportTableDialogue=(props)=> {
                       key={row.name}
                       selected={isItemSelected}                      
                     >
+                   {
+                     Object.keys(row).map((key,index)=>{
+                     return <TableCell align="right" className={classes.reporttablecell}>{row[key]}</TableCell>
+                     }
+                       )
+                   }
 
-                      <TableCell component="th" id={labelId} scope="row" padding="none" className={classes.reporttablecell}>
-                        {row.SYSID}
-                      </TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.MANDT}</TableCell>
-                      {Object.keys(data[0]).includes('AGR_NAME')?
-                      <TableCell align="right" className={classes.reporttablecell}>{row.AGR_NAME}</TableCell>:
-                      <TableCell align="right" className={classes.reporttablecell}>{row.BNAME}</TableCell>
-                  }
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZRISK_TYPE}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZRISK_LEVEL}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.APPLCLASS}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.APPLDESC}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.RISKEXE}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZAUDIT_ID}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell} >{row.ZAUDIT_NAME}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZVELMIT_ID}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZNAME}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT3}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT1}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT2}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT}</TableCell>
+
+                    
                     </TableRow>
                   );
                 })}
@@ -392,4 +373,4 @@ const GRCReportTableDialogue=(props)=> {
     </div>
   );
 }
-export default GRCReportTableDialogue
+export default LicenceReportTableDialogue

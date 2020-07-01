@@ -21,12 +21,9 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
-function createDataUser(SYSID, MANDT, BNAME, ZRISK_TYPE, ZRISK_LEVEL,APPLCLASS,APPLDESC,RISKEXE,ZAUDIT_ID,ZAUDIT_NAME,ZVELMIT_ID,ZNAME,ZCOUNT3,ZCOUNT1,ZCOUNT2,ZCOUNT) {
-  return { SYSID, MANDT, BNAME, ZRISK_TYPE, ZRISK_LEVEL,APPLCLASS,APPLDESC,RISKEXE,ZAUDIT_ID,ZAUDIT_NAME,ZVELMIT_ID,ZNAME,ZCOUNT3,ZCOUNT1,ZCOUNT2,ZCOUNT };
-}
 
-function createDataRole(SYSID, MANDT, AGR_NAME, ZRISK_TYPE, ZRISK_LEVEL,APPLCLASS,APPLDESC,RISKEXE,ZAUDIT_ID,ZAUDIT_NAME,ZVELMIT_ID,ZNAME,ZCOUNT3,ZCOUNT1,ZCOUNT2,ZCOUNT) {
-  return { SYSID, MANDT, AGR_NAME, ZRISK_TYPE, ZRISK_LEVEL,APPLCLASS,APPLDESC,RISKEXE,ZAUDIT_ID,ZAUDIT_NAME,ZVELMIT_ID,ZNAME,ZCOUNT3,ZCOUNT1,ZCOUNT2,ZCOUNT };
+function createData(LAW_LIC_TYPE, LAW_DESC, BNAME, USER_COUNT, SAPSYSID, MANDT, RANK, LIC_TYPE, RECOM_DESC, CURR_LIC_TYPE, CURR_DESC, USER_STATUS, LOGON_STATUS, EFLAG, PERNR, NAME_FIRST,NAME_LAST,ZPROFCOUNT,ZROLECOUNT,ZTOTCNT,ZMATCOUNT,ZPERCENT,TABNAME,ZCOUNT,ZTYPE,USTYP,CLASS,ACCNT,GLTGV,GLTGB,UFLAG,ERDAT,TRDAT,ACTIVE,LOCK,EXPIRED,REMOTE,REFUSER) {
+  return {LAW_LIC_TYPE, LAW_DESC, BNAME, USER_COUNT, SAPSYSID, MANDT, RANK, LIC_TYPE, RECOM_DESC, CURR_LIC_TYPE, CURR_DESC, USER_STATUS, LOGON_STATUS, EFLAG, PERNR, NAME_FIRST,NAME_LAST,ZPROFCOUNT,ZROLECOUNT,ZTOTCNT,ZMATCOUNT,ZPERCENT,TABNAME,ZCOUNT,ZTYPE,USTYP,CLASS,ACCNT,GLTGV,GLTGB,UFLAG,ERDAT,TRDAT,ACTIVE,LOCK,EXPIRED,REMOTE,REFUSER};
 }
 
 
@@ -217,7 +214,7 @@ function createColumn(header, keys) {
   return headers;
 }  
 
-const GRCReportTableDialogue=(props)=> {
+const LicenceReportTableDialogue=(props)=> {
   const classes = useStyles(props);
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -233,13 +230,14 @@ const GRCReportTableDialogue=(props)=> {
 
 }, [props])
 
-  const rows = Object.keys(data[0]).includes('AGR_NAME')?
-  data.map(p=>createDataRole(p.SYSID,p.MANDT,p.AGR_NAME,p.ZRISK_TYPE,p.ZRISK_LEVEL,
-    p.APPLCLASS,p.APPLDESC,p.RISKEXE,p.ZAUDIT_ID,p.ZAUDIT_NAME,p.ZVELMIT_ID,p.ZNAME,
-    p.ZCOUNT3,p.ZCOUNT2,p.ZCOUNT1,p.ZCOUNT))
-  :data.map(p=>createDataUser(p.SYSID,p.MANDT,p.BNAME,p.ZRISK_TYPE,p.ZRISK_LEVEL,
-    p.APPLCLASS,p.APPLDESC,p.RISKEXE,p.ZAUDIT_ID,p.ZAUDIT_NAME,p.ZVELMIT_ID,p.ZNAME,
-    p.ZCOUNT3,p.ZCOUNT2,p.ZCOUNT1,p.ZCOUNT));
+  const rows = 
+  data.map(p=>createData(p.LAW_LIC_TYPE, p.LAW_DESC, p.BNAME, p.USER_COUNT, 
+    p.SAPSYSID, p.MANDT, p.RANK, p.LIC_TYPE, p.RECOM_DESC, 
+    p.CURR_LIC_TYPE, p.CURR_DESC, p.USER_STATUS, p.LOGON_STATUS, 
+    p.EFLAG, p.PERNR, p.NAME_FIRST, p.NAME_LAST, p.ZPROFCOUNT, 
+    p.ZROLECOUNT, p.ZTOTCNT, p.ZMATCOUNT, p.ZPERCENT, p.TABNAME, 
+    p.ZCOUNT, p.ZTYPE, p.USTYP, p.CLASS, p.ACCNT, p.GLTGV, p.GLTGB,
+     p.UFLAG, p.ERDAT, p.TRDAT, p.ACTIVE, p.LOCK, p.EXPIRED, p.REMOTE, p.REFUSER));
  headCells=createColumn(props.header,Object.keys(data[0]))
   
 
@@ -333,27 +331,53 @@ const GRCReportTableDialogue=(props)=> {
                       selected={isItemSelected}                      
                     >
 
+
+  
+  
+ 
                       <TableCell component="th" id={labelId} scope="row" padding="none" className={classes.reporttablecell}>
-                        {row.SYSID}
+                        {row.LAW_LIC_TYPE}
                       </TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.MANDT}</TableCell>
-                      {Object.keys(data[0]).includes('AGR_NAME')?
-                      <TableCell align="right" className={classes.reporttablecell}>{row.AGR_NAME}</TableCell>:
+                      <TableCell align="right" className={classes.reporttablecell}>{row.LAW_DESC}</TableCell>
                       <TableCell align="right" className={classes.reporttablecell}>{row.BNAME}</TableCell>
-                  }
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZRISK_TYPE}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZRISK_LEVEL}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.APPLCLASS}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.APPLDESC}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.RISKEXE}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZAUDIT_ID}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell} >{row.ZAUDIT_NAME}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZVELMIT_ID}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZNAME}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT3}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT1}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT2}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.USER_COUNT}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.SAPSYSID}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.MANDT}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.RANK}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.LIC_TYPE}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.RECOM_DESC}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell} >{row.CURR_LIC_TYPE}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.CURR_DESC}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.USER_STATUS}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.LOGON_STATUS}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.EFLAG}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.PERNR}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.NAME_FIRST}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.NAME_LAST}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.ZPROFCOUNT}</TableCell>
+
+                      <TableCell align="right" className={classes.reporttablecell}>{row.ZROLECOUNT}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.ZTOTCNT}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.ZMATCOUNT}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.ZPERCENT}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.TABNAME}</TableCell>
                       <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.ZTYPE}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.USTYP}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.CLASS}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.CLASS}</TableCell>
+
+                      <TableCell align="right" className={classes.reporttablecell}>{row.GLTGV}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.GLTGB}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.UFLAG}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.ERDAT}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.TRDAT}</TableCell>
+
+                      <TableCell align="right" className={classes.reporttablecell}>{row.ACTIVE}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.LOCK}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.EXPIRED}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.REMOTE}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.REFUSER}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -392,4 +416,4 @@ const GRCReportTableDialogue=(props)=> {
     </div>
   );
 }
-export default GRCReportTableDialogue
+export default LicenceReportTableDialogue
