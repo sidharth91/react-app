@@ -10,10 +10,14 @@ import LoginCard from '../component/LoginCard'
 import Grid from '@material-ui/core/Grid';
 import HeaderContainer from './HeaderContainer'
 import SideBar from './SideBar'
-import Dashbord from './Dashbord'
+import LicenseDashbord from './LicenseDashbord'
 import GRCDashbord from './GRCDashBord'
-import Report from './Report'
 import GRCReport from './GRCReport'
+import LicenseReport from './LicenseReport'
+import GRCRiskTeccReport from './GRCRiskTeccReport'
+import ControlDashbord from './ControlDashbord'
+import ControlReport from './ControlReport'
+import ControlSummaryReport from './ControlSummaryReport'
 
 
 
@@ -32,18 +36,20 @@ class Home extends Component {
            <Route path='/grcdashbord' exact  component={GRCDashbord}/>
            <Route path='/' exact component={GRCDashbord}/>
            <Route path='/grcreport' exact  component={GRCReport}/>
+           <Route path='/licensedashbord' exact  component={LicenseDashbord}/>
+           <Route path='/controldashbord' exact  component={ControlDashbord}/>
+           <Route path='/controlreport' exact  component={ControlReport}/>
+           <Route path='/controlsummaryreport' exact  component={ControlSummaryReport}/>
+           <Route path='/grcrisktechviewreport' exact  component={GRCRiskTeccReport}/>
+           <Route path='/licensereport' exact  component={LicenseReport}/>
            </Switch> 
            );
         return (
             <Grid container style={{ }} spacing={0}>
-                 {/* <Grid container md={2}>
-                    <SideBar />
-                </Grid> */}
                 <Grid container md={12} style={{ paddingLeft: 1 }}>
                 <HeaderContainer />
                 {routes}
-                </Grid>
-               
+                </Grid> 
             </Grid>
 
         )

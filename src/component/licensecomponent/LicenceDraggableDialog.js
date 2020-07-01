@@ -7,7 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Paper from '@material-ui/core/Paper';
 import Draggable from 'react-draggable';
-import GRCReportTableDialogue from './GRCReportTableDialogue'
+import LicenceReportTableDialogue from './LicenceReportTableDialogue'
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import TocIcon from '@material-ui/icons/Toc';
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const GRCDraggableDialog=(props)=>{
+const LicenceDraggableDialog=(props)=>{
 
 const classes = useStyles(props);
   const [open, setOpen] = React.useState(false);
@@ -43,6 +43,7 @@ const classes = useStyles(props);
     setOpen(props.dialogueState);
     setData(props.data==undefined?[]:props.data)
     setColors(props.colors)
+
 }, [props])
 
   const handleClickOpen = () => {
@@ -68,7 +69,7 @@ const classes = useStyles(props);
           <Grid container spacing={1} style={{width:'100%',paddingBottom:10}}>
           <Grid item md={11} >
             <DialogTitle style={{ cursor: 'move', maxHeight: 10, fontFamily: 'Helvetica', fontSize: 12, textAlign:'center' }} id="draggable-dialog-title">
-             AuditBOT Risk Details
+             AuditBOT License Details
             </DialogTitle>
           </Grid>
           <Grid item md={1} style={{ textAlign:'right'}}>
@@ -86,7 +87,7 @@ const classes = useStyles(props);
         </Grid>
         <DialogContent>
         {data.length>0?
-        <GRCReportTableDialogue  header={props.header} data={data} colors={colors}/>
+        <LicenceReportTableDialogue  header={props.header} data={data} colors={colors}/>
         :<Typography  variant="subtitle2" color="inherit" style={{width:500}}>
    No Records found
 </Typography>}
@@ -96,4 +97,4 @@ const classes = useStyles(props);
   );
 }
 
-export default GRCDraggableDialog
+export default LicenceDraggableDialog

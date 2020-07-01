@@ -32,12 +32,13 @@ export const logout=()=>{
   return{
       type:actionType.LOGOUT,
   };
+
 }
 
 export const defaultData=(data)=>{
   let keys=Object.keys(data);
   let selectedClientdata=data[keys[0]][0]
-  let systemConf={systemConf:data,selectedIP:selectedClientdata.ipAddress,selectedClient:selectedClientdata.client,selectedSys:selectedClientdata.sysId}
+  let systemConf={systemConf:data,selectedIP:selectedClientdata.ipAddress,selectedClient:selectedClientdata.client,selectedSys:selectedClientdata.sysId,selectedinstanse:selectedClientdata.instanse}
 
   return{
     type:actionType.SETDEFAULTDATA,systemConfig:systemConf
@@ -45,13 +46,16 @@ export const defaultData=(data)=>{
 }
 
 
-export const onLogin=(username,password,system,client,ip)=>{
-    return dispatch=>{axios.post('http://localhost:8080/token', {
+
+export const onLogin=(username,password,system,client,ip,instanse)=>{
+
+    return dispatch=>{axios.post('/token', {
         userName: username,
         password:password,
         system:system,
         client:client,
-        host:ip 
+        host:ip ,
+        instance:instanse
       },{'Access-Control-Allow-Origin':'*'})
       .then(response =>{
         localStorage.setItem('token',response.data.token)
@@ -84,7 +88,7 @@ export const onLogout=()=>{
 }
 
 export const fetchDefaultData=()=>{
-  return dispatch=>{axios.get('http://localhost:8080/token')
+  return dispatch=>{axios.get('/token')
       .then(response =>{
         dispatch(defaultData(response.data));
       })
@@ -97,14 +101,15 @@ export const fetchDefaultData=()=>{
 
 export const onchangeSystem=(value,data)=>{
   let clientData=data.systemConf[value][0]
+
   return dispatch=>{
-    dispatch({type:actionType.CHANGESYSTEM,system:value,client:clientData.client,ip:clientData.ipAddress})
+    dispatch({type:actionType.CHANGESYSTEM,system:value,client:clientData.client,ip:clientData.ipAddress,instanse:clientData.instanse})
   }
 }
 
-export const onchangeClient=(client,ip)=>{
+export const onchangeClient=(client,ip,instanse)=>{
   return dispatch=>{
-    dispatch({type:actionType.CHANGECLIENT,client:client,ip:ip})
+    dispatch({type:actionType.CHANGECLIENT,client:client,ip:ip,instanse:instanse})
   }
 }
 

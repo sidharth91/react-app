@@ -10,10 +10,10 @@ import LoginCard from '../component/LoginCard'
 import Grid from '@material-ui/core/Grid';
 import HeaderContainer from './HeaderContainer'
 import SideBar from './SideBar'
-import GRCFilter from './GRCFilter'
-import GRCThirdSecData from './GRCThirdSecData'
-import GRCFirstSecData from './GRCFirstSecData'
-import GRCSecondSecData from './GRCSecondSecData'
+import GRCFilter from '../component/grccomponent/GRCFilter'
+import GRCThirdSecData from '../component/grccomponent/GRCThirdSecData'
+import GRCFirstSecData from '../component/grccomponent/GRCFirstSecData'
+import GRCSecondSecData from '../component/grccomponent/GRCSecondSecData'
 import Loader from '../component/Loader'
 import GRCDragableDialogue from './GRCDragableDialogue'
 
@@ -41,11 +41,15 @@ class GRCDashBord extends Component {
         this.setState({dialogue:false,groupby:'',chart:''})
    }
 
-    render() {
 
+
+
+
+    render() {
+      
 
         return (
-            <Grid container  style={{ marginTop:25,marginRight:10,marginLeft:10 }} spacing={0}>
+            <Grid container  style={{ marginTop:10,marginRight:10,marginLeft:10 }} spacing={0}>
                  <Grid item md={12}>
                     {this.props.sapSystem.value.length>0?<GRCFilter type='Dashbord' />:null}
                     <GRCThirdSecData dialogueOpen={this.openDialogue}/>
@@ -68,7 +72,8 @@ const mapStateToProps = state => {    //this methos use to retrive state from re
         result: state.filter.result,
         sapSystem: state.filter.sapSystem,
         client: state.filter.client,
-        loader:state.filter.loader
+        loader:state.filter.loader,
+        
     };
 }
 

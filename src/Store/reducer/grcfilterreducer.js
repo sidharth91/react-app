@@ -7,22 +7,24 @@ const initialState = {
     riskType: { "name": "Risk Type", "id": 3, "value": [], selectedValue: [] },
     riskLevel: { "name": "Risk Level", "id": 4, "value": [], selectedValue: [] },
     businessModule: { "name": "Business Module", "id": 5, "value": [], selectedValue: [] },
-    level: { 'User': 1, 'Group': 2, 'selectedValue': 1 },
+    level: { 'User': 1, 'Role': 2, 'selectedValue': 1 },
     breakDown: { values: { 'Risk Level': 2, 'Risk Type': 1, 'Business Modules': 3 }, selectedValue: [1] },
     mitigation: { "name": "Risk", "id": 6, "value": [] },
     drillDown: { "name": "Drill Down", "id": 9, "value": [] },
     reportType: { "name": "Report Type", "id": 7, "value": [] },
     riskid: { "name": "Risk Id", "id": 8, "value": [], selectedValue: [] },
+    reportView: { "name": "Report View", "id": 10, "value": [] },
     userinput: "",
     result: null,
     dataformat: 0,
     tableReport: {},
     tableReportShow: false,
     levelSelected: 1,
-    reportTypeSelected:1,
+    reportTypeSelected: 1,
     grcreport: {},
-    loader:false,
-    colors:[],
+    loader: false,
+    colors: [],
+    tableRiskTechReport: {}
 
 }
 
@@ -46,27 +48,30 @@ const filterreducer = (state = initialState, action) => {
             return { ...state, riskid: { ...state.riskid, selectedValue: action.value } }
         case actionType.CHANGE_REPORT_TYPE:
             return { ...state, reportType: { ...state.reportType, selectedValue: action.value } }
+        case actionType.CHANGE_REPORTVIEW_TYPE:
+            return { ...state, reportView: { ...state.reportView, selectedValue: action.value } }
         case actionType.CHANGE_DRILL_DOWN:
-            return { ...state, drillDown: { ...state.drillDown, selectedValue: action.value } }    
+            return { ...state, drillDown: { ...state.drillDown, selectedValue: action.value } }
         case actionType.CHANGE_LEVEL:
             return { ...state, level: { ...state.level, selectedValue: action.level } }
         case actionType.CHANGE_BREAKDOWN:
             return { ...state, breakDown: { ...state.breakDown, selectedValue: action.data } }
         case actionType.UPDATE_RESULT:
-            return { ...state, result: action.data, tableReportShow: false,
-                  loader:false,levelSelected: state.level.selectedValue,
-                  reportTypeSelected: state.reportType.selectedValue,
-                  sapSystem:{...state.sapSystem,filtered:state.sapSystem.selectedValue},
-                  client:{...state.client,filtered:state.client.selectedValue},
-                  riskType:{...state.riskType,filtered:state.riskType.selectedValue},
-                  riskLevel:{...state.riskLevel,filtered:state.riskLevel.selectedValue},
-                  businessModule:{...state.businessModule,filtered:state.businessModule.selectedValue},
-                  mitigation:{...state.mitigation,filtered:state.mitigation.selectedValue},
-                  drillDown:{...state.drillDown,filtered:state.drillDown.selectedValue},
-                  level:{...state.level,filtered:state.level.selectedValue},
-                  reportType:{...state.reportType,filtered:state.reportType.selectedValue},
-                  riskid:{...state.riskid,filtered:state.riskid.selectedValue}
-                }
+            return {
+                ...state, result: action.data, tableReportShow: false,
+                loader: false, levelSelected: state.level.selectedValue,
+                reportTypeSelected: state.reportType.selectedValue,
+                sapSystem: { ...state.sapSystem, filtered: state.sapSystem.selectedValue },
+                client: { ...state.client, filtered: state.client.selectedValue },
+                riskType: { ...state.riskType, filtered: state.riskType.selectedValue },
+                riskLevel: { ...state.riskLevel, filtered: state.riskLevel.selectedValue },
+                businessModule: { ...state.businessModule, filtered: state.businessModule.selectedValue },
+                mitigation: { ...state.mitigation, filtered: state.mitigation.selectedValue },
+                drillDown: { ...state.drillDown, filtered: state.drillDown.selectedValue },
+                level: { ...state.level, filtered: state.level.selectedValue },
+                reportType: { ...state.reportType, filtered: state.reportType.selectedValue },
+                riskid: { ...state.riskid, filtered: state.riskid.selectedValue }
+            }
         case actionType.UPDATE_DATAFORMAT:
             return { ...state, dataformat: action.data }
         case actionType.CLEAR_RESULT:
@@ -80,8 +85,10 @@ const filterreducer = (state = initialState, action) => {
         case actionType.CHANGE_USERID_INPUT:
             return { ...state, userinput: action.value }
         case actionType.CHANGE_LOADER_STATUS:
-            return { ...state, loader: action.data } 
-       
+            return { ...state, loader: action.data }
+        case actionType.UPDATE_GRCRISKTECH_REPORT:
+            return { ...state, tableRiskTechReport: action.tableRiskTechReport }
+
     }
 
 

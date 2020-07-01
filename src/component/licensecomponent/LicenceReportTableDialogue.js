@@ -21,18 +21,10 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
-function createDatawithfivecolumn(COLUMN1, COLUMN2, COUNT1, COUNT2, COUNT3) {
-  return { COLUMN1, COLUMN2, COUNT1, COUNT2, COUNT3 };
-}
 
-function createDatawithfourcolumn(COLUMN1, COLUMN2, COUNT1, COUNT2) {
-  return { COLUMN1, COLUMN2, COUNT1, COUNT2 };
+function createData(LAW_LIC_TYPE, LAW_DESC, BNAME, USER_COUNT, SAPSYSID, MANDT, RANK, LIC_TYPE, RECOM_DESC, CURR_LIC_TYPE, CURR_DESC, USER_STATUS, LOGON_STATUS, EFLAG, PERNR, NAME_FIRST,NAME_LAST,ZPROFCOUNT,ZROLECOUNT,ZTOTCNT,ZMATCOUNT,ZPERCENT,TABNAME,ZCOUNT,ZTYPE,USTYP,CLASS,ACCNT,GLTGV,GLTGB,UFLAG,ERDAT,TRDAT,ACTIVE,LOCK,EXPIRED,REMOTE,REFUSER) {
+  return {LAW_LIC_TYPE, LAW_DESC, BNAME, USER_COUNT, SAPSYSID, MANDT, RANK, LIC_TYPE, RECOM_DESC, CURR_LIC_TYPE, CURR_DESC, USER_STATUS, LOGON_STATUS, EFLAG, PERNR, NAME_FIRST,NAME_LAST,ZPROFCOUNT,ZROLECOUNT,ZTOTCNT,ZMATCOUNT,ZPERCENT,TABNAME,ZCOUNT,ZTYPE,USTYP,CLASS,ACCNT,GLTGV,GLTGB,UFLAG,ERDAT,TRDAT,ACTIVE,LOCK,EXPIRED,REMOTE,REFUSER};
 }
-
-function createDatawiththreecolumn(COLUMN1, COLUMN2, COUNT1,) {
-  return { COLUMN1, COLUMN2, COUNT1};
-}
-
 
 
 
@@ -172,7 +164,7 @@ const useStyles = makeStyles((theme) => ({
   },
   reporttablecell:{
     fontFamily:'Helvetica',
-    fontSize:11, 
+    fontSize:12, 
     wordWrap:"normal", 
     overflow:"hidden", 
     textOverflow:"ellipsis", 
@@ -185,7 +177,7 @@ const useStyles = makeStyles((theme) => ({
   },
   reporttableheader:{
     fontFamily:'Helvetica',
-    fontSize:11, 
+    fontSize:12, 
     fontWeight:"bold",
     wordWrap:"normal", 
     overflow:"hidden", 
@@ -195,6 +187,8 @@ const useStyles = makeStyles((theme) => ({
      padding:"2px", 
      lineHeight:"inherit",
     backgroundColor: props=>props.colors[15]
+
+    
   },
   tablepaginationtoolbar:{
     minHeight:30,
@@ -220,40 +214,30 @@ function createColumn(header, keys) {
   return headers;
 }  
 
-
-function createRows(header, data) {
-
-  if(header.length==5){
-    return data.map(p=>createDatawithfivecolumn(p.COLUMN1,p.COLUMN2,p.COUNT1,p.COUNT2,p.COUNT2))
-  }
-
-
-  if(header.length==4){
-    return data.map(p=>createDatawithfourcolumn(p.COLUMN1,p.COLUMN2,p.COUNT1,p.COUNT2,p.COUNT2))
-  }
-
-
-    return data.map(p=>createDatawiththreecolumn(p.COLUMN1,p.COLUMN2,p.COUNT1,p.COUNT2,p.COUNT2))
-
-
-}  
-
-const GRCReportTable=(props)=> {
+const LicenceReportTableDialogue=(props)=> {
   const classes = useStyles(props);
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(true);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(200);
   const [data,setData]=React.useState(props.data)
+
+
   React.useEffect(() => {
     setData(props.data);
-    setRowsPerPage(data.length)
+
 }, [props])
 
-  const rows =createRows(props.header,data);
-
+  const rows = 
+  data.map(p=>createData(p.LAW_LIC_TYPE, p.LAW_DESC, p.BNAME, p.USER_COUNT, 
+    p.SAPSYSID, p.MANDT, p.RANK, p.LIC_TYPE, p.RECOM_DESC, 
+    p.CURR_LIC_TYPE, p.CURR_DESC, p.USER_STATUS, p.LOGON_STATUS, 
+    p.EFLAG, p.PERNR, p.NAME_FIRST, p.NAME_LAST, p.ZPROFCOUNT, 
+    p.ZROLECOUNT, p.ZTOTCNT, p.ZMATCOUNT, p.ZPERCENT, p.TABNAME, 
+    p.ZCOUNT, p.ZTYPE, p.USTYP, p.CLASS, p.ACCNT, p.GLTGV, p.GLTGB,
+     p.UFLAG, p.ERDAT, p.TRDAT, p.ACTIVE, p.LOCK, p.EXPIRED, p.REMOTE, p.REFUSER));
  headCells=createColumn(props.header,Object.keys(data[0]))
   
 
@@ -346,14 +330,54 @@ const GRCReportTable=(props)=> {
                       key={row.name}
                       selected={isItemSelected}                      
                     >
-                       <TableCell align="right" className={classes.reporttablecell}>{row.COLUMN1}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.COLUMN2}</TableCell>
-                   
-                      <TableCell align="right" className={classes.reporttablecell}>{row.COUNT1}</TableCell>
-                      {props.header.length>3?
-                      <TableCell align="right" className={classes.reporttablecell}>{row.COUNT2}</TableCell>:null}
-                       {props.header.length>4?
-                      <TableCell align="right" className={classes.reporttablecell}>{row.COUNT3}</TableCell>:null}
+
+
+  
+  
+ 
+                      <TableCell component="th" id={labelId} scope="row" padding="none" className={classes.reporttablecell}>
+                        {row.LAW_LIC_TYPE}
+                      </TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.LAW_DESC}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.BNAME}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.USER_COUNT}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.SAPSYSID}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.MANDT}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.RANK}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.LIC_TYPE}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.RECOM_DESC}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell} >{row.CURR_LIC_TYPE}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.CURR_DESC}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.USER_STATUS}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.LOGON_STATUS}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.EFLAG}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.PERNR}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.NAME_FIRST}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.NAME_LAST}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.ZPROFCOUNT}</TableCell>
+
+                      <TableCell align="right" className={classes.reporttablecell}>{row.ZROLECOUNT}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.ZTOTCNT}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.ZMATCOUNT}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.ZPERCENT}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.TABNAME}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.ZTYPE}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.USTYP}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.CLASS}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.CLASS}</TableCell>
+
+                      <TableCell align="right" className={classes.reporttablecell}>{row.GLTGV}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.GLTGB}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.UFLAG}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.ERDAT}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.TRDAT}</TableCell>
+
+                      <TableCell align="right" className={classes.reporttablecell}>{row.ACTIVE}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.LOCK}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.EXPIRED}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.REMOTE}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.REFUSER}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -366,7 +390,7 @@ const GRCReportTable=(props)=> {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[rowsPerPage,rowsPerPage+4,rowsPerPage+10]}
+          rowsPerPageOptions={[200, 500, 1000,2000]}
           component="div"
           count={rows.length}
           classes={{
@@ -392,4 +416,4 @@ const GRCReportTable=(props)=> {
     </div>
   );
 }
-export default GRCReportTable
+export default LicenceReportTableDialogue

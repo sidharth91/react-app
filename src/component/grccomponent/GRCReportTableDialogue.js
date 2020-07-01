@@ -21,8 +21,12 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
-function createData(SYSID, MANDT, BNAME, ZRISK_TYPE, ZRISK_LEVEL,APPLCLASS,APPLDESC,RISKEXE,ZAUDIT_ID,ZAUDIT_NAME,ZVELMIT_ID,ZNAME,ZCOUNT3,ZCOUNT1,ZCOUNT2,ZCOUNT) {
+function createDataUser(SYSID, MANDT, BNAME, ZRISK_TYPE, ZRISK_LEVEL,APPLCLASS,APPLDESC,RISKEXE,ZAUDIT_ID,ZAUDIT_NAME,ZVELMIT_ID,ZNAME,ZCOUNT3,ZCOUNT1,ZCOUNT2,ZCOUNT) {
   return { SYSID, MANDT, BNAME, ZRISK_TYPE, ZRISK_LEVEL,APPLCLASS,APPLDESC,RISKEXE,ZAUDIT_ID,ZAUDIT_NAME,ZVELMIT_ID,ZNAME,ZCOUNT3,ZCOUNT1,ZCOUNT2,ZCOUNT };
+}
+
+function createDataRole(SYSID, MANDT, AGR_NAME, ZRISK_TYPE, ZRISK_LEVEL,APPLCLASS,APPLDESC,RISKEXE,ZAUDIT_ID,ZAUDIT_NAME,ZVELMIT_ID,ZNAME,ZCOUNT3,ZCOUNT1,ZCOUNT2,ZCOUNT) {
+  return { SYSID, MANDT, AGR_NAME, ZRISK_TYPE, ZRISK_LEVEL,APPLCLASS,APPLDESC,RISKEXE,ZAUDIT_ID,ZAUDIT_NAME,ZVELMIT_ID,ZNAME,ZCOUNT3,ZCOUNT1,ZCOUNT2,ZCOUNT };
 }
 
 
@@ -53,24 +57,7 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-const headCells = [
-  // { id: 'SYSID', numeric: false, disablePadding: true, label: 'Sys' },
-  // { id: 'MANDT', numeric: false, disablePadding: true, label: 'Client' },
-  { id: 'BNAME', numeric: false, disablePadding: true, label: 'User ID' },
-  { id: 'ZRISK_TYPE', numeric: false, disablePadding: true, label: 'Risk Type' },
-  { id: 'ZRISK_LEVEL', numeric: false, disablePadding: true, label: 'Risk Level' },
-  { id: 'APPLCLASS', numeric: false, disablePadding: true, label: 'Bus Module' },
-  { id: 'APPLDESC', numeric: false, disablePadding: true, label: 'Bus Module Desc' },
-  { id: 'RISKEXE', numeric: false, disablePadding: true, label: 'Risk Exec' },
-  { id: 'ZAUDIT_ID', numeric: false, disablePadding: true, label: 'Risk ID' },
-  { id: 'ZAUDIT_NAME', numeric: false, disablePadding: true, label: 'Risk Name' },
-  { id: 'ZVELMIT_ID', numeric: false, disablePadding: true, label: 'MIT ID' },
-  { id: 'ZNAME', numeric: false, disablePadding: true, label: 'Mitigation Name' },
-  { id: 'ZCOUNT3', numeric: true, disablePadding: false, label: 'Total Risks' },
-  { id: 'ZCOUNT1', numeric: true, disablePadding: false, label: 'Risk Roles' },
-  { id: 'ZCOUNT2', numeric: true, disablePadding: false, label: 'Total TCodes' },
-  { id: 'ZCOUNT', numeric: true, disablePadding: false, label: 'Exec TCodes' }
-];
+let headCells = [];
 
 function EnhancedTableHead(props) {
   const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
@@ -87,7 +74,7 @@ function EnhancedTableHead(props) {
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'default'}
             sortDirection={orderBy === headCell.id ? order : false}
-            style={{fontFamily:'Helvetica',fontSize:12, fontWeight:"bold", wordWrap:"normal", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap", border:"1px solid rgba(224, 224, 224, 1)",padding:"2px", lineHeight:"inherit"}}
+            className={classes.reporttableheader}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
@@ -187,8 +174,24 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace:"nowrap",
     padding:"2px",
     textAlign:"left",
-    border:"1px solid rgba(224, 224, 224, 1)",
+    backgroundColor: props=>props.colors[15],
+    border: "2px solid rgba(224, 224, 224, 1)",
     borderCollapse:'collapse'
+  },
+  reporttableheader:{
+    fontFamily:'Helvetica',
+    fontSize:12, 
+    fontWeight:"bold",
+    wordWrap:"normal", 
+    overflow:"hidden", 
+    textOverflow:"ellipsis",
+     whiteSpace:"nowrap", 
+     border: "2px solid rgba(224, 224, 224, 1)",
+     padding:"2px", 
+     lineHeight:"inherit",
+    backgroundColor: props=>props.colors[15]
+
+    
   },
   tablepaginationtoolbar:{
     minHeight:30,
@@ -204,8 +207,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const GRCReportTable=(props)=> {
-  const classes = useStyles();
+
+function createColumn(header, keys) {
+
+  let headers = header.map((value, index) => {
+      return { id: keys[index], numeric: false, disablePadding: true, label:value }
+  })
+
+  return headers;
+}  
+
+const GRCReportTableDialogue=(props)=> {
+  const classes = useStyles(props);
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
@@ -213,12 +226,21 @@ const GRCReportTable=(props)=> {
   const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(200);
   const [data,setData]=React.useState(props.data)
+
+
   React.useEffect(() => {
     setData(props.data);
+
 }, [props])
-  const rows = data.map(p=>createData(p.SYSID,p.MANDT,p.BNAME,p.ZRISK_TYPE,p.ZRISK_LEVEL,
+
+  const rows = Object.keys(data[0]).includes('AGR_NAME')?
+  data.map(p=>createDataRole(p.SYSID,p.MANDT,p.AGR_NAME,p.ZRISK_TYPE,p.ZRISK_LEVEL,
+    p.APPLCLASS,p.APPLDESC,p.RISKEXE,p.ZAUDIT_ID,p.ZAUDIT_NAME,p.ZVELMIT_ID,p.ZNAME,
+    p.ZCOUNT3,p.ZCOUNT2,p.ZCOUNT1,p.ZCOUNT))
+  :data.map(p=>createDataUser(p.SYSID,p.MANDT,p.BNAME,p.ZRISK_TYPE,p.ZRISK_LEVEL,
     p.APPLCLASS,p.APPLDESC,p.RISKEXE,p.ZAUDIT_ID,p.ZAUDIT_NAME,p.ZVELMIT_ID,p.ZNAME,
     p.ZCOUNT3,p.ZCOUNT2,p.ZCOUNT1,p.ZCOUNT));
+ headCells=createColumn(props.header,Object.keys(data[0]))
   
 
   const handleRequestSort = (event, property) => {
@@ -311,11 +333,14 @@ const GRCReportTable=(props)=> {
                       selected={isItemSelected}                      
                     >
 
-                      {/* <TableCell component="th" id={labelId} scope="row" padding="none" className={classes.reporttablecell}>
+                      <TableCell component="th" id={labelId} scope="row" padding="none" className={classes.reporttablecell}>
                         {row.SYSID}
                       </TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.MANDT}</TableCell> */}
+                      <TableCell align="right" className={classes.reporttablecell}>{row.MANDT}</TableCell>
+                      {Object.keys(data[0]).includes('AGR_NAME')?
+                      <TableCell align="right" className={classes.reporttablecell}>{row.AGR_NAME}</TableCell>:
                       <TableCell align="right" className={classes.reporttablecell}>{row.BNAME}</TableCell>
+                  }
                       <TableCell align="right" className={classes.reporttablecell}>{row.ZRISK_TYPE}</TableCell>
                       <TableCell align="right" className={classes.reporttablecell}>{row.ZRISK_LEVEL}</TableCell>
                       <TableCell align="right" className={classes.reporttablecell}>{row.APPLCLASS}</TableCell>
@@ -328,7 +353,7 @@ const GRCReportTable=(props)=> {
                       <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT3}</TableCell>
                       <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT1}</TableCell>
                       <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT2}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT0}</TableCell>
+                      <TableCell align="right" className={classes.reporttablecell}>{row.ZCOUNT}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -367,4 +392,4 @@ const GRCReportTable=(props)=> {
     </div>
   );
 }
-export default GRCReportTable
+export default GRCReportTableDialogue

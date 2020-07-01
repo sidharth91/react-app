@@ -4,18 +4,14 @@ import {withRouter} from 'react-router-dom';
 //import './Login.css'
 //import * as actionType from '../../Store/actions/actionsType'
 import * as action from '../Store/actions/index'
-import logo_icon from '../resources/auditbotlogo.PNG'
-import SingleSelectDropDown from '../component/SingleSelectDropDown'
-import LoginCard from '../component/LoginCard'
+
 import Grid from '@material-ui/core/Grid';
-import HeaderContainer from './HeaderContainer'
-import SideBar from './SideBar'
-import GRCFilter from '../component/grccomponent/GRCFilter'
+
+import GRCRiskTechFilter from '../component/grccomponent/GRCRiskTechFilter'
 
 import Loader from '../component/Loader'
-import GRCDragableDialogue from './GRCDragableDialogue'
-import GRCReportTable from '../component/grccomponent/GRCReportTable'
-import MUGRCReportTable from '../component/grccomponent/MUGRCReportTable'
+
+import MUGRCRiskTeckReportTable from '../component/grccomponent/MUGRCRiskTeckReportTable'
 import Typography from '@material-ui/core/Typography';
 
 class GRCReport extends Component {
@@ -37,9 +33,9 @@ class GRCReport extends Component {
         return (
             <Grid container style={{ marginTop:5,paddingRight:10,paddingLeft:10 }} spacing={0}>
                  <Grid item md={12} style={{margin:5}}>
-                    {this.props.sapSystem.value.length>0?<GRCFilter type='Report'/>:null}
+                    {this.props.sapSystem.value.length>0?<GRCRiskTechFilter type='Report'/>:null}
                     {/* {Object.keys(this.props.grcreport).length>0?<GRCReportTable colors={this.props.colors} header={this.props.grcreport.header} data={this.props.grcreport.data}/>:null} */}
-                      {Object.keys(this.props.grcreport).length>0 && this.props.grcreport.data.length>0?<MUGRCReportTable colors={this.props.colors} header={this.props.grcreport.header} data={this.props.grcreport.data}/>:null}
+                      {Object.keys(this.props.grcreport).length>0 && this.props.grcreport.data.length>0?<MUGRCRiskTeckReportTable colors={this.props.colors} header={this.props.grcreport.header} data={this.props.grcreport.data}/>:null}
                       {Object.keys(this.props.grcreport).length>0 && this.props.grcreport.data.length<1?
                        <Grid container style={{ marginTop:5,paddingRight:10,paddingLeft:10}} spacing={0}>
                            <Grid item md={12} style={{margin:5,alignItems:'center'}}>
@@ -65,14 +61,14 @@ const mapStateToProps = state => {    //this methos use to retrive state from re
         sapSystem: state.filter.sapSystem,
         client: state.filter.client,
         loader:state.filter.loader,
-        grcreport:state.filter.grcreport,
+        grcreport:state.filter.tableRiskTechReport,
         colors:state.filter.colors
     };
 }
 
 const mapDispatchToProps = dispatch => { // this methos used for dispatch action to reducer
      return {
-        loadFilter: (token) => dispatch(action.initFilter(token)),
+        loadFilter: (token) => dispatch(action.initRiskTechFilter(token)),
         updatePathname:(value)=>dispatch(action.updatePathname(value))
     };
 }

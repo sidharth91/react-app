@@ -2,22 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import './Login.css'
 //import * as actionType from '../../Store/actions/actionsType'
-import * as action from '../Store/actions/index'
-import logo_icon from '../resources/auditbotlogo.PNG'
-import FilterSingleSelectDropDown from '../component/grccomponent/FilterSingleSelectDropDown'
-import FilterMultiSelectDropDown from '../component/grccomponent/FilterMultiSelectDropDown'
-import LoginCard from '../component/LoginCard'
+import * as action from '../../Store/actions/index'
+
 import Grid from '@material-ui/core/Grid';
-import HeaderContainer from './HeaderContainer'
-import SideBar from './SideBar'
-import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
+
 import CardContent from '@material-ui/core/CardContent';
-import GRCStackGraphCard from '../component/grccomponent/GRCStackGraphCard'
+
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, green } from '@material-ui/core/colors';
@@ -61,7 +53,8 @@ const useStyles = makeStyles((theme) => ({
     },
     Labeltext:{
         fontFamily:'Helvetica',
-        fontSize:9
+        fontSize:9,
+
     },
     roundedSecond: {
         color: '#FFFFFF',
@@ -84,6 +77,10 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(3),
         marginTop:'20%'
     },
+    autoMarginTopBottom:{
+        marginTop:'auto',
+        marginBottom:'auto'
+    }
 
 
 }));
@@ -108,20 +105,22 @@ const GRCSecondSecData = (props) => {
     return (
 
         <Grid container style={{ marginTop:5 }} spacing={0}>
-            <Grid item md={12}>
-                <Card elevation='5'>
-                    {isDataReadtToShow ?
-                        <CardContent style={{ padding: 2, marginRight:5,marginLeft:5 }}>
-                            <Grid container spacing={1}>
-                                <Grid item md={1}>
+  
+            {isDataReadtToShow ?
+                <Card elevation='5' style={{border:'2px solid #009ED7'}}>
+                   
+                        <CardContent style={{ padding: 2, height:"8vh" }}>
+                            <Grid container style={{ height:"inherit",width: '100%', margin: 0 }}>
+                                <Grid container sm={4}>
+                                <Grid item xs={3} className={classes.autoMarginTopBottom}>
 
                                 <Grid container spacing={0}>
-                                 <Grid item sm={4} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.rounded}>
                                         <ControlCameraIcon />
                                     </Avatar>
                                      </Grid>
-                                     <Grid item sm={8}> 
+                                     <Grid item sm={9} style={{textAlign:'left'}}> 
                                      <Typography variant="caption" display="block" className={classes.Labeltext}>
                                             {props.result.E_RESULT_02.data[0].COL1}
                                         </Typography>
@@ -132,16 +131,15 @@ const GRCSecondSecData = (props) => {
                                      </Grid>
         
 
-                                </Grid>
-                                
-                                <Grid item md={1}>
+                                </Grid>                                
+                                <Grid item xs={3} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center'style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.rounded}>
                                         <FilterCenterFocusIcon />
                                     </Avatar>
                                      </Grid>
-                                     <Grid item sm={9}> 
+                                     <Grid item sm={9} style={{textAlign:'left'}}> 
                                      <Typography variant="caption" display="block" className={classes.Labeltext}> 
                                             {props.result.E_RESULT_02.data[1].COL1}
                                         </Typography>
@@ -152,14 +150,14 @@ const GRCSecondSecData = (props) => {
                                      </Grid>
         
                                 </Grid>
-                                <Grid item md={1}>
+                                <Grid item xs={3} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.rounded}>
                                         <FilterTiltShiftIcon />
                                     </Avatar>
                                      </Grid>
-                                     <Grid item sm={9}> 
+                                     <Grid item sm={9} style={{textAlign:'left'}}> 
                                      <Typography variant="caption" display="block" className={classes.Labeltext}>
                                             {props.result.E_RESULT_02.data[2].COL1}
                                         </Typography>
@@ -170,14 +168,14 @@ const GRCSecondSecData = (props) => {
                                      </Grid>
         
                                 </Grid>
-                                <Grid item md={1}>
+                                <Grid item xs={3} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.roundedSecond}>
                                         <ExploreIcon />
                                     </Avatar>
                                      </Grid>
-                                     <Grid item sm={9}> 
+                                     <Grid item sm={9} style={{textAlign:'left'}}> 
                                      <Typography variant="caption" display="block" className={classes.Labeltext}>
                                             {props.result.E_RESULT_02.data[3].COL1}
                                         </Typography>
@@ -188,14 +186,16 @@ const GRCSecondSecData = (props) => {
                                      </Grid>
         
                                 </Grid>
-                                <Grid item md={1}>
+                                </Grid>
+                                <Grid container sm={2}>
+                                <Grid item xs={4} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={5} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.roundedSecond}>
                                         <ExploreOffIcon  />
                                     </Avatar>
                                      </Grid>
-                                     <Grid item sm={9}> 
+                                     <Grid item sm={7} style={{textAlign:'left'}}> 
                                      <Typography variant="caption" display="block" className={classes.Labeltext}>
                                             {props.result.E_RESULT_02.data[4].COL1}
                                         </Typography>
@@ -206,14 +206,15 @@ const GRCSecondSecData = (props) => {
                                      </Grid>
         
                                 </Grid>
-                                <Grid item md={1}>
+                                <Grid item xs={4} className={classes.autoMarginTopBottom}>
+                                    
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={5} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.roundedThird}>
                                         <PeopleIcon  />
                                     </Avatar>
                                      </Grid>
-                                     <Grid item sm={9}> 
+                                     <Grid item sm={7} style={{textAlign:'left'}}> 
                                      <Typography variant="caption" display="block" className={classes.Labeltext}>
                                             {props.result.E_RESULT_02.data[5].COL1}
                                         </Typography>
@@ -223,14 +224,14 @@ const GRCSecondSecData = (props) => {
                                      </Grid>   
                                      </Grid>
                                 </Grid>
-                                <Grid item md={1}>
+                                <Grid item xs={4} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={5} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.roundedThird}>
                                         <AccountBoxIcon  />
                                     </Avatar>
                                      </Grid>
-                                     <Grid item sm={9}> 
+                                     <Grid item sm={7} style={{textAlign:'left'}}> 
                                      <Typography variant="caption" display="block" className={classes.Labeltext}>
                                             {props.result.E_RESULT_02.data[6].COL1}
                                         </Typography>
@@ -240,14 +241,17 @@ const GRCSecondSecData = (props) => {
                                      </Grid>   
                                      </Grid>
                                 </Grid>
-                                <Grid item md={1}>
+                                </Grid>
+                                
+                                <Grid container sm={6}>
+                                <Grid item xs={2} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.roundedThird}>
                                         <PersonIcon  />
                                     </Avatar>
                                      </Grid>
-                                     <Grid item sm={9}> 
+                                     <Grid item sm={9} style={{textAlign:'left'}}> 
                                      <Typography variant="caption" display="block" className={classes.Labeltext}>
                                             {props.result.E_RESULT_02.data[7].COL1}
                                         </Typography>
@@ -258,14 +262,14 @@ const GRCSecondSecData = (props) => {
                                      </Grid>
         
                                 </Grid>
-                                <Grid item md={1}>
+                                <Grid item xs={2} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center'style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.roundedThird}>
                                         <PersonAddDisabledIcon  />
                                     </Avatar>
                                      </Grid>
-                                     <Grid item sm={9}> 
+                                     <Grid item sm={9} style={{textAlign:'left'}}> 
                                      <Typography variant="caption" display="block" className={classes.Labeltext}>
                                             {props.result.E_RESULT_02.data[8].COL1}
                                         </Typography>
@@ -276,14 +280,14 @@ const GRCSecondSecData = (props) => {
                                      </Grid>
         
                                 </Grid>
-                                <Grid item md={1}>
+                                <Grid item xs={2} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.roundedFourth}>
                                         <ReportProblemIcon  />
                                     </Avatar>
                                      </Grid>
-                                     <Grid item sm={9}> 
+                                     <Grid item sm={9} style={{textAlign:'left'}}> 
                                      <Typography variant="caption" display="block" className={classes.Labeltext}>
                                             {props.result.E_RESULT_02.data[9].COL1}
                                         </Typography>
@@ -294,14 +298,14 @@ const GRCSecondSecData = (props) => {
                                      </Grid>
         
                                 </Grid>
-                                <Grid item md={1}>
+                                <Grid item xs={2} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.roundedFourth}>
                                         <ReportIcon  />
                                     </Avatar>
                                      </Grid>
-                                     <Grid item sm={9}> 
+                                     <Grid item sm={9} style={{textAlign:'left'}}> 
                                      <Typography variant="caption" display="block" className={classes.Labeltext}>
                                             {props.result.E_RESULT_02.data[10].COL1}
                                         </Typography>
@@ -312,14 +316,14 @@ const GRCSecondSecData = (props) => {
                                      </Grid>
         
                                 </Grid>
-                                <Grid item md={1}>
+                                <Grid item xs={2} className={classes.autoMarginTopBottom}>
                                 <Grid container spacing={0}>
-                                 <Grid item sm={3} alignContent='center' alignItems='center'>
+                                 <Grid item sm={3} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
                                  <Avatar variant="rounded" className={classes.roundedFourth}>
                                         <ReportOffIcon  />
                                     </Avatar>
                                      </Grid>
-                                     <Grid item sm={9}> 
+                                     <Grid item sm={9} style={{textAlign:'left'}}> 
                                      <Typography variant="caption" display="block" className={classes.Labeltext}>
                                             {props.result.E_RESULT_02.data[11].COL1}
                                         </Typography>
@@ -329,6 +333,25 @@ const GRCSecondSecData = (props) => {
                                      </Grid>   
                                      </Grid>
         
+                                </Grid> 
+                                <Grid item xs={2} className={classes.autoMarginTopBottom}>
+                                <Grid container spacing={0}>
+                                 <Grid item sm={3} alignContent='center' alignItems='center' style={{ margin: 'auto' }}>
+                                 <Avatar variant="rounded" className={classes.roundedFourth}>
+                                        <ReportOffIcon  />
+                                    </Avatar>
+                                     </Grid>
+                                     <Grid item sm={9} style={{textAlign:'left'}}> 
+                                     <Typography variant="caption" display="block" className={classes.Labeltext}>
+                                            {props.result.E_RESULT_02.data[11].COL1}
+                                        </Typography>
+                                        <Typography variant="caption" display="block">
+                                        {props.result.E_RESULT_02.data[11].ZCOUNT}
+                                        </Typography>
+                                     </Grid>   
+                                     </Grid>
+        
+                                </Grid>
                                 </Grid>
 
                             </Grid>
@@ -354,9 +377,10 @@ const GRCSecondSecData = (props) => {
 
                             </Grid> */}
                         </CardContent>
-                        : null}
+                       
                 </Card>
-            </Grid>
+                 : null}
+
 
         </Grid>
 

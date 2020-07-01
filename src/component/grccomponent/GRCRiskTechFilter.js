@@ -2,18 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import './Login.css'
 //import * as actionType from '../../Store/actions/actionsType'
-import * as action from '../Store/actions/index'
-import logo_icon from '../resources/auditbotlogo.PNG'
-import FilterSingleSelectDropDown from '../component/grccomponent/FilterSingleSelectDropDown'
-import FilterMultiSelectDropDown from '../component/grccomponent/FilterMultiSelectDropDown'
-import LoginCard from '../component/LoginCard'
+import * as action from '../../Store/actions/index'
+
+import FilterSingleSelectDropDown from './FilterSingleSelectDropDown'
+import FilterMultiSelectDropDown from './FilterMultiSelectDropDown'
 import Grid from '@material-ui/core/Grid';
-import HeaderContainer from './HeaderContainer'
-import SideBar from './SideBar'
-import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -27,25 +21,25 @@ import IconButton from '@material-ui/core/IconButton';
 class GRCFilter extends Component {
 
     componentDidMount() {
-        if (this.props.type == 'Dashbord') {
-            this.props.submitFilter(this.props.token, this.props.riskType.selectedValue,
-                this.props.sapSystem.selectedValue, this.props.client.selectedValue,
-                this.props.riskLevel.selectedValue, this.props.businessModule.selectedValue,
-                this.props.level.selectedValue, this.props.breakDown.selectedValue,
-                this.props.riskid.selectedValue, this.props.reportType.selectedValue,
-                this.props.mitigation.selectedValue)
-        } else {
-            this.props.submitGRCFilter(this.props.token,
-                this.props.sapSystem.selectedValue,
-                this.props.client.selectedValue,
-                this.props.level.selectedValue,
-                this.props.riskType.selectedValue,
-                this.props.riskLevel.selectedValue,
-                this.props.businessModule.selectedValue,
-                this.props.mitigation.selectedValue,
-                this.props.drillDown.selectedValue,
-                this.props.riskid.selectedValue, null)
-        }
+        // if (this.props.type == 'Dashbord') {
+        //     this.props.submitFilter(this.props.token, this.props.riskType.selectedValue,
+        //         this.props.sapSystem.selectedValue, this.props.client.selectedValue,
+        //         this.props.riskLevel.selectedValue, this.props.businessModule.selectedValue,
+        //         this.props.level.selectedValue, this.props.breakDown.selectedValue,
+        //         this.props.riskid.selectedValue, this.props.reportType.selectedValue,
+        //         this.props.mitigation.selectedValue)
+        // } else {
+        //     this.props.submitGRCFilter(this.props.token,
+        //         this.props.sapSystem.selectedValue,
+        //         this.props.client.selectedValue,
+        //         this.props.level.selectedValue,
+        //         this.props.riskType.selectedValue,
+        //         this.props.riskLevel.selectedValue,
+        //         this.props.businessModule.selectedValue,
+        //         this.props.mitigation.selectedValue,
+        //         this.props.drillDown.selectedValue,
+        //         this.props.riskid.selectedValue, null)
+        // }
     }
 
     changeSystem = (value) => {
@@ -60,6 +54,9 @@ class GRCFilter extends Component {
     }
 
     changeRiskType = (value) => {
+        if(value.includes('G')){
+            this.props.onChangeFilter(this.props.reportView, this.props.reportView.value[1].ZID)
+        }
         this.props.onChangeFilter(this.props.riskType, value)
     }
     changeRiskLevel = (value) => {
@@ -80,6 +77,11 @@ class GRCFilter extends Component {
     changeReportType = (value) => {
         this.props.onChangeFilter(this.props.reportType, value)
     }
+    changeReportViewType = (value) => {
+        if(value!=''){
+        this.props.onChangeFilter(this.props.reportView, value)
+        }
+    }
     changeDrillDown = (value) => {
         this.props.onChangeFilter(this.props.drillDown, value)
     }
@@ -87,31 +89,23 @@ class GRCFilter extends Component {
 
     onfilterSumbit = () => {
 
-        if (this.props.type == 'Dashbord') {
-            this.props.submitFilter(this.props.token, this.props.riskType.selectedValue,
-                this.props.sapSystem.selectedValue, this.props.client.selectedValue,
-                this.props.riskLevel.selectedValue, this.props.businessModule.selectedValue,
-                this.props.level.selectedValue, this.props.breakDown.selectedValue,
-                this.props.riskid.selectedValue, this.props.reportType.selectedValue,
-                this.props.mitigation.selectedValue)
-        } else {
-            this.props.submitGRCFilter(this.props.token,
+            this.props.riskTechGrcReport(this.props.token,
                 this.props.sapSystem.selectedValue,
                 this.props.client.selectedValue,
                 this.props.level.selectedValue,
                 this.props.riskType.selectedValue,
                 this.props.riskLevel.selectedValue,
                 this.props.businessModule.selectedValue,
-                this.props.mitigation.selectedValue,
-                this.props.drillDown.selectedValue,
-                this.props.riskid.selectedValue, this.props.userinput)
-        }
+                this.props.riskid.selectedValue,
+                this.props.reportView.selectedValue,
+                this.props.userinput)
+ 
 
     }
     render() {
 
         let level = Object.keys(this.props.level).length != 0 ?
-            Object.keys(this.props.level).filter(param => !['selectedValue','filtered'].includes(param) ).map((param) => {
+            Object.keys(this.props.level).filter(param => !['selectedValue', 'filtered'].includes(param)).map((param) => {
                 return { 'key': param, 'value': this.props.level[param] };
             }) : []
 
@@ -155,68 +149,70 @@ class GRCFilter extends Component {
             this.props.drillDown.value.map((param) => {
                 return { 'key': param.ZDESC, 'value': param.ZID };
             }) : []
+        let reportView=  Object.keys(this.props.reportView).length != 0 ?
+        this.props.reportView.value.map((param) => {
+            return { 'key': param.ZDESC, 'value': param.ZID };
+        }) : []  
 
         return (
             // <Grid container style={{}} spacing={0}>
             //     <Grid item md={12}>
-            <Card elevation='5'>
-                <CardContent id="idFilterCard" style={{ padding: "0.25rem" }}>
-                    <Grid container spacing={1}>
-                        <Grid item md={1}>
+            <Card elevation='5' >
+                <CardContent id="idFilterCard" style={{  minHeight:'7vh',padding:0, marginTop:'auto', marginBottom:'auto' }}>
+                    <Grid container spacing={1} style={{ marginTop:'auto', marginBottom:'auto', height:'inherit', minHeight:'inherit'}} >
+                        <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterSingleSelectDropDown values={level} preSelected={this.props.level.selectedValue} changeEventCallBack={this.changeLevel} label="Level" width='100' />
                         </Grid>
-                        <Grid item md={1}>
+                        <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterSingleSelectDropDown values={sapSystem} preSelected={this.props.sapSystem.selectedValue} changeEventCallBack={this.changeSystem} label="System" width='100' />
                         </Grid>
-                        <Grid item md={1}>
+                        <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterSingleSelectDropDown values={sapClient} preSelected={this.props.client.selectedValue} changeEventCallBack={this.changeClient} label="Client" width='100' />
                         </Grid>
-                        <Grid item md={1}>
+                        <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterMultiSelectDropDown values={riskType} preSelected={this.props.riskType.selectedValue} changeEventCallBack={this.changeRiskType} label="Risk Type" width='100' />
                         </Grid>
-                        <Grid item md={1}>
+                        <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterMultiSelectDropDown values={riskLevel} preSelected={this.props.riskLevel.selectedValue} changeEventCallBack={this.changeRiskLevel} label="Risk Level" width='100' />
                         </Grid>
-                        <Grid item md={1}>
+                        <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterMultiSelectDropDown values={businessModule} preSelected={this.props.businessModule.selectedValue} changeEventCallBack={this.changeBusinessModule} label="Bus Module" width='100' />
                         </Grid>
-                        <Grid item md={this.props.type == 'Dashbord' ? 2 : 1}>
+                        <Grid item md={this.props.type == 'Dashbord' ? 2 : 2} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterMultiSelectDropDown values={riskid} preSelected={this.props.riskid.selectedValue} changeEventCallBack={this.changeRiskId} label="Risk Id" width='100' />
                         </Grid>
-                        <Grid item md={1}>
-                            <FilterSingleSelectDropDown values={mitigation} preSelected={this.props.mitigation.selectedValue} changeEventCallBack={this.changeMitigation} label="Mitigation" width='100' />
+                   
+                        <Grid item md={2} style={{ marginTop:'auto', marginBottom:'auto'}}>
+                            <FilterSingleSelectDropDown values={reportView} preSelected={this.props.reportView.selectedValue} changeEventCallBack={this.changeReportViewType} label="Report View" width='100' />
                         </Grid>
-                        <Grid item md={1}>
-                            <FilterSingleSelectDropDown values={reportType} preSelected={this.props.reportType.selectedValue} changeEventCallBack={this.changeReportType} label="Report Type" width='100' />
-                        </Grid>
-                        <Grid item md={1}>
-                            <FilterSingleSelectDropDown values={drillDown} preSelected={this.props.drillDown.selectedValue} changeEventCallBack={this.changeDrillDown} label="Drill Down" width='100' />
-                        </Grid>
+                    
                         {this.props.type == 'Report' ?
-                            <Grid item md={1} style={{paddingTop:12,paddingLeft:10}}>
+                            <Grid item md={1} style={{ margin:'auto 0px', padding:'0px 16px'}}>
                                 <TextField id="outlined-search" inputProps={{
                                     style: {
-                                        height:35,
+                                        height: 35,
                                         padding: '0 14px',
-                                        fontSize:12
+                                        fontSize: 12
                                     },
-                                }} 
-                                InputLabelProps={{
-                                    style: {
-                                     fontSize:12,
-                                     fontFamily:'Helvetica',
-                                    
-                                    },
-                                  }}
-                                size="small" label="Input" type="search" variant="outlined" onChange={(event)=>{this.props.changeUserInput(event.target.value)}} />
+                                }}
+                                    InputLabelProps={{
+                                        style: {
+                                            fontSize: 12,
+                                            fontFamily: 'Helvetica',
+
+                                        },
+                                    }}
+                                    size="small" label={this.props.level.selectedValue=='1'?"User":"Role"} type="search" variant="outlined" onChange={(event) => { this.props.changeUserInput(event.target.value) }} />
                             </Grid>
                             : null
                         }
-                        <Grid item md={this.props.type == 'Dashbord' ? 1 : 1}>
-                            <IconButton color="primary" aria-label="upload picture" component="span" onClick={() => this.onfilterSumbit()}>
+                        <Grid item md={this.props.type == 'Dashbord' ? 1 : 1} style={{ marginTop:'auto', marginBottom:'auto'}}>
+                            {/* <IconButton color="primary" aria-label="upload picture" component="span" onClick={() => this.onfilterSumbit()}>
                                 <SearchIcon />
-                            </IconButton>
-
+                            </IconButton> */}
+                            <Button variant="contained" size="small" color="primary" style={{fontFamily:'Helvetica',padding:4,backgroundColor:'#009ED7', textTransform:'none', minWidth:'80px'}} onClick={() => this.onfilterSumbit()}>
+                                Execute
+                            </Button>
 
                         </Grid>
                     </Grid>
@@ -271,19 +267,20 @@ const mapStateToProps = state => {    //this methos use to retrive state from re
         drillDown: state.filter.drillDown,
         breakDown: state.filter.breakDown,
         result: state.filter.result,
-        userinput:state.filter.userinput
+        userinput: state.filter.userinput,
+        reportView:state.filter.reportView
     };
 
 }
 
 const mapDispatchToProps = dispatch => { // this methos used for dispatch action to reducer
     return {
-        loadFilter: (token) => dispatch(action.initFilter(token)),
+        loadFilter: (token) => dispatch(action.initRiskTechFilter(token)),
         onChangeFilter: (data, value) => dispatch(action.changeFilter(data, value)),
-        changeUserInput:(value)=>dispatch(action.changeUserInput(value)),
+        changeUserInput: (value) => dispatch(action.changeUserInput(value)),
         changeLevel: (level) => dispatch(action.changeLevel(level)),
         submitFilter: (token, riskType, sapSystem, client, riskLevel, businessModule, level, breakDown, riskId, reportType, mitigation) => dispatch(action.submitFilter(token, riskType, sapSystem, client, riskLevel, businessModule, level, breakDown, riskId, reportType, mitigation)),
-        submitGRCFilter: (token, sapSystem, client, level, riskType, riskLevel, businessModule, mitigation, drillDown, riskId, userinput) => dispatch(action.riskGrcReport(token, sapSystem, client, level, riskType, riskLevel, businessModule, mitigation, drillDown, riskId, userinput))
+        riskTechGrcReport: (token, sapSystem, client, level, riskType, riskLevel, businessModule, riskId,reportView, userinput) => dispatch(action.riskTechGrcReport(token, sapSystem, client, level, riskType, riskLevel, businessModule,riskId, reportView,userinput))
     };
 }
 

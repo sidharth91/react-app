@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: '100%',
+    margin:4
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -72,6 +73,7 @@ const MenuProps = {
 
     
     const MenuItems=props.values.map((v) => (
+      
         <MenuItem key={v.key} value={v.value} style={{padding:0}} >
           <Checkbox size="small" style={{padding:0,paddingRight:3}} checked={selected.indexOf(v.value) > -1} />
           <ListItemText

@@ -25,11 +25,16 @@ function createDatawithfivecolumn(COLUMN1, COLUMN2, COUNT1, COUNT2, COUNT3) {
   return { COLUMN1, COLUMN2, COUNT1, COUNT2, COUNT3 };
 }
 
+function createDatawithSixcolumn(COLUMN1, COLUMN2, COUNT1, COUNT2, COUNT3,COUNT4) {
+  return { COLUMN1, COLUMN2, COUNT1, COUNT2, COUNT3 ,COUNT4};
+}
+
+
 function createDatawithfourcolumn(COLUMN1, COLUMN2, COUNT1, COUNT2) {
   return { COLUMN1, COLUMN2, COUNT1, COUNT2 };
 }
 
-function createDatawiththreecolumn(COLUMN1, COLUMN2, COUNT1,) {
+function createDatawiththreecolumn(COLUMN1, COLUMN2, COUNT1) {
   return { COLUMN1, COLUMN2, COUNT1};
 }
 
@@ -223,17 +228,21 @@ function createColumn(header, keys) {
 
 function createRows(header, data) {
 
+  if(header.length==6){
+    return data.map(p=>createDatawithSixcolumn(p.COLUMN1,p.COLUMN2,p.COUNT1,p.COUNT2,p.COUNT3,p.COUNT4))
+  }
+
   if(header.length==5){
-    return data.map(p=>createDatawithfivecolumn(p.COLUMN1,p.COLUMN2,p.COUNT1,p.COUNT2,p.COUNT2))
+    return data.map(p=>createDatawithfivecolumn(p.COLUMN1,p.COLUMN2,p.COUNT1,p.COUNT2,p.COUNT3))
   }
 
 
   if(header.length==4){
-    return data.map(p=>createDatawithfourcolumn(p.COLUMN1,p.COLUMN2,p.COUNT1,p.COUNT2,p.COUNT2))
+    return data.map(p=>createDatawithfourcolumn(p.COLUMN1,p.COLUMN2,p.COUNT1,p.COUNT2))
   }
 
 
-    return data.map(p=>createDatawiththreecolumn(p.COLUMN1,p.COLUMN2,p.COUNT1,p.COUNT2,p.COUNT2))
+    return data.map(p=>createDatawiththreecolumn(p.COLUMN1,p.COLUMN2,p.COUNT1))
 
 
 }  
@@ -354,6 +363,8 @@ const GRCReportTable=(props)=> {
                       <TableCell align="right" className={classes.reporttablecell}>{row.COUNT2}</TableCell>:null}
                        {props.header.length>4?
                       <TableCell align="right" className={classes.reporttablecell}>{row.COUNT3}</TableCell>:null}
+                       {props.header.length>5?
+                      <TableCell align="right" className={classes.reporttablecell}>{row.COUNT4}</TableCell>:null}
                     </TableRow>
                   );
                 })}

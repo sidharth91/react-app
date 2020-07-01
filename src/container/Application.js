@@ -8,6 +8,10 @@ import SideBar from './SideBar'
 
 
 class Application extends Component{
+  state={
+    isAuthenticated:false
+  }
+
 
  componentDidMount(){
   this.props.onTryAutoSignup();
@@ -16,7 +20,7 @@ class Application extends Component{
 
 render(){
 
-  console.log(this.props.isAuthenticated)
+  
   let routes = (
       <Switch>
      <Route path='/' component={Home}/>
@@ -52,7 +56,8 @@ const mapStateToProps = state=>{
     isUserLogedIn:state.login.isUserLogedIn,
     error:state.login.error,
     systemConfig:state.login.systemConfig,
-    isAuthenticated: state.login.token !== null
+    isAuthenticated: state.login.token !== null,
+    pathname:state.sidebar.pathname,
  };
 };
 

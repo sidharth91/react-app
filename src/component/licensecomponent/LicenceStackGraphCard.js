@@ -29,18 +29,18 @@ import {
 import AssessmentOutlinedIcon from '@material-ui/icons/AssessmentOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import TocIcon from '@material-ui/icons/Toc';
-import GRCDraggableDialog from './GRCDraggableDialog'
+
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
+
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
+
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Paper from '@material-ui/core/Paper';
 import Draggable from 'react-draggable';
-import GRCDashbordTable from './GRCDashbordTable';
 import CloseIcon from '@material-ui/icons/Close';
 import BarChartIcon from '@material-ui/icons/BarChart';
-import GRCReportTable from './GRCReportTable'
+import LicenceReportTable from './LicenceReportTable'
+import LicenseReportStackedTable from './LicenseReportStackedTable'
 
 
 const height = 100
@@ -53,7 +53,7 @@ const COLORSSECONDSTACK = ["#a05195", "#a05195", "#a05195", "#a05195", "#a05195"
 const COLORSTHIRDSTACK = ["#f95d6a", "#f95d6a", "#f95d6a", "#f95d6a", "#f95d6a", "#f95d6a", "#f95d6a", "#f95d6a", "#f95d6a", "#f95d6a", "#4fc3f7", "#ffab91", "#66bb6a", "#9e9d24", "#ffe082", "#26a69a", "#00acc1", "#e57373", "#ff8a80", "#8d6e63", "#ff80ab", "#f48fb1", "#9575cd", "#7986cb", "#64b5f6", "#ffb74d", "#ea80fc", "#4dd0e1", "#d4e157", "#9ccc65", "#fff176", "#ffd740", "#90a4ae", "#eeff41", "#ccff90", "#c0ca33", "#0097a7", "#29b6f6"];
 const RADIAN = Math.PI / 180;
 
-const legendMap = [{ id: 'ZCOUNT1', value: 'Executed Risk', type: "square" }, { id: 'ZCOUNT2', value: 'Executed Risk', type: "square" }, { id: 'ZCOUNT3', value: 'Executed Risk', type: "square" }]
+const legendMap = [{ id: 'COL1', value: 'Executed Risk', type: "square" }, { id: 'COL2', value: 'Executed Risk', type: "square" }, { id: 'COL3', value: 'Executed Risk', type: "square" }]
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,6 +63,9 @@ const useStyles = makeStyles((theme) => ({
     '& > * + *': {
       marginTop: theme.spacing(2),
     }
+  },
+  dialoguewidth:{
+    maxWidth:'inherit'
   },
   media: {
     width: 300,
@@ -110,7 +113,7 @@ function PaperComponent(props) {
 
 
 
-const GRCStackGraphCard = (props) => {
+const LicenceStackGraphCard = (props) => {
 
   const proesResultData = (data, key) => {
     if (data && data != null && data.length > 0) {
@@ -119,12 +122,14 @@ const GRCStackGraphCard = (props) => {
       let mappedData = [];
       filtereddata.map(v => {
         let temp = {};
-        temp.name = v.GROUP_DESC1;
-        temp.COUNT1 = v.ZCOUNT1;
-        temp.COUNT2 = v.ZCOUNT2;
-        temp.COUNT3 = v.ZCOUNT3;
+        temp.name = v.UTYPLONGTEXT;
+        temp.COUNT1 = v.COL1;
+        temp.COUNT2 = v.COL2;
+        temp.COUNT3 = v.COL3;
+        temp.COUNT4 = v.COL4;
         temp.ZTYPE = v.ZTYPE;
-        temp.GROUPBY1 = v.GROUPBY1;
+        temp.REC=v.REC;
+        temp.LIC_TYPE = v.LIC_TYPE;
         mappedData.push(temp);
       })
       /*     let array=[1,2,3,4,5,6,7,8,9,10]
@@ -144,30 +149,24 @@ const GRCStackGraphCard = (props) => {
 
 
       case 1:
-        if (stack == '1')
-          return getRCHBarChartTwoStack(data, color);
-        if (stack == '2')
-          return getRCHBarChartTwoStack(data, color);
+        if (stack == '4')
+          return getRCHBarChartFourStack(data, color);
         if (stack == '3')
           return getRCHBarChartThreeStack(data, color);
 
       case 2:
-        if (stack == '1')
-          return getRCVBarChartTwoStack(data, color);
-        if (stack == '2')
-          return getRCVBarChartTwoStack(data, color);
+        if (stack == '4')
+          return getRCVBarChartFourStack(data, color);
         if (stack == '3')
           return getRCVBarChartThreeStack(data, color);
       case 3:
-        if (stack == '1')
-          return getRCVBarChartTwo(data, color);
-        if (stack == '2')
-          return getRCVBarChartTwo(data, color);
+        if (stack == '4')
+          return getRCVBarChartFour(data, color);
         if (stack == '3')
           return getRCVBarChartThree(data, color);
 
       default:
-        return getRCHBarChartTwoStack(data, color)
+        return getRCHBarChartFourStack(data, color)
     }
   }
 
@@ -175,7 +174,7 @@ const GRCStackGraphCard = (props) => {
 
 
 
-  const getRCVBarChartTwoStack = (data, color) => {
+  const getRCVBarChartFourStack = (data, color) => {
     return (<ResponsiveContainer width='100%' height='100%'><BarChart
       layout={"horizontal"}
       data={data}
@@ -188,24 +187,30 @@ const GRCStackGraphCard = (props) => {
       {/* <CartesianGrid strokeDasharray="2 2" /> */}
       <LabelList dataKey="name" position="top" />
       <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-      <Legend iconSize={10} wrapperStyle={{
+      <Legend iconSize={10} verticalAlign='top' wrapperStyle={{
         fontFamily: 'Helvetica', fontSize: '10px'
       }} formatter={(value, entry, index) => legendText(value)} />
-      <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
+      <XAxis dataKey="UTYPLONGTEXT" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
       <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
-      <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
-        <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      <Bar dataKey="COL1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
+        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
-      <Bar dataKey="ZCOUNT2" stackId="a" fill={colorState[1]} onClick={(data) => getData(data)}>
-        <LabelList dataKey="ZCOUNT2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      <Bar dataKey="COL2" stackId="a" fill={colorState[1]} onClick={(data) => getData(data)}>
+        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      </Bar>
+      <Bar dataKey="COL3" stackId="a" fill={colorState[2]} onClick={(data) => getData(data)}>
+        <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      </Bar>
+      <Bar dataKey="COL4" stackId="a" fill={colorState[3]} onClick={(data) => getData(data)}>
+        <LabelList dataKey="COL4" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
 
-      {/* <Bar dataKey="ZCOUNT1" stackId="a" fill={'#00bcd4'} onClick={(data) => getData(data)} >
+      {/* <Bar dataKey="COL1" stackId="a" fill={'#00bcd4'} onClick={(data) => getData(data)} >
               {
                   data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORSFIRSTSTACK[index % COLORSFIRSTSTACK.length]} />)
               }
           </Bar>
-          <Bar dataKey="ZCOUNT2" stackId="a" fill={'#00bcd4'} onClick={(data) => getData(data)} >
+          <Bar dataKey="COL2" stackId="a" fill={'#00bcd4'} onClick={(data) => getData(data)} >
               {
                   data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORSSECONDSTACK[index % COLORSSECONDSTACK.length]} />)
               }
@@ -214,12 +219,14 @@ const GRCStackGraphCard = (props) => {
   }
 
 
-  const getRCVBarChartTwo = (data, color) => {
+  const getRCVBarChartFour = (data, color) => {
     return (<ResponsiveContainer width='100%' height='100%'><BarChart
       layout={"horizontal"}
       data={data}
       barCategoryGap="10%"
       maxBarSize={35}
+      barGap={2}
+      barCategoryGap='5%'
       margin={{
         top: 5, right: 0, left: 0, bottom: 5,
       }}
@@ -227,16 +234,22 @@ const GRCStackGraphCard = (props) => {
       {/* <CartesianGrid strokeDasharray="2 2" /> */}
       <LabelList dataKey="name" position="top" />
       <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-      <Legend iconSize={10} wrapperStyle={{
+      <Legend iconSize={10} verticalAlign='top' wrapperStyle={{
         fontFamily: 'Helvetica', fontSize: '10px'
       }} formatter={(value, entry, index) => legendText(value)} />
-      <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
+      <XAxis dataKey="UTYPLONGTEXT" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
       <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
-      <Bar dataKey="ZCOUNT1" fill={colorState[0]} onClick={(data) => getData(data)} >
-        <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      <Bar dataKey="COL1" fill={colorState[0]} onClick={(data) => getData(data)} >
+        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
-      <Bar dataKey="ZCOUNT2" fill={colorState[1]} onClick={(data) => getData(data)}>
-        <LabelList dataKey="ZCOUNT2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      <Bar dataKey="COL2" fill={colorState[1]} onClick={(data) => getData(data)}>
+        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      </Bar>
+      <Bar dataKey="COL3" fill={colorState[2]} onClick={(data) => getData(data)}>
+        <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      </Bar>
+      <Bar dataKey="COL4" fill={colorState[3]} onClick={(data) => getData(data)}>
+        <LabelList dataKey="COL4" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
 
 
@@ -250,40 +263,38 @@ const GRCStackGraphCard = (props) => {
       data={data}
       barCategoryGap="10%"
       maxBarSize={35}
+      barGap={2}
       margin={{
         top: 5, right: 0, left: 0, bottom: 5,
       }}
     >
       {/* <CartesianGrid strokeDasharray="2 2" /> */}
       <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-      <Legend iconSize={10} wrapperStyle={{
+      <Legend iconSize={10}  verticalAlign='top' wrapperStyle={{
         fontFamily: 'Helvetica', fontSize: '10px'
       }} formatter={(value, entry, index) => legendText(value)} />
-      <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
+      <XAxis dataKey="UTYPLONGTEXT" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
       <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
-      <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
-
-        <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      <Bar dataKey="COL1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
+        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
-      <Bar dataKey="ZCOUNT2" stackId="a" fill={colorState[1]} onClick={(data) => getData(data)} >
-
-        <LabelList dataKey="ZCOUNT2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      <Bar dataKey="COL2" stackId="a" fill={colorState[1]} onClick={(data) => getData(data)} >
+        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
-      <Bar dataKey="ZCOUNT3" stackId="a" fill={colorState[2]} onClick={(data) => getData(data)} >
-
-        <LabelList dataKey="ZCOUNT3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+      <Bar dataKey="COL3" stackId="a" fill={colorState[2]} onClick={(data) => getData(data)} >
+        <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
-      {/* <Bar dataKey="ZCOUNT1" stackId="a" fill={'#00bcd4'} onClick={(data) => getData(data)} >
+      {/* <Bar dataKey="COL1" stackId="a" fill={'#00bcd4'} onClick={(data) => getData(data)} >
             {
                 data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORSFIRSTSTACK[index % COLORSFIRSTSTACK.length]} />)
             }
         </Bar>
-        <Bar dataKey="ZCOUNT2"  stackId="a" fill={'#00bcd4'} onClick={(data) => getData(data)} >
+        <Bar dataKey="COL2"  stackId="a" fill={'#00bcd4'} onClick={(data) => getData(data)} >
             {
                 data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORSSECONDSTACK[index % COLORSSECONDSTACK.length]} />)
             }
         </Bar>
-        <Bar dataKey="ZCOUNT3" stackId="a" fill={'#00bcd4'} onClick={(data) => getData(data)} >
+        <Bar dataKey="COL3" stackId="a" fill={'#00bcd4'} onClick={(data) => getData(data)} >
             {
                 data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORSTHIRDSTACK[index % COLORSTHIRDSTACK.length]} />)
             }
@@ -304,22 +315,22 @@ const GRCStackGraphCard = (props) => {
     >
       {/* <CartesianGrid strokeDasharray="2 2" /> */}
       <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-      <Legend iconSize={10} wrapperStyle={{
+      <Legend iconSize={10} verticalAlign='top' wrapperStyle={{
         fontFamily: 'Helvetica', fontSize: '10px'
       }} formatter={(value, entry, index) => legendText(value)} />
-      <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
+      <XAxis dataKey="UTYPLONGTEXT" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
       <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
-      <Bar dataKey="ZCOUNT1" fill={colorState[0]} onClick={(data) => getData(data)} >
+      <Bar dataKey="COL1" fill={colorState[0]} onClick={(data) => getData(data)} >
 
-        <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
-      <Bar dataKey="ZCOUNT2" fill={colorState[1]} onClick={(data) => getData(data)} >
+      <Bar dataKey="COL2" fill={colorState[1]} onClick={(data) => getData(data)} >
 
-        <LabelList dataKey="ZCOUNT2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
-      <Bar dataKey="ZCOUNT3" fill={colorState[2]} onClick={(data) => getData(data)} >
+      <Bar dataKey="COL3" fill={colorState[2]} onClick={(data) => getData(data)} >
 
-        <LabelList dataKey="ZCOUNT3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
     </BarChart></ResponsiveContainer>)
   }
@@ -330,7 +341,7 @@ const GRCStackGraphCard = (props) => {
   }) => {
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={0} textAnchor="end" fontSize={11} fill="black" fontFamily='Helvetica' transform="rotate(-15)">{payload.value}</text>
+        <text x={0} y={0} dy={0} textAnchor="end" fontSize={10} fill="black" fontFamily='Helvetica' transform="rotate(-15)">{payload.value}</text>
       </g>
     );
   }
@@ -340,7 +351,7 @@ const GRCStackGraphCard = (props) => {
   }) => {
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={5} textAnchor="end" fontSize={11} fill="black" fontFamily='Helvetica' transform="rotate(-45)">{payload.value}</text>
+        <text x={0} y={0} dy={5} textAnchor="end" fontSize={10} fill="black" fontFamily='Helvetica' transform="rotate(0)">{payload.value}</text>
       </g>
     );
   }
@@ -363,38 +374,26 @@ const GRCStackGraphCard = (props) => {
       >
         {/* <CartesianGrid strokeDasharray="2 2" /> */}
         <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-        <Legend iconSize={10} wrapperStyle={{
+        <Legend iconSize={10}  verticalAlign='top' wrapperStyle={{
           fontFamily: 'Helvetica', fontSize: '10px'
         }} formatter={(value, entry, index) => legendText(value)} />
 
         <XAxis type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
-        <YAxis dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={60} interval={0} tick={CustomizedYAxisTick} />
-        <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <YAxis dataKey="UTYPLONGTEXT" type="category" stroke="#bdbdbd" width={80} interval={0} tick={CustomizedYAxisTick} />
+        <Bar dataKey="COL1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
+          <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
         </Bar>
-        <Bar dataKey="ZCOUNT2" stackId="a" fill={colorState[1]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="ZCOUNT2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <Bar dataKey="COL2" stackId="a" fill={colorState[1]} onClick={(data) => getData(data)} >
+          <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
         </Bar>
-        <Bar dataKey="ZCOUNT3" stackId="a" fill={colorState[2]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="ZCOUNT3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <Bar dataKey="COL3" stackId="a" fill={colorState[2]} onClick={(data) => getData(data)} >
+          <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
         </Bar>
-        {/* <Bar dataKey="ZCOUNT1" stackId="a" fill={'#48C9B0'} onClick={(data)=>getData(data)}>
-                      {  data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORSFIRSTSTACK[index % COLORSFIRSTSTACK.length]} />)
-                      }
-                      </Bar>
-                      <Bar dataKey="ZCOUNT2" stackId="a" fill={'#48C9B0'} onClick={(data)=>getData(data)}>
-                      {  data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORSSECONDSTACK[index % COLORSSECONDSTACK.length]} />)
-                      }
-                      </Bar>
-                      <Bar dataKey="ZCOUNT3" stackId="a" fill={'#48C9B0'} onClick={(data)=>getData(data)}>
-                      {  data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORSTHIRDSTACK[index % COLORSTHIRDSTACK.length]} />)
-                      }
-                      </Bar> */}
       </BarChart></ResponsiveContainer>)
   }
 
 
-  const getRCHBarChartTwoStack = (data, color) => {
+  const getRCHBarChartFourStack = (data, color) => {
 
     return (<ResponsiveContainer width='100%' height='100%'>
       <BarChart
@@ -409,26 +408,23 @@ const GRCStackGraphCard = (props) => {
         {/* <CartesianGrid strokeDasharray="2 2" /> */}
 
         <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-        <Legend iconSize={10} wrapperStyle={{
+        <Legend iconSize={10} verticalAlign='top' wrapperStyle={{
           fontFamily: 'Helvetica', fontSize: '10px'
         }} formatter={(value, entry, index) => legendText(value)} />
         <XAxis type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
-        <YAxis dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={60} interval={0} tick={CustomizedYAxisTick} />
-        <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <YAxis dataKey="UTYPLONGTEXT" type="category" stroke="#bdbdbd" width={80} interval={0} tick={CustomizedYAxisTick} />
+        <Bar dataKey="COL1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
+          <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
         </Bar>
-        <Bar dataKey="ZCOUNT2" stackId="a" fill={colorState[1]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="ZCOUNT2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <Bar dataKey="COL2" stackId="a" fill={colorState[1]} onClick={(data) => getData(data)} >
+          <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
         </Bar>
-
-        {/* <Bar dataKey="ZCOUNT1" stackId="a" fill={'#48C9B0'} onClick={(data)=>getData(data)}>
-                          {  data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORSFIRSTSTACK[index % COLORSFIRSTSTACK.length]} />)
-                          }
-                          </Bar>
-                          <Bar dataKey="ZCOUNT2" stackId="a" fill={'#48C9B0'} onClick={(data)=>getData(data)}>
-                          {  data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORSSECONDSTACK[index % COLORSSECONDSTACK.length]} />)
-                          }
-                          </Bar> */}
+        <Bar dataKey="COL3" stackId="a" fill={colorState[2]} onClick={(data) => getData(data)} >
+          <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        </Bar>
+        <Bar dataKey="COL4" stackId="a" fill={colorState[3]} onClick={(data) => getData(data)} >
+          <LabelList dataKey="COL4" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        </Bar>
 
       </BarChart></ResponsiveContainer>)
   }
@@ -436,26 +432,32 @@ const GRCStackGraphCard = (props) => {
 
 
   const legendText = (value) => {
-    if (value == 'ZCOUNT1') {
-      return "Executed Risks"
+    if (value == 'COL1') {
+      return "Purchased"
     }
-    if (value == 'ZCOUNT2') {
-      return "Non-Executed Risks"
+    if (value == 'COL2') {
+      return "Recommened"
     }
-    if (value == 'ZCOUNT3') {
-      return "Never Executed Risks"
+    if (value == 'COL3') {
+      return "Additional"
+    }
+    if (value == 'COL4') {
+      return "Unused"
     }
   }
 
   const tooltipText = (value, name) => {
-    if (name == 'ZCOUNT1') {
-      return [value, "Executed Risks",]
+    if (name == 'COL1') {
+      return [value, "Purchased",]
     }
-    if (name == 'ZCOUNT2') {
-      return [value, "Non-Executed Risks"]
+    if (name == 'COL2') {
+      return [value, "Recommened"]
     }
-    if (name == 'ZCOUNT3') {
-      return [value, "Never Executed Risks"]
+    if (name == 'COL3') {
+      return [value, "Additional"]
+    }
+    if (name == 'COL4') {
+      return [value, "Unused"]
     }
   }
 
@@ -483,34 +485,38 @@ const GRCStackGraphCard = (props) => {
       return []
     }
 
-    let columnarray = (key == '01') ? ["GROUPBY1", "GROUP_DESC1", "ZCOUNT1", "ZCOUNT2", "ZCOUNT3"] : ["GROUPBY1", "GROUP_DESC1", "ZCOUNT1", "ZCOUNT2"]
+    let columnarray = (key == '03') ? ["LIC_TYPE", "UTYPLONGTEXT", "COL1", "COL2","COL3"]:["LIC_TYPE", "UTYPLONGTEXT", "COL1", "COL2", "COL3","COL4"] 
     let header = Object.keys(filtereddata[0]).filter(t => columnarray.includes(t)).map(p => {
-      if (p == 'GROUPBY1') {
+      if (p == 'LIC_TYPE') {
         return 'COLUMN1'
       }
-      if (p == 'GROUP_DESC1') {
+      if (p == 'UTYPLONGTEXT') {
         return 'COLUMN2'
       }
-      if (p == 'ZCOUNT1') {
+      if (p == 'COL1') {
         return 'COUNT1'
       }
-      if (p == 'ZCOUNT2') {
+      if (p == 'COL2') {
         return 'COUNT2'
       }
-      if (p == 'ZCOUNT3') {
+      if (p == 'COL3') {
         return 'COUNT3'
+      }
+      if (p == 'COL4') {
+        return 'COUNT4'
       }
     })
 
 
     let dataset = filtereddata.map(dt => {
       let tem = [];
-      tem.push(dt.GROUPBY1)
-      tem.push(dt.GROUP_DESC1)
-      tem.push(dt.ZCOUNT1)
-      tem.push(dt.ZCOUNT2)
-      if (key == '01') {
-        tem.push(dt.ZCOUNT3)
+      tem.push(dt.LIC_TYPE)
+      tem.push(dt.UTYPLONGTEXT)
+      tem.push(dt.COL1)
+      tem.push(dt.COL2)
+      tem.push(dt.COL3)
+      if (['01','02'].includes(key)) {
+        tem.push(dt.COL4)
       }
       return tem;
     })
@@ -518,12 +524,13 @@ const GRCStackGraphCard = (props) => {
 
     let dataset2 = filtereddata.map(dt => {
       let tem = {};
-      tem.COLUMN1=dt.GROUPBY1
-      tem.COLUMN2=dt.GROUP_DESC1
-      tem.COUNT1=dt.ZCOUNT1
-      tem.COUNT2=dt.ZCOUNT2
-      if (key == '01') {
-        tem.COUNT3=dt.ZCOUNT3
+      tem.COLUMN1=dt.LIC_TYPE
+      tem.COLUMN2=dt.UTYPLONGTEXT
+      tem.COUNT1=dt.COL1
+      tem.COUNT2=dt.COL2
+      tem.COUNT3=dt.COL3
+      if (['01','02'].includes(key)) {
+        tem.COUNT4=dt.COL4
       }
       return tem;
     })
@@ -535,7 +542,7 @@ const GRCStackGraphCard = (props) => {
 
   let getData = (data) => {
     console.log(data)
-    props.dialogueOpen(props.chartId, data.GROUPBY1)
+    props.dialogueOpen(props.chartId, data.LIC_TYPE)
   }
 
   const classes = useStyles();
@@ -562,8 +569,8 @@ const GRCStackGraphCard = (props) => {
         </CardContent>
 
         <CardActions style={{ margin: 0, padding: 2 }}>
-          <Grid container spacing={2}>
-            <Grid item md={3}>
+          <Grid container spacing={2} style={{margin:'auto'}}>
+            <Grid item md={2}>
               <FormControl variant="outlined" className={classes.formControl} size="small">
                 <InputLabel id="demo-simple-select-outlined-label">{props.label}</InputLabel>
                 <Select
@@ -586,13 +593,13 @@ const GRCStackGraphCard = (props) => {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item md={6}>
+            <Grid item md={8}>
               <Typography variant="subtitle2" style={{ fontFamily: 'Helvetica' }}>
                 {props.name}
               </Typography>
 
             </Grid>
-            <Grid item md={3}>
+            <Grid item md={2}>
               <IconButton
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
@@ -619,6 +626,9 @@ const GRCStackGraphCard = (props) => {
         PaperComponent={PaperComponent}
         aria-labelledby="draggable-dialog-title"
         style={{width:'inherit'}}
+        classes={{
+          paper:classes.dialoguewidth
+        }}
       >
         <Grid container spacing={1} style={{width:'100%'}}>
           <Grid item md={11}>
@@ -644,7 +654,9 @@ const GRCStackGraphCard = (props) => {
 
         <DialogContent style={{paddingTop:10}}>
         {/* <GRCDashbordTable name={props.name} header={tableData[0]} data={tableData[1]} /> */}
-          <GRCReportTable name={props.name} header={tableData[0]} data={tableData[2]} colors={colorState} />
+          {/* <LicenceReportTable name={props.name} header={tableData[0]} data={tableData[2]} colors={colorState} /> */}
+
+          <LicenseReportStackedTable  data={props.chartdata} header={props.chartHeader.map(p=>p.ZDESC)} colors={colorState}/>
         </DialogContent>
 
       </Dialog>
@@ -653,4 +665,4 @@ const GRCStackGraphCard = (props) => {
 
 }
 
-export default withRouter(GRCStackGraphCard)
+export default withRouter(LicenceStackGraphCard)

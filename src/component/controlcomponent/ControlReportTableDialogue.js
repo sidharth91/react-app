@@ -21,19 +21,14 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
-function createDatawithfivecolumn(COLUMN1, COLUMN2, COUNT1, COUNT2, COUNT3) {
-  return { COLUMN1, COLUMN2, COUNT1, COUNT2, COUNT3 };
+function createData(data,header) {
+  let rowData={}
+  let keys=Object.keys(data);
+  header.forEach((key,index) => { 
+   rowData[keys[index]]=data[keys[index]];
+  });
+   return rowData;
 }
-
-function createDatawithfourcolumn(COLUMN1, COLUMN2, COUNT1, COUNT2) {
-  return { COLUMN1, COLUMN2, COUNT1, COUNT2 };
-}
-
-function createDatawiththreecolumn(COLUMN1, COLUMN2, COUNT1,) {
-  return { COLUMN1, COLUMN2, COUNT1};
-}
-
-
 
 
 function descendingComparator(a, b, orderBy) {
@@ -172,7 +167,7 @@ const useStyles = makeStyles((theme) => ({
   },
   reporttablecell:{
     fontFamily:'Helvetica',
-    fontSize:11, 
+    fontSize:12, 
     wordWrap:"normal", 
     overflow:"hidden", 
     textOverflow:"ellipsis", 
@@ -185,7 +180,7 @@ const useStyles = makeStyles((theme) => ({
   },
   reporttableheader:{
     fontFamily:'Helvetica',
-    fontSize:11, 
+    fontSize:12, 
     fontWeight:"bold",
     wordWrap:"normal", 
     overflow:"hidden", 
@@ -195,6 +190,8 @@ const useStyles = makeStyles((theme) => ({
      padding:"2px", 
      lineHeight:"inherit",
     backgroundColor: props=>props.colors[15]
+
+    
   },
   tablepaginationtoolbar:{
     minHeight:30,
@@ -220,40 +217,23 @@ function createColumn(header, keys) {
   return headers;
 }  
 
-
-function createRows(header, data) {
-
-  if(header.length==5){
-    return data.map(p=>createDatawithfivecolumn(p.COLUMN1,p.COLUMN2,p.COUNT1,p.COUNT2,p.COUNT2))
-  }
-
-
-  if(header.length==4){
-    return data.map(p=>createDatawithfourcolumn(p.COLUMN1,p.COLUMN2,p.COUNT1,p.COUNT2,p.COUNT2))
-  }
-
-
-    return data.map(p=>createDatawiththreecolumn(p.COLUMN1,p.COLUMN2,p.COUNT1,p.COUNT2,p.COUNT2))
-
-
-}  
-
-const GRCReportTable=(props)=> {
+const LicenceReportTableDialogue=(props)=> {
   const classes = useStyles(props);
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(true);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(200);
   const [data,setData]=React.useState(props.data)
+
+
   React.useEffect(() => {
     setData(props.data);
-    setRowsPerPage(data.length)
+
 }, [props])
 
-  const rows =createRows(props.header,data);
-
+  const rows = data.map(p=>createData(p,props.header));
  headCells=createColumn(props.header,Object.keys(data[0]))
   
 
@@ -346,14 +326,15 @@ const GRCReportTable=(props)=> {
                       key={row.name}
                       selected={isItemSelected}                      
                     >
-                       <TableCell align="right" className={classes.reporttablecell}>{row.COLUMN1}</TableCell>
-                      <TableCell align="right" className={classes.reporttablecell}>{row.COLUMN2}</TableCell>
-                   
-                      <TableCell align="right" className={classes.reporttablecell}>{row.COUNT1}</TableCell>
-                      {props.header.length>3?
-                      <TableCell align="right" className={classes.reporttablecell}>{row.COUNT2}</TableCell>:null}
-                       {props.header.length>4?
-                      <TableCell align="right" className={classes.reporttablecell}>{row.COUNT3}</TableCell>:null}
+                   {
+                     Object.keys(row).map((key,index)=>{
+                     return <TableCell align="right" className={classes.reporttablecell}>{row[key]}</TableCell>
+                     }
+                       )
+                   }
+
+
+                    
                     </TableRow>
                   );
                 })}
@@ -366,7 +347,7 @@ const GRCReportTable=(props)=> {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[rowsPerPage,rowsPerPage+4,rowsPerPage+10]}
+          rowsPerPageOptions={[200, 500, 1000,2000]}
           component="div"
           count={rows.length}
           classes={{
@@ -392,4 +373,4 @@ const GRCReportTable=(props)=> {
     </div>
   );
 }
-export default GRCReportTable
+export default LicenceReportTableDialogue

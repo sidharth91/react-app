@@ -35,9 +35,9 @@ const loginreducer=(state=initialState,action)=>{
                 username:null
             }); 
         case actionType.CHANGESYSTEM:
-            return {...state,systemConfig:{...state.systemConfig,selectedSys:action.system,selectedClient:action.client,selectedIP:action.ip}}  
+            return {...state,systemConfig:{...state.systemConfig,selectedSys:action.system,selectedClient:action.client,selectedIP:action.ip,selectedinstanse:action.instanse}}  
         case actionType.CHANGECLIENT:
-            return {...state,systemConfig:{...state.systemConfig,selectedClient:action.client,selectedIP:action.ip}}         
+            return {...state,systemConfig:{...state.systemConfig,selectedClient:action.client,selectedIP:action.ip,selectedinstanse:action.instanse}}         
         case actionType.SETDEFAULTDATA:
            return {...state,systemConfig:action.systemConfig}
         case actionType.CHANGEUSERNAME:

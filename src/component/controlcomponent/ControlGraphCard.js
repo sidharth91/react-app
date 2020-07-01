@@ -35,12 +35,12 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Paper from '@material-ui/core/Paper';
 import Draggable from 'react-draggable';
-import GRCDashbordTable from './GRCDashbordTable';
+
 import IconButton from '@material-ui/core/IconButton';
 import TocIcon from '@material-ui/icons/Toc';
 import CloseIcon from '@material-ui/icons/Close';
 import BarChartIcon from '@material-ui/icons/BarChart';
-import GRCReportTable from './GRCReportTable'
+import ControlReportTable from './ControlReportTable'
 
 
 const height = 100
@@ -252,8 +252,8 @@ const GRCGraphCard = (props) => {
             activeIndex={activeIndex}
             activeShape={renderActiveShape}
             data={data}
-            innerRadius={35}
-            outerRadius={55}
+            innerRadius={50}
+            outerRadius={70}
             dataKey="ZCOUNT1"
             onMouseEnter={onPieEnter}
             onClick={(data) => getData(data)}
@@ -631,7 +631,7 @@ const GRCGraphCard = (props) => {
   const [colorState, setColorState] = useState([...COLORS]);
   let getchartDataResult1 = proesResultData(props.data, props.chart);
   let tableData = getTableHeader(props.data, props.chart)
-  let firctChart = getchartDataResult1.length>0?getChart(getchartDataResult1, chartState, '#00bcd4'):<Typography  variant="subtitle2" color="inherit" style={{width:500}}>
+  let firctChart = getchartDataResult1.length>0?getChart(getchartDataResult1, chartState, '#00bcd4'):<Typography  variant="subtitle2" color="inherit">
   No Records found
 </Typography>
   useEffect(() => {
@@ -641,11 +641,11 @@ const GRCGraphCard = (props) => {
 
   return (
     <div>
-      <Card className={classes.root} elevation='5' style={{ height: "36vh" }}>
+      <Card className={classes.root} elevation='5' style={{ height: "37vh" }}>
         <CardContent style={{ padding: 2, marginRight: 6,marginLeft:6, height: '85%' }}>
           {firctChart}
         </CardContent>
-
+        { getchartDataResult1.length>0?
         <CardActions style={{ margin: 'auto', padding: 2, height:'15%' }}>
           <Grid container spacing={0} style={{ height:'100%' }}>
             <Grid item md={3} style={{margin:'auto'}}>
@@ -696,7 +696,7 @@ const GRCGraphCard = (props) => {
               </FormControl>
             </Grid>
             <Grid item md={7} style={{margin:'auto'}}>
-              <Typography variant="subtitle2" style={{ fontFamily: 'Helvetica', fontSize: props.chart == '01' || props.chart == '04' ? 14 : 12 }}>
+              <Typography variant="subtitle2" style={{ fontFamily: 'Helvetica', fontSize: 14 }}>
                 {props.name}
               </Typography>
 
@@ -719,7 +719,7 @@ const GRCGraphCard = (props) => {
           </Grid>
 
 
-        </CardActions>
+        </CardActions>:null}
 
       </Card>
 
@@ -754,7 +754,7 @@ const GRCGraphCard = (props) => {
 
         <DialogContent style={{paddingTop:10}}>
           {/* <GRCDashbordTable name={props.name} header={tableData[0]} data={tableData[1]} /> */}
-          <GRCReportTable name={props.name} header={tableData[0]} data={tableData[2]} colors={colorState}/>
+          <ControlReportTable name={props.name} header={tableData[0]} data={tableData[2]} colors={colorState}/>
         </DialogContent>
 
       </Dialog>
