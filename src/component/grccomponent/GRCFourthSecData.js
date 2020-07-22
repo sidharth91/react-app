@@ -11,7 +11,7 @@ import GRCStackGraphCard from './GRCStackGraphCard'
 
 
 
-class GRCFirstSecData extends Component {
+class GRCFourthSecData extends Component {
 
     componentDidMount() {
 
@@ -23,6 +23,18 @@ class GRCFirstSecData extends Component {
         }
         return false;
        }
+
+       graphNameOnReportType = () => {
+        if (this.props.reportType.filtered == '1') {
+            return 'Risk Type'
+        }
+        if (this.props.reportType.filtered == '2') {
+            return 'Risk Level'
+        }
+        if (this.props.reportType.filtered == '3') {
+            return 'Business Module'
+        }
+    }   
     
  
     render() {
@@ -32,12 +44,11 @@ class GRCFirstSecData extends Component {
         return (
             <Grid container style={{marginTop:15}} spacing={2}>
                 <Grid item md={6}  style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCStackGraphCard chart='01' stack='3' color={this.props.colors}  height={"350px"} data={this.props.result.E_RESULT_01.data} name="Executed Risks Chart" chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC11"/> :null}
+                {isDataReadtToShow ? <GRCStackGraphCard chart='01' stack='3' color={this.props.colors} height={"350px"} data={this.props.result.E_RESULT_03.data} name={`Risk Matrix by ${this.graphNameOnReportType()}`} chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC31" /> : null}
                 </Grid>
                 <Grid item md={6}  style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCStackGraphCard chart='03'  stack='2' color={this.props.colors} height={"350px"} data={this.props.result.E_RESULT_01.data} name="Total Executed Risks" chartType={3}  dialogueOpen={this.props.dialogueOpen} chartId="SEC13"/> :null}
-                </Grid>
-            
+                   {isDataReadtToShow? <GRCStackGraphCard chart='02' stack='2' color={this.props.colors} height={"350px"} data={this.props.result.E_RESULT_01.data} name={ `Risk Executed ${this.props.levelSelected==1?'User':'Role'}` } chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC12"/> :null}
+                </Grid>            
                     
             </Grid>
 
@@ -80,4 +91,4 @@ const mapDispatchToProps = dispatch => { // this methos used for dispatch action
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GRCFirstSecData);//connect which return a HOC taking two parameters which help connect to redux store and component
+export default connect(mapStateToProps, mapDispatchToProps)(GRCFourthSecData);//connect which return a HOC taking two parameters which help connect to redux store and component

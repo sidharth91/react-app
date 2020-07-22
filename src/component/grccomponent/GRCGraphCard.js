@@ -168,8 +168,8 @@ const GRCGraphCard = (props) => {
       }}
     >
       {/* <CartesianGrid strokeDasharray="2 2" /> */}
-      <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis dataKey="ZCOUNT1" interval={0} stroke="#bdbdbd" width={50} tick={CustomizedYAxisTick} />
+      <XAxis axisLine={false} tickLine={false} dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
+      <YAxis  axisLine={false} tickLine={false} dataKey="ZCOUNT1" interval={0} stroke="#bdbdbd" width={70} tick={CustomizedYAxisTick} />
       <Bar dataKey="ZCOUNT1" fill={'#00bcd4'} onClick={(data) => getData(data)} >
         {
           data.map((entry, index) => <Cell key={`cell-${index}`} fill={colorState[index % colorState.length]} />)
@@ -182,7 +182,7 @@ const GRCGraphCard = (props) => {
   }) => {
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={0} textAnchor="end" fontSize={10} fill="black" fontFamily='Helvetica' transform="rotate(-30)">{payload.value}</text>
+        <text x={0} y={0} dy={10} textAnchor="middle" fontSize={10} fill="black" fontFamily={colorState[16]} transform="rotate(0)">{payload.value}</text>
       </g>
     );
   }
@@ -192,7 +192,7 @@ const GRCGraphCard = (props) => {
   }) => {
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={5} textAnchor="end" fontSize={10} fill="black" fontFamily='Helvetica' transform="rotate(-30)">{payload.value}</text>
+        <text x={0} y={0} dy={0} dx={-10} textAnchor="end" fontSize={10} fill="black" fontFamily={colorState[16]} transform="rotate(0)">{payload.value}</text>
       </g>
     );
   }
@@ -252,8 +252,8 @@ const GRCGraphCard = (props) => {
             activeIndex={activeIndex}
             activeShape={renderActiveShape}
             data={data}
-            innerRadius={35}
-            outerRadius={55}
+            innerRadius={55}
+            outerRadius={95}
             dataKey="ZCOUNT1"
             onMouseEnter={onPieEnter}
             onClick={(data) => getData(data)}
@@ -301,11 +301,11 @@ const GRCGraphCard = (props) => {
           endAngle={endAngle}
           innerRadius={outerRadius + 6}
           outerRadius={outerRadius + 10}
-          fill={'#00bcd4'}
+          fill={fill}
         />
-        <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={'#00bcd4'} fill="none" />
-        <circle cx={ex} cy={ey} r={2} fill={'#00bcd4'} stroke={'#00bcd4'} />
-        <text x={ex + (cos >= 0 ? 1 : -1) * 5} y={ey} angle={-45} fontSize={12} textAnchor={textAnchor} fill="#00bcd4">{`${payload.GROUP_DESC1}`}</text>
+        <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
+        <circle cx={ex} cy={ey} r={2} fill={fill} stroke={fill} />
+        <text x={ex + (cos >= 0 ? 1 : -1) * 5} y={ey} angle={-45} fontSize={12} textAnchor={textAnchor} fill={fill}>{`${payload.GROUP_DESC1}`}</text>
       </g>
     );
   };
@@ -324,8 +324,8 @@ const GRCGraphCard = (props) => {
         }}
       >
         {/* <CartesianGrid strokeDasharray="2 2" /> */}
-        <XAxis dataKey="ZCOUNT1" type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
-        <YAxis dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={60} interval={0} tick={CustomizedYAxisTick} />
+        <XAxis axisLine={false} tickLine={false} dataKey="ZCOUNT1" type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
+        <YAxis  axisLine={false} tickLine={false}  dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={100} interval={0} tick={CustomizedYAxisTick} />
         <Bar dataKey="ZCOUNT1" fill={'#48C9B0'} onClick={(data) => getData(data)}>
           {data.map((entry, index) => <Cell key={`cell-${index}`} fill={colorState[index % colorState.length]} />)
           }
@@ -348,7 +348,7 @@ const GRCGraphCard = (props) => {
       {/* <CartesianGrid strokeDasharray="2 2" /> */}
 
       <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
+      <YAxis interval={0} stroke="#bdbdbd" width={70} tick={CustomizedYAxisTick} />
       <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
         <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white' }} />
       </Bar>
@@ -377,15 +377,15 @@ const GRCGraphCard = (props) => {
       barCategoryGap="10%"
       maxBarSize={35}
       margin={{
-        top: 5, right: 0, left: 0, bottom: 5,
+        top: 10, right: 0, left: 0, bottom: 5,
       }}
     >
       {/* <CartesianGrid strokeDasharray="2 2" /> */}
-      <Legend verticalAlign='top' iconSize={10} wrapperStyle={{
-        fontFamily: 'Helvetica', fontSize: '10px'
+      <Legend iconSize={15} align='right' layout='vertical' verticalAlign='middle' iconSize={10} wrapperStyle={{
+        fontFamily: 'Helvetica', fontSize: '12px'
       }} formatter={(value, entry, index) => legendText(value)} />
-      <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
+      <XAxis tickLine={false} dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
+      <YAxis tickLine={false} interval={0} stroke="#bdbdbd" width={70} tick={CustomizedYAxisTick} />
       <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
         <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
@@ -420,15 +420,15 @@ const GRCGraphCard = (props) => {
       barCategoryGap="10%"
       maxBarSize={35}
       margin={{
-        top: 5, right: 0, left: 0, bottom: 5,
+        top: 10, right: 0, left: 0, bottom: 5,
       }}
     >
       {/* <CartesianGrid strokeDasharray="2 2" /> */}
-      <Legend verticalAlign='top' iconSize={10} wrapperStyle={{
-        fontFamily: 'Helvetica', fontSize: '10px'
+      <Legend iconSize={15} align='right' layout='vertical' verticalAlign='middle' iconSize={10} wrapperStyle={{
+        fontFamily: 'Helvetica', fontSize: '12px'
       }} formatter={(value, entry, index) => legendText(value)} />
-      <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
+      <XAxis tickLine={false} dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
+      <YAxis tickLine={false} interval={0} stroke="#bdbdbd" width={70}tick={CustomizedYAxisTick} />
       <Bar dataKey="ZCOUNT1"  fill={colorState[0]} onClick={(data) => getData(data)} >
         <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
@@ -468,11 +468,11 @@ const GRCGraphCard = (props) => {
         }}
       >
         {/* <CartesianGrid strokeDasharray="2 2" /> */}
-        <Legend iconSize={10} wrapperStyle={{
-          fontFamily: 'Helvetica', fontSize: '10px'
+        <Legend iconSize={15} align='right' layout='vertical' verticalAlign='middle' wrapperStyle={{
+          fontFamily: 'Helvetica', fontSize: '12px'
         }} formatter={(value, entry, index) => legendText(value)} />
-        <XAxis type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
-        <YAxis dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={60} interval={0} tick={CustomizedYAxisTick} />
+        <XAxis tickLine={false} type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
+        <YAxis tickLine={false} dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={100} interval={0} tick={CustomizedYAxisTick} />
         <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
           <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
         </Bar>
@@ -641,8 +641,8 @@ const GRCGraphCard = (props) => {
 
   return (
     <div>
-      <Card className={classes.root} elevation='5' style={{ height: "36vh" }}>
-        <CardContent style={{ padding: 2, marginRight: 6,marginLeft:6, height: '85%' }}>
+      <Card className={classes.root} elevation='5' style={{ height: "300px" }}>
+        <CardContent style={{ padding: 2,marginTop: 6, marginRight: 6,marginLeft:6, height: '85%' }}>
           {firctChart}
         </CardContent>
 
@@ -696,7 +696,7 @@ const GRCGraphCard = (props) => {
               </FormControl>
             </Grid>
             <Grid item md={7} style={{margin:'auto'}}>
-              <Typography variant="subtitle2" style={{ fontFamily: 'Helvetica', fontSize: props.chart == '01' || props.chart == '04' ? 14 : 12 }}>
+              <Typography variant="subtitle2" style={{ fontFamily: 'Helvetica', fontSize: props.chart == '01' || props.chart == '04' ? 14 : 14 }}>
                 {props.name}
               </Typography>
 

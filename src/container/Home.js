@@ -45,7 +45,7 @@ class Home extends Component {
            </Switch> 
            );
         return (
-            <Grid container style={{ }} spacing={0}>
+            <Grid container style={{ paddingBottom:15}} spacing={0}>
                 <Grid container md={12} style={{ paddingLeft: 1 }}>
                 <HeaderContainer />
                 {routes}

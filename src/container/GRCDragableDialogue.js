@@ -20,7 +20,7 @@ class GRCDragableDialogue extends Component {
                 this.props.riskLevel.filtered,
                 this.props.businessModule.filtered,
                 this.props.mitigation.filtered,
-                this.props.drillDown.filtered,
+                this.props.drillDown.selectedValue,
                 this.props.riskid.filtered, 
                 this.props.groupby)
         }
@@ -34,7 +34,7 @@ class GRCDragableDialogue extends Component {
                 this.props.riskLevel.filtered,
                 this.props.businessModule.filtered,
                 this.props.mitigation.filtered,
-                this.props.drillDown.filtered,
+                this.props.drillDown.selectedValue,
                 this.props.riskid.filtered, null)
         }
          if(this.props.reportType.selectedValue=='2'){
@@ -46,7 +46,7 @@ class GRCDragableDialogue extends Component {
                 [this.props.groupby],
                 this.props.businessModule.filtered,
                 this.props.mitigation.filtered,
-                this.props.drillDown.filtered,
+                this.props.drillDown.selectedValue,
                 this.props.riskid.filtered, null)
         }
 
@@ -59,7 +59,7 @@ class GRCDragableDialogue extends Component {
                 this.props.riskLevel.filtered,
                 [this.props.groupby],
                 this.props.mitigation.filtered,
-                this.props.drillDown.filtered,
+                this.props.drillDown.selectedValue,
                 this.props.riskid.filtered, null)
         }
     }

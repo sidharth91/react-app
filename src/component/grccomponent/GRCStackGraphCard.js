@@ -180,19 +180,19 @@ const GRCStackGraphCard = (props) => {
       layout={"horizontal"}
       data={data}
       barCategoryGap="10%"
-      maxBarSize={35}
+      maxBarSize={55}
       margin={{
-        top: 5, right: 0, left: 0, bottom: 5,
+        top: 10, right: 0, left: 0, bottom: 5,
       }}
     >
       {/* <CartesianGrid strokeDasharray="2 2" /> */}
       <LabelList dataKey="name" position="top" />
-      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-      <Legend iconSize={10} wrapperStyle={{
-        fontFamily: 'Helvetica', fontSize: '10px'
-      }} formatter={(value, entry, index) => legendText(value)} />
-      <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
+      {/* <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} /> */}
+      <Legend iconSize={15} align='right' layout='vertical' verticalAlign='middle' wrapperStyle={{
+          fontFamily: 'Helvetica', fontSize: '12px'
+        }} formatter={(value, entry, index) => legendText(value)} />
+      <XAxis axisLine={false} tickLine={false} dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
+      <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={70} tick={CustomizedYAxisTick} />
       <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
         <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
@@ -219,19 +219,20 @@ const GRCStackGraphCard = (props) => {
       layout={"horizontal"}
       data={data}
       barCategoryGap="10%"
-      maxBarSize={35}
+      maxBarSize={55}
       margin={{
-        top: 5, right: 0, left: 0, bottom: 5,
+        top: 10, right: 0, left: 0, bottom: 5,
       }}
     >
-      {/* <CartesianGrid strokeDasharray="2 2" /> */}
+      {/* <CartesianGrid  strokeDasharray="3 3" vertical horizontal={false} verticalFill='#555555' fillOpacity={0.2} /> */}
+      {/* <CartesianGrid strokeDasharray="3 3" /> */}
       <LabelList dataKey="name" position="top" />
-      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-      <Legend iconSize={10} wrapperStyle={{
-        fontFamily: 'Helvetica', fontSize: '10px'
-      }} formatter={(value, entry, index) => legendText(value)} />
-      <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
+      {/* <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} /> */}
+      <Legend iconSize={15} align='right' layout='vertical' verticalAlign='middle' wrapperStyle={{
+          fontFamily: 'Helvetica', fontSize: '12px'
+        }} formatter={(value, entry, index) => legendText(value)} />
+      <XAxis axisLine={false} tickLine={false} dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
+      <YAxis axisLine={false} tickLine={false}  interval={0} stroke="#bdbdbd" width={70} tick={CustomizedYAxisTick} />
       <Bar dataKey="ZCOUNT1" fill={colorState[0]} onClick={(data) => getData(data)} >
         <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
@@ -249,18 +250,18 @@ const GRCStackGraphCard = (props) => {
       layout={"horizontal"}
       data={data}
       barCategoryGap="10%"
-      maxBarSize={35}
+      maxBarSize={55}
       margin={{
-        top: 5, right: 0, left: 0, bottom: 5,
+        top: 10, right: 0, left: 0, bottom: 5,
       }}
     >
       {/* <CartesianGrid strokeDasharray="2 2" /> */}
-      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-      <Legend iconSize={10} wrapperStyle={{
-        fontFamily: 'Helvetica', fontSize: '10px'
-      }} formatter={(value, entry, index) => legendText(value)} />
-      <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
+      {/* <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} /> */}
+      <Legend iconSize={15} align='right' layout='vertical' verticalAlign='middle' wrapperStyle={{
+          fontFamily: 'Helvetica', fontSize: '12px'
+        }} formatter={(value, entry, index) => legendText(value)} />
+      <XAxis axisLine={false} tickLine={false} dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
+      <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={70} tick={CustomizedYAxisTick} />
       <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
 
         <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
@@ -297,18 +298,18 @@ const GRCStackGraphCard = (props) => {
       layout={"horizontal"}
       data={data}
       barCategoryGap="10%"
-      maxBarSize={35}
+      maxBarSize={55}
       margin={{
-        top: 5, right: 0, left: 0, bottom: 5,
+        top: 10, right: 0, left: 0, bottom: 5,
       }}
     >
       {/* <CartesianGrid strokeDasharray="2 2" /> */}
-      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-      <Legend iconSize={10} wrapperStyle={{
-        fontFamily: 'Helvetica', fontSize: '10px'
-      }} formatter={(value, entry, index) => legendText(value)} />
-      <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
+      {/* <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} /> */}
+      <Legend iconSize={15} align='right' layout='vertical' verticalAlign='middle' wrapperStyle={{
+          fontFamily: 'Helvetica', fontSize: '12px'
+        }} formatter={(value, entry, index) => legendText(value)} />
+      <XAxis axisLine={false} tickLine={false} dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
+      <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={70} tick={CustomizedYAxisTick} />
       <Bar dataKey="ZCOUNT1" fill={colorState[0]} onClick={(data) => getData(data)} >
 
         <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
@@ -330,7 +331,7 @@ const GRCStackGraphCard = (props) => {
   }) => {
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={0} textAnchor="end" fontSize={11} fill="black" fontFamily='Helvetica' transform="rotate(-15)">{payload.value}</text>
+        <text x={0} y={0} dy={10}  textAnchor="middle" fontSize={12} fill="black" fontFamily={colorState[16]} transform="rotate(0)">{payload.value}</text>
       </g>
     );
   }
@@ -340,7 +341,7 @@ const GRCStackGraphCard = (props) => {
   }) => {
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={5} textAnchor="end" fontSize={11} fill="black" fontFamily='Helvetica' transform="rotate(-45)">{payload.value}</text>
+        <text x={0} y={0} dy={0} dx={-10} textAnchor="end" fontSize={12} fill="black" fontFamily={colorState[16]} transform="rotate(0)">{payload.value}</text>
       </g>
     );
   }
@@ -356,19 +357,19 @@ const GRCStackGraphCard = (props) => {
         layout={"vertical"}
         data={data}
         barCategoryGap="10%"
-        maxBarSize={35}
+        maxBarSize={55}
         margin={{
-          top: 5, right: 0, left: 0, bottom: 5,
+          top: 10, right: 10, left: 0, bottom: 5,
         }}
       >
         {/* <CartesianGrid strokeDasharray="2 2" /> */}
-        <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-        <Legend iconSize={10} wrapperStyle={{
-          fontFamily: 'Helvetica', fontSize: '10px'
+        {/* <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} /> */}
+        <Legend iconSize={15} align='right' layout='vertical' margin={{left: 4}} verticalAlign='middle' wrapperStyle={{
+          fontFamily: 'Helvetica', fontSize: '12px'
         }} formatter={(value, entry, index) => legendText(value)} />
 
-        <XAxis type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
-        <YAxis dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={60} interval={0} tick={CustomizedYAxisTick} />
+        <XAxis axisLine={false} tickLine={false} type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
+        <YAxis axisLine={false} tickLine={false} dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={100} interval={0} tick={CustomizedYAxisTick} />
         <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
           <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
         </Bar>
@@ -401,19 +402,19 @@ const GRCStackGraphCard = (props) => {
         layout={"vertical"}
         data={data}
         barCategoryGap="10%"
-        maxBarSize={35}
+        maxBarSize={55}
         margin={{
-          top: 5, right: 0, left: 0, bottom: 5,
+          top: 10, right: 0, left: 0, bottom: 5,
         }}
       >
         {/* <CartesianGrid strokeDasharray="2 2" /> */}
 
-        <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-        <Legend iconSize={10} wrapperStyle={{
-          fontFamily: 'Helvetica', fontSize: '10px'
+        {/* <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} /> */}
+        <Legend iconSize={15} align='right' layout='vertical'  verticalAlign='middle' wrapperStyle={{
+          fontFamily: 'Helvetica', fontSize: '12px'
         }} formatter={(value, entry, index) => legendText(value)} />
-        <XAxis type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
-        <YAxis dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={60} interval={0} tick={CustomizedYAxisTick} />
+        <XAxis axisLine={false} tickLine={false} type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
+        <YAxis axisLine={false} tickLine={false} dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={100} interval={0} tick={CustomizedYAxisTick} />
         <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
           <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
         </Bar>
@@ -557,7 +558,7 @@ const GRCStackGraphCard = (props) => {
   return (
     <div>
       <Card className={classes.root} elevation='5' style={{ height: props.height }}>
-        <CardContent style={{ padding: 2, marginRight: 5, height: '85%' }}>
+        <CardContent style={{ padding: 5, marginRight: 5, height: '85%' }}>
           {firctChart}
         </CardContent>
 

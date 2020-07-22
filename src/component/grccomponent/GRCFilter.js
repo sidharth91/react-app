@@ -153,7 +153,7 @@ class GRCFilter extends Component {
         return (
             // <Grid container style={{}} spacing={0}>
             //     <Grid item md={12}>
-            <Card elevation='5' >
+            <Card elevation='10' style={{ position: 'sticky', position: '-webkit-sticky',}}>
                 <CardContent id="idFilterCard" style={{  minHeight:'7vh',padding:0, marginTop:'auto', marginBottom:'auto' }}>
                     <Grid container spacing={1} style={{ marginTop:'auto', marginBottom:'auto', height:'inherit', minHeight:'inherit'}} >
                         <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>

@@ -15,45 +15,50 @@ class GRCThirdSecData extends Component {
 
     }
 
-    checkForDataToShow=(data)=>{
-        if(data&&Object.keys(data).length>0){
+    checkForDataToShow = (data) => {
+        if (data && Object.keys(data).length > 0) {
             return true;
         }
         return false;
-       }
+    }
 
-    graphNameOnReportType=()=>{
-       if(this.props.reportTypeSelected=='1'){
-           return 'Risk Type'
-       }
-       if(this.props.reportTypeSelected=='2'){
-        return 'Risk Level'
+    graphNameOnReportType = () => {
+        if (this.props.reportTypeSelected == '1') {
+            return 'Risk Type'
         }
-        if(this.props.reportTypeSelected=='3'){
+        if (this.props.reportTypeSelected == '2') {
+            return 'Risk Level'
+        }
+        if (this.props.reportTypeSelected == '3') {
             return 'Business Module'
         }
-    }   
+    }
 
- 
+
     render() {
 
-        let isDataReadtToShow=this.checkForDataToShow(this.props.result)
+        let isDataReadtToShow = this.checkForDataToShow(this.props.result)
 
         return (
-            <Grid container style={{marginTop:5}} spacing={1}>
-                <Grid item md={4} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCGraphCard chart='01' stack={true} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={ `Risk Matrix by ${this.graphNameOnReportType()}`}  chartType={7} dialogueOpen={this.props.dialogueOpen} chartId="SEC31" /> :null}
+            <Grid container style={{ marginTop: 15 }} spacing={2}>
+     
+                    {/* <Grid item md={6} style={{ paddingTop: 0 }}>
+                        {isDataReadtToShow ? <GRCGraphCard chart='01' stack={true} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={`Risk Matrix by ${this.graphNameOnReportType()}`} chartType={7} dialogueOpen={this.props.dialogueOpen} chartId="SEC31" /> : null}
+                    </Grid>  */}
+              
+                    <Grid item md={4} style={{ paddingTop: 0 }}>
+                        {isDataReadtToShow ? <GRCGraphCard chart='02' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={`Risk  ${this.props.levelSelected == 1 ? 'Users by' : 'Roles by'} ${this.graphNameOnReportType()}`} chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC32" /> : null}
+                    </Grid>
+
+              
+                    <Grid item md={4} style={{ paddingTop: 0 }}>
+                        {isDataReadtToShow ? <GRCGraphCard chart='03' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={`Total Risk by ${this.graphNameOnReportType()}`} chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC32" /> : null}
+                    </Grid> 
+                 
+                <Grid item md={4} style={{ paddingTop: 0 }}>
+                    {isDataReadtToShow ? <GRCGraphCard chart='04' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={`Top Risk ${this.props.levelSelected == 1 ? 'Users' : 'Roles'}`} chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC34" /> : null}
                 </Grid>
-                <Grid item md={2} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCGraphCard chart='02' stack={false} color={this.props.colors}  data={this.props.result.E_RESULT_03.data} name={ `Risk  ${this.props.levelSelected==1?'Users by':'Roles by'} ${this.graphNameOnReportType()}`} chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC32" /> :null}
-                </Grid>
-                <Grid item md={2} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCGraphCard chart='03' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={ `Total Risk by ${this.graphNameOnReportType()}`}  chartType={3}  dialogueOpen={this.props.dialogueOpen} chartId="SEC32"/> :null}
-                </Grid>
-                <Grid item md={4} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCGraphCard chart='04' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={ `Top Risk ${this.props.levelSelected==1?'Users':'Roles'}`} chartType={1}  dialogueOpen={this.props.dialogueOpen} chartId="SEC34"/> :null}
-                </Grid>
-                    
+
             </Grid>
 
 
@@ -79,9 +84,9 @@ const mapStateToProps = state => {    //this methos use to retrive state from re
         riskid: state.filter.riskid,
         breakDown: state.filter.breakDown,
         result: state.filter.result,
-        reportTypeSelected:state.filter.reportTypeSelected,
-        levelSelected:state.filter.levelSelected,
-        colors:state.filter.colors
+        reportTypeSelected: state.filter.reportTypeSelected,
+        levelSelected: state.filter.levelSelected,
+        colors: state.filter.colors
 
     };
 
