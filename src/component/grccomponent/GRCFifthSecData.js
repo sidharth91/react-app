@@ -4,41 +4,52 @@ import { connect } from 'react-redux';
 //import * as actionType from '../../Store/actions/actionsType'
 import * as action from '../../Store/actions/index'
 import Grid from '@material-ui/core/Grid';
-import GRCStackGraphCard from './GRCStackGraphCard'
 import GRCGraphCard from './GRCGraphCard'
+import GRCStackGraphCard from './GRCStackGraphCard'
 
 
 
 
-
-class GRCFirstSecData extends Component {
+class GRCFifthSecData extends Component {
 
     componentDidMount() {
 
     }
 
-    checkForDataToShow=(data)=>{
-        if(data&&Object.keys(data).length>0){
+    checkForDataToShow = (data) => {
+        if (data && Object.keys(data).length > 0) {
             return true;
         }
         return false;
-       }
-    
- 
+    }
+
+    graphNameOnReportType = () => {
+        if (this.props.reportTypeSelected == '1') {
+            return 'Risk Type'
+        }
+        if (this.props.reportTypeSelected == '2') {
+            return 'Risk Level'
+        }
+        if (this.props.reportTypeSelected == '3') {
+            return 'Business Module'
+        }
+    }
+
+
     render() {
 
-        let isDataReadtToShow=this.checkForDataToShow(this.props.result)
+        let isDataReadtToShow = this.checkForDataToShow(this.props.result)
 
         return (
-            <Grid container style={{marginTop:15}} spacing={2}>
-                   <Grid item md={6}  style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCStackGraphCard chart='03'  stack='2' color={this.props.colors} height={"350px"} data={this.props.result.E_RESULT_01.data} name={this.props.result.E_REPORT.data[6].ZDESC} chartType={3}  dialogueOpen={this.props.dialogueOpen} chartId="SEC13" header={this.props.result.header.data[6].ZDESC}/> :null}
-                </Grid>
+            <Grid container style={{ marginTop: 15 }} spacing={2}>
                 <Grid item md={6} style={{ paddingTop: 0 }}>
-                    {isDataReadtToShow ? <GRCGraphCard chart='05' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={this.props.result.E_REPORT.data[7].ZDESC} chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC15" header={this.props.result.header.data[7].ZDESC}/> : null}
+                    {isDataReadtToShow ? <GRCGraphCard chart='03' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={this.props.result.E_REPORT.data[2].ZDESC} chartType={1} dialogueOpen={this.props.dialogueOpen} chartId="SEC32" header={this.props.result.header.data[2].ZDESC}/> : null}
                 </Grid>
-            
-                    
+
+                <Grid item md={6} style={{ paddingTop: 0 }}>
+                    {isDataReadtToShow ? <GRCGraphCard chart='04' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={this.props.result.E_REPORT.data[3].ZDESC} chartType={4} dialogueOpen={this.props.dialogueOpen} chartId="SEC34" header={this.props.result.header.data[3].ZDESC} /> : null}
+                </Grid>
+
             </Grid>
 
 
@@ -64,8 +75,10 @@ const mapStateToProps = state => {    //this methos use to retrive state from re
         riskid: state.filter.riskid,
         breakDown: state.filter.breakDown,
         result: state.filter.result,
-        levelSelected:state.filter.levelSelected ,
-        colors:state.filter.colors
+        reportTypeSelected: state.filter.reportTypeSelected,
+        levelSelected: state.filter.levelSelected,
+        colors: state.filter.colors
+
     };
 
 }
@@ -80,4 +93,4 @@ const mapDispatchToProps = dispatch => { // this methos used for dispatch action
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GRCFirstSecData);//connect which return a HOC taking two parameters which help connect to redux store and component
+export default connect(mapStateToProps, mapDispatchToProps)(GRCFifthSecData);//connect which return a HOC taking two parameters which help connect to redux store and component

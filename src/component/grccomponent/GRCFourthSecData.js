@@ -44,11 +44,11 @@ class GRCFourthSecData extends Component {
         return (
             <Grid container style={{marginTop:15}} spacing={2}>
                 <Grid item md={6}  style={{paddingTop:0}}>
-                {isDataReadtToShow ? <GRCStackGraphCard chart='01' stack='3' color={this.props.colors} height={"350px"} data={this.props.result.E_RESULT_03.data} name={`Risk Matrix by ${this.graphNameOnReportType()}`} chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC31" /> : null}
-                </Grid>
+                   {isDataReadtToShow? <GRCStackGraphCard chart='02' stack='2' color={this.props.colors} height={"350px"} data={this.props.result.E_RESULT_01.data} name={this.props.result.E_REPORT.data[4].ZDESC} chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC12" header={this.props.result.header.data[4].ZDESC}/> :null}
+                </Grid>     
                 <Grid item md={6}  style={{paddingTop:0}}>
-                   {isDataReadtToShow? <GRCStackGraphCard chart='02' stack='2' color={this.props.colors} height={"350px"} data={this.props.result.E_RESULT_01.data} name={ `Risk Executed ${this.props.levelSelected==1?'User':'Role'}` } chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC12"/> :null}
-                </Grid>            
+                   {isDataReadtToShow? <GRCStackGraphCard chart='01' stack='3' color={this.props.colors}  height={"350px"} data={this.props.result.E_RESULT_01.data} name={this.props.result.E_REPORT.data[5].ZDESC} chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC11" header={this.props.result.header.data[5].ZDESC}/> :null}
+                </Grid>       
                     
             </Grid>
 

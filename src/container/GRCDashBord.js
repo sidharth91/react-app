@@ -15,6 +15,7 @@ import GRCThirdSecData from '../component/grccomponent/GRCThirdSecData'
 import GRCFirstSecData from '../component/grccomponent/GRCFirstSecData'
 import GRCFourthSecData from '../component/grccomponent/GRCFourthSecData'
 import GRCSecondSecData from '../component/grccomponent/GRCSecondSecData'
+import GRCFifthSecData from "../component/grccomponent/GRCFifthSecData"
 import GRCDataCard from '../component/grccomponent/GRCDataCard'
 import Loader from '../component/Loader'
 import GRCDragableDialogue from './GRCDragableDialogue'
@@ -68,8 +69,8 @@ class GRCDashBord extends Component {
                     }      
                     {/* <GRCSecondSecData result={this.props.result}/> */}
 
-
-                    <GRCFourthSecData dialogueOpen={this.openDialogue}/>
+                    <GRCFifthSecData dialogueOpen={this.openDialogue}/>
+                   
 
                     {this.props.result? 
                     <Grid container style={{marginTop:5}} spacing={2}>
@@ -82,7 +83,7 @@ class GRCDashBord extends Component {
                     </Grid >:null
                     }
 
-
+                    <GRCFourthSecData dialogueOpen={this.openDialogue}/>
                     <GRCFirstSecData dialogueOpen={this.openDialogue}/>
                     {this.props.loader?<Loader/>:null}
                     {this.state.dialogue?<GRCDragableDialogue dialogueState={this.state.dialogue} groupby={this.state.groupby} chart={this.state.chart} closeDialogue={this.closeDialogue}/>:null}

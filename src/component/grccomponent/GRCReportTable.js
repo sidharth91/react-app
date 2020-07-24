@@ -29,6 +29,10 @@ function createDatawithfourcolumn(COLUMN1, COLUMN2, COUNT1, COUNT2) {
   return { COLUMN1, COLUMN2, COUNT1, COUNT2 };
 }
 
+function createDatawithTwocolumn(COLUMN1, COUNT1) {
+  return { COLUMN1, COUNT1 };
+}
+
 function createDatawiththreecolumn(COLUMN1, COLUMN2, COUNT1,) {
   return { COLUMN1, COLUMN2, COUNT1};
 }
@@ -232,6 +236,10 @@ function createRows(header, data) {
     return data.map(p=>createDatawithfourcolumn(p.COLUMN1,p.COLUMN2,p.COUNT1,p.COUNT2,p.COUNT2))
   }
 
+  if(header.length==2){
+    return data.map(p=>createDatawithTwocolumn(p.COLUMN1,p.COUNT1))
+  }
+
 
     return data.map(p=>createDatawiththreecolumn(p.COLUMN1,p.COLUMN2,p.COUNT1,p.COUNT2,p.COUNT2))
 
@@ -254,7 +262,7 @@ const GRCReportTable=(props)=> {
 
   const rows =createRows(props.header,data);
 
- headCells=createColumn(props.header,Object.keys(data[0]))
+ headCells=createColumn(props.header,Object.keys(rows[0]))
   
 
   const handleRequestSort = (event, property) => {
@@ -347,8 +355,9 @@ const GRCReportTable=(props)=> {
                       selected={isItemSelected}                      
                     >
                        <TableCell align="right" className={classes.reporttablecell}>{row.COLUMN1}</TableCell>
+                       {props.header.length>2?
                       <TableCell align="right" className={classes.reporttablecell}>{row.COLUMN2}</TableCell>
-                   
+                       :null}
                       <TableCell align="right" className={classes.reporttablecell}>{row.COUNT1}</TableCell>
                       {props.header.length>3?
                       <TableCell align="right" className={classes.reporttablecell}>{row.COUNT2}</TableCell>:null}

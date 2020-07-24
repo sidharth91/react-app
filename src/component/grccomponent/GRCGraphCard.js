@@ -167,10 +167,10 @@ const GRCGraphCard = (props) => {
         top: 10, right: 0, left: 0, bottom: 17,
       }}
     >
-      {/* <CartesianGrid strokeDasharray="2 2" /> */}
+       <CartesianGrid  vertical={false} horizontal={true} /> 
       <XAxis axisLine={false} tickLine={false} dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
       <YAxis  axisLine={false} tickLine={false} dataKey="ZCOUNT1" interval={0} stroke="#bdbdbd" width={70} tick={CustomizedYAxisTick} />
-      <Bar dataKey="ZCOUNT1" fill={'#00bcd4'} onClick={(data) => getData(data)} >
+      <Bar dataKey="ZCOUNT1" fill={'#00bcd4'} onClick={(data) => getData(data)} background={{ fill: '#F0F3FA' }}>
         {
           data.map((entry, index) => <Cell key={`cell-${index}`} fill={colorState[index % colorState.length]} />)
         }
@@ -182,7 +182,7 @@ const GRCGraphCard = (props) => {
   }) => {
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={10} textAnchor="middle" fontSize={10} fill="black" fontFamily={colorState[16]} transform="rotate(0)">{payload.value}</text>
+        <text x={0} y={0} dy={10} textAnchor="middle" fontSize={12} fill="black" fontFamily={colorState[16]} transform="rotate(0)">{payload.value}</text>
       </g>
     );
   }
@@ -192,7 +192,7 @@ const GRCGraphCard = (props) => {
   }) => {
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={0} dx={-10} textAnchor="end" fontSize={10} fill="black" fontFamily={colorState[16]} transform="rotate(0)">{payload.value}</text>
+        <text x={0} y={0} dy={0} dx={-10} textAnchor="end" fontSize={12} fill="black" fontFamily={colorState[16]} transform="rotate(0)">{payload.value}</text>
       </g>
     );
   }
@@ -252,8 +252,8 @@ const GRCGraphCard = (props) => {
             activeIndex={activeIndex}
             activeShape={renderActiveShape}
             data={data}
-            innerRadius={55}
-            outerRadius={95}
+            innerRadius={65}
+            outerRadius={105}
             dataKey="ZCOUNT1"
             onMouseEnter={onPieEnter}
             onClick={(data) => getData(data)}
@@ -323,10 +323,10 @@ const GRCGraphCard = (props) => {
           top: 5, right: 0, left: 0, bottom: 5,
         }}
       >
-        {/* <CartesianGrid strokeDasharray="2 2" /> */}
+         <CartesianGrid  vertical={true} horizontal={false} /> 
         <XAxis axisLine={false} tickLine={false} dataKey="ZCOUNT1" type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
         <YAxis  axisLine={false} tickLine={false}  dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={100} interval={0} tick={CustomizedYAxisTick} />
-        <Bar dataKey="ZCOUNT1" fill={'#48C9B0'} onClick={(data) => getData(data)}>
+        <Bar dataKey="ZCOUNT1" fill={'#48C9B0'} onClick={(data) => getData(data)} background={{ fill: '#F0F3FA' }}>
           {data.map((entry, index) => <Cell key={`cell-${index}`} fill={colorState[index % colorState.length]} />)
           }
         </Bar>
@@ -380,7 +380,7 @@ const GRCGraphCard = (props) => {
         top: 10, right: 0, left: 0, bottom: 5,
       }}
     >
-      {/* <CartesianGrid strokeDasharray="2 2" /> */}
+      <CartesianGrid  vertical={false} horizontal={true} /> 
       <Legend iconSize={15} align='right' layout='vertical' verticalAlign='middle' iconSize={10} wrapperStyle={{
         fontFamily: 'Helvetica', fontSize: '12px'
       }} formatter={(value, entry, index) => legendText(value)} />
@@ -423,7 +423,7 @@ const GRCGraphCard = (props) => {
         top: 10, right: 0, left: 0, bottom: 5,
       }}
     >
-      {/* <CartesianGrid strokeDasharray="2 2" /> */}
+      <CartesianGrid  vertical={false} horizontal={true} /> 
       <Legend iconSize={15} align='right' layout='vertical' verticalAlign='middle' iconSize={10} wrapperStyle={{
         fontFamily: 'Helvetica', fontSize: '12px'
       }} formatter={(value, entry, index) => legendText(value)} />
@@ -467,7 +467,7 @@ const GRCGraphCard = (props) => {
           top: 5, right: 0, left: 0, bottom: 5,
         }}
       >
-        {/* <CartesianGrid strokeDasharray="2 2" /> */}
+       <CartesianGrid  vertical={true} horizontal={false} /> 
         <Legend iconSize={15} align='right' layout='vertical' verticalAlign='middle' wrapperStyle={{
           fontFamily: 'Helvetica', fontSize: '12px'
         }} formatter={(value, entry, index) => legendText(value)} />
@@ -513,7 +513,7 @@ const GRCGraphCard = (props) => {
           top: 5, right: 0, left: 0, bottom: 5,
         }}
       >
-        {/* <CartesianGrid strokeDasharray="2 2" /> */}
+         <CartesianGrid  vertical={true} horizontal={false} /> 
         <XAxis type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
         <YAxis dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={60} interval={0} tick={CustomizedYAxisTick} />
         <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} />
@@ -546,7 +546,7 @@ const GRCGraphCard = (props) => {
     setChartState(event.target.value)
   }
 
-  const getTableHeader = (data, key) => {
+  const getTableHeader = (data, key,headerdata) => {
 
 
     if(data==undefined || data==null ||data.length<1){
@@ -559,28 +559,14 @@ const GRCGraphCard = (props) => {
     }
 
     let columnarray = (key == '01') ? ["GROUPBY1", "GROUP_DESC1", "ZCOUNT1", "ZCOUNT2", "ZCOUNT3"] : ["GROUPBY1", "GROUP_DESC1", "ZCOUNT1"]
-    let header = Object.keys(filtereddata[0]).filter(t => columnarray.includes(t)).map(p => {
-      if (p == 'GROUPBY1') {
-        return 'COLUMN1'
-      }
-      if (p == 'GROUP_DESC1') {
-        return 'COLUMN2'
-      }
-      if (p == 'ZCOUNT1') {
-        return 'COUNT1'
-      }
-      if (p == 'ZCOUNT2') {
-        return 'COUNT2'
-      }
-      if (p == 'ZCOUNT3') {
-        return 'COUNT3'
-      }
-    })
+    let header = headerdata.split(',')
 
 
     let dataset = filtereddata.map(dt => {
       let tem = [];
+      if(key != '04'){
       tem.push(dt.GROUPBY1)
+      }
       tem.push(dt.GROUP_DESC1)
       tem.push(dt.ZCOUNT1)
 
@@ -593,6 +579,7 @@ const GRCGraphCard = (props) => {
 
     let dataset2 = filtereddata.map(dt => {
       let tem = {};
+
       tem.COLUMN1=dt.GROUPBY1
       tem.COLUMN2=dt.GROUP_DESC1
       tem.COUNT1=dt.ZCOUNT1
@@ -630,7 +617,7 @@ const GRCGraphCard = (props) => {
   const [open, setOpen] = React.useState(false);
   const [colorState, setColorState] = useState([...COLORS]);
   let getchartDataResult1 = proesResultData(props.data, props.chart);
-  let tableData = getTableHeader(props.data, props.chart)
+  let tableData = getTableHeader(props.data, props.chart,props.header)
   let firctChart = getchartDataResult1.length>0?getChart(getchartDataResult1, chartState, '#00bcd4'):<Typography  variant="subtitle2" color="inherit" style={{width:500}}>
   No Records found
 </Typography>
@@ -641,14 +628,14 @@ const GRCGraphCard = (props) => {
 
   return (
     <div>
-      <Card className={classes.root} elevation='5' style={{ height: "300px" }}>
+      <Card className={classes.root} elevation='5' style={{ height: "350px" }}>
         <CardContent style={{ padding: 2,marginTop: 6, marginRight: 6,marginLeft:6, height: '85%' }}>
           {firctChart}
         </CardContent>
 
-        <CardActions style={{ margin: 'auto', padding: 2, height:'15%' }}>
-          <Grid container spacing={0} style={{ height:'100%' }}>
-            <Grid item md={3} style={{margin:'auto'}}>
+        <CardActions style={{ margin: 0, padding: 2}}>
+          <Grid container spacing={0}>
+            <Grid item md={3}>
               <FormControl variant="outlined" className={classes.formControl} size="small">
                 <InputLabel id="demo-simple-select-outlined-label">{props.label}</InputLabel>
 
