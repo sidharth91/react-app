@@ -35,7 +35,7 @@ class GRCFirstSecData extends Component {
                    {isDataReadtToShow? <GRCStackGraphCard chart='03'  stack='2' color={this.props.colors} height={"350px"} data={this.props.result.E_RESULT_01.data} name={this.props.result.E_REPORT.data[6].ZDESC} chartType={3}  dialogueOpen={this.props.dialogueOpen} chartId="SEC13" header={this.props.result.header.data[6].ZDESC}/> :null}
                 </Grid>
                 <Grid item md={6} style={{ paddingTop: 0 }}>
-                    {isDataReadtToShow ? <GRCGraphCard chart='05' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={this.props.result.E_REPORT.data[7].ZDESC} chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC15" header={this.props.result.header.data[7].ZDESC}/> : null}
+                    {isDataReadtToShow ? <GRCGraphCard chart='05' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={this.props.result.E_REPORT.data[7].ZDESC} chartType={1} dialogueOpen={this.props.dialogueOpen} chartId="SEC15" header={this.props.result.header.data[7].ZDESC}/> : null}
                 </Grid>
             
                     

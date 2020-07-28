@@ -198,12 +198,16 @@ class LicenseFilter extends Component {
                         <LicenceTextFiled  label="Logon Days"  onchange={this.props.changelogon} value={this.props.logondays}/>
                             </Grid>
                            
-                            <Grid item md={1} style={{ margin:'auto 0px',paddingTop:1 }}>
+                            <Grid item md={2} style={{ margin:'auto 0px',paddingTop:1 }}>
                             <LicenceTextFiled label="% or Count"  onchange={this.props.changecount} value={this.props.count}/>
                             </Grid>
 
                             <Grid item md={2} style={{ margin:'auto 0px',paddingTop:1}}>
                             <LicenceTextFiled label="User Id"  onchange={this.props.changeuserId} value={this.props.userId}/>
+                            </Grid>
+                            
+                            <Grid item md={1} style={{ margin:'auto 0px',paddingTop:1}}>
+                           
                             </Grid>
 
 

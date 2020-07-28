@@ -85,6 +85,9 @@ const MUControlReportTable = (props) => {
                 filterPaper: {
                     maxWidth: '20%',
                     maxHeight: '70%'
+                },
+                actions:{
+                    flex: '0 0 auto'
                 }
 
             },
@@ -162,7 +165,7 @@ const MUControlReportTable = (props) => {
         print: false,
         sortFilterList: false,
         rowsPerPage: 100,
-        rowsPerPageOptions: [100, 250, 500],
+       rowsPerPageOptions:[100,250,500,1000,2000,5000,10000],
         onCellClick: onTableCellClick
     };
 
@@ -184,6 +187,7 @@ const MUControlReportTable = (props) => {
     return (
         <MuiThemeProvider theme={getMuiTheme()}>
             <MUIDataTable
+            title={props.name}
                 data={data}
                 columns={columns}
                 options={options}

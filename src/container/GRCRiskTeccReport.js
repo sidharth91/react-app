@@ -35,7 +35,7 @@ class GRCReport extends Component {
                  <Grid item md={12} style={{margin:5}}>
                     {this.props.sapSystem.value.length>0?<GRCRiskTechFilter type='Report'/>:null}
                     {/* {Object.keys(this.props.grcreport).length>0?<GRCReportTable colors={this.props.colors} header={this.props.grcreport.header} data={this.props.grcreport.data}/>:null} */}
-                      {Object.keys(this.props.grcreport).length>0 && this.props.grcreport.data.length>0?<MUGRCRiskTeckReportTable colors={this.props.colors} header={this.props.grcreport.header} data={this.props.grcreport.data}/>:null}
+                      {Object.keys(this.props.grcreport).length>0 && this.props.grcreport.data.length>0?<MUGRCRiskTeckReportTable colors={this.props.colors} header={this.props.grcreport.header} data={this.props.grcreport.data} name={this.props.grcreport.reportName!=null && this.props.grcreport.reportName?"GRC Risk Tech Report":this.props.grcreport.reportName[0]}/>:null}
                       {Object.keys(this.props.grcreport).length>0 && this.props.grcreport.data.length<1?
                        <Grid container style={{ marginTop:5,paddingRight:10,paddingLeft:10}} spacing={0}>
                            <Grid item md={12} style={{margin:5,alignItems:'center'}}>

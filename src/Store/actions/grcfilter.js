@@ -7,7 +7,7 @@ import axios from 'axios';
 export const initFilter = (token) => {
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
-        axios.get('http://ec2-3-88-0-12.compute-1.amazonaws.com:8080/api/filter', { headers: { 'Authorisation': token } })
+        axios.get('http://localhost:8080/api/filter', { headers: { 'Authorisation': token } })
             .then(response => {
                 dispatch(initiateFilter(response.data));
             })
@@ -179,7 +179,7 @@ export const submitFilter = (token, riskType, sapSystem, client, riskLevel, busi
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
-        axios.post('http://ec2-3-88-0-12.compute-1.amazonaws.com:8080/api/JAVA_0002N', {
+        axios.post('http://localhost:8080/api/JAVA_0002N', {
             riskType: riskType,
             sapSystem: sapSystem,
             client: client,
@@ -227,7 +227,7 @@ export const riskReport = (token, sapSystem, client, level, riskType, riskLevel,
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
-        axios.post('http://ec2-3-88-0-12.compute-1.amazonaws.com:8080/api/JAVA_MUL_0003', {
+        axios.post('http://localhost:8080/api/JAVA_MUL_0003', {
             sapSystem: sapSystem,
             client: client,
             level: level,
@@ -263,7 +263,7 @@ export const riskGrcReport = (token, sapSystem, client, level, riskType, riskLev
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
-        axios.post('http://ec2-3-88-0-12.compute-1.amazonaws.com:8080/api/JAVA_MUL_0003', {
+        axios.post('http://localhost:8080/api/JAVA_MUL_0003', {
             sapSystem: sapSystem,
             client: client,
             level: level,
@@ -291,7 +291,7 @@ export const riskGrcReport = (token, sapSystem, client, level, riskType, riskLev
 export const initRiskTechFilter = (token) => {
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
-        axios.get('http://ec2-3-88-0-12.compute-1.amazonaws.com:8080/api/filter', { headers: { 'Authorisation': token } })
+        axios.get('http://localhost:8080/api/filter', { headers: { 'Authorisation': token } })
             .then(response => {
                 dispatch(initiateRiskTechFilter(response.data));
             })
@@ -378,7 +378,7 @@ export const riskTechGrcReport = (token, sapSystem, client, level, riskType, ris
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LOADER_STATUS, data: true })
-        axios.post('http://ec2-3-88-0-12.compute-1.amazonaws.com:8080/api/JAVA_MUL_0004', {
+        axios.post('http://localhost:8080/api/JAVA_MUL_0004', {
             sapSystem: sapSystem,
             client: client,
             level: level,

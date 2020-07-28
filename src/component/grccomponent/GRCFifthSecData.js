@@ -43,11 +43,11 @@ class GRCFifthSecData extends Component {
         return (
             <Grid container style={{ marginTop: 15 }} spacing={2}>
                 <Grid item md={6} style={{ paddingTop: 0 }}>
-                    {isDataReadtToShow ? <GRCGraphCard chart='03' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={this.props.result.E_REPORT.data[2].ZDESC} chartType={1} dialogueOpen={this.props.dialogueOpen} chartId="SEC32" header={this.props.result.header.data[2].ZDESC}/> : null}
+                    {isDataReadtToShow ? <GRCGraphCard chart='03' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={this.props.result.E_REPORT.data[2].ZDESC} chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC32" header={this.props.result.header.data[2].ZDESC}/> : null}
                 </Grid>
 
                 <Grid item md={6} style={{ paddingTop: 0 }}>
-                    {isDataReadtToShow ? <GRCGraphCard chart='04' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={this.props.result.E_REPORT.data[3].ZDESC} chartType={4} dialogueOpen={this.props.dialogueOpen} chartId="SEC34" header={this.props.result.header.data[3].ZDESC} /> : null}
+                    {isDataReadtToShow ? <GRCGraphCard chart='04' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name={this.props.result.E_REPORT.data[3].ZDESC} chartType={1} dialogueOpen={this.props.dialogueOpen} chartId="SEC34" header={this.props.result.header.data[3].ZDESC} /> : null}
                 </Grid>
 
             </Grid>

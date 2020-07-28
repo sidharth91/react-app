@@ -11,11 +11,14 @@ import HeaderContainer from './HeaderContainer'
 import SideBar from './SideBar'
 import ControlFilter from '../component/controlcomponent/ControlFilter'
 import ControlFirstSection from '../component/controlcomponent/ControlFirstSection'
+import ControlFourthSection from '../component/controlcomponent/ControlFourthSection'
+import ControlFifthSection from '../component/controlcomponent/ControlFifthSection'
 import ControlThirdSection from '../component/controlcomponent/ControlThirdSection'
+import ControlDataCard from '../component/controlcomponent/ControlDataCard'
+
 import ControlSecondSecData from '../component/controlcomponent/ControlSecondSecData'
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
-import LicenseSecondSecData from '../component/licensecomponent/LicenseSecondSecData'
-import LicenceThirdSection from '../component/licensecomponent/LicenceThirdSection'
+
 import Loader from '../component/Loader'
 import ControlsDraggableDialog from './ControlDragableDialogue'
 
@@ -54,8 +57,45 @@ class LicenseDashbord extends Component {
                 <Grid item md={12}>
                 {this.props.sapSystem.value.length>0?<ControlFilter type='Dashbord' />:null}
                 <ControlFirstSection dialogueOpen={this.openDialogue}/>
-                <ControlSecondSecData result={this.props.controlresult}/>
+                {this.props.result? 
+                    <Grid container style={{marginTop:5}} spacing={2}>
+                        <Grid item md={3}> <ControlDataCard result={this.props.result.E_RESULT_02.data[0]} index={0}/></Grid>
+                        <Grid  item md={3}> <ControlDataCard result={this.props.result.E_RESULT_02.data[1]} index={1}/></Grid>
+                        <Grid  item md={3}> <ControlDataCard result={this.props.result.E_RESULT_02.data[2]} index={2}/></Grid>
+                        <Grid  item md={3}> <ControlDataCard result={this.props.result.E_RESULT_02.data[3]} index={3}/></Grid>
+                    </Grid >:null
+                    } 
+
+
+                <ControlFourthSection dialogueOpen={this.openDialogue}/>
+                {/* <ControlSecondSecData result={this.props.controlresult}/> */}
+
+                {this.props.result? 
+                    <Grid container style={{marginTop:5}} spacing={2}>
+                        <Grid item md={2}> <ControlDataCard result={this.props.result.E_RESULT_02.data[0]} index={4}/></Grid>
+                        <Grid  item md={3}> <ControlDataCard result={this.props.result.E_RESULT_02.data[1]} index={5}/></Grid>
+                        <Grid  item md={2}> <ControlDataCard result={this.props.result.E_RESULT_02.data[2]} index={6}/></Grid>
+                        <Grid  item md={3}> <ControlDataCard result={this.props.result.E_RESULT_02.data[3]} index={7}/></Grid>
+                        <Grid  item md={2}> <ControlDataCard result={this.props.result.E_RESULT_02.data[2]} index={8}/></Grid>
+                       
+                    </Grid >:null
+                    } 
+
                 <ControlThirdSection dialogueOpen={this.openDialogue}/>
+
+                {this.props.result? 
+                    <Grid container style={{marginTop:5}} spacing={2}>
+                         <Grid  item md={3}> <ControlDataCard result={this.props.result.E_RESULT_02.data[3]} index={9}/></Grid>
+                        <Grid item md={3}> <ControlDataCard result={this.props.result.E_RESULT_02.data[0]} index={10}/></Grid>
+                        <Grid  item md={3}> <ControlDataCard result={this.props.result.E_RESULT_02.data[1]} index={11}/></Grid>
+                        <Grid  item md={3}> <ControlDataCard result={this.props.result.E_RESULT_02.data[2]} index={12}/></Grid>
+                    </Grid >:null
+                    } 
+
+
+
+
+                <ControlFifthSection dialogueOpen={this.openDialogue}/>
                 {this.props.loader?<Loader/>:null}
                 {this.state.dialogue?<ControlsDraggableDialog dialogueState={this.state.dialogue} groupby={this.state.groupby} chart={this.state.chart} closeDialogue={this.closeDialogue}/>:null}
                     {/* <LicenceFirstSection dialogueOpen={this.openDialogue}/>
@@ -74,7 +114,7 @@ class LicenseDashbord extends Component {
 const mapStateToProps = state => {    //this methos use to retrive state from redux store as props
     return {
         token: state.login.token, //state.reducername.value
-        controlresult:state.control.controlresult,
+        result:state.control.controlresult,
         loader:state.control.loader,
         sapSystem: state.control.sapSystem,
     };

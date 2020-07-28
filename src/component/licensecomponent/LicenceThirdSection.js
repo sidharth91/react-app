@@ -52,22 +52,13 @@ class LicenceThirdSection extends Component {
         let isDataReadtToShow=this.checkForDataToShow(this.props.result)
 
         return (
-            <Grid container style={{marginTop:5}} spacing={1}>
+            <Grid container style={{marginTop:15}} spacing={1}>
            
-                <Grid item  md={4} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <LicenceGraphCard chart='01' stack={true} color={this.props.colors} data={this.props.result.E_RESULT_03.data} name="Total License Count/Cost"  chartType={5} dialogueOpen={this.props.dialogueOpen} chartId="SEC31" chartdata={this.props.licenseresult.E_RESULT_00.data} chartHeader={this.props.licenseresult.header.data}/> :null}
+                <Grid item md={6} style={{paddingTop:0}}>
+                   {isDataReadtToShow? <LicenceGraphCard chart='03' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name="Top Users with Multiple Logon"  chartType={1}  dialogueOpen={this.props.dialogueOpen} chartHeader={this.props.result.header.data[4].ZDESC} chartId="SEC34"/> :null}
                 </Grid>
-                <Grid item md={2} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <LicenceGraphCard chart='01' stack={false} color={this.props.colors}  data={this.props.result.E_RESULT_04.data} name="Top Prof user with doc" chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC32" /> :null}
-                </Grid>
-                <Grid item md={2} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <LicenceGraphCard chart='02' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name="Top Users with indirect Usage"  chartType={3}  dialogueOpen={this.props.dialogueOpen} chartId="SEC32"/> :null}
-                </Grid>
-                <Grid item md={2} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <LicenceGraphCard chart='03' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name="Top Users with Multiple Logon" chartType={1}  dialogueOpen={this.props.dialogueOpen} chartId="SEC34"/> :null}
-                </Grid>
-                <Grid item md={2} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <LicenceGraphCard chart='04' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name="Top USMM Enginee Usage" chartType={1}  dialogueOpen={this.props.dialogueOpen} chartId="SEC34"/> :null}
+                <Grid item md={6} style={{paddingTop:0}}>
+                   {isDataReadtToShow? <LicenceGraphCard chart='04' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name="Top USMM Enginee Usage" chartType={1}  dialogueOpen={this.props.dialogueOpen} chartHeader={this.props.result.header.data[5].ZDESC} chartId="SEC34"/> :null}
                 </Grid>  
               
             </Grid>
@@ -83,7 +74,7 @@ const mapStateToProps = state => {    //this methos use to retrive state from re
     return {
         token: state.login.token, //state.reducername.value
         isUserLogedIn: state.login.isUserLogedIn,
-        licenseresult:state.licensefilter.licenseresult,
+        result:state.licensefilter.licenseresult,
         colors:state.licensefilter.colors
 
     };

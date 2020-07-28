@@ -21,7 +21,7 @@ import ControlGraphCard from './ControlGraphCard'
 
 
 
-class LicenceThirdSection extends Component {
+class ControlThirdSection extends Component {
 
     componentDidMount() {
 
@@ -52,19 +52,13 @@ class LicenceThirdSection extends Component {
         let isDataReadtToShow=this.checkForDataToShow(this.props.result)
 
         return (
-            <Grid container style={{marginTop:5}} spacing={1}>
+            <Grid container style={{marginTop:15}} spacing={1}>
            
-                <Grid item  md={3} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <ControlGraphCard chart='05' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_01.data} name="Top Duplicate Customer Orders"  chartType={1} dialogueOpen={this.props.dialogueOpen} chartId="SEC31" /> :null}
+                <Grid item  md={6} style={{paddingTop:0}}>
+                   {isDataReadtToShow? <ControlGraphCard chart='05' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_01.data} name={this.props.result.E_REPORT.data[4].ZDESC}  chartType={1} dialogueOpen={this.props.dialogueOpen} chartHeader={this.props.result.header.data[4].ZDESC} chartId="SEC31" /> :null}
                 </Grid>
-                <Grid item md={3} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <ControlGraphCard chart='06' stack={false} color={this.props.colors}  data={this.props.result.E_RESULT_01.data} name="Top Customers With High Debts" chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC32" /> :null}
-                </Grid>
-                <Grid item md={3} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <ControlGraphCard chart='07' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_01.data} name="Top Onetime Customers With Orders"  chartType={3}  dialogueOpen={this.props.dialogueOpen} chartId="SEC32"/> :null}
-                </Grid>
-                <Grid item md={3} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <ControlGraphCard chart='08' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_01.data} name="Top Customers With High Credit Balances" chartType={1}  dialogueOpen={this.props.dialogueOpen} chartId="SEC34"/> :null}
+                <Grid item md={6} style={{paddingTop:0}}>
+                   {isDataReadtToShow? <ControlGraphCard chart='06' stack={false} color={this.props.colors}  data={this.props.result.E_RESULT_01.data} name={this.props.result.E_REPORT.data[5].ZDESC} chartType={3} dialogueOpen={this.props.dialogueOpen} chartHeader={this.props.result.header.data[5].ZDESC} chartId="SEC32" /> :null}
                 </Grid>
               
               
@@ -94,4 +88,4 @@ const mapDispatchToProps = dispatch => { // this methos used for dispatch action
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LicenceThirdSection);//connect which return a HOC taking two parameters which help connect to redux store and component
+export default connect(mapStateToProps, mapDispatchToProps)(ControlThirdSection);//connect which return a HOC taking two parameters which help connect to redux store and component

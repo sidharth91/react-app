@@ -174,17 +174,19 @@ class GRCFilter extends Component {
                         <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterMultiSelectDropDown values={businessModule} preSelected={this.props.businessModule.selectedValue} changeEventCallBack={this.changeBusinessModule} label="Bus Module" width='100' />
                         </Grid>
-                        <Grid item md={this.props.type == 'Dashbord' ? 2 : 1} style={{ marginTop:'auto', marginBottom:'auto'}}>
+                        <Grid item md={2} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterMultiSelectDropDown values={riskid} preSelected={this.props.riskid.selectedValue} changeEventCallBack={this.changeRiskId} label="Risk Id" width='100' />
                         </Grid>
                         <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterSingleSelectDropDown values={mitigation} preSelected={this.props.mitigation.selectedValue} changeEventCallBack={this.changeMitigation} label="Mitigation" width='100' />
                         </Grid>
+                        {this.props.type == 'Dashbord' ?
                         <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
                             <FilterSingleSelectDropDown values={reportType} preSelected={this.props.reportType.selectedValue} changeEventCallBack={this.changeReportType} label="Report Type" width='100' />
                         </Grid>
+                        :null}
                         <Grid item md={1} style={{ marginTop:'auto', marginBottom:'auto'}}>
-                            <FilterSingleSelectDropDown values={drillDown} preSelected={this.props.drillDown.selectedValue} changeEventCallBack={this.changeDrillDown} label="Drill Down" width='100' />
+                            <FilterSingleSelectDropDown values={drillDown} preSelected={this.props.drillDown.selectedValue} changeEventCallBack={this.changeDrillDown} label={this.props.type == 'Report'?"Report Type":"Drill Down"} width='100' />
                         </Grid>
                         {this.props.type == 'Report' ?
                             <Grid item md={1} style={{ margin:'auto 0px', padding:'0px 16px'}}>

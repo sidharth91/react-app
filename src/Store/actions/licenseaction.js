@@ -7,7 +7,7 @@ import axios from 'axios';
 export const initLicenseFilter = (token) => {
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: true })
-        axios.get('http://ec2-3-88-0-12.compute-1.amazonaws.com:8080/api/licensefilter', { headers: { 'Authorisation': token } })
+        axios.get('http://localhost:8080/api/licensefilter', { headers: { 'Authorisation': token } })
             .then(response => {
                 dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: false })
                 dispatch(initiateLicenseFilter(response.data));
@@ -43,7 +43,7 @@ export const initiateLicenseFilter = (data) => {
                 temp.client = p;
                 break
             case 11:
-                p.selectedValue = p.value[0].ZID
+                p.selectedValue = p.value[1].ZID
                 temp.level = p;
                 break
             case 12:
@@ -202,7 +202,7 @@ export const submitLicenceFilter = (token, sapSystem, client, level, userType, u
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: true })
-        axios.post('http://ec2-3-88-0-12.compute-1.amazonaws.com:8080/api/JAVA_0005', {
+        axios.post('http://localhost:8080/api/JAVA_0005', {
             sapSystem: sapSystem,
             client: client,
             level: level,
@@ -237,7 +237,7 @@ export const licenceReport = (token, sapSystem, client, level, userType, userGro
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: true })
-        axios.post('http://ec2-3-88-0-12.compute-1.amazonaws.com:8080/api/JAVA_0006', {
+        axios.post('http://localhost:8080/api/JAVA_0006', {
             sapSystem: sapSystem,
             client: client,
             level: level,
@@ -272,7 +272,7 @@ export const licenceTableReport = (token, sapSystem, client, level, userType, us
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: true })
-        axios.post('http://ec2-3-88-0-12.compute-1.amazonaws.com:8080/api/JAVA_0006', {
+        axios.post('http://localhost:8080/api/JAVA_0006', {
             sapSystem: sapSystem,
             client: client,
             level: level,

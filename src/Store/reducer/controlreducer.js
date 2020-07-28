@@ -10,7 +10,7 @@ const initialState = {
     mitigation: { "name": "Mitigation", "id": 6, "value": [] },
     drillDown: { "name": "Drill Down", "id": 9, "value": [] },
     colors: [],
-    controlresult: {},
+    controlresult: null,
     controlreport: {},
     controlsummaryreport: {},
     controltablereport: {},

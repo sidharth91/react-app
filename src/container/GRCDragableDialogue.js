@@ -23,6 +23,18 @@ class GRCDragableDialogue extends Component {
                 this.props.drillDown.selectedValue,
                 this.props.riskid.filtered, 
                 this.props.groupby)
+        }else if(this.props.chart=="SEC15"){
+            this.props.riskReport(this.props.token,
+                this.props.sapSystem.filtered,
+                this.props.client.filtered,
+                this.props.level.filtered,
+                this.props.riskType.filtered,
+                this.props.riskLevel.filtered,
+                this.props.businessModule.filtered,
+                this.props.mitigation.filtered,
+                this.props.drillDown.selectedValue,
+                this.props.riskid.filtered, 
+                this.props.groupby)
         }
         else{
         if(this.props.reportType.selectedValue=='1'){
@@ -78,7 +90,7 @@ class GRCDragableDialogue extends Component {
 
         return (
             <div>
-          {Object.keys(this.props.tableReport).length>0?<GRCDraggableDialog dialogueState={this.props.dialogueState} colors={this.props.colors} header={this.props.tableReport.header} data={this.props.tableReport.data} closeDialogue={this.props.closeDialogue}/>:null}
+          {Object.keys(this.props.tableReport).length>0?<GRCDraggableDialog dialogueState={this.props.dialogueState} colors={this.props.colors} header={this.props.tableReport.header} data={this.props.tableReport.data} name={this.props.tableReport.reportName[0]} closeDialogue={this.props.closeDialogue}/>:null}
           </div>
         )
 
