@@ -18,6 +18,7 @@ import GRCRiskTeccReport from './GRCRiskTeccReport'
 import ControlDashbord from './ControlDashbord'
 import ControlReport from './ControlReport'
 import ControlSummaryReport from './ControlSummaryReport'
+import Login from './Login';
 
 
 

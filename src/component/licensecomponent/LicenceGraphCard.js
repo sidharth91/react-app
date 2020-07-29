@@ -681,7 +681,7 @@ const LicenceGraphCard = (props) => {
   return (
     <div>
       <Card className={classes.root} elevation='5' style={{ height: "350px" }}>
-        <CardContent style={{ padding: 2, marginRight: 6,marginLeft:6, height: '85%' }}>
+        <CardContent style={{padding: 5, marginRight: 5, height: '85%' }}>
           {firctChart}
         </CardContent>
         { getchartDataResult1.length>0?
@@ -736,7 +736,7 @@ const LicenceGraphCard = (props) => {
             </Grid>
             {props.chartId=="SEC333"?
             <Grid item md={3} style={{margin:'auto',textAlign:'end',paddingLeft:'20px'}}>
-            <SwitchComponent onchange={changecostcount} color={props.colorState}/>
+            <SwitchComponent onchange={changecostcount} colors={colorState} checked={costOrCount==1?true:false}/>
             </Grid>
             :null}
             <Grid item md={props.chartId=="SEC333"?6:10} style={{margin:'auto'}}>
