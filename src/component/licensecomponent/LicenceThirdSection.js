@@ -58,7 +58,7 @@ class LicenceThirdSection extends Component {
                    {isDataReadtToShow? <LicenceGraphCard chart='03' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name="Top Users with Multiple Logon"  chartType={1}  dialogueOpen={this.props.dialogueOpen} chartHeader={this.props.result.header.data[4].ZDESC} chartId="SEC34"/> :null}
                 </Grid>
                 <Grid item md={6} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <LicenceGraphCard chart='04' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name="Top USMM Enginee Usage" chartType={1}  dialogueOpen={this.props.dialogueOpen} chartHeader={this.props.result.header.data[5].ZDESC} chartId="SEC34"/> :null}
+                   {isDataReadtToShow? <LicenceGraphCard chart='04' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name="Top USMM Enginee Usage" chartType={1}  dialogueOpen={this.props.dialogueOpen} chartHeader={this.props.result.header.data[5].ZDESC} chartId="SEC444"/> :null}
                 </Grid>  
               
             </Grid>

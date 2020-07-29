@@ -286,8 +286,8 @@ const GRCGraphCard = (props) => {
             activeIndex={activeIndex}
             activeShape={renderActiveShape}
             data={data}
-            innerRadius={65}
-            outerRadius={105}
+            innerRadius={45}
+            outerRadius={115}
             dataKey="ZCOUNT1"
             onMouseEnter={onPieEnter}
             onClick={(data) => getData(data)}

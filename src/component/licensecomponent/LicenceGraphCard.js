@@ -190,7 +190,7 @@ const LicenceGraphCard = (props) => {
     >
       <CartesianGrid  vertical={false} horizontal={true} /> 
       <XAxis axisLine={false} tickLine={false} dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis axisLine={false} tickLine={false} dataKey="ZCOUNT1" interval={0} stroke="#bdbdbd" width={50} tick={CustomizedYAxisTick} />
+      <YAxis axisLine={false} tickLine={false} dataKey="ZCOUNT1" interval={0} stroke="#bdbdbd" width={100} tick={CustomizedYAxisTick} />
       
       <Bar dataKey="ZCOUNT1" fill={'#00bcd4'} onClick={(data) => getData(data)} >
         {
@@ -216,7 +216,7 @@ const LicenceGraphCard = (props) => {
     >
       <CartesianGrid  vertical={false} horizontal={true} /> 
       <XAxis axisLine={false} tickLine={false} dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis axisLine={false} tickLine={false} dataKey="ZCOUNT1" interval={0} stroke="#bdbdbd" width={50} tick={CustomizedYAxisTick} />
+      <YAxis axisLine={false} tickLine={false} dataKey="ZCOUNT1" interval={0} stroke="#bdbdbd" width={100} tick={CustomizedYAxisTick} />
       
       <Bar dataKey="ZCOUNT1" fill={'#00bcd4'} >
         {
@@ -397,7 +397,7 @@ const LicenceGraphCard = (props) => {
       >
         <CartesianGrid  vertical={true} horizontal={false} /> 
         <XAxis axisLine={false} tickLine={false} dataKey="ZCOUNT1" type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
-        <YAxis  axisLine={false} tickLine={false} dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={60} interval={0} tick={CustomizedYAxisTick} />
+        <YAxis  axisLine={false} tickLine={false} dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={100} interval={0} tick={CustomizedYAxisTick} />
         <Bar dataKey="ZCOUNT1" fill={'#48C9B0'} onClick={(data) => getData(data)}>
           {data.map((entry, index) => <Cell key={`cell-${index}`} fill={colorState[index % colorState.length]} />)
           }
@@ -422,7 +422,7 @@ const LicenceGraphCard = (props) => {
       >
         <CartesianGrid  vertical={true} horizontal={false} /> 
         <XAxis axisLine={false} tickLine={false} dataKey="ZCOUNT1" type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
-        <YAxis  axisLine={false} tickLine={false} dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={60} interval={0} tick={CustomizedYAxisTick} />
+        <YAxis  axisLine={false} tickLine={false} dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={100} interval={0} tick={CustomizedYAxisTick} />
         <Bar dataKey="ZCOUNT1" fill={'#48C9B0'}>
           {data.map((entry, index) => <Cell key={`cell-${index}`} fill={colorState[index % colorState.length]} />)
           }

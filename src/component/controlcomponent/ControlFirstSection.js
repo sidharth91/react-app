@@ -58,7 +58,7 @@ class ControlFirstSection extends Component {
                    {isDataReadtToShow? <ControlGraphCard chart='01' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_01.data} name={this.props.result.E_REPORT.data[0].ZDESC}  chartType={1} dialogueOpen={this.props.dialogueOpen} chartHeader={this.props.result.header.data[0].ZDESC} chartId="SEC31" /> :null}
                 </Grid>
                 <Grid item md={6} style={{paddingTop:0}}>
-                   {isDataReadtToShow? <ControlGraphCard chart='02' stack={false} color={this.props.colors}  data={this.props.result.E_RESULT_01.data} name={this.props.result.E_REPORT.data[1].ZDESC} chartType={3} dialogueOpen={this.props.dialogueOpen} chartHeader={this.props.result.header.data[1].ZDESC} chartId="SEC32" /> :null}
+                   {isDataReadtToShow? <ControlGraphCard chart='02' stack={false} color={this.props.colors}  data={this.props.result.E_RESULT_01.data} name={this.props.result.E_REPORT.data[1].ZDESC} chartType={4} dialogueOpen={this.props.dialogueOpen} chartHeader={this.props.result.header.data[1].ZDESC} chartId="SEC32" /> :null}
                 </Grid>
         
               
