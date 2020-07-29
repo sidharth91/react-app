@@ -7,7 +7,7 @@ import axios from 'axios';
 export const initLicenseFilter = (token) => {
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: true })
-        axios.get('http://localhost:8080/api/licensefilter', { headers: { 'Authorisation': token } })
+        axios.get('/api/licensefilter', { headers: { 'Authorisation': token } })
             .then(response => {
                 dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: false })
                 dispatch(initiateLicenseFilter(response.data));
@@ -202,7 +202,7 @@ export const submitLicenceFilter = (token, sapSystem, client, level, userType, u
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: true })
-        axios.post('http://localhost:8080/api/JAVA_0005', {
+        axios.post('/api/JAVA_0005', {
             sapSystem: sapSystem,
             client: client,
             level: level,
@@ -237,7 +237,7 @@ export const licenceReport = (token, sapSystem, client, level, userType, userGro
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: true })
-        axios.post('http://localhost:8080/api/JAVA_0006', {
+        axios.post('/api/JAVA_0006', {
             sapSystem: sapSystem,
             client: client,
             level: level,
@@ -272,7 +272,7 @@ export const licenceTableReport = (token, sapSystem, client, level, userType, us
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: true })
-        axios.post('http://localhost:8080/api/JAVA_0006', {
+        axios.post('/api/JAVA_0006', {
             sapSystem: sapSystem,
             client: client,
             level: level,

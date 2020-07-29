@@ -8,7 +8,7 @@ import axios from 'axios';
 export const authorization = (token) => {
     return dispatch => {
         dispatch({ type: actionType.CHANGE_LICENCELOADER_STATUS, data: true })
-        axios.get('http://localhost:8080/token/authorization', { headers: { 'Authorisation': token } })
+        axios.get('/token/authorization', { headers: { 'Authorisation': token } })
             .then(response => {
                 dispatch({ type: actionType.AUTHORIZATION, value: response.data })
               
