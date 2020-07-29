@@ -94,7 +94,8 @@ const useStyles = makeStyles((theme) => ({
   listitmentext: {
     color: '#ffffff',
     fontSize: 12,
-    fontFamily: 'Helvetica'
+    fontFamily: 'Helvetica',
+    fontWeight:'bold'
   },
   listitmentextchild: {
     color: '#ffffff',
@@ -699,7 +700,7 @@ const ApplicationAppBar = (props) => {
                     <Link style={{ color: 'white',textDecoration: 'none' }} to={'/controlreport'} onClick={toggleDrawer(false)}>
                       <ListItem button className={pathname == '/controlreport' ? classes.selecteditme : classes.nested} style={{ paddingLeft: 74 }}>
                  
-                        <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Deatils Report</Typography>} />
+                        <ListItemText disableTypography primary={<Typography type="body2" className={classes.listitmentextchild}>Details Report</Typography>} />
                       </ListItem>
                     </Link>
                   </List>

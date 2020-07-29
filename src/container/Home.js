@@ -35,7 +35,7 @@ class Home extends Component {
        let routes=( 
             <Switch>
            <Route path='/grcdashbord' exact  component={GRCDashbord}/>
-           <Route path='/' exact component={LicenseDashbord}/>
+           <Route path='/' exact component={GRCDashbord}/>
            <Route path='/grcreport' exact  component={GRCReport}/>
            <Route path='/licensedashbord' exact  component={LicenseDashbord}/>
            <Route path='/controldashbord' exact  component={ControlDashbord}/>

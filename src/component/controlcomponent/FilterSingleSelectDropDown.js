@@ -14,6 +14,24 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: '100%',
+    borderColor:'red',
+    // '& label.Mui-focused': {
+    //   color: 'green',
+    // },
+    // '& .MuiInput-underline:after': {
+    //   borderBottomColor: 'green',
+    // },
+    // '& .MuiOutlinedInput-root': {
+    //   '& fieldset': {
+    //     borderColor: '#009ED7',
+    //   },
+    //   '&:hover fieldset': {
+    //     borderColor: 'yellow',
+    //   },
+    //   '&.Mui-focused fieldset': {
+    //     borderColor: 'green',
+    //   },
+    // }
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -39,7 +57,11 @@ dropdownchanges:{
 },
 horizontalscrol:{
   overflowX:'hidden'
-}
+},
+brcolor:{
+borderColor:'red',
+color:'red'
+},
 }));
 
 const ITEM_HEIGHT = 12;
@@ -72,7 +94,7 @@ const MenuProps = {
  }
    )
 
-      return        <FormControl variant="outlined" className={classes.formControl} size="small" fullWidth='true'>
+      return        <FormControl variant="outlined" className={classes.formControl}  size="small" fullWidth='true'>
       <InputLabel id="demo-simple-select-outlined-label"  inputProps={{ style: { fontFamily: 'Helvetica', color: 'white'}}} style={{fontSize:12,fontFamily:'Helvetica',color:'#000000'}}>{props.label}</InputLabel>
       <Select
         labelId="demo-simple-select-outlined-label"
@@ -83,6 +105,7 @@ const MenuProps = {
         inputProps={{
           classes: {
               icon: classes.icon,
+              notchedOutline:classes.brcolor
           },
       }}
       classes={{
@@ -90,6 +113,7 @@ const MenuProps = {
        root:classes.horizontalscrol,
        select:classes.horizontalscrol,
        paper: classes.horizontalscrol,
+       field:classes.brcolor
       }}
         label={props.label}
         MenuProps={MenuProps}
