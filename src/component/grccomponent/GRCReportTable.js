@@ -228,7 +228,7 @@ function createColumn(header, keys) {
 function createRows(header, data) {
 
   if(header.length==5){
-    return data.map(p=>createDatawithfivecolumn(p.COLUMN1,p.COLUMN2,p.COUNT1,p.COUNT2,p.COUNT2))
+    return data.map(p=>createDatawithfivecolumn(p.COLUMN1,p.COLUMN2,p.COUNT1,p.COUNT2,p.COUNT3))
   }
 
 

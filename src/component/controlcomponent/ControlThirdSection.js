@@ -52,7 +52,7 @@ class ControlThirdSection extends Component {
         let isDataReadtToShow=this.checkForDataToShow(this.props.result)
 
         return (
-            <Grid container style={{marginTop:15}} spacing={1}>
+            <Grid container style={{marginTop:10}} spacing={1}>
            
                 <Grid item  md={6} style={{paddingTop:0}}>
                    {isDataReadtToShow? <ControlGraphCard chart='05' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_01.data} name={this.props.result.E_REPORT.data[4].ZDESC}  chartType={1} dialogueOpen={this.props.dialogueOpen} chartHeader={this.props.result.header.data[4].ZDESC} chartId="SEC31" /> :null}

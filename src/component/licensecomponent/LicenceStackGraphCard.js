@@ -567,7 +567,7 @@ const LicenceStackGraphCard = (props) => {
 
   return (
     <div>
-      <Card className={classes.root} elevation='5' style={{ height: props.height }}>
+      <Card className={classes.root} elevation='5' style={{ height: "39vh" }}>
         <CardContent style={{ padding: 5, marginRight: 5, height: '85%' }}>
           {firctChart}
         </CardContent>

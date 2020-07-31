@@ -174,7 +174,7 @@ const GRCGraphCard = (props) => {
         {
           data.map((entry, index) => <Cell key={`cell-${index}`} fill={colorState[index % colorState.length]} />)
         }
-         <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white' }} />
+         <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white',fontWeight:'bold' }} />
       </Bar>
     </BarChart></ResponsiveContainer>)
   }
@@ -257,8 +257,8 @@ const GRCGraphCard = (props) => {
             activeIndex={activeIndex}
             activeShape={renderActiveShape}
             data={data}
-            innerRadius={65}
-            outerRadius={105}
+            innerRadius='50%'
+            outerRadius='85%'
             dataKey="ZCOUNT1"
             onMouseEnter={onPieEnter}
             onClick={(data) => getData(data)}
@@ -634,8 +634,8 @@ const GRCGraphCard = (props) => {
 
   return (
     <div>
-      <Card className={classes.root} elevation='5' style={{ height: "350px" }}>
-        <CardContent style={{ padding: 2,marginTop: 6, marginRight: 6,marginLeft:6, height: '85%' }}>
+      <Card className={classes.root} elevation='5' style={{ height: "39vh" }}>
+        <CardContent style={{ padding: 5, marginRight: 5, height: '85%'  }}>
           {firctChart}
         </CardContent>
 

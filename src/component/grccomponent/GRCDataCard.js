@@ -113,12 +113,12 @@ const GRCDataCard = (props) => {
 
     return (
 
-        <Grid container style={{ marginTop:5 }} spacing={0}>
+        <Grid container style={{ marginTop:0 }} spacing={0}>
             <Grid item md={12} >
             {isDataReadtToShow ?
                 <Card elevation='5'>
                    
-                        <CardContent style={{ padding: 2, height:"50px",margin:'auto' }}>
+                        <CardContent style={{ padding: 2, height:"8vh",margin:'auto' }}>
                             <Grid container spacing={1} style={{ height:"inherit",width: '100%', margin: 0 }}>
 
 

@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     },
     Labeltext:{
         fontFamily:'Helvetica',
-        fontSize:12
+        fontSize:11
     },
     roundedSecond: {
         color: '#FFFFFF',
@@ -117,12 +117,12 @@ const ControlDataCard = (props) => {
             {isDataReadtToShow ?
                 <Card elevation='5'>
                    
-                        <CardContent style={{ padding: 2, height:"50px",margin:'auto' }}>
+                        <CardContent style={{ padding: 2, height:"7vh",margin:'auto' }}>
                             <Grid container spacing={1} style={{ height:"inherit",width: '100%', margin: 0 }}>
 
 
-                                <Grid container spacing={0} style={{padding:5}}>
-                                 <Grid item sm={3} >
+                                <Grid container spacing={0} style={{margin:'auto'}}>
+                                 <Grid item sm={2} >
                                  <Avatar variant="rounded" className={props.index>8?classes.roundedFourth
                                     :props.index>4?classes.roundedThird:props.index>2?classes.roundedSecond:
                                     classes.rounded}>

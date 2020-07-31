@@ -21,6 +21,7 @@ import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 
 import Loader from '../component/Loader'
 import ControlsDraggableDialog from './ControlDragableDialogue'
+import FilterFloatAction from '../component/FilterFloatAction'
 
 
 
@@ -29,7 +30,8 @@ class LicenseDashbord extends Component {
     state={
         dialogue:false,
         groupby:'',
-        chart:''
+        chart:'',
+        isScrolling: false
     }
 
     componentDidMount() {
@@ -46,7 +48,9 @@ class LicenseDashbord extends Component {
        this.props.clearControlTableReport()
        this.setState({dialogue:false,groupby:'',chart:''})
   }
-
+  filterHide = () => {
+    this.setState({ isScrolling: !this.state.isScrolling });
+  };
 
 
     render() {
@@ -55,10 +59,17 @@ class LicenseDashbord extends Component {
         return (
             <Grid container style={{ marginTop: 10, marginRight: 10, marginLeft: 10 }} spacing={0}>
                 <Grid item md={12}>
-                {this.props.sapSystem.value.length>0?<ControlFilter type='Dashbord' />:null}
+                {this.props.sapSystem.value.length>0?
+                <div>
+                     {!this.state.isScrolling?
+                 <ControlFilter type='Dashbord' />
+                  :null}
+                  <FilterFloatAction onclick={this.filterHide} state={this.state.isScrolling}/>
+                  </div>
+                :null}
                 <ControlFirstSection dialogueOpen={this.openDialogue}/>
                 {this.props.result? 
-                    <Grid container style={{marginTop:5}} spacing={2}>
+                    <Grid container style={{marginTop:1}} spacing={2}>
                         <Grid item md={3}> <ControlDataCard result={this.props.result.E_RESULT_02.data[0]} index={0}/></Grid>
                         <Grid  item md={3}> <ControlDataCard result={this.props.result.E_RESULT_02.data[1]} index={1}/></Grid>
                         <Grid  item md={3}> <ControlDataCard result={this.props.result.E_RESULT_02.data[2]} index={2}/></Grid>
@@ -71,7 +82,7 @@ class LicenseDashbord extends Component {
                 {/* <ControlSecondSecData result={this.props.controlresult}/> */}
 
                 {this.props.result? 
-                    <Grid container style={{marginTop:5}} spacing={2}>
+                    <Grid container style={{marginTop:1}} spacing={2}>
                         <Grid item md={2}> <ControlDataCard result={this.props.result.E_RESULT_02.data[0]} index={4}/></Grid>
                         <Grid  item md={3}> <ControlDataCard result={this.props.result.E_RESULT_02.data[1]} index={5}/></Grid>
                         <Grid  item md={2}> <ControlDataCard result={this.props.result.E_RESULT_02.data[2]} index={6}/></Grid>
@@ -84,7 +95,7 @@ class LicenseDashbord extends Component {
                 <ControlThirdSection dialogueOpen={this.openDialogue}/>
 
                 {this.props.result? 
-                    <Grid container style={{marginTop:5}} spacing={2}>
+                    <Grid container style={{marginTop:1}} spacing={2}>
                          <Grid  item md={3}> <ControlDataCard result={this.props.result.E_RESULT_02.data[3]} index={9}/></Grid>
                         <Grid item md={3}> <ControlDataCard result={this.props.result.E_RESULT_02.data[0]} index={10}/></Grid>
                         <Grid  item md={3}> <ControlDataCard result={this.props.result.E_RESULT_02.data[1]} index={11}/></Grid>

@@ -87,9 +87,9 @@ const SwitchComponent=(props)=> {
     <FormGroup>
       <Typography component="div">
         <Grid component="label" container alignItems="center" spacing={1}>
-          <Grid item>Count</Grid>
-          <Grid item>
-            <Switch checked={state.checkedC} onChange={handleChange} name="checkedC"  
+          <Grid item style={{padding:0,fontSize:'12px'}}>Count</Grid>
+          <Grid item style={{padding:0}}>
+            <Switch size ='small' checked={state.checkedC} onChange={handleChange} name="checkedC"  
             classes={
               {
                 colorSecondary:classes.colorSecondary,
@@ -99,7 +99,7 @@ const SwitchComponent=(props)=> {
               }
             }/>
           </Grid>
-          <Grid item>Cost</Grid>
+          <Grid item style={{padding:0,fontSize:'12px'}}>Cost</Grid>
         </Grid>
       </Typography>
     </FormGroup>

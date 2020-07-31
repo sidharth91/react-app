@@ -303,8 +303,8 @@ const LicenceGraphCard = (props) => {
             activeIndex={activeIndex}
             activeShape={renderActiveShape}
             data={data}
-            innerRadius={65}
-            outerRadius={105}
+            innerRadius='50%'
+            outerRadius='85%'
             dataKey="ZCOUNT1"
             onMouseEnter={onPieEnter}
             onClick={(data) => getData(data)}
@@ -325,8 +325,8 @@ const LicenceGraphCard = (props) => {
             activeIndex={activeIndex}
             activeShape={renderActiveShape}
             data={data}
-            innerRadius={65}
-            outerRadius={105}
+            innerRadius='50%'
+            outerRadius='85%'
             dataKey="ZCOUNT1"
             onMouseEnter={onPieEnter}
           >
@@ -763,13 +763,13 @@ const LicenceGraphCard = (props) => {
 
   return (
     <div>
-      <Card className={classes.root} elevation='5' style={{ height: "350px" }}>
+      <Card className={classes.root} elevation='5' style={{ height: "39vh"}}>
         <CardContent style={{padding: 5, marginRight: 5, height: '85%' }}>
           {firctChart}
         </CardContent>
         { getchartDataResult1.length>0?
         <CardActions style={{ margin: 'auto', padding: 2, height:'15%' }}>
-          <Grid container spacing={0} style={{ height:'100%' }}>
+          <Grid container spacing={1} style={{ height:'100%' }}>
             <Grid item md={1} style={{margin:'auto'}}>
               <FormControl variant="outlined" className={classes.formControl} size="small">
                 <InputLabel id="demo-simple-select-outlined-label">{props.label}</InputLabel>
@@ -818,7 +818,7 @@ const LicenceGraphCard = (props) => {
               </FormControl>
             </Grid>
             {props.chartId=="SEC333"?
-            <Grid item md={3} style={{margin:'auto',textAlign:'end',paddingLeft:'20px'}}>
+            <Grid item md={3} style={{margin:'auto',textAlign:'end',paddingLeft:'2px'}}>
             <SwitchComponent onchange={changecostcount} colors={colorState} checked={costOrCount==1?true:false}/>
             </Grid>
             :null}
