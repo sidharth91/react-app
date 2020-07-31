@@ -45,7 +45,7 @@ class GRCThirdSecData extends Component {
 
                 <Grid item md={6} style={{ paddingTop: 0 }}>
                     {isDataReadtToShow ? <GRCStackGraphCard chart='01' stack='3' color={this.props.colors} height={"36vh"} data={this.props.result.E_RESULT_03.data} 
-                    name={this.props.result.E_REPORT.data[0].ZDESC} chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="36vh" header={this.props.result.header.data[0].ZDESC}/> : null}
+                    name={this.props.result.E_REPORT.data[0].ZDESC} chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="36vh" header={this.props.result.header.data[0].ZDESC} chartId="SEC1"/> : null}
                 </Grid>
 
                 <Grid item md={6} style={{ paddingTop: 0 }}>

@@ -257,10 +257,21 @@ const GRCStackGraphCard = (props) => {
       }}
     >
       <CartesianGrid  vertical={false} horizontal={true}  height={10}/> 
-      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} cursor={{fill: 'transparent'}} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
+      <Tooltip formatter={(value, name, props) => {
+          if(chartId=='SEC1'){
+            tooltipTextForChartOne(value, name);
+          }
+          return tooltipText(value, name)
+        }} cursor={{fill: 'transparent'}} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
       <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='30px' wrapperStyle={{
           fontFamily: colorState[16], fontSize: '12px'
-        }} formatter={(value, entry, index) => legendText(value)} />
+        }} formatter={(value, entry, index) => {
+          if(chartId=='SEC1'){
+            return legendTextForChartOne(value)
+          }
+          return legendText(value)
+        }
+          } />
       <XAxis axisLine={false} tickLine={false} dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
       <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={70} tick={CustomizedYAxisTick} />
       <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
@@ -305,10 +316,22 @@ const GRCStackGraphCard = (props) => {
       }}
     >
      <CartesianGrid  vertical={false} horizontal={true}  height={10}/> 
-      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} cursor={{fill: 'transparent'}} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
+      <Tooltip formatter={(value, name, props) => 
+        {
+          if(chartId=='SEC1'){
+            tooltipTextForChartOne(value, name);
+          }
+          return tooltipText(value, name)
+        }
+        } cursor={{fill: 'transparent'}} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
       <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='30px' wrapperStyle={{
           fontFamily: 'Helvetica', fontSize: '12px'
-        }} formatter={(value, entry, index) => legendText(value)} />
+        }} formatter={(value, entry, index) => {
+          if(chartId=='SEC1'){
+            return legendTextForChartOne(value)
+          }
+          return legendText(value)
+        }} />
       <XAxis axisLine={false} tickLine={false} dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
       <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={70} tick={CustomizedYAxisTick} />
       <Bar dataKey="ZCOUNT1" fill={colorState[0]} onClick={(data) => getData(data)}  >
@@ -364,10 +387,21 @@ const GRCStackGraphCard = (props) => {
         }}
       >
          <CartesianGrid  vertical={true} horizontal={false} /> 
-        <Tooltip formatter={(value, name, props) => tooltipText(value, name)} cursor={{fill: 'transparent'}} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
+        <Tooltip formatter={(value, name, props) => {
+          if(chartId=='SEC1'){
+            tooltipTextForChartOne(value, name);
+          }
+          return tooltipText(value, name)
+        }
+          } cursor={{fill: 'transparent'}} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
         <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='30px' wrapperStyle={{
           fontFamily: 'Helvetica', fontSize: '12px'
-        }} formatter={(value, entry, index) => legendText(value)} />
+        }} formatter={(value, entry, index) => {
+          if(chartId=='SEC1'){
+            return legendTextForChartOne(value)
+          }
+          return legendText(value)
+        }} />
 
         <XAxis axisLine={false} tickLine={false} type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
         <YAxis axisLine={false} tickLine={false} dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={100} interval={0} tick={CustomizedYAxisTick} />
@@ -446,6 +480,31 @@ const GRCStackGraphCard = (props) => {
     }
     if (value == 'ZCOUNT3') {
       return "Never Executed Risks"
+    }
+  }
+  const legendTextForChartOne=(value) => {
+    if (value == 'ZCOUNT1') {
+      return "Enabled Risk"
+    }
+    if (value == 'ZCOUNT2') {
+      return "Risk Found"
+    }
+    if (value == 'ZCOUNT3') {
+      return "Risk Not Found"
+    }
+  }
+
+
+  
+  const tooltipTextForChartOne = (value, name) => {
+    if (name == 'ZCOUNT1') {
+      return [value, "Enabled Risk",]
+    }
+    if (name == 'ZCOUNT2') {
+      return [value, "Risk Found"]
+    }
+    if (name == 'ZCOUNT3') {
+      return [value, "Risk Not Found"]
     }
   }
 
@@ -529,7 +588,8 @@ const GRCStackGraphCard = (props) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [open, setOpen] = React.useState(false);
   const [colorState, setColorState] = useState([...COLORS]);
-
+  const [chartId, setChartId] = useState(props.chartId);
+  
   let getchartDataResult1 = proesResultData(props.data, props.chart);
   let tableData = getTableHeader(props.data, props.chart,props.header)
   let firctChart =getchartDataResult1.length>0?getChart(getchartDataResult1, chartState, '#00bcd4', props.stack):<Typography  variant="subtitle2" color="inherit" style={{width:500}}>
@@ -538,6 +598,7 @@ const GRCStackGraphCard = (props) => {
   useEffect(() => {
     let arr = [...props.color, ...COLORS]
     setColorState(arr);
+    setChartId(props.chartId)
   }, []);
 
   return (
