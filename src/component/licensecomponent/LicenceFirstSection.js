@@ -32,10 +32,10 @@ class LicenceFirstSection extends Component {
         return (
             <Grid container style={{marginTop:10}} spacing={1}>
                 <Grid item md={6}  style={{paddingTop:0}}>
-                   {isDataReadtToShow? <LicenceStackGraphCard chart='01' stack='4' color={this.props.colors}  height={"35vh"} data={this.props.licenseresult.E_RESULT_01.data} name={this.props.licenseresult.E_REPORT.data[0].ZDESC} chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC11" chartdata={this.props.licenseresult.E_RESULT_00.data} chartHeader={this.props.licenseresult.header.data[0].ZDESC}/> :null}
+                   {isDataReadtToShow? <LicenceStackGraphCard chart='01' stack='3' color={this.props.colors}  height={"35vh"} data={this.props.licenseresult.E_RESULT_01.data} name={this.props.licenseresult.E_REPORT.data[0].ZDESC} chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC11" chartdata={this.props.licenseresult.E_RESULT_00.data} chartHeader={this.props.licenseresult.header.data[0].ZDESC}/> :null}
                 </Grid>
                 <Grid item md={6}  style={{paddingTop:0}}>
-                   {isDataReadtToShow? <LicenceStackGraphCard chart='02' stack='4' color={this.props.colors} height={"35vh"} data={this.props.licenseresult.E_RESULT_01.data} name={this.props.licenseresult.E_REPORT.data[1].ZDESC} chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC12" chartdata={this.props.licenseresult.E_RESULT_00.data} chartHeader={this.props.licenseresult.header.data[1].ZDESC}/> :null}
+                   {isDataReadtToShow? <LicenceStackGraphCard chart='02' stack='3' color={this.props.colors} height={"35vh"} data={this.props.licenseresult.E_RESULT_01.data} name={this.props.licenseresult.E_REPORT.data[1].ZDESC} chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC12" chartdata={this.props.licenseresult.E_RESULT_00.data} chartHeader={this.props.licenseresult.header.data[1].ZDESC}/> :null}
                 </Grid>
                 {/* <Grid item md={4}  style={{paddingTop:0}}>
                    {isDataReadtToShow? <LicenceStackGraphCard chart='03'  stack='3' color={this.props.colors} height={"33vh"} data={this.props.licenseresult.E_RESULT_01.data} name="License Savings" chartType={3}  dialogueOpen={this.props.dialogueOpen} chartId="SEC13" chartdata={this.props.licenseresult.E_RESULT_00.data} chartHeader={this.props.licenseresult.header.data}/> :null}

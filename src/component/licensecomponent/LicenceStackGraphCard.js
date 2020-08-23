@@ -121,14 +121,16 @@ const LicenceStackGraphCard = (props) => {
   const proesResultData = (data, key) => {
     if (data && data != null && data.length > 0) {
       let filtereddata = data.filter(p => p.ZTYPE === key)
-
+  
       let mappedData = [];
       filtereddata.map(v => {
         let temp = {};
         temp.name = v.UTYPLONGTEXT;
         temp.COUNT1 = v.COL1;
         temp.COUNT2 = v.COL2;
+        if(v.COL3!=0)
         temp.COUNT3 = v.COL3;
+        if(v.COL4!=0)
         temp.COUNT4 = v.COL4;
         temp.ZTYPE = v.ZTYPE;
         temp.REC = v.REC;
@@ -181,8 +183,7 @@ const LicenceStackGraphCard = (props) => {
     return (<ResponsiveContainer width='100%' height='100%'><BarChart
       layout={"horizontal"}
       data={data}
-      barCategoryGap="10%"
-      maxBarSize={55}
+      barCategoryGap="4%"
       margin={{
         top: 10, right: 0, left: 0, bottom: 5,
       }}
@@ -195,18 +196,18 @@ const LicenceStackGraphCard = (props) => {
         fontFamily: 'Helvetica', fontSize: '12px'
       }} formatter={(value, entry, index) => legendText(value)} />
       <XAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" interval={0} type="category" stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={100} tick={CustomizedYAxisTick} />
+      <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={80} tick={CustomizedYAxisTick} />
       <Bar dataKey="COL1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
-        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '90%', fill: 'white',fontFamily:'bold' }} />
       </Bar>
       <Bar dataKey="COL2" stackId="a" fill={colorState[1]} onClick={(data) => getData(data)}>
-        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '90%', fill: 'white' ,fontFamily:'bold'}} />
       </Bar>
       <Bar dataKey="COL3" stackId="a" fill={colorState[2]} onClick={(data) => getData(data)}>
-        <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '90%', fill: 'white',fontFamily:'bold' }} />
       </Bar>
       <Bar dataKey="COL4" stackId="a" fill={colorState[3]} onClick={(data) => getData(data)}>
-        <LabelList dataKey="COL4" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL4" position="center" style={{ textAnchor: 'middle', fontSize: '90%', fill: 'white',fontFamily:'bold' }} />
       </Bar>
 
       {/* <Bar dataKey="COL1" stackId="a" fill={'#00bcd4'} onClick={(data) => getData(data)} >
@@ -227,10 +228,8 @@ const LicenceStackGraphCard = (props) => {
     return (<ResponsiveContainer width='100%' height='100%'><BarChart
       layout={"horizontal"}
       data={data}
-      barCategoryGap="10%"
-      maxBarSize={55}
-      barGap={2}
-      barCategoryGap='5%'
+      barCategoryGap="4%"
+      barGap={1}
       margin={{
         top: 10, right: 0, left: 0, bottom: 5,
       }}
@@ -243,18 +242,18 @@ const LicenceStackGraphCard = (props) => {
         fontFamily: 'Helvetica', fontSize: '12px'
       }} formatter={(value, entry, index) => legendText(value)} />
       <XAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" interval={0} type="category" stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={100} tick={CustomizedYAxisTick} />
+      <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={80} tick={CustomizedYAxisTick} />
       <Bar dataKey="COL1" fill={colorState[0]} onClick={(data) => getData(data)} >
-        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL1" position="top"  style={{ textAnchor: 'middle', fontSize: '70%', fill: 'black' ,fontFamily:"bold"} }/>
       </Bar>
       <Bar dataKey="COL2" fill={colorState[1]} onClick={(data) => getData(data)}>
-        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL2" position="top"  style={{ textAnchor: 'middle', fontSize: '70%', fill: 'black' ,fontFamily:"bold"}} />
       </Bar>
       <Bar dataKey="COL3" fill={colorState[2]} onClick={(data) => getData(data)}>
-        <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL3" position="top"  style={{ textAnchor: 'middle', fontSize: '70%', fill: 'black',fontFamily:"bold" }} />
       </Bar>
       <Bar dataKey="COL4" fill={colorState[3]} onClick={(data) => getData(data)}>
-        <LabelList dataKey="COL4" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL4" position="top"  style={{ textAnchor: 'middle', fontSize: '70%', fill: 'black' ,fontFamily:"bold"}} />
       </Bar>
 
 
@@ -266,8 +265,7 @@ const LicenceStackGraphCard = (props) => {
     return (<ResponsiveContainer width='100%' height='100%'><BarChart
       layout={"horizontal"}
       data={data}
-      barCategoryGap="10%"
-      maxBarSize={55}
+      barCategoryGap="4%"
       barGap={2}
       margin={{
         top: 10, right: 0, left: 0, bottom: 5,
@@ -281,13 +279,13 @@ const LicenceStackGraphCard = (props) => {
       <XAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" interval={0} type="category" stroke="#bdbdbd" tick={CustomizedAxisTick} />
       <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={100} tick={CustomizedYAxisTick} />
       <Bar dataKey="COL1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
-        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white',fontFamily:'bold' }} />
       </Bar>
       <Bar dataKey="COL2" stackId="a" fill={colorState[1]} onClick={(data) => getData(data)} >
-        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white',fontFamily:'bold' }} />
       </Bar>
       <Bar dataKey="COL3" stackId="a" fill={colorState[2]} onClick={(data) => getData(data)} >
-        <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white' ,fontFamily:'bold'}} />
       </Bar>
       {/* <Bar dataKey="COL1" stackId="a" fill={'#00bcd4'} onClick={(data) => getData(data)} >
             {
@@ -312,8 +310,7 @@ const LicenceStackGraphCard = (props) => {
     return (<ResponsiveContainer width='100%' height='100%'><BarChart
       layout={"horizontal"}
       data={data}
-      barCategoryGap="10%"
-      maxBarSize={55}
+      barCategoryGap="5%"
       margin={{
         top: 10, right: 0, left: 0, bottom: 5,
       }}
@@ -324,18 +321,18 @@ const LicenceStackGraphCard = (props) => {
         fontFamily: 'Helvetica', fontSize: '12px'
       }} formatter={(value, entry, index) => legendText(value)} />
       <XAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" interval={0} type="category" stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={100} tick={CustomizedYAxisTick} />
+      <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={80} tick={CustomizedYAxisTick} />
       <Bar dataKey="COL1" fill={colorState[0]} onClick={(data) => getData(data)} >
 
-        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL1" position="top" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'black',fontFamily:'bold' }} />
       </Bar>
       <Bar dataKey="COL2" fill={colorState[1]} onClick={(data) => getData(data)} >
 
-        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL2" position="top" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'black',fontFamily:'bold' }} />
       </Bar>
       <Bar dataKey="COL3" fill={colorState[2]} onClick={(data) => getData(data)} >
 
-        <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL3" position="top" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'black',fontFamily:'bold' }} />
       </Bar>
     </BarChart></ResponsiveContainer>)
   }
@@ -371,8 +368,7 @@ const LicenceStackGraphCard = (props) => {
       <BarChart
         layout={"vertical"}
         data={data}
-        barCategoryGap="10%"
-        maxBarSize={55}
+        barCategoryGap="4%"
         margin={{
           top: 10, right: 0, left: 0, bottom: 5,
         }}
@@ -386,13 +382,13 @@ const LicenceStackGraphCard = (props) => {
         <XAxis type='number' axisLine={false} tickLine={false} stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
         <YAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" type="category" stroke="#bdbdbd" width={120} interval={0} tick={CustomizedYAxisTick} />
         <Bar dataKey="COL1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+          <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white' ,fontFamily:'bold'}} />
         </Bar>
         <Bar dataKey="COL2" stackId="a" fill={colorState[1]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+          <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white',fontFamily:'bold' }} />
         </Bar>
         <Bar dataKey="COL3" stackId="a" fill={colorState[2]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+          <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white',fontFamily:'bold' }} />
         </Bar>
       </BarChart></ResponsiveContainer>)
   }
@@ -404,8 +400,7 @@ const LicenceStackGraphCard = (props) => {
       <BarChart
         layout={"vertical"}
         data={data}
-        barCategoryGap="10%"
-        maxBarSize={55}
+        barCategoryGap="4%"
         margin={{
           top: 10, right: 0, left: 0, bottom: 5,
         }}
@@ -418,16 +413,16 @@ const LicenceStackGraphCard = (props) => {
         <XAxis type='number' axisLine={false} tickLine={false} stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
         <YAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" type="category" stroke="#bdbdbd" width={120} interval={0} tick={CustomizedYAxisTick} />
         <Bar dataKey="COL1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+          <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '90%', fill: 'white' }} />
         </Bar>
         <Bar dataKey="COL2" stackId="a" fill={colorState[1]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+          <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '90%', fill: 'white' }} />
         </Bar>
         <Bar dataKey="COL3" stackId="a" fill={colorState[2]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+          <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '90%', fill: 'white' }} />
         </Bar>
         <Bar dataKey="COL4" stackId="a" fill={colorState[3]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="COL4" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+          <LabelList dataKey="COL4" position="center" style={{ textAnchor: 'middle', fontSize: '90%', fill: 'white' }} />
         </Bar>
 
       </BarChart></ResponsiveContainer>)
@@ -443,7 +438,25 @@ const LicenceStackGraphCard = (props) => {
       return "Recommened"
     }
     if (value == 'COL3') {
-      return "Additional"
+      if(chartId=='SEC111')
+      return "Additional/Excess (Percentage)"
+      else
+      return "Additional/Excess"
+    }
+    if (value == 'COL4') {
+      return "Unused"
+    }
+  }
+
+  const legendTextPercentage = (value) => {
+    if (value == 'COL1') {
+      return "Purchased"
+    }
+    if (value == 'COL2') {
+      return "Recommened"
+    }
+    if (value == 'COL3') {
+      return "Additional/Excess (Percentage)"
     }
     if (value == 'COL4') {
       return "Unused"
@@ -551,6 +564,7 @@ const LicenceStackGraphCard = (props) => {
 
   const classes = useStyles();
   const [chartState, setChartState] = useState(props.chartType);
+  const [chartId,setChartId]=useState(props.chartId)
   const [activeIndex, setActiveIndex] = useState(0);
   const [open, setOpen] = React.useState(false);
   const [colorState, setColorState] = useState([...COLORS]);

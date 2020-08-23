@@ -170,7 +170,7 @@ const LicenceGraphCard = (props) => {
         return getRCHBarChartTwoStack(data, color);
       case 7:
         if(props.chartId=='SEC333'){
-          return getCostCountRCVBarChart(data, color);
+          return getCostCountRCHBarChart(data, color);
         }
         return getRCVBarChartThree(data, color);
       default:
@@ -182,8 +182,7 @@ const LicenceGraphCard = (props) => {
     return (<ResponsiveContainer width='100%' height='100%'><BarChart
       layout={"horizontal"}
       data={data}
-      barCategoryGap="10%"
-      maxBarSize={40}
+      barCategoryGap="5%"
       margin={{
         top: 10, right: 0, left: 0, bottom: 17,
       }}
@@ -196,7 +195,7 @@ const LicenceGraphCard = (props) => {
         {
           data.map((entry, index) => <Cell key={`cell-${index}`} fill={colorState[index % colorState.length]} />)
         }
-          <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white' }} />
+          <LabelList dataKey="ZCOUNT1" position="top" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'black',fontFamily:'bold' }} />
       </Bar>
     </BarChart></ResponsiveContainer>)
   }
@@ -208,8 +207,7 @@ const LicenceGraphCard = (props) => {
     return (<ResponsiveContainer width='100%' height='100%'><BarChart
       layout={"horizontal"}
       data={data}
-      barCategoryGap="10%"
-      maxBarSize={40}
+      barCategoryGap="5%"
       margin={{
         top: 10, right: 0, left: 0, bottom: 17,
       }}
@@ -222,7 +220,7 @@ const LicenceGraphCard = (props) => {
         {
           data.map((entry, index) => <Cell key={`cell-${index}`} fill={colorState[index % colorState.length]} />)
         }
-          <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white' }} />
+          <LabelList dataKey="ZCOUNT1" position="top" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'black',fontFamily:'bold' }} />
       </Bar>
     </BarChart></ResponsiveContainer>)
   }
@@ -389,10 +387,9 @@ const LicenceGraphCard = (props) => {
       <BarChart
         layout={"vertical"}
         data={data}
-        barCategoryGap="10%"
-        maxBarSize={35}
+        barCategoryGap="5%"
         margin={{
-          top: 10, right: 0, left: 0, bottom: 17,
+          top: 10, right:30, left: 0, bottom: 17,
         }}
       >
         <CartesianGrid  vertical={true} horizontal={false} /> 
@@ -401,7 +398,7 @@ const LicenceGraphCard = (props) => {
         <Bar dataKey="ZCOUNT1" fill={'#48C9B0'} onClick={(data) => getData(data)}>
           {data.map((entry, index) => <Cell key={`cell-${index}`} fill={colorState[index % colorState.length]} />)
           }
-            <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white' }} />
+            <LabelList dataKey="ZCOUNT1" position="right" style={{  fontSize: '80%', fill: 'black' ,fontFamily:'bold'}} />
         </Bar>
       </BarChart></ResponsiveContainer>)
   }
@@ -414,8 +411,7 @@ const LicenceGraphCard = (props) => {
       <BarChart
         layout={"vertical"}
         data={data}
-        barCategoryGap="10%"
-        maxBarSize={35}
+        barCategoryGap="5%"
         margin={{
           top: 10, right: 0, left: 0, bottom: 17,
         }}
@@ -426,7 +422,7 @@ const LicenceGraphCard = (props) => {
         <Bar dataKey="ZCOUNT1" fill={'#48C9B0'}>
           {data.map((entry, index) => <Cell key={`cell-${index}`} fill={colorState[index % colorState.length]} />)
           }
-            <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white' }} />
+            <LabelList dataKey="ZCOUNT1" position="right" style={{  fontSize: '80%', fill: 'black',fontFamily:'bold' }} />
         </Bar>
       </BarChart></ResponsiveContainer>)
   }
@@ -434,12 +430,11 @@ const LicenceGraphCard = (props) => {
  
 
 
-  const getRCVBarChartTwoStack = (data, color) => {
+  const getRCVBarChartTwoStack =  (data, color) => {
     return (<ResponsiveContainer width='100%' height='100%'><BarChart
       layout={"horizontal"}
       data={data}
-      barCategoryGap="10%"
-      maxBarSize={35}
+      barCategoryGap="5%"
       margin={{
         top: 5, right: 0, left: 0, bottom: 5,
       }}
@@ -452,21 +447,27 @@ const LicenceGraphCard = (props) => {
       <XAxis dataKey="UTYPLONGTEXT" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
       <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
       <Bar dataKey="COL1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
-        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white',fontFamily:'bold'}} />
       </Bar>
       <Bar dataKey="COL2" stackId="a" fill={colorState[1]} onClick={(data) => getData(data)} >
-        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white' ,fontFamily:'bold'}} />
       </Bar>
     </BarChart></ResponsiveContainer>)
   }
+
+
+
+
+
+
+
 
 
   const getCostCountRCVBarChart = (data, color) => {
     return (<ResponsiveContainer width='100%' height='100%'><BarChart
       layout={"horizontal"}
       data={data}
-      barCategoryGap="10%"
-      maxBarSize={35}
+      barCategoryGap="5%"
       margin={{
         top: 5, right: 0, left: 0, bottom: 5,
       }}
@@ -479,14 +480,29 @@ const LicenceGraphCard = (props) => {
       <XAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
       <YAxis  axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={100} tick={CustomizedYAxisTick} />
       {costOrCount==2?
-      <Bar dataKey="COL1" stackId="a" fill={colorState[0]} minPointSize={5} >
-        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
-      </Bar>:null
+       <Bar dataKey="COL3" fill={colorState[0]} >
+
+       <LabelList dataKey="COL3" position="top" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'black',fontFamily:'bold' }} />
+     </Bar>:null
+      }
+      
+       {costOrCount==2?
+      <Bar dataKey="COL4" fill={colorState[1]} >
+
+      <LabelList dataKey="COL4" position="top" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'black',fontFamily:'bold' }} />
+    </Bar>:null
+      }
+       {costOrCount==1?
+       <Bar dataKey="COL1" fill={colorState[0]} >
+
+       <LabelList dataKey="COL1" position="top" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'black',fontFamily:'bold' }} />
+     </Bar>:null
       }
      {costOrCount==1?
-      <Bar dataKey="COL2" stackId="a" fill={colorState[1]}  minPointSize={10}>
-        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
-      </Bar>:null}
+      <Bar dataKey="COL2" fill={colorState[1]}  >
+
+      <LabelList dataKey="COL2" position="top" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'black',fontFamily:'bold' }} />
+    </Bar>:null}
     </BarChart></ResponsiveContainer>)
   }
 
@@ -495,8 +511,7 @@ const LicenceGraphCard = (props) => {
     return (<ResponsiveContainer width='100%' height='100%'><BarChart
       layout={"horizontal"}
       data={data}
-      barCategoryGap="10%"
-      maxBarSize={35}
+      barCategoryGap="5%"
       margin={{
         top: 5, right: 0, left: 0, bottom: 5,
       }}
@@ -509,10 +524,10 @@ const LicenceGraphCard = (props) => {
       <XAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
       <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={100} tick={CustomizedYAxisTick} />
       <Bar dataKey="COL1"  fill={colorState[0]} onClick={(data) => getData(data)} >
-        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white' ,fontFamily:'bold'}} />
       </Bar>
       <Bar dataKey="COL2"  fill={colorState[1]} onClick={(data) => getData(data)} >
-        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white',fontFamily:'bold' }} />
       </Bar>
        {/*<Bar dataKey="ZCOUNT3"  fill={colorState[2]} onClick={(data) => getData(data)} >
         <LabelList dataKey="ZCOUNT3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
@@ -540,8 +555,7 @@ const LicenceGraphCard = (props) => {
       <BarChart
         layout={"vertical"}
         data={data}
-        barCategoryGap="10%"
-        maxBarSize={35}
+        barCategoryGap="5%"
         margin={{
           top: 5, right: 0, left: 0, bottom: 5,
         }}
@@ -554,10 +568,10 @@ const LicenceGraphCard = (props) => {
         <XAxis type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
         <YAxis dataKey="UTYPLONGTEXT" type="category" stroke="#bdbdbd" width={60} interval={0} tick={CustomizedYAxisTick} />
         <Bar dataKey="COL1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+          <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white',fontFamily:'bold' }} />
         </Bar>
         <Bar dataKey="COL2" stackId="a" fill={colorState[1]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+          <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white',fontFamily:'bold' }} />
         </Bar>
       </BarChart></ResponsiveContainer>)
   }
@@ -569,8 +583,7 @@ const LicenceGraphCard = (props) => {
       <BarChart
         layout={"vertical"}
         data={data}
-        barCategoryGap="10%"
-        maxBarSize={35}
+        barCategoryGap="5%"
         margin={{
           top: 5, right: 0, left: 0, bottom: 5,
         }}
@@ -583,17 +596,62 @@ const LicenceGraphCard = (props) => {
         <XAxis axisLine={false} tickLine={false} type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
         <YAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" type="category" stroke="#bdbdbd" width={100} interval={0} tick={CustomizedYAxisTick} />
         {costOrCount==2?
+        <Bar dataKey="COL3" stackId="a" fill={colorState[0]}  >
+          <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white',fontFamily:'bold' }} />
+        </Bar>:null}
+        {costOrCount==2?
+        <Bar dataKey="COL4" stackId="a" fill={colorState[1]}  >
+          <LabelList dataKey="COL4" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white',fontFamily:'bold' }} />
+        </Bar>:null}
+        {costOrCount==1?
         <Bar dataKey="COL1" stackId="a" fill={colorState[0]}  >
-          <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+          <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white',fontFamily:'bold' }} />
         </Bar>:null}
         {costOrCount==1?
         <Bar dataKey="COL2" stackId="a" fill={colorState[1]} >
-          <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
-        </Bar>:null}
+          <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white',fontFamily:'bold' }} />
+        </Bar>
+        :null}
       </BarChart></ResponsiveContainer>)
   }
 
+  const getCostCountRCHBarChart = (data, color) => {
 
+    return (<ResponsiveContainer width='100%' height='100%'>
+      <BarChart
+           layout={"horizontal"}
+           data={data}
+           barCategoryGap="5%"
+           margin={{
+             top: 10, right: 0, left: 0, bottom: 5,
+           }}
+      >
+       <CartesianGrid  vertical={false} horizontal={true} />
+        <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='30px' wrapperStyle={{
+        fontFamily: 'Helvetica', fontSize: '12px'
+      }} formatter={(value, entry, index) => legendTextForCostAndCount(value)} />
+         <Tooltip formatter={(value, name, props) => tooltipText(value, name)} cursor={{ fill: 'transparent' }} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
+         <XAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" interval={0} type="category" stroke="#bdbdbd" tick={CustomizedAxisTick} />
+      <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={80} tick={CustomizedYAxisTick} />
+        {costOrCount==2?
+        <Bar dataKey="COL3" stackId="a" fill={colorState[0]}  >
+          <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white',fontFamily:'bold' }} />
+        </Bar>:null}
+        {costOrCount==2?
+        <Bar dataKey="COL4" stackId="a" fill={colorState[1]}  >
+          <LabelList dataKey="COL4" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white',fontFamily:'bold' }} />
+        </Bar>:null}
+        {costOrCount==1?
+        <Bar dataKey="COL1" stackId="a" fill={colorState[0]}  >
+          <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white',fontFamily:'bold' }} />
+        </Bar>:null}
+        {costOrCount==1?
+        <Bar dataKey="COL2" stackId="a" fill={colorState[1]} >
+          <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white',fontFamily:'bold' }} />
+        </Bar>
+        :null}
+      </BarChart></ResponsiveContainer>)
+  }
   
 
 
@@ -612,9 +670,14 @@ const LicenceGraphCard = (props) => {
       return "Count"
     }
     if (value == 'COL2') {
+      return "Count (Percentage)"
+    }
+    if (value == 'COL3') {
       return "Cost"
     }
-    
+    if (value == 'COL4') {
+      return "Cost (Percentage)"
+    }
   }
 
 
@@ -810,8 +873,8 @@ const LicenceGraphCard = (props) => {
                     classes={{outlined:classes.rootSelect}}
                   >
                     <MenuItem value={6} key='horizontal' style={{ padding: 5 }}><AssessmentOutlinedIcon fontSize="small" style={{ transform: 'rotate(90deg)' }} /></MenuItem>
-                    <MenuItem value={5} key='vertical' style={{ padding: 5 }}><AssessmentOutlinedIcon fontSize="small" /></MenuItem>
-                    <MenuItem value={7} key='vertical' style={{ padding: 5 }}><BarChartIcon fontSize="small" /></MenuItem>
+                    <MenuItem value={7} key='vertical' style={{ padding: 5 }}><AssessmentOutlinedIcon fontSize="small" /></MenuItem>
+                    <MenuItem value={5} key='vertical' style={{ padding: 5 }}><BarChartIcon fontSize="small" /></MenuItem>
                   </Select>
                 }
 

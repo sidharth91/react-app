@@ -48,10 +48,10 @@ class LicenceFiveSection extends Component {
             <Grid container style={{ marginTop: 10 }} spacing={1}>
 
                 <Grid item md={6} style={{ paddingTop: 0 }}>
-                    {isDataReadtToShow ? <LicenceGraphCard chart='01' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name={this.props.result.E_REPORT.data[6].ZDESC} chartType={4} dialogueOpen={this.props.dialogueOpen} chartHeader={this.props.result.header.data[6].ZDESC} chartId="SEC32" /> : null}
+                    {isDataReadtToShow ? <LicenceGraphCard chart='01' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name={this.props.result.E_REPORT.data[4].ZDESC} chartType={4} dialogueOpen={this.props.dialogueOpen} chartHeader={this.props.result.header.data[4].ZDESC} chartId="SEC32" /> : null}
                 </Grid>
                 <Grid item md={6} style={{ paddingTop: 0 }}>
-                    {isDataReadtToShow ? <LicenceGraphCard chart='02' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name={this.props.result.E_REPORT.data[7].ZDESC} chartType={4} dialogueOpen={this.props.dialogueOpen} chartHeader={this.props.result.header.data[7].ZDESC} chartId="SEC424" /> : null}
+                    {isDataReadtToShow ? <LicenceGraphCard chart='02' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name={this.props.result.E_REPORT.data[5].ZDESC} chartType={4} dialogueOpen={this.props.dialogueOpen} chartHeader={this.props.result.header.data[5].ZDESC} chartId="SEC424" /> : null}
                 </Grid>
                 {/* <Grid item md={2} style={{paddingTop:0}}>
                    {isDataReadtToShow? <LicenceGraphCard chart='01' stack={false} color={this.props.colors}  data={this.props.result.E_RESULT_04.data} name="Top Prof user with doc" chartType={3} dialogueOpen={this.props.dialogueOpen} chartId="SEC32" /> :null}

@@ -7,9 +7,14 @@ import DateFnsUtils from '@date-io/date-fns';
 const theme = createMuiTheme({
   overrides: {
     // Style sheet name ⚛️
-    MuiOutlinedInput:{inputAdornedEnd:{
-      fontSize:12
-    }},
+    MuiOutlinedInput:{
+      inputAdornedEnd:{
+      fontSize:12,
+    },
+    adornedEnd:{
+     paddingRight:'2px !important'
+    }
+  },
     MuiIconButton:{root:{
       padding:0
     }},
@@ -18,7 +23,11 @@ const theme = createMuiTheme({
     }},
     MuiPickersDatePickerRoot:{toolbar:{
       maxHeight:'10px'
-    }}
+    }},
+    // MuiIconButton:{label:{
+    //   color:'#009ED7'
+    // }}
+
   },
 });
 
