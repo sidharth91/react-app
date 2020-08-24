@@ -114,7 +114,7 @@ const ControlDataCard = (props) => {
 
         <Grid container style={{ marginTop:5 }} spacing={0}>
             <Grid item md={12} >
-            {isDataReadtToShow ?
+        
                 <Card elevation='5'>
                    
                         <CardContent style={{ padding: 2, height:"7vh",margin:'auto' }}>
@@ -131,10 +131,10 @@ const ControlDataCard = (props) => {
                                      </Grid>
                                      <Grid item sm={9}> 
                                      <Typography variant="caption" display="block" className={classes.Labeltext}>
-                                            {props.result.COL1}
+                                            {props.result &&  props.result.COL1?props.result.COL1:"No Data Available"}
                                         </Typography>
                                         <Typography variant="caption" display="block" className={classes.Labeltext}>
-                                        {props.result.ZCOUNT}
+                                        {props.result  && props.result.ZCOUNT?props.result.ZCOUNT:""}
                                         </Typography>
                                      </Grid>   
                                      </Grid>
@@ -165,7 +165,7 @@ const ControlDataCard = (props) => {
                         </CardContent>
                        
                 </Card>
-                 : null}
+               
             </Grid>
 
         </Grid>

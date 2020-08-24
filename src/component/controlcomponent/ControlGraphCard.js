@@ -171,12 +171,12 @@ const GRCGraphCard = (props) => {
       barCategoryGap="10%"
       maxBarSize={40}
       margin={{
-        top: 10, right: 0, left: 0, bottom: 17,
+        top: 10, right: 20, left: 0, bottom: 17,
       }}
     >
         <CartesianGrid  vertical={false} horizontal={true} /> 
       <XAxis axisLine={false} tickLine={false} dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis axisLine={false} tickLine={false} dataKey="ZCOUNT1" interval={0} stroke="#bdbdbd" width={100} tick={CustomizedYAxisTick} />
+      <YAxis axisLine={false} tickLine={false} dataKey="ZCOUNT1" interval={0} stroke="#bdbdbd" width={65} tick={CustomizedYAxisTick} />
       <Bar dataKey="ZCOUNT1" fill={'#00bcd4'} onClick={(data) => getData(data)} >
         {
           data.map((entry, index) => <Cell key={`cell-${index}`} fill={colorState[index % colorState.length]} />)
@@ -195,12 +195,12 @@ const GRCGraphCard = (props) => {
       barCategoryGap="10%"
       maxBarSize={40}
       margin={{
-        top: 10, right: 0, left: 0, bottom: 17,
+        top: 10, right: 20, left: 0, bottom: 17,
       }}
     >
         <CartesianGrid  vertical={false} horizontal={true} /> 
       <XAxis axisLine={false} tickLine={false} dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis domain={['auto', 0]} axisLine={false} tickLine={false} dataKey="ZCOUNT1" interval={0} stroke="#bdbdbd" width={100} tick={CustomizedYAxisTick} />
+      <YAxis domain={['auto', 0]} axisLine={false} tickLine={false} dataKey="ZCOUNT1" interval={0} stroke="#bdbdbd" width={65} tick={CustomizedYAxisTick} />
       <Bar dataKey="ZCOUNT1" fill={'#00bcd4'} onClick={(data) => getData(data)} >
         {
           data.map((entry, index) => <Cell key={`cell-${index}`} fill={colorState[index % colorState.length]} />)
@@ -355,7 +355,7 @@ const GRCGraphCard = (props) => {
         barCategoryGap="10%"
         maxBarSize={35}
         margin={{
-          top: 10, right: 0, left: 0, bottom: 17,
+          top: 10, right: 25, left: 0, bottom: 17,
         }}
       >
           <CartesianGrid  vertical={true} horizontal={false} /> 
@@ -381,7 +381,7 @@ const GRCGraphCard = (props) => {
         barCategoryGap="10%"
         maxBarSize={35}
         margin={{
-          top: 10, right: 0, left: 0, bottom: 17,
+          top: 10, right: 25, left: 0, bottom: 17,
         }}
       >
           <CartesianGrid  vertical={true} horizontal={false} /> 
@@ -410,7 +410,7 @@ const GRCGraphCard = (props) => {
       {/* <CartesianGrid strokeDasharray="2 2" /> */}
 
       <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
+      <YAxis interval={0} stroke="#bdbdbd" width={65} tick={CustomizedYAxisTick} />
       <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
         <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white' }} />
       </Bar>
@@ -447,7 +447,7 @@ const GRCGraphCard = (props) => {
         fontFamily: 'Helvetica', fontSize: '10px'
       }} formatter={(value, entry, index) => legendText(value)} />
       <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
+      <YAxis interval={0} stroke="#bdbdbd" width={65} tick={CustomizedYAxisTick} />
       <Bar dataKey="ZCOUNT1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
         <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
@@ -490,7 +490,7 @@ const GRCGraphCard = (props) => {
         fontFamily: 'Helvetica', fontSize: '10px'
       }} formatter={(value, entry, index) => legendText(value)} />
       <XAxis dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
+      <YAxis interval={0} stroke="#bdbdbd" width={65} tick={CustomizedYAxisTick} />
       <Bar dataKey="ZCOUNT1"  fill={colorState[0]} onClick={(data) => getData(data)} >
         <LabelList dataKey="ZCOUNT1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
       </Bar>
