@@ -112,8 +112,7 @@ const LicenseDataCard = (props) => {
 
     return (
 
-        <Grid container style={{ marginTop:0 }} spacing={0}>
-            <Grid item md={12} >
+        <div>
             {isDataReadtToShow ?
                 <Card elevation='5'>
                    
@@ -166,9 +165,7 @@ const LicenseDataCard = (props) => {
                        
                 </Card>
                  : null}
-            </Grid>
-
-        </Grid>
+     </div>
 
 
 

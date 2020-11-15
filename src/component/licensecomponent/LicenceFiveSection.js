@@ -47,10 +47,10 @@ class LicenceFiveSection extends Component {
         return (
             <Grid container style={{ marginTop: 10 }} spacing={1}>
 
-                <Grid item md={6} style={{ paddingTop: 0 }}>
+                <Grid item md={6} sm={12}  style={{ paddingTop: 0 }}>
                     {isDataReadtToShow ? <LicenceGraphCard chart='01' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name={this.props.result.E_REPORT.data[4].ZDESC} chartType={4} dialogueOpen={this.props.dialogueOpen} chartHeader={this.props.result.header.data[4].ZDESC} chartId="SEC32" /> : null}
                 </Grid>
-                <Grid item md={6} style={{ paddingTop: 0 }}>
+                <Grid item md={6} sm={12}  style={{ paddingTop: 0 }}>
                     {isDataReadtToShow ? <LicenceGraphCard chart='02' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name={this.props.result.E_REPORT.data[5].ZDESC} chartType={4} dialogueOpen={this.props.dialogueOpen} chartHeader={this.props.result.header.data[5].ZDESC} chartId="SEC424" /> : null}
                 </Grid>
                 {/* <Grid item md={2} style={{paddingTop:0}}>

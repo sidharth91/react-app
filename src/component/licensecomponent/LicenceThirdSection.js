@@ -51,61 +51,20 @@ class LicenceThirdSection extends Component {
     render() {
 
         let isDataReadtToShow=this.checkForDataToShow(this.props.result)
-        // let data=[
-        //     {
-        //         ZTYPE: '03',
-        //         SAPSYSID: 'CP1',
-        //         MANDT: '500',
-        //         GROUPBY1: '1300',
-        //         GROUP_DESC1: 'Warehouse Management',
-        //         ZCOUNT1: 1161992,
-        //         ZCOUNT2: 223456,
-        //         ZCOUNT3: 0
-        //       },
-        //       {
-        //         ZTYPE: '03',
-        //         SAPSYSID: 'CP1',
-        //         MANDT: '500',
-        //         GROUPBY1: '5200',
-        //         GROUP_DESC1: 'Service Orders',
-        //         ZCOUNT1: 213204,
-        //         ZCOUNT2: 23456,
-        //         ZCOUNT3: 0
-        //       },
-        //       {
-        //         ZTYPE: '03',
-        //         SAPSYSID: 'CP1',
-        //         MANDT: '500',
-        //         GROUPBY1: '5000',
-        //         GROUP_DESC1: 'Procurement Orders',
-        //         ZCOUNT1: 143366,
-        //         ZCOUNT2: 123456,
-        //         ZCOUNT3: 0
-        //       },
-        //       {
-        //         ZTYPE: '03',
-        //         SAPSYSID: 'CP1',
-        //         MANDT: '500',
-        //         GROUPBY1: '2405',
-        //         GROUP_DESC1: '2405',
-        //         ZCOUNT1: 2523,
-        //         ZCOUNT2: 0,
-        //         ZCOUNT3: 0
-        //       }
-        //   ]
+      
 
         return (
             <Grid container style={{marginTop:10}} spacing={1}>
            
-                <Grid item md={6} style={{paddingTop:0}}>
+                <Grid item md={6} sm={12}  style={{paddingTop:0}}>
                    {isDataReadtToShow? <LicenceGraphCard chart='03' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name={this.props.result.E_REPORT.data[6].ZDESC}  chartType={1}  dialogueOpen={this.props.dialogueOpen} chartHeader={this.props.result.header.data[6].ZDESC} chartId="SEC34"/> :null}
                 </Grid>
-                <Grid item md={6} style={{paddingTop:0}}>
+                <Grid item md={6}  sm={12}  style={{paddingTop:0}}>
                    {isDataReadtToShow? <LicenceGraphCard chart='04' stack={false} color={this.props.colors} data={this.props.result.E_RESULT_04.data} name={this.props.result.E_REPORT.data[7].ZDESC} chartType={1}  dialogueOpen={this.props.dialogueOpen} chartHeader={this.props.result.header.data[7].ZDESC} chartId="SEC444"/> :null}
                    {/* {isDataReadtToShow?  <NivoBarChart 
-                   data={data} colors={this.props.colors} 
-                   keys={['ZCOUNT1']} indexBy="GROUP_DESC1" 
-                   layout="horizontal"  groupMode="stacked"
+                   data={this.props.result.E_RESULT_01.data.filter(p=>p.ZTYPE=='01')} colors={this.props.colors} 
+                   keys={['COL1','COL2','COL3']} indexBy="UTYPLONGTEXT" 
+                   layout="vertical"  groupMode="grouped"
                    colorBy="id"/>:null} */}
                 </Grid>  
               

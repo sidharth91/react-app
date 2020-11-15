@@ -184,12 +184,12 @@ const LicenceGraphCard = (props) => {
       data={data}
       barCategoryGap="5%"
       margin={{
-        top: 10, right: 0, left: 0, bottom: 17,
+        top: 20, right: 30, left: 0, bottom: 17,
       }}
     >
       <CartesianGrid  vertical={false} horizontal={true} /> 
       <XAxis axisLine={false} tickLine={false} dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis axisLine={false} tickLine={false} dataKey="ZCOUNT1" interval={0} stroke="#bdbdbd" width={100} tick={CustomizedYAxisTick} />
+      <YAxis axisLine={false} tickLine={false} dataKey="ZCOUNT1" interval={0} stroke="#bdbdbd" width={80} tick={CustomizedYAxisTick} />
       
       <Bar dataKey="ZCOUNT1" fill={'#00bcd4'} onClick={(data) => getData(data)} >
         {
@@ -209,12 +209,12 @@ const LicenceGraphCard = (props) => {
       data={data}
       barCategoryGap="5%"
       margin={{
-        top: 10, right: 0, left: 0, bottom: 17,
+        top: 20, right: 30, left: 0, bottom: 17,
       }}
     >
       <CartesianGrid  vertical={false} horizontal={true} /> 
       <XAxis axisLine={false} tickLine={false} dataKey="GROUP_DESC1" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis axisLine={false} tickLine={false} dataKey="ZCOUNT1" interval={0} stroke="#bdbdbd" width={100} tick={CustomizedYAxisTick} />
+      <YAxis axisLine={false} tickLine={false} dataKey="ZCOUNT1" interval={0} stroke="#bdbdbd" width={80} tick={CustomizedYAxisTick} />
       
       <Bar dataKey="ZCOUNT1" fill={'#00bcd4'} >
         {
@@ -394,7 +394,7 @@ const LicenceGraphCard = (props) => {
       >
         <CartesianGrid  vertical={true} horizontal={false} /> 
         <XAxis axisLine={false} tickLine={false} dataKey="ZCOUNT1" type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
-        <YAxis  axisLine={false} tickLine={false} dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={100} interval={0} tick={CustomizedYAxisTick} />
+        <YAxis  axisLine={false} tickLine={false} dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={80} interval={0} tick={CustomizedYAxisTick} />
         <Bar dataKey="ZCOUNT1" fill={'#48C9B0'} onClick={(data) => getData(data)}>
           {data.map((entry, index) => <Cell key={`cell-${index}`} fill={colorState[index % colorState.length]} />)
           }
@@ -413,12 +413,12 @@ const LicenceGraphCard = (props) => {
         data={data}
         barCategoryGap="5%"
         margin={{
-          top: 10, right: 0, left: 0, bottom: 17,
+          top: 20, right: 30, left: 0, bottom: 17,
         }}
       >
         <CartesianGrid  vertical={true} horizontal={false} /> 
         <XAxis axisLine={false} tickLine={false} dataKey="ZCOUNT1" type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
-        <YAxis  axisLine={false} tickLine={false} dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={100} interval={0} tick={CustomizedYAxisTick} />
+        <YAxis  axisLine={false} tickLine={false} dataKey="GROUP_DESC1" type="category" stroke="#bdbdbd" width={80} interval={0} tick={CustomizedYAxisTick} />
         <Bar dataKey="ZCOUNT1" fill={'#48C9B0'}>
           {data.map((entry, index) => <Cell key={`cell-${index}`} fill={colorState[index % colorState.length]} />)
           }
@@ -478,7 +478,7 @@ const LicenceGraphCard = (props) => {
         fontFamily: 'Helvetica', fontSize: '12px'
       }} formatter={(value, entry, index) => legendTextForCostAndCount(value)} />
       <XAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis  axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={100} tick={CustomizedYAxisTick} />
+      <YAxis  axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={80} tick={CustomizedYAxisTick} />
       {costOrCount==2?
        <Bar dataKey="COL3" fill={colorState[0]} >
 
@@ -522,7 +522,7 @@ const LicenceGraphCard = (props) => {
       }} formatter={(value, entry, index) => legendText(value)} />
        <Tooltip formatter={(value, name, props) => tooltipText(value, name)} cursor={{ fill: 'transparent' }} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
       <XAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={100} tick={CustomizedYAxisTick} />
+      <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={80} tick={CustomizedYAxisTick} />
       <Bar dataKey="COL1"  fill={colorState[0]} onClick={(data) => getData(data)} >
         <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white' ,fontFamily:'bold'}} />
       </Bar>
@@ -594,7 +594,7 @@ const LicenceGraphCard = (props) => {
       }} formatter={(value, entry, index) => legendTextForCostAndCount(value)} />
          <Tooltip formatter={(value, name, props) => tooltipText(value, name)} cursor={{ fill: 'transparent' }} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
         <XAxis axisLine={false} tickLine={false} type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
-        <YAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" type="category" stroke="#bdbdbd" width={100} interval={0} tick={CustomizedYAxisTick} />
+        <YAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" type="category" stroke="#bdbdbd" width={80} interval={0} tick={CustomizedYAxisTick} />
         {costOrCount==2?
         <Bar dataKey="COL3" stackId="a" fill={colorState[0]}  >
           <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '80%', fill: 'white',fontFamily:'bold' }} />

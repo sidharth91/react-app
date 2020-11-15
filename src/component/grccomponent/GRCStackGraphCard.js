@@ -259,7 +259,7 @@ const GRCStackGraphCard = (props) => {
       <CartesianGrid  vertical={false} horizontal={true}  height={10}/> 
       <Tooltip formatter={(value, name, props) => {
           if(chartId=='SEC1'){
-            tooltipTextForChartOne(value, name);
+             return tooltipTextForChartOne(value, name);
           }
           return tooltipText(value, name)
         }} cursor={{fill: 'transparent'}} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
@@ -319,7 +319,7 @@ const GRCStackGraphCard = (props) => {
       <Tooltip formatter={(value, name, props) => 
         {
           if(chartId=='SEC1'){
-            tooltipTextForChartOne(value, name);
+           return  tooltipTextForChartOne(value, name);
           }
           return tooltipText(value, name)
         }
@@ -389,7 +389,7 @@ const GRCStackGraphCard = (props) => {
          <CartesianGrid  vertical={true} horizontal={false} /> 
         <Tooltip formatter={(value, name, props) => {
           if(chartId=='SEC1'){
-            tooltipTextForChartOne(value, name);
+            return tooltipTextForChartOne(value, name);
           }
           return tooltipText(value, name)
         }

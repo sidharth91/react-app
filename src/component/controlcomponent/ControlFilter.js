@@ -100,30 +100,32 @@ class ControlFilter extends Component {
                 <CardContent id="idFilterCard" style={{ minHeight: '7vh', padding: 0, marginTop: 'auto', marginBottom: 'auto' }}>
                     <Grid container spacing={2} style={{ height: 'inherit', minHeight: 'inherit', paddingRight: '8px' }} >
 
-                        <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+                        <Grid item md={3} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
                             <FilterSingleSelectDropDown values={sapSystem} preSelected={this.props.sapSystem.selectedValue} changeEventCallBack={this.changeSystem} label="System" width='100' />
                         </Grid>
-                        <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+                        <Grid item md={3} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
                             <FilterSingleSelectDropDown values={sapClient} preSelected={this.props.client.selectedValue} changeEventCallBack={this.changeClient} label="Client" width='100' />
                         </Grid>
                         {this.props.type == 'Report' ?
-                            <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+                            <Grid item md={3} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
                                 <FilterSingleSelectDropDown values={control} preSelected={this.props.control.selectedValue} changeEventCallBack={this.changeControl} label="Controls" width='100' />
                             </Grid>
                             :
-                            <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+                            <Grid item md={3} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
                                 <FilterMultiSelectDropDown values={controls} preSelected={this.props.controls.selectedValue} changeEventCallBack={this.changeControls} label="Controls" width='100' />
                             </Grid>}
-                        <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
-                            {/* <FilterSingleSelectDropDown values={mitigation} preSelected={this.props.mitigation.selectedValue} changeEventCallBack={this.changeMitigation} label="Mitigation" width='100' /> */}
+                        {/*  <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+                           <FilterSingleSelectDropDown values={mitigation} preSelected={this.props.mitigation.selectedValue} changeEventCallBack={this.changeMitigation} label="Mitigation" width='100' /> 
                         </Grid>
                         <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
-                            {/*  <FilterSingleSelectDropDown values={drillDown} preSelected={this.props.drillDown.selectedValue} changeEventCallBack={this.changeDrillDown} label="Drill Down" width='100' /> */}
-                        </Grid>
-
-
+                            {/*  <FilterSingleSelectDropDown values={drillDown} preSelected={this.props.drillDown.selectedValue} changeEventCallBack={this.changeDrillDown} label="Drill Down" width='100' /> 
+                        </Grid>*/}
 
                         <Grid item md={2} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+                           
+                        </Grid>
+
+                        <Grid item md={1} style={{ marginTop: 'auto', marginBottom: 'auto' }}>
                             <Button variant="contained" size="small" color="primary" style={{ fontFamily: 'Helvetica', padding: 4, backgroundColor: '#009ED7', textTransform: 'none', minWidth: '80px' }} onClick={() => this.onfilterSumbit()}>
                                 Execute
                             </Button>

@@ -185,14 +185,14 @@ const LicenceStackGraphCard = (props) => {
       data={data}
       barCategoryGap="4%"
       margin={{
-        top: 10, right: 0, left: 0, bottom: 5,
+        top: 5, right: 30, left: 0, bottom: 5,
       }}
     >
       {/* <CartesianGrid strokeDasharray="2 2" /> */}
       <LabelList dataKey="name" position="top" />
       <CartesianGrid vertical={false} horizontal={true} />
       <Tooltip formatter={(value, name, props) => tooltipText(value, name)} cursor={{ fill: 'transparent' }} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-      <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='30px' wrapperStyle={{
+      <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='35px' wrapperStyle={{
         fontFamily: 'Helvetica', fontSize: '12px'
       }} formatter={(value, entry, index) => legendText(value)} />
       <XAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" interval={0} type="category" stroke="#bdbdbd" tick={CustomizedAxisTick} />
@@ -231,14 +231,14 @@ const LicenceStackGraphCard = (props) => {
       barCategoryGap="4%"
       barGap={1}
       margin={{
-        top: 10, right: 0, left: 0, bottom: 5,
+        top: 5, right: 30, left: 0, bottom: 5,
       }}
     >
       {/* <CartesianGrid strokeDasharray="2 2" /> */}
       <LabelList dataKey="name" position="top" />
       <CartesianGrid vertical={false} horizontal={true} />
       <Tooltip formatter={(value, name, props) => tooltipText(value, name)} cursor={{ fill: 'transparent' }} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-      <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='30px' wrapperStyle={{
+      <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='35px' wrapperStyle={{
         fontFamily: 'Helvetica', fontSize: '12px'
       }} formatter={(value, entry, index) => legendText(value)} />
       <XAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" interval={0} type="category" stroke="#bdbdbd" tick={CustomizedAxisTick} />
@@ -266,18 +266,19 @@ const LicenceStackGraphCard = (props) => {
       layout={"horizontal"}
       data={data}
       barCategoryGap="4%"
+      stackOffset="sign"
       barGap={2}
       margin={{
-        top: 10, right: 0, left: 0, bottom: 5,
+        top: 5, right: 30, left: 0, bottom: 5,
       }}
     >
       <CartesianGrid vertical={false} horizontal={true} />
       <Tooltip formatter={(value, name, props) => tooltipText(value, name)} cursor={{ fill: 'transparent' }} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-      <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='30px' wrapperStyle={{
+      <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='35px' wrapperStyle={{
         fontFamily: 'Helvetica', fontSize: '12px'
       }} formatter={(value, entry, index) => legendText(value)} />
       <XAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" interval={0} type="category" stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={100} tick={CustomizedYAxisTick} />
+      <YAxis  domain={['dataMin', 'dataMax']} axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={80} tick={CustomizedYAxisTick} />
       <Bar dataKey="COL1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
         <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white',fontFamily:'bold' }} />
       </Bar>
@@ -312,16 +313,16 @@ const LicenceStackGraphCard = (props) => {
       data={data}
       barCategoryGap="5%"
       margin={{
-        top: 10, right: 0, left: 0, bottom: 5,
+        top: 5, right: 30, left: 0, bottom: 5,
       }}
     >
       <CartesianGrid vertical={false} horizontal={true} />
       <Tooltip formatter={(value, name, props) => tooltipText(value, name)} cursor={{ fill: 'transparent' }} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-      <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='30px' wrapperStyle={{
+      <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='35px' wrapperStyle={{
         fontFamily: 'Helvetica', fontSize: '12px'
-      }} formatter={(value, entry, index) => legendText(value)} />
+      }} margin={{ top: 0, left: 0, right: 0, bottom: 20 }} formatter={(value, entry, index) => legendText(value)} />
       <XAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" interval={0} type="category" stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={80} tick={CustomizedYAxisTick} />
+      <YAxis  axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={80} tick={CustomizedYAxisTick} />
       <Bar dataKey="COL1" fill={colorState[0]} onClick={(data) => getData(data)} >
 
         <LabelList dataKey="COL1" position="top" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'black',fontFamily:'bold' }} />
@@ -343,7 +344,7 @@ const LicenceStackGraphCard = (props) => {
   }) => {
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={10}  textAnchor="middle" fontSize={12} fill="black" fontFamily={colorState[16]} transform="rotate(0)">{payload.value}</text>
+        <text x={0} y={0} dy={15}  textAnchor="middle" fontSize={12} fill="black" fontFamily={colorState[16]} transform="rotate(0)">{payload.value}</text>
       </g>
     );
   }
@@ -369,18 +370,19 @@ const LicenceStackGraphCard = (props) => {
         layout={"vertical"}
         data={data}
         barCategoryGap="4%"
+        stackOffset="sign"
         margin={{
-          top: 10, right: 0, left: 0, bottom: 5,
+          top: 5, right: 30, left: 0, bottom: 5,
         }}
       >
           <CartesianGrid vertical={true} horizontal={false} />
       <Tooltip formatter={(value, name, props) => tooltipText(value, name)} cursor={{ fill: 'transparent' }} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-      <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='30px' wrapperStyle={{
+      <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='35px' wrapperStyle={{
         fontFamily: 'Helvetica', fontSize: '12px'
       }} formatter={(value, entry, index) => legendText(value)} />
 
-        <XAxis type='number' axisLine={false} tickLine={false} stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
-        <YAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" type="category" stroke="#bdbdbd" width={120} interval={0} tick={CustomizedYAxisTick} />
+        <XAxis domain={['dataMin', 'dataMax']} type='number' axisLine={false} tickLine={false} stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
+        <YAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" type="category" stroke="#bdbdbd" width={80} interval={0} tick={CustomizedYAxisTick} />
         <Bar dataKey="COL1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
           <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white' ,fontFamily:'bold'}} />
         </Bar>
@@ -402,12 +404,12 @@ const LicenceStackGraphCard = (props) => {
         data={data}
         barCategoryGap="4%"
         margin={{
-          top: 10, right: 0, left: 0, bottom: 5,
+          top: 5, right: 30, left: 0, bottom: 5,
         }}
       >
         <CartesianGrid vertical={true} horizontal={false} />
       <Tooltip formatter={(value, name, props) => tooltipText(value, name)} cursor={{ fill: 'transparent' }} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-      <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='30px' wrapperStyle={{
+      <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='35px' wrapperStyle={{
         fontFamily: 'Helvetica', fontSize: '12px'
       }} formatter={(value, entry, index) => legendText(value)} />
         <XAxis type='number' axisLine={false} tickLine={false} stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />

@@ -69,10 +69,10 @@ class LicenseDashbord extends Component {
                     <LicenceFirstSection dialogueOpen={this.openDialogue}/>
                     {this.props.result? 
                     <Grid container style={{marginTop:1}} spacing={2}>
-                        <Grid item md={3}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[0]} index={0}/></Grid>
-                        <Grid  item md={3}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[1]} index={1}/></Grid>
-                        <Grid  item md={3}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[2]} index={2}/></Grid>
-                        <Grid  item md={3}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[3]} index={3}/></Grid>
+                        <Grid item md={3} sm={6} > <LicenseDataCard result={this.props.result.E_RESULT_02.data[0]} index={0}/></Grid>
+                        <Grid  item md={3} sm={6}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[1]} index={1}/></Grid>
+                        <Grid  item md={3} sm={6}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[2]} index={2}/></Grid>
+                        <Grid  item md={3} sm={6}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[3]} index={3}/></Grid>
                     </Grid >:null
                     } 
 
@@ -80,10 +80,10 @@ class LicenseDashbord extends Component {
 
                     {this.props.result? 
                     <Grid container style={{marginTop:1}} spacing={2}>
-                        <Grid item md={3}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[4]} index={0}/></Grid>
-                        <Grid  item md={3}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[5]} index={1}/></Grid>
-                        <Grid  item md={3}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[6]} index={2}/></Grid>
-                        <Grid  item md={3}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[7]} index={3}/></Grid>
+                        <Grid item md={3} sm={6}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[4]} index={0}/></Grid>
+                        <Grid  item md={3} sm={6}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[5]} index={1}/></Grid>
+                        <Grid  item md={3} sm={6}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[6]} index={2}/></Grid>
+                        <Grid  item md={3} sm={6}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[7]} index={3}/></Grid>
                     </Grid >:null
                     } 
                     {/* <LicenseSecondSecData result={this.props.licenseresult}/> */}
