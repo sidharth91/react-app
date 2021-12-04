@@ -17,7 +17,7 @@ import ControlFilter from '../component/controlcomponent/ControlFilter'
 
 
 
-class GRCReport extends Component {
+class ControlReport extends Component {
     
 
 
@@ -35,7 +35,7 @@ class GRCReport extends Component {
         return (
             <Grid container style={{ marginTop:5,paddingRight:10,paddingLeft:10 }} spacing={0}>
                  <Grid item md={12} style={{margin:5}}>
-                 {this.props.sapSystem.value.length>0?<ControlFilter type='Report' />:null}
+                 {this.props.sapSystem.value.length>0?<ControlFilter type='Report'/>:null}
                     {/* {Object.keys(this.props.grcreport).length>0?<GRCReportTable colors={this.props.colors} header={this.props.grcreport.header} data={this.props.grcreport.data}/>:null} */}
                       {Object.keys(this.props.controlreport).length>0 && this.props.controlreport.data.length>0?<MUControlReportTable colors={this.props.colors} header={this.props.controlreport.header} data={this.props.controlreport.data} name={this.props.controlreport.reportName[0]} />:null}
                       {Object.keys(this.props.controlreport).length>0 && this.props.controlreport.data.length<1?
@@ -74,4 +74,4 @@ const mapDispatchToProps = dispatch => { // this methos used for dispatch action
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GRCReport);//connect which return a HOC taking two parameters which help connect to redux store and component
+export default connect(mapStateToProps, mapDispatchToProps)(ControlReport);//connect which return a HOC taking two parameters which help connect to redux store and component

@@ -45,7 +45,7 @@ class ControlSummaryReport extends Component {
                  <Grid item md={12} style={{margin:5}}>
                  {this.props.sapSystem.value.length>0?<ControlFilter type='Summary' />:null}
                     {/* {Object.keys(this.props.grcreport).length>0?<GRCReportTable colors={this.props.colors} header={this.props.grcreport.header} data={this.props.grcreport.data}/>:null} */}
-                      {Object.keys(this.props.controlsummaryreport).length>0 && this.props.controlsummaryreport.data.length>0?<MUSummaryControlReportTable colors={this.props.colors} header={this.props.controlsummaryreport.header} data={this.props.controlsummaryreport.data} openDialogue={this.openDialogue}/>:null}
+                      {Object.keys(this.props.controlsummaryreport).length>0 && this.props.controlsummaryreport.data.length>0?<MUSummaryControlReportTable colors={this.props.colors} header={this.props.controlsummaryreport.header} data={this.props.controlsummaryreport.data} name={this.props.controlsummaryreport.reportName[0]} openDialogue={this.openDialogue}/>:null}
                       {Object.keys(this.props.controlsummaryreport).length>0 && this.props.controlsummaryreport.data.length<1?
                        <Grid container style={{ marginTop:5,paddingRight:10,paddingLeft:10}} spacing={0}>
                            <Grid item md={12} style={{margin:5,alignItems:'center'}}>

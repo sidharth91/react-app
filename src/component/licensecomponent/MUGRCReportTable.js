@@ -35,7 +35,7 @@ const options = {
     print:false,
     sortFilterList:false,
     rowsPerPage:100,
-    rowsPerPageOptions:[100,250,500]
+    rowsPerPageOptions:[100,250,500,1000,2000,5000,10000]
 };
 
 
@@ -46,7 +46,7 @@ const MUGRCReportTable = (props) => {
         overrides: {
             MUIDataTableBodyCell: {
                 root: {
-                    fontFamily: 'Helvetica',
+                    fontFamily: font,
                     fontSize: 13,
                     wordWrap: "normal",
                     overflow: "hidden",
@@ -62,7 +62,7 @@ const MUGRCReportTable = (props) => {
             },
             MUIDataTableHeadCell: {
                 root: {
-                    fontFamily: 'Helvetica',
+                    fontFamily: font,
                     fontSize: 14,
                     fontWeight: "bold",
                     wordWrap: "normal",
@@ -94,6 +94,9 @@ const MUGRCReportTable = (props) => {
                 filterPaper: {
                     maxWidth: '20%',
                     maxHeight: '70%'
+                },
+                actions:{
+                    flex: '0 0 auto'
                 }
     
             },
@@ -101,7 +104,7 @@ const MUGRCReportTable = (props) => {
             {
                 formControl:{
                 fontSize:12,
-                fontFamily:'Helvetica'
+                fontFamily:font
             }},
             MuiGridList:{
                 root:{
@@ -149,11 +152,13 @@ const MUGRCReportTable = (props) => {
 
     const [data, setData] = React.useState(props.data)
     const [header, setHeader] = React.useState(props.header)
-    const [color,setColor]=React.useState(props.colors[16])
+    const [color,setColor]=React.useState(props.colors[15])
+    const [font,setFont]=React.useState(props.colors[16])
     React.useEffect(() => {
         setData(props.data);
         setHeader(props.header)
         setColor(props.colors[15])
+        setFont(props.colors[16])
     }, [props])
 
     const rows = data.map(p => createData(p.LAW_LIC_TYPE, p.LAW_DESC, p.BNAME, p.USER_COUNT, p.SAPSYSID, p.MANDT, p.RANK, p.LIC_TYPE, p.RECOM_DESC, p.CURR_LIC_TYPE, p.CURR_DESC, p.USER_STATUS, p.LOGON_STATUS, p.EFLAG, p.PERNR, p.NAME_FIRST, p.NAME_LAST, p.ZPROFCOUNT, p.ZROLECOUNT, p.ZTOTCNT, p.ZMATCOUNT, p.ZPERCENT, p.TABNAME, p.ZCOUNT, p.ZTYPE, p.USTYP, p.CLASS, p.ACCNT, p.GLTGV, p.GLTGB, p.UFLAG, p.ERDAT, p.TRDAT, p.ACTIVE, p.LOCK, p.EXPIRED, p.REMOTE, p.REFUSER));
@@ -164,6 +169,7 @@ const MUGRCReportTable = (props) => {
     return (
         <MuiThemeProvider theme={getMuiTheme()}>
             <MUIDataTable
+                title={props.name}
                 data={rows}
                 columns={columns}
                 options={options}

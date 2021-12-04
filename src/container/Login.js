@@ -17,9 +17,13 @@ class Login extends Component{
         passwordFocus:false,
         isReady:false
     }
+    constructor(props) {
+        super(props);
+
+      }
 
     componentDidMount(){
-     this.props.onStart()
+        this.props.onStart()
     }
 
    changeInSystem=(value)=>{
@@ -88,7 +92,8 @@ const mapDispatchToProps=dispatch=>{ // this methos used for dispatch action to 
      onchangeClient:(client,ip,instanse)=>dispatch(action.onchangeClient(client,ip,instanse)),
      onchangeUsername:(value)=>dispatch(action.onchangeUserName(value)),
      onchangePassword:(value)=>dispatch(action.onchangePassword(value)),
-     onStart:()=>dispatch(action.fetchDefaultData())
+     onStart:()=>dispatch(action.fetchDefaultData()),
+     onLogout: () => dispatch(action.onLogout())
     };
 }
 

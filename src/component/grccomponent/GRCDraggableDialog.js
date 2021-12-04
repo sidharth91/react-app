@@ -68,7 +68,7 @@ const classes = useStyles(props);
           <Grid container spacing={1} style={{width:'100%',paddingBottom:10}}>
           <Grid item md={11} >
             <DialogTitle style={{ cursor: 'move', maxHeight: 10, fontFamily: 'Helvetica', fontSize: 12, textAlign:'center' }} id="draggable-dialog-title">
-             AuditBOT Risk Details
+            {props.name}
             </DialogTitle>
           </Grid>
           <Grid item md={1} style={{ textAlign:'right'}}>

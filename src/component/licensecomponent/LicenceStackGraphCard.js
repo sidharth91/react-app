@@ -64,8 +64,8 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(2),
     }
   },
-  dialoguewidth:{
-    maxWidth:'inherit'
+  dialoguewidth: {
+    maxWidth: 'inherit'
   },
   media: {
     width: 300,
@@ -91,11 +91,14 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     right: 0,
-    height:20
+    height: 20
   },
-  rootSelect:{
+  rootSelect: {
     paddingLeft: '3px',
     paddingRight: '18px !important'
+  },
+  title:{
+    fontSize:'1.0rem !important'
   }
 }));
 
@@ -118,17 +121,19 @@ const LicenceStackGraphCard = (props) => {
   const proesResultData = (data, key) => {
     if (data && data != null && data.length > 0) {
       let filtereddata = data.filter(p => p.ZTYPE === key)
-
+  
       let mappedData = [];
       filtereddata.map(v => {
         let temp = {};
         temp.name = v.UTYPLONGTEXT;
         temp.COUNT1 = v.COL1;
         temp.COUNT2 = v.COL2;
+        if(v.COL3!=0)
         temp.COUNT3 = v.COL3;
+        if(v.COL4!=0)
         temp.COUNT4 = v.COL4;
         temp.ZTYPE = v.ZTYPE;
-        temp.REC=v.REC;
+        temp.REC = v.REC;
         temp.LIC_TYPE = v.LIC_TYPE;
         mappedData.push(temp);
       })
@@ -178,31 +183,31 @@ const LicenceStackGraphCard = (props) => {
     return (<ResponsiveContainer width='100%' height='100%'><BarChart
       layout={"horizontal"}
       data={data}
-      barCategoryGap="10%"
-      maxBarSize={35}
+      barCategoryGap="4%"
       margin={{
-        top: 5, right: 0, left: 0, bottom: 5,
+        top: 5, right: 30, left: 0, bottom: 5,
       }}
     >
       {/* <CartesianGrid strokeDasharray="2 2" /> */}
       <LabelList dataKey="name" position="top" />
-      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-      <Legend iconSize={10} verticalAlign='top' wrapperStyle={{
-        fontFamily: 'Helvetica', fontSize: '10px'
+      <CartesianGrid vertical={false} horizontal={true} />
+      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} cursor={{ fill: 'transparent' }} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
+      <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='35px' wrapperStyle={{
+        fontFamily: 'Helvetica', fontSize: '12px'
       }} formatter={(value, entry, index) => legendText(value)} />
-      <XAxis dataKey="UTYPLONGTEXT" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
+      <XAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" interval={0} type="category" stroke="#bdbdbd" tick={CustomizedAxisTick} />
+      <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={80} tick={CustomizedYAxisTick} />
       <Bar dataKey="COL1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
-        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '90%', fill: 'white',fontFamily:'bold' }} />
       </Bar>
       <Bar dataKey="COL2" stackId="a" fill={colorState[1]} onClick={(data) => getData(data)}>
-        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '90%', fill: 'white' ,fontFamily:'bold'}} />
       </Bar>
       <Bar dataKey="COL3" stackId="a" fill={colorState[2]} onClick={(data) => getData(data)}>
-        <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '90%', fill: 'white',fontFamily:'bold' }} />
       </Bar>
       <Bar dataKey="COL4" stackId="a" fill={colorState[3]} onClick={(data) => getData(data)}>
-        <LabelList dataKey="COL4" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL4" position="center" style={{ textAnchor: 'middle', fontSize: '90%', fill: 'white',fontFamily:'bold' }} />
       </Bar>
 
       {/* <Bar dataKey="COL1" stackId="a" fill={'#00bcd4'} onClick={(data) => getData(data)} >
@@ -223,33 +228,32 @@ const LicenceStackGraphCard = (props) => {
     return (<ResponsiveContainer width='100%' height='100%'><BarChart
       layout={"horizontal"}
       data={data}
-      barCategoryGap="10%"
-      maxBarSize={35}
-      barGap={2}
-      barCategoryGap='5%'
+      barCategoryGap="4%"
+      barGap={1}
       margin={{
-        top: 5, right: 0, left: 0, bottom: 5,
+        top: 5, right: 30, left: 0, bottom: 5,
       }}
     >
       {/* <CartesianGrid strokeDasharray="2 2" /> */}
       <LabelList dataKey="name" position="top" />
-      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-      <Legend iconSize={10} verticalAlign='top' wrapperStyle={{
-        fontFamily: 'Helvetica', fontSize: '10px'
+      <CartesianGrid vertical={false} horizontal={true} />
+      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} cursor={{ fill: 'transparent' }} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
+      <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='35px' wrapperStyle={{
+        fontFamily: 'Helvetica', fontSize: '12px'
       }} formatter={(value, entry, index) => legendText(value)} />
-      <XAxis dataKey="UTYPLONGTEXT" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
+      <XAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" interval={0} type="category" stroke="#bdbdbd" tick={CustomizedAxisTick} />
+      <YAxis axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={80} tick={CustomizedYAxisTick} />
       <Bar dataKey="COL1" fill={colorState[0]} onClick={(data) => getData(data)} >
-        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL1" position="top"  style={{ textAnchor: 'middle', fontSize: '70%', fill: 'black' ,fontFamily:"bold"} }/>
       </Bar>
       <Bar dataKey="COL2" fill={colorState[1]} onClick={(data) => getData(data)}>
-        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL2" position="top"  style={{ textAnchor: 'middle', fontSize: '70%', fill: 'black' ,fontFamily:"bold"}} />
       </Bar>
       <Bar dataKey="COL3" fill={colorState[2]} onClick={(data) => getData(data)}>
-        <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL3" position="top"  style={{ textAnchor: 'middle', fontSize: '70%', fill: 'black',fontFamily:"bold" }} />
       </Bar>
       <Bar dataKey="COL4" fill={colorState[3]} onClick={(data) => getData(data)}>
-        <LabelList dataKey="COL4" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL4" position="top"  style={{ textAnchor: 'middle', fontSize: '70%', fill: 'black' ,fontFamily:"bold"}} />
       </Bar>
 
 
@@ -261,28 +265,28 @@ const LicenceStackGraphCard = (props) => {
     return (<ResponsiveContainer width='100%' height='100%'><BarChart
       layout={"horizontal"}
       data={data}
-      barCategoryGap="10%"
-      maxBarSize={35}
+      barCategoryGap="4%"
+      stackOffset="sign"
       barGap={2}
       margin={{
-        top: 5, right: 0, left: 0, bottom: 5,
+        top: 5, right: 30, left: 0, bottom: 5,
       }}
     >
-      {/* <CartesianGrid strokeDasharray="2 2" /> */}
-      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-      <Legend iconSize={10}  verticalAlign='top' wrapperStyle={{
-        fontFamily: 'Helvetica', fontSize: '10px'
+      <CartesianGrid vertical={false} horizontal={true} />
+      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} cursor={{ fill: 'transparent' }} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
+      <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='35px' wrapperStyle={{
+        fontFamily: 'Helvetica', fontSize: '12px'
       }} formatter={(value, entry, index) => legendText(value)} />
-      <XAxis dataKey="UTYPLONGTEXT" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
+      <XAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" interval={0} type="category" stroke="#bdbdbd" tick={CustomizedAxisTick} />
+      <YAxis  domain={['dataMin', 'dataMax']} axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={80} tick={CustomizedYAxisTick} />
       <Bar dataKey="COL1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
-        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white',fontFamily:'bold' }} />
       </Bar>
       <Bar dataKey="COL2" stackId="a" fill={colorState[1]} onClick={(data) => getData(data)} >
-        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white',fontFamily:'bold' }} />
       </Bar>
       <Bar dataKey="COL3" stackId="a" fill={colorState[2]} onClick={(data) => getData(data)} >
-        <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white' ,fontFamily:'bold'}} />
       </Bar>
       {/* <Bar dataKey="COL1" stackId="a" fill={'#00bcd4'} onClick={(data) => getData(data)} >
             {
@@ -307,30 +311,29 @@ const LicenceStackGraphCard = (props) => {
     return (<ResponsiveContainer width='100%' height='100%'><BarChart
       layout={"horizontal"}
       data={data}
-      barCategoryGap="10%"
-      maxBarSize={35}
+      barCategoryGap="5%"
       margin={{
-        top: 5, right: 0, left: 0, bottom: 5,
+        top: 5, right: 30, left: 0, bottom: 5,
       }}
     >
-      {/* <CartesianGrid strokeDasharray="2 2" /> */}
-      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-      <Legend iconSize={10} verticalAlign='top' wrapperStyle={{
-        fontFamily: 'Helvetica', fontSize: '10px'
-      }} formatter={(value, entry, index) => legendText(value)} />
-      <XAxis dataKey="UTYPLONGTEXT" interval={0} stroke="#bdbdbd" tick={CustomizedAxisTick} />
-      <YAxis interval={0} stroke="#bdbdbd" width={40} tick={CustomizedYAxisTick} />
+      <CartesianGrid vertical={false} horizontal={true} />
+      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} cursor={{ fill: 'transparent' }} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
+      <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='35px' wrapperStyle={{
+        fontFamily: 'Helvetica', fontSize: '12px'
+      }} margin={{ top: 0, left: 0, right: 0, bottom: 20 }} formatter={(value, entry, index) => legendText(value)} />
+      <XAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" interval={0} type="category" stroke="#bdbdbd" tick={CustomizedAxisTick} />
+      <YAxis  axisLine={false} tickLine={false} interval={0} stroke="#bdbdbd" width={80} tick={CustomizedYAxisTick} />
       <Bar dataKey="COL1" fill={colorState[0]} onClick={(data) => getData(data)} >
 
-        <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL1" position="top" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'black',fontFamily:'bold' }} />
       </Bar>
       <Bar dataKey="COL2" fill={colorState[1]} onClick={(data) => getData(data)} >
 
-        <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL2" position="top" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'black',fontFamily:'bold' }} />
       </Bar>
       <Bar dataKey="COL3" fill={colorState[2]} onClick={(data) => getData(data)} >
 
-        <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+        <LabelList dataKey="COL3" position="top" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'black',fontFamily:'bold' }} />
       </Bar>
     </BarChart></ResponsiveContainer>)
   }
@@ -341,7 +344,7 @@ const LicenceStackGraphCard = (props) => {
   }) => {
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={0} textAnchor="end" fontSize={10} fill="black" fontFamily='Helvetica' transform="rotate(-15)">{payload.value}</text>
+        <text x={0} y={0} dy={15}  textAnchor="middle" fontSize={12} fill="black" fontFamily={colorState[16]} transform="rotate(0)">{payload.value}</text>
       </g>
     );
   }
@@ -351,7 +354,7 @@ const LicenceStackGraphCard = (props) => {
   }) => {
     return (
       <g transform={`translate(${x},${y})`}>
-        <text x={0} y={0} dy={5} textAnchor="end" fontSize={10} fill="black" fontFamily='Helvetica' transform="rotate(0)">{payload.value}</text>
+        <text x={0} y={0} dy={0} dx={-10} textAnchor="end" fontSize={12} fill="black" fontFamily={colorState[16]} transform="rotate(0)">{payload.value}</text>
       </g>
     );
   }
@@ -366,28 +369,28 @@ const LicenceStackGraphCard = (props) => {
       <BarChart
         layout={"vertical"}
         data={data}
-        barCategoryGap="10%"
-        maxBarSize={35}
+        barCategoryGap="4%"
+        stackOffset="sign"
         margin={{
-          top: 5, right: 0, left: 0, bottom: 5,
+          top: 5, right: 30, left: 0, bottom: 5,
         }}
       >
-        {/* <CartesianGrid strokeDasharray="2 2" /> */}
-        <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-        <Legend iconSize={10}  verticalAlign='top' wrapperStyle={{
-          fontFamily: 'Helvetica', fontSize: '10px'
-        }} formatter={(value, entry, index) => legendText(value)} />
+          <CartesianGrid vertical={true} horizontal={false} />
+      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} cursor={{ fill: 'transparent' }} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
+      <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='35px' wrapperStyle={{
+        fontFamily: 'Helvetica', fontSize: '12px'
+      }} formatter={(value, entry, index) => legendText(value)} />
 
-        <XAxis type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
-        <YAxis dataKey="UTYPLONGTEXT" type="category" stroke="#bdbdbd" width={80} interval={0} tick={CustomizedYAxisTick} />
+        <XAxis domain={['dataMin', 'dataMax']} type='number' axisLine={false} tickLine={false} stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
+        <YAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" type="category" stroke="#bdbdbd" width={80} interval={0} tick={CustomizedYAxisTick} />
         <Bar dataKey="COL1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+          <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white' ,fontFamily:'bold'}} />
         </Bar>
         <Bar dataKey="COL2" stackId="a" fill={colorState[1]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+          <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white',fontFamily:'bold' }} />
         </Bar>
         <Bar dataKey="COL3" stackId="a" fill={colorState[2]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+          <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '70%', fill: 'white',fontFamily:'bold' }} />
         </Bar>
       </BarChart></ResponsiveContainer>)
   }
@@ -399,31 +402,29 @@ const LicenceStackGraphCard = (props) => {
       <BarChart
         layout={"vertical"}
         data={data}
-        barCategoryGap="10%"
-        maxBarSize={35}
+        barCategoryGap="4%"
         margin={{
-          top: 5, right: 0, left: 0, bottom: 5,
+          top: 5, right: 30, left: 0, bottom: 5,
         }}
       >
-        {/* <CartesianGrid strokeDasharray="2 2" /> */}
-
-        <Tooltip formatter={(value, name, props) => tooltipText(value, name)} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
-        <Legend iconSize={10} verticalAlign='top' wrapperStyle={{
-          fontFamily: 'Helvetica', fontSize: '10px'
-        }} formatter={(value, entry, index) => legendText(value)} />
-        <XAxis type='number' stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
-        <YAxis dataKey="UTYPLONGTEXT" type="category" stroke="#bdbdbd" width={80} interval={0} tick={CustomizedYAxisTick} />
+        <CartesianGrid vertical={true} horizontal={false} />
+      <Tooltip formatter={(value, name, props) => tooltipText(value, name)} cursor={{ fill: 'transparent' }} wrapperStyle={{ fontFamily: 'Helvetica', fontSize: '10px' }} />
+      <Legend iconSize={15} align='center' layout='horizontal' verticalAlign='top' height='35px' wrapperStyle={{
+        fontFamily: 'Helvetica', fontSize: '12px'
+      }} formatter={(value, entry, index) => legendText(value)} />
+        <XAxis type='number' axisLine={false} tickLine={false} stroke="#bdbdbd" interval={0} tick={CustomizedAxisTick} />
+        <YAxis axisLine={false} tickLine={false} dataKey="UTYPLONGTEXT" type="category" stroke="#bdbdbd" width={120} interval={0} tick={CustomizedYAxisTick} />
         <Bar dataKey="COL1" stackId="a" fill={colorState[0]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+          <LabelList dataKey="COL1" position="center" style={{ textAnchor: 'middle', fontSize: '90%', fill: 'white' }} />
         </Bar>
         <Bar dataKey="COL2" stackId="a" fill={colorState[1]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+          <LabelList dataKey="COL2" position="center" style={{ textAnchor: 'middle', fontSize: '90%', fill: 'white' }} />
         </Bar>
         <Bar dataKey="COL3" stackId="a" fill={colorState[2]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+          <LabelList dataKey="COL3" position="center" style={{ textAnchor: 'middle', fontSize: '90%', fill: 'white' }} />
         </Bar>
         <Bar dataKey="COL4" stackId="a" fill={colorState[3]} onClick={(data) => getData(data)} >
-          <LabelList dataKey="COL4" position="center" style={{ textAnchor: 'middle', fontSize: '50%', fill: 'white' }} />
+          <LabelList dataKey="COL4" position="center" style={{ textAnchor: 'middle', fontSize: '90%', fill: 'white' }} />
         </Bar>
 
       </BarChart></ResponsiveContainer>)
@@ -439,7 +440,25 @@ const LicenceStackGraphCard = (props) => {
       return "Recommened"
     }
     if (value == 'COL3') {
-      return "Additional"
+      if(chartId=='SEC111')
+      return "Additional/Excess (Percentage)"
+      else
+      return "Additional/Excess"
+    }
+    if (value == 'COL4') {
+      return "Unused"
+    }
+  }
+
+  const legendTextPercentage = (value) => {
+    if (value == 'COL1') {
+      return "Purchased"
+    }
+    if (value == 'COL2') {
+      return "Recommened"
+    }
+    if (value == 'COL3') {
+      return "Additional/Excess (Percentage)"
     }
     if (value == 'COL4') {
       return "Unused"
@@ -476,37 +495,37 @@ const LicenceStackGraphCard = (props) => {
     setOpen(false);
   };
 
-  const getTableHeader = (data, key) => {
-    if(data==undefined || data==null ||data.length<1){
+  const getTableHeader = (data, key,headerdata) => {
+    if (data == undefined || data == null || data.length < 1) {
       return []
     }
     let filtereddata = data.filter(p => p.ZTYPE === key);
-    if(filtereddata.length<1){
+    if (filtereddata.length < 1) {
       return []
     }
 
-    let columnarray = (key == '03') ? ["LIC_TYPE", "UTYPLONGTEXT", "COL1", "COL2","COL3"]:["LIC_TYPE", "UTYPLONGTEXT", "COL1", "COL2", "COL3","COL4"] 
-    let header = Object.keys(filtereddata[0]).filter(t => columnarray.includes(t)).map(p => {
-      if (p == 'LIC_TYPE') {
-        return 'COLUMN1'
-      }
-      if (p == 'UTYPLONGTEXT') {
-        return 'COLUMN2'
-      }
-      if (p == 'COL1') {
-        return 'COUNT1'
-      }
-      if (p == 'COL2') {
-        return 'COUNT2'
-      }
-      if (p == 'COL3') {
-        return 'COUNT3'
-      }
-      if (p == 'COL4') {
-        return 'COUNT4'
-      }
-    })
-
+    let columnarray = (key == '03') ? ["LIC_TYPE", "UTYPLONGTEXT", "COL1", "COL2", "COL3"] : ["LIC_TYPE", "UTYPLONGTEXT", "COL1", "COL2", "COL3", "COL4"]
+    // let header = Object.keys(filtereddata[0]).filter(t => columnarray.includes(t)).map(p => {
+    //   if (p == 'LIC_TYPE') {
+    //     return 'COLUMN1'
+    //   }
+    //   if (p == 'UTYPLONGTEXT') {
+    //     return 'COLUMN2'
+    //   }
+    //   if (p == 'COL1') {
+    //     return 'COUNT1'
+    //   }
+    //   if (p == 'COL2') {
+    //     return 'COUNT2'
+    //   }
+    //   if (p == 'COL3') {
+    //     return 'COUNT3'
+    //   }
+    //   if (p == 'COL4') {
+    //     return 'COUNT4'
+    //   }
+    // })
+    let header = headerdata.split(',')
 
     let dataset = filtereddata.map(dt => {
       let tem = [];
@@ -515,7 +534,7 @@ const LicenceStackGraphCard = (props) => {
       tem.push(dt.COL1)
       tem.push(dt.COL2)
       tem.push(dt.COL3)
-      if (['01','02'].includes(key)) {
+      if (['01', '02'].includes(key)) {
         tem.push(dt.COL4)
       }
       return tem;
@@ -524,18 +543,18 @@ const LicenceStackGraphCard = (props) => {
 
     let dataset2 = filtereddata.map(dt => {
       let tem = {};
-      tem.COLUMN1=dt.LIC_TYPE
-      tem.COLUMN2=dt.UTYPLONGTEXT
-      tem.COUNT1=dt.COL1
-      tem.COUNT2=dt.COL2
-      tem.COUNT3=dt.COL3
-      if (['01','02'].includes(key)) {
-        tem.COUNT4=dt.COL4
+      tem.COLUMN1 = dt.LIC_TYPE
+      tem.COLUMN2 = dt.UTYPLONGTEXT
+      tem.COUNT1 = dt.COL1
+      tem.COUNT2 = dt.COL2
+      tem.COUNT3 = dt.COL3
+      if (['01', '02'].includes(key)) {
+        tem.COUNT4 = dt.COL4
       }
       return tem;
     })
 
-    return [header, dataset,dataset2]
+    return [header, dataset, dataset2]
 
 
   }
@@ -547,14 +566,15 @@ const LicenceStackGraphCard = (props) => {
 
   const classes = useStyles();
   const [chartState, setChartState] = useState(props.chartType);
+  const [chartId,setChartId]=useState(props.chartId)
   const [activeIndex, setActiveIndex] = useState(0);
   const [open, setOpen] = React.useState(false);
   const [colorState, setColorState] = useState([...COLORS]);
 
   let getchartDataResult1 = proesResultData(props.data, props.chart);
-  let tableData = getTableHeader(props.data, props.chart)
-  let firctChart =getchartDataResult1.length>0?getChart(getchartDataResult1, chartState, '#00bcd4', props.stack):<Typography  variant="subtitle2" color="inherit" style={{width:500}}>
-  No Records found
+  let tableData = getTableHeader(props.data, props.chart,props.chartHeader)
+  let firctChart = getchartDataResult1.length > 0 ? getChart(getchartDataResult1, chartState, '#00bcd4', props.stack) : <Typography variant="subtitle2" color="inherit" style={{ width: 500 }}>
+    No Records found
 </Typography>
   useEffect(() => {
     let arr = [...props.color, ...COLORS]
@@ -563,14 +583,14 @@ const LicenceStackGraphCard = (props) => {
 
   return (
     <div>
-      <Card className={classes.root} elevation='5' style={{ height: props.height }}>
-        <CardContent style={{ padding: 2, marginRight: 5, height: '85%' }}>
+      <Card className={classes.root} elevation='5' style={{ height: "39vh" }}>
+        <CardContent style={{ padding: 5, marginRight: 5, height: '85%' }}>
           {firctChart}
         </CardContent>
 
-        <CardActions style={{ margin: 0, padding: 2 }}>
-          <Grid container spacing={2} style={{margin:'auto'}}>
-            <Grid item md={2}>
+        <CardActions style={{ margin: 'auto', padding: 2, height:'15%' }}>
+          <Grid container spacing={2}>
+            <Grid item md={1}>
               <FormControl variant="outlined" className={classes.formControl} size="small">
                 <InputLabel id="demo-simple-select-outlined-label">{props.label}</InputLabel>
                 <Select
@@ -585,7 +605,7 @@ const LicenceStackGraphCard = (props) => {
                     },
                   }}
                   style={{ height: 20 }}
-                  classes={{outlined:classes.rootSelect}}
+                  classes={{ outlined: classes.rootSelect }}
                 >
                   <MenuItem value={1} key='horizontal' style={{ padding: 5 }}><AssessmentOutlinedIcon fontSize="small" style={{ transform: 'rotate(90deg)' }} /></MenuItem>
                   <MenuItem value={2} key='vertical' style={{ padding: 5 }}><AssessmentOutlinedIcon fontSize="small" /></MenuItem>
@@ -593,13 +613,13 @@ const LicenceStackGraphCard = (props) => {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item md={8}>
-              <Typography variant="subtitle2" style={{ fontFamily: 'Helvetica' }}>
+            <Grid item md={10} style={{ textAlign: 'center'}}>
+            <Typography variant="subtitle2" style={{ fontFamily: 'Helvetica' ,fontWeight:"bold" }}>
                 {props.name}
               </Typography>
 
             </Grid>
-            <Grid item md={2}>
+            <Grid item md={1}>
               <IconButton
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
@@ -625,19 +645,19 @@ const LicenceStackGraphCard = (props) => {
         onClose={handleClose}
         PaperComponent={PaperComponent}
         aria-labelledby="draggable-dialog-title"
-        style={{width:'inherit'}}
+        style={{ width: 'inherit' }}
         classes={{
-          paper:classes.dialoguewidth
+          paper: classes.dialoguewidth
         }}
       >
-        <Grid container spacing={1} style={{width:'100%'}}>
-          <Grid item md={11}>
-            <DialogTitle style={{ cursor: 'move', maxHeight: 30, fontFamily: 'Helvetica', fontSize: 10 }} id="draggable-dialog-title">
+        <Grid container spacing={1} style={{ width: '100%' }}>
+          <Grid item md={11} style={{ textAlign: 'center'}}>
+            <DialogTitle  disableTypography={true} style={{ cursor: 'move', maxHeight: 30, fontFamily: 'Helvetica', fontSize: 10 }} id="draggable-dialog-title">
 
-              {` ${props.name} Table`}
+              <Typography variant="body1">{props.name}</Typography>
             </DialogTitle>
           </Grid>
-          <Grid item md={1}>
+          <Grid item md={1} style={{textAlign:'end'}}>
             <IconButton
               aria-label="account of current user"
               aria-controls="menu-appbar"
@@ -652,11 +672,11 @@ const LicenceStackGraphCard = (props) => {
         </Grid>
 
 
-        <DialogContent style={{paddingTop:10}}>
-        {/* <GRCDashbordTable name={props.name} header={tableData[0]} data={tableData[1]} /> */}
+        <DialogContent style={{ paddingTop: 10 }}>
+          {/* <GRCDashbordTable name={props.name} header={tableData[0]} data={tableData[1]} /> */}
           {/* <LicenceReportTable name={props.name} header={tableData[0]} data={tableData[2]} colors={colorState} /> */}
 
-          <LicenseReportStackedTable  data={props.chartdata} header={props.chartHeader.map(p=>p.ZDESC)} colors={colorState}/>
+          <LicenseReportStackedTable data={props.chartdata} header={tableData[0]} colors={colorState} />
         </DialogContent>
 
       </Dialog>

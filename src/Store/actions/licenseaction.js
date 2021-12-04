@@ -43,11 +43,13 @@ export const initiateLicenseFilter = (data) => {
                 temp.client = p;
                 break
             case 11:
-                p.selectedValue = p.value[0].ZID
+                p.selectedValue = p.value[1].ZID
                 temp.level = p;
                 break
             case 12:
                 p.selectedValue =[]
+                p.selectedValue.push(p.value[0].ZID)
+                p.selectedValue.push(p.value[p.value.length-1].ZID)
                 temp.userType = p;
                 break
             case 13:

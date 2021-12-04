@@ -34,7 +34,7 @@ class LicenceDragableDialogue extends Component {
 
         return (
             <div>
-          {this.props.dialogueState && !this.props.loader?<LicenceDraggableDialog dialogueState={this.props.dialogueState} colors={this.props.colors} header={this.props.licensetablereport.header} data={this.props.licensetablereport.data} closeDialogue={this.props.closeDialogue}/>:null}
+          {this.props.dialogueState && !this.props.loader && Object.keys(this.props.licensetablereport).length>0?<LicenceDraggableDialog dialogueState={this.props.dialogueState} colors={this.props.colors} header={this.props.licensetablereport.header} data={this.props.licensetablereport.data} name={this.props.licensetablereport.reportName[0]} closeDialogue={this.props.closeDialogue}/>:null}
           </div>
         )
 

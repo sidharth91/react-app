@@ -11,10 +11,14 @@ class Application extends Component{
   state={
     isAuthenticated:false
   }
+  constructor(props) {
+    super(props);
+    this.props.onTryAutoSignup();
 
+  }
 
  componentDidMount(){
-  this.props.onTryAutoSignup();
+ 
 
   }
 
@@ -30,8 +34,7 @@ render(){
   if (! this.props.isAuthenticated ) {
     routes = (
       <Switch>
-      <Route path='/' exact render={(props) =>  <Login/>}/>
-      <Redirect to ='/'/>
+      <Route path='*' exact render={(props) =>  <Login/>}/>
       </Switch>
       )
   }

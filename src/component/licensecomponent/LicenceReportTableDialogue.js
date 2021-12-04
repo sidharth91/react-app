@@ -163,7 +163,7 @@ const useStyles = makeStyles((theme) => ({
     width: 1,
   },
   reporttablecell:{
-    fontFamily:'Helvetica',
+    fontFamily: props=>props.colors[16],
     fontSize:12, 
     wordWrap:"normal", 
     overflow:"hidden", 
@@ -176,7 +176,7 @@ const useStyles = makeStyles((theme) => ({
     borderCollapse:'collapse'
   },
   reporttableheader:{
-    fontFamily:'Helvetica',
+    fontFamily: props=>props.colors[16],
     fontSize:12, 
     fontWeight:"bold",
     wordWrap:"normal", 
@@ -192,11 +192,11 @@ const useStyles = makeStyles((theme) => ({
   },
   tablepaginationtoolbar:{
     minHeight:30,
-    fontFamily:'Helvetica',
+    fontFamily: props=>props.colors[16],
     fontSize:'12px'
   },
   tablepaginationtext:{
-    fontFamily:'Helvetica',
+    fontFamily:props=>props.colors[15],
     fontSize:'12px'
   },
   container: {

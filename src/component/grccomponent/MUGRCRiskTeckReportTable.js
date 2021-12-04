@@ -39,7 +39,7 @@ const options = {
     print:false,
     sortFilterList:false,
     rowsPerPage:100,
-    rowsPerPageOptions:[100,250,500]
+    rowsPerPageOptions:[100,250,500,1000,2000,5000,10000]
 };
 
 
@@ -50,7 +50,7 @@ const MUGRCRiskTeckReportTable = (props) => {
         overrides: {
             MUIDataTableBodyCell: {
                 root: {
-                    fontFamily: 'Helvetica',
+                    fontFamily: font,
                     fontSize: 13,
                     wordWrap: "normal",
                     overflow: "hidden",
@@ -66,7 +66,7 @@ const MUGRCRiskTeckReportTable = (props) => {
             },
             MUIDataTableHeadCell: {
                 root: {
-                    fontFamily: 'Helvetica',
+                    fontFamily: font,
                     fontSize: 14,
                     fontWeight: "bold",
                     wordWrap: "normal",
@@ -98,6 +98,9 @@ const MUGRCRiskTeckReportTable = (props) => {
                 filterPaper: {
                     maxWidth: '20%',
                     maxHeight: '70%'
+                },
+                actions:{
+                    flex: '0 0 auto'
                 }
     
             },
@@ -105,7 +108,7 @@ const MUGRCRiskTeckReportTable = (props) => {
             {
                 formControl:{
                 fontSize:12,
-                fontFamily:'Helvetica'
+                fontFamily:font
             }},
             MuiGridList:{
                 root:{
@@ -153,11 +156,13 @@ const MUGRCRiskTeckReportTable = (props) => {
 
     const [data, setData] = React.useState(props.data)
     const [header, setHeader] = React.useState(props.header)
-    const [color,setColor]=React.useState(props.colors[16])
+    const [color,setColor]=React.useState(props.colors[15])
+    const [font,setFont]=React.useState(props.colors[16])
     React.useEffect(() => {
         setData(props.data);
         setHeader(props.header)
         setColor(props.colors[15])
+        setFont(props.colors[16])
     }, [props])
 
     const rows = data.map(p => createData(p));
@@ -168,6 +173,7 @@ const MUGRCRiskTeckReportTable = (props) => {
     return (
         <MuiThemeProvider theme={getMuiTheme()}>
             <MUIDataTable
+            title={props.name}
                 data={data}
                 columns={columns}
                 options={options}

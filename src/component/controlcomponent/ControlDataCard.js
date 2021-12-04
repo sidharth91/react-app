@@ -9,7 +9,6 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 
 import CardContent from '@material-ui/core/CardContent';
-import GRCStackGraphCard from './GRCStackGraphCard'
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, green } from '@material-ui/core/colors';
@@ -56,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     },
     Labeltext:{
         fontFamily:'Helvetica',
-        fontSize:12
+        fontSize:11
     },
     roundedSecond: {
         color: '#FFFFFF',
@@ -87,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const GRCDataCard = (props) => {
+const ControlDataCard = (props) => {
 
 
 
@@ -113,17 +112,17 @@ const GRCDataCard = (props) => {
 
     return (
 
-        <Grid container style={{ marginTop:0 }} spacing={0}>
+        <Grid container style={{ marginTop:5 }} spacing={0}>
             <Grid item md={12} >
-            {isDataReadtToShow ?
+        
                 <Card elevation='5'>
                    
-                        <CardContent style={{ padding: 2, height:"8vh",margin:'auto' }}>
+                        <CardContent style={{ padding: 2, height:"7vh",margin:'auto' }}>
                             <Grid container spacing={1} style={{ height:"inherit",width: '100%', margin: 0 }}>
 
 
-                                <Grid container spacing={0} style={{padding:5}}>
-                                 <Grid item sm={3} style={{ margin: 'auto' }}>
+                                <Grid container spacing={0} style={{margin:'auto'}}>
+                                 <Grid item sm={2} >
                                  <Avatar variant="rounded" className={props.index>8?classes.roundedFourth
                                     :props.index>4?classes.roundedThird:props.index>2?classes.roundedSecond:
                                     classes.rounded}>
@@ -132,10 +131,10 @@ const GRCDataCard = (props) => {
                                      </Grid>
                                      <Grid item sm={9}> 
                                      <Typography variant="caption" display="block" className={classes.Labeltext}>
-                                            {props.result.COL1}
+                                            {props.result &&  props.result.COL1?props.result.COL1:"No Data Available"}
                                         </Typography>
                                         <Typography variant="caption" display="block" className={classes.Labeltext}>
-                                        {props.result.ZCOUNT}
+                                        {props.result  && props.result.ZCOUNT?props.result.ZCOUNT:""}
                                         </Typography>
                                      </Grid>   
                                      </Grid>
@@ -166,7 +165,7 @@ const GRCDataCard = (props) => {
                         </CardContent>
                        
                 </Card>
-                 : null}
+               
             </Grid>
 
         </Grid>
@@ -182,4 +181,4 @@ const GRCDataCard = (props) => {
 
 
 
-export default GRCDataCard;//connect which return a HOC taking two parameters which help connect to redux store and component
+export default ControlDataCard;//connect which return a HOC taking two parameters which help connect to redux store and component

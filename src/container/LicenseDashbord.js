@@ -14,8 +14,12 @@ import LicenceFirstSection from '../component/licensecomponent/LicenceFirstSecti
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import LicenseSecondSecData from '../component/licensecomponent/LicenseSecondSecData'
 import LicenceThirdSection from '../component/licensecomponent/LicenceThirdSection'
+import LicenceFourthSection from '../component/licensecomponent/LicenceFourthSection'
+import LicenceFiveSection from '../component/licensecomponent/LicenceFiveSection'
 import Loader from '../component/Loader'
+import LicenseDataCard from "../component/licensecomponent/LicenseDataCard"
 import LicenceDragableDialogue from './LicenceDragableDialogue'
+import FilterFloatAction from '../component/FilterFloatAction'
 
 
 
@@ -24,7 +28,8 @@ class LicenseDashbord extends Component {
     state={
         dialogue:false,
         groupby:'',
-        chart:''
+        chart:'',
+        isScrolling: false
     }
 
     componentDidMount() {
@@ -42,6 +47,9 @@ class LicenseDashbord extends Component {
        this.setState({dialogue:false,groupby:'',chart:''})
   }
 
+  filterHide = () => {
+    this.setState({ isScrolling: !this.state.isScrolling });
+  };
 
 
     render() {
@@ -50,10 +58,37 @@ class LicenseDashbord extends Component {
         return (
             <Grid container style={{ marginTop: 10, marginRight: 10, marginLeft: 10 }} spacing={0}>
                 <Grid item md={12}>
-                {this.props.sapSystem.value.length>0?<LicenseFilter type='Dashbord' />:null}
+                {this.props.sapSystem.value.length>0?
+                <div>
+                {!this.state.isScrolling?
+              <LicenseFilter type='Dashbord' />
+             :null}
+             <FilterFloatAction onclick={this.filterHide} state={this.state.isScrolling}/>
+             </div>
+                :null}
                     <LicenceFirstSection dialogueOpen={this.openDialogue}/>
-                    <LicenseSecondSecData result={this.props.licenseresult}/>
-                    <LicenceThirdSection result={this.props.licenseresult} dialogueOpen={this.openDialogue}/>
+                    {this.props.result? 
+                    <Grid container style={{marginTop:1}} spacing={2}>
+                        <Grid item md={3} sm={6} > <LicenseDataCard result={this.props.result.E_RESULT_02.data[0]} index={0}/></Grid>
+                        <Grid  item md={3} sm={6}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[1]} index={1}/></Grid>
+                        <Grid  item md={3} sm={6}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[2]} index={2}/></Grid>
+                        <Grid  item md={3} sm={6}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[3]} index={3}/></Grid>
+                    </Grid >:null
+                    } 
+
+                    <LicenceFourthSection dialogueOpen={this.openDialogue}/>
+
+                    {this.props.result? 
+                    <Grid container style={{marginTop:1}} spacing={2}>
+                        <Grid item md={3} sm={6}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[4]} index={0}/></Grid>
+                        <Grid  item md={3} sm={6}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[5]} index={1}/></Grid>
+                        <Grid  item md={3} sm={6}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[6]} index={2}/></Grid>
+                        <Grid  item md={3} sm={6}> <LicenseDataCard result={this.props.result.E_RESULT_02.data[7]} index={3}/></Grid>
+                    </Grid >:null
+                    } 
+                    {/* <LicenseSecondSecData result={this.props.licenseresult}/> */}
+                    <LicenceFiveSection dialogueOpen={this.openDialogue}/>
+                    <LicenceThirdSection  dialogueOpen={this.openDialogue}/>
                     {this.props.loader?<Loader/>:null}
                     {this.state.dialogue?<LicenceDragableDialogue dialogueState={this.state.dialogue} groupby={this.state.groupby} chart={this.state.chart} closeDialogue={this.closeDialogue}/>:null}
                 </Grid>
@@ -67,7 +102,7 @@ class LicenseDashbord extends Component {
 const mapStateToProps = state => {    //this methos use to retrive state from redux store as props
     return {
         token: state.login.token, //state.reducername.value
-        licenseresult:state.licensefilter.licenseresult,
+        result:state.licensefilter.licenseresult,
         loader:state.licensefilter.loader,
         sapSystem: state.licensefilter.sapSystem,
     };

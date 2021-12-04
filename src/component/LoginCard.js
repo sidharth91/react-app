@@ -88,7 +88,7 @@ const LoginCard = (props) => {
     };
 
     return (
-        <Card className={classes.root}>
+        <Card className={classes.root} elevation={5}>
             <CardActionArea>
                 <CardMedia
                     className={classes.media}
@@ -147,7 +147,7 @@ const LoginCard = (props) => {
 
             <CardActions style={{  }}>
                 <Grid container style={{ marginTop:0, marginLeft: 20, marginRight: 20 }} spacing={0}>
-                <Button variant="contained" color="primary" style={{marginLeft: '35%' }} onClick={()=>{props.onLogin()}}>Login</Button>
+                <Button variant="contained" color="primary" style={{marginLeft: '35%',backgroundColor:'#0098CF' }} onClick={()=>{props.onLogin()}}>Login</Button>
                 
                 <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity="error">

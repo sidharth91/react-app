@@ -34,10 +34,15 @@ class GRCReport extends Component {
 
         return (
             <Grid container style={{ marginTop:5,paddingRight:10,paddingLeft:10 }} spacing={0}>
-                 <Grid item md={12} style={{margin:5}}>
+                 <Grid item md={12} sm={12} style={{margin:5}}>
                  {this.props.sapSystem.value.length>0?<LicenseFilter type='Report' />:null}
                     {/* {Object.keys(this.props.grcreport).length>0?<GRCReportTable colors={this.props.colors} header={this.props.grcreport.header} data={this.props.grcreport.data}/>:null} */}
-                      {Object.keys(this.props.licensereport).length>0 && this.props.licensereport.data.length>0?<MUGRCReportTable colors={this.props.colors} header={this.props.licensereport.header} data={this.props.licensereport.data}/>:null}
+                      {Object.keys(this.props.licensereport).length>0 && this.props.licensereport.data.length>0?
+                      <Grid container style={{ marginTop:5,paddingRight:10}} spacing={0}>
+                      <Grid item md={12} sm={12} style={{margin:5,alignItems:'center'}}>
+                      <MUGRCReportTable colors={this.props.colors} header={this.props.licensereport.header} data={this.props.licensereport.data} name={this.props.licensereport.reportName[0]}/>
+                      </Grid>
+                        </Grid>:null}
                       {Object.keys(this.props.licensereport).length>0 && this.props.licensereport.data.length<1?
                        <Grid container style={{ marginTop:5,paddingRight:10,paddingLeft:10}} spacing={0}>
                            <Grid item md={12} style={{margin:5,alignItems:'center'}}>
