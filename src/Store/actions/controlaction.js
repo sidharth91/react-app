@@ -7,7 +7,7 @@ import axios from 'axios';
 export const initControlFilter = (token) => {
     return dispatch => {
         dispatch({ type: actionType.CHANGE_CONTROLLOADER_STATUS, data: true })
-        axios.get('http://ec2-3-88-0-12.compute-1.amazonaws.com:8080/api/controlsfilter', { headers: { 'Authorisation': token } })
+        axios.get('/api/controlsfilter', { headers: { 'Authorisation': token } })
             .then(response => {
                 dispatch({ type: actionType.CHANGE_CONTROLLOADER_STATUS, data: false })
                 dispatch(initiateControlFilter(response.data));
@@ -107,7 +107,7 @@ export const submitcontrolFilter = (token, sapSystem, client, controls) => {
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_CONTROLLOADER_STATUS, data: true })
-        axios.post('http://ec2-3-88-0-12.compute-1.amazonaws.com:8080/api/JAVA_0007', {
+        axios.post('/api/JAVA_0007', {
             sapSystem: sapSystem,
             client: client,
             controls: controls
@@ -128,7 +128,7 @@ export const submitcontrolReportFilter = (token, sapSystem, client, control) => 
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_CONTROLLOADER_STATUS, data: true })
-        axios.post('http://ec2-3-88-0-12.compute-1.amazonaws.com:8080/api/JAVA_0009', {
+        axios.post('/api/JAVA_0009', {
             sapSystem: sapSystem,
             client: client,
             control: control
@@ -152,7 +152,7 @@ export const submitcontrolReportFilterDialogue = (token, sapSystem, client, cont
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_CONTROLLOADER_STATUS, data: true })
-        axios.post('http://ec2-3-88-0-12.compute-1.amazonaws.com:8080/api/JAVA_0009', {
+        axios.post('/api/JAVA_0009', {
             sapSystem: sapSystem,
             client: client,
             control: control
@@ -174,7 +174,7 @@ export const submitcontrolReportFilterSummary = (token, sapSystem, client, contr
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_CONTROLLOADER_STATUS, data: true })
-        axios.post('http://ec2-3-88-0-12.compute-1.amazonaws.com:8080/api/JAVA_0008', {
+        axios.post('/api/JAVA_0008', {
             sapSystem: sapSystem,
             client: client,
             controls: controls
@@ -196,7 +196,7 @@ export const submitcontrolReportFilterSummaryDialogue = (token, sapSystem, clien
 
     return dispatch => {
         dispatch({ type: actionType.CHANGE_CONTROLLOADER_STATUS, data: true })
-        axios.post('http://ec2-3-88-0-12.compute-1.amazonaws.com:8080/api/JAVA_0008', {
+        axios.post('/api/JAVA_0008', {
             sapSystem: sapSystem,
             client: client,
             controls: controls

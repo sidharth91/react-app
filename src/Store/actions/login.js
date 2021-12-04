@@ -49,7 +49,7 @@ export const defaultData=(data)=>{
 
 export const onLogin=(username,password,system,client,ip,instanse)=>{
 
-    return dispatch=>{axios.post('http://ec2-3-88-0-12.compute-1.amazonaws.com:8080/token', {
+    return dispatch=>{axios.post('/token', {
         userName: username,
         password:password,
         system:system,
@@ -88,7 +88,7 @@ export const onLogout=()=>{
 }
 
 export const fetchDefaultData=()=>{
-  return dispatch=>{axios.get('http://ec2-3-88-0-12.compute-1.amazonaws.com:8080/token')
+  return dispatch=>{axios.get('/token')
       .then(response =>{
         dispatch(defaultData(response.data));
       })
